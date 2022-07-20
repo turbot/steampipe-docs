@@ -14,10 +14,11 @@ jobs:
     steps:
       - name: Checkout working branch
         uses: actions/checkout@v2
-        # with: 
+        with: 
         #   repository: steampipe-docs
-          # repository: turbotio/steampipe.io
-          # token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
+          repository: turbotio/steampipe.io
+          token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
+          ref: main
 
       - uses: convictional/trigger-workflow-and-wait@v1.6.1
         with:
