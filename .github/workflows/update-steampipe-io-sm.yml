@@ -22,8 +22,7 @@ jobs:
       - name: Check branch exists
         run: |
           echo "Branch name"
-          a=`git rev-parse --verify --quiet main`
-          echo $a
+          git rev-parse --verify --quiet main
 
       # - name: Create branch
       #   if: $GITHUB_BRANCH_EXIST == ""
