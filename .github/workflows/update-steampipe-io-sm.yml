@@ -23,7 +23,7 @@ jobs:
         run: |
           echo "Branch name"
           echo $gihub.ref_name
-          git rev-parse --verify --quiet ${{ gihub.ref_name }} >> $GITHUB_BRANCH_EXIST 
+          git rev-parse --verify --quiet ${{ github.ref_name }} >> $GITHUB_BRANCH_EXIST 
           echo $GITHUB_BRANCH_EXIST
 
       # - name: Create branch
