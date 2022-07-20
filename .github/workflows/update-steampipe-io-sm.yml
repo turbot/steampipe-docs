@@ -19,10 +19,14 @@ jobs:
           # repository: turbotio/steampipe.io
           # token: ${{ secrets.PRIVATE_TOKEN_GITHUB }}
 
-      - name: Check branch exists
-        run: |
-          echo "Branch name"
-          git rev-parse --verify --quiet origin/main
+      - uses: convictional/trigger-workflow-and-wait@v1.6.1
+        with:
+          owner: abhiturbot
+          repo: turbotio/steampipe.io
+          github_token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
+          ref: main
+          workflow_file_name: build-production.yml
+
 
       # - name: Create branch
       #   if: $GITHUB_BRANCH_EXIST == ""
