@@ -12,21 +12,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout working branch
-        uses: actions/checkout@v2
-        with: 
-        #   repository: steampipe-docs
-          repository: turbotio/steampipe.io
-          token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
-          ref: main
-
-      - uses: convictional/trigger-workflow-and-wait@v1.6.1
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
         with:
-          owner: abhiturbot
-          repo: turbotio/steampipe.io
-          github_token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
-          ref: main
-          workflow_file_name: build-production.yml
+          token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
+          repository: turbotio/steampipe.io
+          event-type: vercel-flow
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+
+      # - name: Checkout working branch
+      #   uses: actions/checkout@v2
+      #   with: 
+      #   #   repository: steampipe-docs
+      #     repository: turbotio/steampipe.io
+      #     token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
+      #     ref: main
+
+      # - uses: convictional/trigger-workflow-and-wait@v1.6.1
+      #   with:
+      #     owner: abhiturbot
+      #     repo: turbotio/steampipe.io
+      #     github_token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
+      #     ref: main
+      #     workflow_file_name: build-production.yml
 
 
       # - name: Create branch
