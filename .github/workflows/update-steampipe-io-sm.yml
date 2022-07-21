@@ -20,7 +20,7 @@ jobs:
       #     event-type: vercel-flow
       #     client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
 
-      - name: Checkout working branch
+      - name: Checkout main branch
         uses: actions/checkout@v2
         with: 
         #   repository: steampipe-docs
@@ -32,8 +32,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: 'workflow-branch-2'
-
+          branch: 'workflow-branch-2'          
+      - name: Checkout working branch
+        uses: actions/checkout@v2
+        with: 
+        #   repository: steampipe-docs
+          repository: turbotio/steampipe.io
+          token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
+          ref: workflow-branch-2
+      - name: Add submodules
+        run: |
+          git submodule add https://github.com/turbot/steampipe-docs.git
+       
+       
       # - uses: convictional/trigger-workflow-and-wait@v1.6.1
       #   with:
       #     owner: abhiturbot
