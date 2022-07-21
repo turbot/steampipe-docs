@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PARENT_REPOSITORY: 'turbotio/steampipe.io'
-      CHECKOUT_BRANCH: 'main'
-      PR_AGAINST_BRANCH: 'main'
+      CHECKOUT_BRANCH: 'staging'
+      PR_AGAINST_BRANCH: 'staging'
       OWNER: 'turbotio'
       GITHUB_TOKEN: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
     steps:
