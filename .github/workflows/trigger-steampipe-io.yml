@@ -1,0 +1,23 @@
+name: Trigger the preview build in steampipe.io
+
+on:
+  workflow_dispatch:
+
+  create
+
+  push:
+    branches-ignore: 
+      - "main"
+    
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
+          repository: turbotio/steampipe.io
+          event-type: vercel-flow
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
