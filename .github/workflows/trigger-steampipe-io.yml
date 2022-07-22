@@ -3,9 +3,9 @@ name: Trigger the preview build in steampipe.io
 on:
   workflow_dispatch:
 
-  create:
-    branches: 
-      - "**"
+  # create:
+  #   branches: 
+  #     - "**"
 
   push:
     branches-ignore: 
