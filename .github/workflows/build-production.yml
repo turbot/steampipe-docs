@@ -1,15 +1,14 @@
-name: Trigger the preview build in steampipe.io
+name: Trigger the production build
 
 on:
   workflow_dispatch:
 
   push:
-    branches-ignore: 
+    branches:
       - "main"
-    
 
 jobs:
-  update:
+  build-production:
     runs-on: ubuntu-latest
     steps:
       - name: Repository Dispatch
@@ -17,5 +16,5 @@ jobs:
         with:
           token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
           repository: turbotio/steampipe.io
-          event-type: build-preview
+          event-type: build-production
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
