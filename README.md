@@ -1,1 +1,1 @@
-# steampipe-docs
+# Steampipe Docs
