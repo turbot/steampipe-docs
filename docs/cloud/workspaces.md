@@ -30,6 +30,22 @@ Alternatively, you can attach connections to your workspace from the **Connectio
 
 
 
+## Managing Users
+Workspaces in an organization can be shared with other members of your organization.  Your personal workspace cannot be shared.
+
+You can add and remove workspace users from the **People** tab on your workspace page.  To add a user to your workspace, click **Add Member**.  Enter an email address or the user handle of an existing user and select a role for the user:
+
+| Role | Description
+|-|-
+| **Reader**    | Has full read access to the workspace.
+| **Operator**  | Has full read access to the workspace and can manage snapshots.
+| **Owner**     | Has full administrative access to the workspace, aside from adding connections to the workspace which is reserved for org owners.
+
+
+Click **Add**.  The user will receive an email invitation to join the organization.  
+
+To remove a user from the organization, select the options menu button (hamburger) to the right of the user and click **Remove**.
+
 ## Deleting Workspaces
 You can delete a workspace from its **Settings** tab.  From the **Workspaces** tab for your user account or organization, click on the workspace you wish to delete.  On the workspace page, go to the **Settings** tab, select **Advanced** from the menu on the left, and click **Delete workspace**.  You will be prompted to confirm deletion; enter the workspace name and click **Delete**.
 
@@ -38,7 +54,7 @@ You can delete a workspace from its **Settings** tab.  From the **Workspaces** t
 You can view the query log for your workspace from your workspace page.  Go to the **Settings** tab for your workspace, then select **DB Logs** from the menu on the left.
 
 
-### Workspace Maintenance
+## Workspace Maintenance
 Your workspace may be updated and rebooted during the weekly maintenance window, Sundays 2:00am - 5:00am EST/EDT.  This window is not currently configurable.  
 
 During maintenance, your workspaces will be updated to the latest Steampipe version and the latest plugin versions.  At this time, you cannot opt out of the weekly update.
