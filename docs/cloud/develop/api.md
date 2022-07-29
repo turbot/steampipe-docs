@@ -63,7 +63,10 @@ curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
 
 
 ## Reference
-The API OpenAPI definition is available for download at https://cloud.steampipe.io/api/v1/docs/openapi.json.
+The API OpenAPI definition is available for download at https://cloud.steampipe.io/api/latest/docs/openapi.json.  
+
+You can view it any OpenAPI viewer, such as [ReDoc](https://redocly.github.io/redoc/?url=https://cloud.steampipe.io/api/latest/docs/openapi.json)
+
 
 
 
