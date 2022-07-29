@@ -188,15 +188,64 @@
     "type": "category",
     "id": "cloud",
     "label": "Steampipe Cloud",
-    "link": "cloud/overview",
+    "link": "cloud",
     "items": [
-      "cloud/workspaces",
-      "cloud/connections",
-      "cloud/mods",
-      "cloud/organizations",
-      "cloud/profile",
-      "cloud/connecting",
-      "cloud/develop"
+      {
+        "type": "category",
+        "id": "workspaces",
+        "label": "Workspaces",
+        "link": "cloud/workspaces/overview",
+        "items": []
+      },
+      {
+        "type": "category",
+        "id": "connections",
+        "label": "Connections",
+        "link": "cloud/connections/overview",
+        "items": []
+      },
+      {
+        "type": "category",
+        "id": "mods",
+        "label": "Mods",
+        "link": "cloud/mods/overview",
+        "items": []
+      },
+      {
+        "type": "category",
+        "id": "organizations",
+        "label": "Organizations",
+        "link": "cloud/organizations/overview",
+        "items": []
+      },
+      {
+        "type": "category",
+        "id": "profile",
+        "label": "Profile",
+        "link": "cloud/profile/overview",
+        "items": []
+      },
+      {
+        "type": "category",
+        "id": "connecting",
+        "label": "Connecting",
+        "link": "cloud/connecting/overview",
+        "items": []
+      },
+      {
+        "type": "category",
+        "id": "integrations",
+        "label": "Integrations",
+        "link": "cloud/integrations/overview",
+        "items": ["cloud/metabase"]
+      },
+      {
+        "type": "category",
+        "id": "develop",
+        "label": "Developers",
+        "link": "cloud/develop/overview",
+        "items": []
+      }
     ]
   }
 ]
