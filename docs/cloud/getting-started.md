@@ -1,9 +1,9 @@
 ---
-title: Getting Started with Steampipe CLoud
+title: Getting Started with Steampipe Cloud
 sidebar_label: Getting Started
 ---
 
-## Getting Started with Steampipe CLoud
+## Getting Started with Steampipe Cloud
 
 ### Sign up
 To sign up, go to https://cloud.steampipe.io/signup.  You can sign up with your Github or Google login (you will need authorize Steampipe Cloud to allow you to login using OAuth), or with an email address.
@@ -41,7 +41,7 @@ Each connection is represented as a distinct Postgres schema. In order to query 
 <img src="/images/docs/cloud/gs_create_connection.png" width="400pt"/>
 <br />
 
-The available settings vary by plugin, but every connection has a **handle**.  The connection handle will be used as the name of the schema in Postgres.  A single AWS connection will connect to a single AWS account, but you may may many AWS connections.  As a result, its a good idea to name the connection in a way that reflects which account it is connecting to.  Additionally, its common practice to prefix the connection name with the plugin type.  
+The available settings vary by plugin, but every connection has a **handle**.  The connection handle will be used as the name of the schema in Postgres.  A single AWS connection will connect to a single AWS account, but you may have many AWS connections.  As a result, its a good idea to name the connection in a way that reflects which account it is connecting to.  Additionally, its common practice to prefix the connection name with the plugin type.  
 
 An AWS connection can query multiple regions.  You may want to limit the regions that if queries to reduce the number of API calls, or to avoid errors in regions that you do not have access to, but most people use the default and allow Steampipe to access **All Regions**.
 

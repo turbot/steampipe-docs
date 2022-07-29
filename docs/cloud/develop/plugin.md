@@ -1,6 +1,6 @@
 ---
 title:  Using the Steampipe Cloud plugin for Steampipe
-sidebar_label: Plugin
+sidebar_label: Steampipe Plugin
 ---
 
 
