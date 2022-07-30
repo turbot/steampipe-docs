@@ -5,7 +5,7 @@ sidebar_label: Organizations
 
 # Organizations
  
-Steampipe Cloud users can create their own connections and workspaces, but they are not shared with other users.  Steampipe **Organizations**, on the other hand, include multiple users and are intended for organizations to collaborate and share workspaces and connections.
+Steampipe Cloud users can create their own connections and workspace, but they are not shared with other users.  Steampipe **Organizations**, on the other hand, include multiple users and are intended for organizations to collaborate and share workspaces and connections.
 
 
 ## Creating Organizations
@@ -15,13 +15,15 @@ To create an organization, select the double arrow button from the navigation at
 To manage an organization, select the double arrow button from the navigation at the top of the page, and select the organization that you wish to manage.  You can manage [workspaces](cloud/workspaces) and [connections](cloud/connections) for your organization in the same manner as for your user account.
 
 ## Managing Users
-You can add and remove users from the **People** tab on your organization page.  To invite a user to your organization, click **Invite User**.  Enter an email address or the user handle of an existing user and select a role for the user:
-- **Member**: Members can see other members of the organization and create workspaces and connections.
-- **Owner**: Owners have full administrative rights to the organization and have complete access to all workspaces, connections and teams.
+You can add and remove users from the **People** tab on your organization page.  To invite a user to your organization, click **Invite User**.  Enter an email address or the user handle of an existing user and select a role for the user, and click **Add**:
 
-Click **Invite**.  The user will receive an email invitation to join the organization.  You can view pending invitations by clicking **Pending** from the left hand menu.  Once a user has accepted, they will appear in the **Members** list.
 
-To remove a user from the organization, select the options menu button (hamburger) to the right of the user and click **Remove**.
+| Role | Description
+|-|-
+| **Member** | Can be granted permissions in workspaces and see members of the organization.  Members are not granted access to any workspaces by default.
+| **Owner**  | Have full administrative rights to the organization including complete access to all workspaces, connections, users, groups and permissions.  Owners are essentially superusers in the organization -- they have full access to all workspaces implicitly, and their access cannot be removed at the workspace level.
+
+To revoke access from a user, select the options menu button (hamburger) to the right of the user and click **Remove**.  Note that **Org Owners** have implicit access to all workspaces in the organization, and you cannot revoke their access at the workspace level.
 
 
 ## Profile Settings

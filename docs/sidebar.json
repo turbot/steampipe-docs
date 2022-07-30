@@ -190,13 +190,35 @@
     "label": "Steampipe Cloud",
     "link": "cloud/overview",
     "items": [
+      "cloud/getting-started",
       "cloud/workspaces",
       "cloud/connections",
       "cloud/mods",
       "cloud/organizations",
       "cloud/profile",
-      "cloud/connecting",
-      "cloud/develop"
+      {
+        "type": "category",
+        "id": "integrations",
+        "label": "Integrations",
+        "link": "cloud/integrations/overview",
+        "items": [
+          "cloud/integrations/cli",
+          "cloud/integrations/pgcli",
+          "cloud/integrations/psql"
+        ]
+      },
+      {
+        "type": "category",
+        "id": "developers",
+        "label": "Developers",
+        "link": "cloud/develop/overview",
+        "items": [
+          "cloud/develop/api",
+          "cloud/develop/gosdk",
+          "cloud/develop/plugin",
+          "cloud/develop/terraform"
+        ]
+      }
     ]
   }
 ]

@@ -112,6 +112,23 @@ Steampipe loads variables in the following order, with later sources taking prec
 1. Any `*.auto.spvars` files, in alphabetical order by filename.
 1. Any `--var` and `--var-file` options on the command line, in the order they are provided.
 
+
+### Passing Variables for Dependency Mods
+
+A Steampipe mod can depend on other mods, and those dependency mods may include variables that you would like to pass.  To set them, prefix the variable names with the mod alias and them set them like any other variable.
+
+You can set them in a `.spvars` file:
+```hcl
+// direct dependency vars
+aws_tags.mandatory_tags = ["Owner","Application","Environment"]
+azure_tags.mandatory_tags = ["Owner","Application","Environment"]
+```
+
+Or pass them to the command with the `--var` argument `
+```bash
+ steampipe dashbaord --var 'aws_tags.mandatory_tags=["Owner","Application","Environment"]'  --var 'azure_tags.mandatory_tags=["Owner","Application","Environment"]' --var 'gcp_labels.mandatory_labels=["Owner","Application","Environment"]'
+ ```
+
 ##  Local Variables
 Steampipe supports using local variables in a manner similar to [Terraform local values](https://www.terraform.io/docs/language/values/locals.html).  Unlike `variables`, locals cannot be passed in at runtime, but are useful as internal private variables.
 
