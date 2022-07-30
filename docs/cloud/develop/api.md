@@ -29,7 +29,7 @@ curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
 ```
 
 
-By default, the results are in JSON. You can get the results in other formats simple by adding a file name with the appropriate extension to the path.  You can get your results in CSV:
+By default, the results are in JSON. You can get the results in other formats by adding a file name with the appropriate extension to the path.  You can get your results in CSV:
 
 ```bash
 curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \

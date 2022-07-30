@@ -10,7 +10,6 @@ A **Workspace** provides a bounded context for managing, operating, and securing
 
 The Steampipe Workspace DB instance is hosted in Steampipe Cloud, and available via a public Postgres endpoint.  You can query the workspace from the Steampipe Cloud web console, run queries or controls from a remote Steampipe CLI instance, or connect to your workspace from many third-party tools.
 
-Currently, Steampipe benchmarks and controls can be run against a cloud instance, but they must be run via the Steampipe CLI from a remote machine; mods are not installed into the cloud instance at this time.
 
 ## Creating Workspaces
 You can create workspaces from the **Workspaces** tab for your user account or organization.  From the **Workspaces** tab, click **New Workspace**.  Note that if the **New Workspace** button is disabled, you have likely reached a limit for your plan.  

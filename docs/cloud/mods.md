@@ -7,7 +7,7 @@ sidebar_label: Mods
 
 ## Overview
 
-Mods allow pre-defined [queries](reference/mod-resources/query), [controls/benchmarks](mods/writing-controls) and [dashboards](mods/writing-dashboards) to be packaged and versioned. Steampipe Cloud now allows you to install mods into your workspace like you would do in your [local environment](mods/mod-dependencies), allowing a wealth of pre-defined dashboards for you to run.
+Mods allow predefined [queries](reference/mod-resources/query), [controls/benchmarks](mods/writing-controls) and [dashboards](mods/writing-dashboards) to be packaged and versioned. Steampipe Cloud now allows you to install mods into your workspace like you would do in your [local environment](mods/mod-dependencies), allowing a wealth of predefined dashboards for you to run.
 
 ## Installing Mods
 
@@ -19,7 +19,7 @@ Installation should typically only take a few seconds. You can then head over to
 
 ## Dashboards
 
-Once you've installed one or more mods into your workspace, all the pre-defined [Dashboards](dashboard/overview) (including [Benchmarks](check/overview)) will become available for you to run in the **Dashboards** tab. You can browse the list, or use the powerful search to filter by name / tag etc.
+Once you've installed one or more mods into your workspace, all the predefined [Dashboards](dashboard/overview) (including [Benchmarks](check/overview)) will become available for you to run in the **Dashboards** tab. You can browse the list, or use the powerful search to filter by name / tag etc.
 
 ## Managing Mod Variables
 

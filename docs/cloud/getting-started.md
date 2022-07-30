@@ -6,7 +6,7 @@ sidebar_label: Getting Started
 ## Getting Started with Steampipe Cloud
 
 ### Sign up
-To sign up, go to https://cloud.steampipe.io/signup.  You can sign up with your Github or Google login (you will need authorize Steampipe Cloud to allow you to login using OAuth), or with an email address.
+To sign up, go to https://cloud.steampipe.io/signup.  You can sign up with your Github or Google login (you will need to authorize Steampipe Cloud to allow you to login using OAuth), or with an email address.
 
 <img src="/images/docs/cloud/gs_signup.png" width="300pt"/>
 
@@ -41,11 +41,11 @@ Each connection is represented as a distinct Postgres schema. In order to query 
 <img src="/images/docs/cloud/gs_create_connection.png" width="400pt"/>
 <br />
 
-The available settings vary by plugin, but every connection has a **handle**.  The connection handle will be used as the name of the schema in Postgres.  A single AWS connection will connect to a single AWS account, but you may have many AWS connections.  As a result, its a good idea to name the connection in a way that reflects which account it is connecting to.  Additionally, its common practice to prefix the connection name with the plugin type.  
+The available settings vary by plugin, but every connection has a **handle**.  The connection handle will be used as the name of the schema in Postgres.  A single AWS connection will connect to a single AWS account, but you may have many AWS connections.  As a result, it's a good idea to name the connection in a way that reflects which account it is connecting to.  Additionally, it's common practice to prefix the connection name with the plugin type.  
 
-An AWS connection can query multiple regions.  You may want to limit the regions that if queries to reduce the number of API calls, or to avoid errors in regions that you do not have access to, but most people use the default and allow Steampipe to access **All Regions**.
+An AWS connection can query multiple regions.  You may want to limit the regions that it queries to reduce the number of API calls, or to avoid errors in regions that you do not have access to, but most people use the default and allow Steampipe to access **All Regions**.
 
-To connect to AWS, Steampipe Cloud will need credentials.  You can select **Access Key** Mode and enter an access key and secret key that has read access to your account, but we recommend using **Cross-Account Role** access mode to avoid using long term credentials.  Steampipe cloud can assist you in creating the IAM role in your AWS account - click **Download Terraform Plan** or **Download CloudFormation Template** and then run the downloaded file / plan against your account to create the role with the generated external id.  Once the role has been created, enter the **Role ARN**.
+To connect to AWS, Steampipe Cloud will need credentials.  You can select **Access Key** Mode and enter an access key and secret key that has read access to your account, but we recommend using **Cross-Account Role** access mode to avoid using long term credentials.  Steampipe cloud can assist you in creating the IAM role in your AWS account - click/role in your AWS account. Click **Download Terraform Plan** or **Download CloudFormation Template** and then run the downloaded file / plan against your account to create the role with the generated external id.  Once the role has been created, enter the **Role ARN**.
 
 You can verify your credentials using the **Test connection** button, and then click **Create connection**.
 

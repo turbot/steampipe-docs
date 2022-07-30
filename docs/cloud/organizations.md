@@ -21,7 +21,7 @@ You can add and remove users from the **People** tab on your organization page. 
 | Role | Description
 |-|-
 | **Member** | Can be granted permissions in workspaces and see members of the organization.  Members are not granted access to any workspaces by default.
-| **Owner**  | Have full administrative rights to the organization including complete access to all workspaces, connections, users, groups and permissions.  Owners are essential superusers in the organization -- they have full access to all workspaces implicitly, and their access cannot be removed at the workspace level.
+| **Owner**  | Have full administrative rights to the organization including complete access to all workspaces, connections, users, groups and permissions.  Owners are essentially superusers in the organization -- they have full access to all workspaces implicitly, and their access cannot be removed at the workspace level.
 
 To revoke access from a user, select the options menu button (hamburger) to the right of the user and click **Remove**.  Note that **Org Owners** have implicit access to all workspaces in the organization, and you cannot revoke their access at the workspace level.
 
