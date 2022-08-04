@@ -493,7 +493,8 @@ A logger is passed to the plugin via the context.  You can use the logger to wri
 logger := plugin.Logger(ctx)
 logger.Info("Log message and a variable", myVariable)
 ```
-The plugin logs do not currently get written to the console, but are written to the database logs at `~/.steampipe/logs/`.
+
+The plugin logs do not currently get written to the console, but are written to the plugin logs at `~/.steampipe/logs/plugin-YYYY-MM-DD.log`, e.g., `~/.steampipe/logs/plugin-2022-01-01.log`.
 
 Steampipe uses the <a href="https://github.com/hashicorp/go-hclog" target="_blank" rel="noopener noreferrer">hclog package</a>, which uses standard log levels (`TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`). By default, the log level is `WARN`.  You set it using the `STEAMPIPE_LOG_LEVEL` environment variable:
 ```bash
