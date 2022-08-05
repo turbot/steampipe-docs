@@ -10,6 +10,6 @@ Your Steampipe workspace database has a public IP address, allowing you to conne
 The **Connect** tab for your workspace will provide the Postgres connection string.  Note that the connection string includes your password.  It is masked in the web console display, but you can click **Copy** to copy it so you can paste it into your tool's configuration screen.
 
 
-<img src="/images/docs/cloud/int_connecting.png" width="600pt"/>
-<br />
+<img src="/images/docs/cloud/int_connecting.png" width="90%"/>
+
 

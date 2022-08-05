@@ -1,9 +1,9 @@
 ---
-title: Connecting to Your Workspace from Metabase
+title: Connect to Steampipe Cloud from Metabase
 sidebar_label: Metabase
 ---
 
-#  Connecting to Your Workspace from Metabase
+#  Connect to Steampipe Cloud from Metabase
 
 [Metabase](https://metabase.com/) is an open source tool that connects to many databases, including Postgres, and enables users to explore, query, and visualize data. 
 
@@ -15,7 +15,7 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 <img src="/images/docs/cloud/cloud-connect-tab.jpg" />
 </div>
 
-## Getting Started
+## Getting started
 
 Metabase is a JVM app that you can run as a JAR file, or in a container, or as a native Mac app. 
 
@@ -30,14 +30,21 @@ With Metabase up and running, point a browser at port 3000, select `Postgres` as
 <div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/metabase-connect-info.png" />
 </div>
+
+Under `Advanced Options`, turn off both `Unfold JSON Columns` and `Rerun queries for simple explorations`. 
+
+<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<img src="/images/docs/cloud/metabase-advanced-options.jpg" />
+</div>
+
    
-Browsing to the Steampipe Cloud database reveals the set of installed plugins. Note that if you're using the AWS plugin as in the examples here, it will take a while for Metabase to do its initial metadata sync for the hundreds of tables provided by the AWS plugin. 
+Then browse to the Steampipe Cloud database where you'll see a card for each installed plugin. Note that even with those two options off, it will take some time for Metabase to do its initial sync, especially for a plugin like AWS plugin that provides hundreds of tables.
 
 <div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/metabase-installed-plugins.jpg" />
 </div>
 
-Each button opens the tables provided by a plugin. Here's the first screenful of tables provided by the `aws` plugin. 
+Each card opens a view of the tables provided by a plugin. Here's the first screenful of tables provided by the `aws` plugin. 
 
 <div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/metabase-aws-tables.jpg" />
@@ -61,7 +68,7 @@ To summarize by the names of AWS services, open the `Admin → Data Model` scree
 
 These interactive methods are handy, but you can also open a SQL editor (click `Ask a question → Native query`) and write queries just as you do in Steampipe Cloud, with some extra features provided by Metabase.
 
-## Using Metabase-enhanced SQL
+## Use Metabase-enhanced SQL
 
 You can augment your SQL queries with Metabase idioms that parameterize queries and connect them to a suite of UX widgets. To try that, click `Ask a question → Native query → Steampipe Cloud` and paste this SQL.
 
@@ -91,7 +98,7 @@ To chart the data, click `Visualization`. Here's a chart for a selection of 3 se
 <img src="/images/docs/cloud/metabase-cost-by-service-daily-filtered-with-variable-as-line-chart.jpg" />
 </div>
 
-## Sending notifications
+## Send alerts
 
 Suppose you'd like to be notified when the daily blended cost of any service exceeds 10 dollars. Here's a query to find those rows in the table.
 
@@ -117,10 +124,10 @@ Using a Metabase feature called *Dashboard Subscriptions*, you can can then set 
 
 ## Summary
 
-You can use Metabase + Steampipe Cloud to:
+With Metabase and Steampipe Cloud you can:
 
-- Apply basic Metabase-style filtering and summarization to Steampipe tables
+- Summarize, filter, and chart the tables in your Steampipe Cloud workspace
 
-- Use Metabase-enhanced SQL to create interactive widgets
+- Create interactive widgets driven by data in those tables
 
-- Create Metabase dashboard subscriptions that send alerts via email or Slack
+- Send query-driven alerts

@@ -203,8 +203,10 @@
         "link": "cloud/integrations/overview",
         "items": [
           "cloud/integrations/cli",
+          "cloud/integrations/metabase",
           "cloud/integrations/pgcli",
-          "cloud/integrations/psql"
+          "cloud/integrations/psql",
+          "cloud/integrations/tableau"
         ]
       },
       {
