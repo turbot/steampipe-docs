@@ -10,7 +10,7 @@ Steampipe provides a single interface to all your cloud, code, logs and more.  B
 
 The [Connect](./docs/cloud/connecting/overview#connecting-to-your-workspace) tab for your workspace provides the details you need to connect Tableau to Steampipe Cloud.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/cloud-connect-tab.jpg" />
 </div>
 
@@ -24,7 +24,7 @@ Create a Tableau `Project` called `Steampipe`. In the project, create a workbook
 
 Now drag the `aws_cost_by_service_daily` table from the sidebar to the canvas, then click `Update Now`. Tableau displays the table's schema, and previews the data.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-initial-table-view.jpg" />
 </div>
 
@@ -34,7 +34,7 @@ Switch from the workbook's `Data Source` tab to its `Sheet 1` tab. Drag the `Ble
 
 The `Period Start` indicator defaults to YEAR. Open its dropdown and choose the second `Day` option which reports full dates. Tableau charts the daily sums of costs for all your AWS services.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-initial-chart.jpg" />
 </div>
 
@@ -46,7 +46,7 @@ Now create another new workbook in the project. Repeat the steps to connect it t
 
 This time, open the `aws_cost_by_service` dropdown and choose `Convert to Custom SQL`.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-convert-to-custom-sql.jpg" />
 </div>
 
@@ -67,7 +67,7 @@ order by
 
 Then click `Insert Parameter → Create a New Parameter`. Name the parameter `Service`, set its type to `String`, for `Allowable Values` chose `List`, click `Add Values From`, and choose `Service`. 
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"60%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"60%"}}>
 <img src="/images/docs/cloud/tableau-create-parameter.jpg" />
 </div>
 
@@ -88,7 +88,7 @@ order by
 
 Click `OK`. Then visit the `Sheet 1` tab, choose `Parameters → Service → Show Parameter`. 
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-initial-sheet-with-service-dropdown.jpg" />
 </div>
 
@@ -98,7 +98,7 @@ As before, drag `Blended Cost Amount` to the `Rows` shelf, drag `Period Start` t
 
 Tableau charts the selected service.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-chart-selected-service.jpg" />
 </div>
 
@@ -108,19 +108,19 @@ Publish the workbook as `daily cost for selected service`, again with `Embed pas
 
 Open the project (`Explore → Steampipe`), reopen the `daily cost for all AWS services` workbook, reopen `Sheet 1`, and click `Watch → Alerts`. 
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-initial-watch-alerts.jpg" />
 </div>
 
 Select the `Blended Cost Amount` axis.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-select-axis-to-create-alert.jpg" />
 </div>
 
 Then click `Create` and fill in the details: `Condition`, `Threshold`, etc.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"12px", "marginTop":"1em", "marginBottom":"1em", "width":"60%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"60%"}}>
 <img src="/images/docs/cloud/tableau-create-alert-dialog.jpg" />
 </div>
 
