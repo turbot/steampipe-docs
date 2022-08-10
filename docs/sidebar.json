@@ -191,6 +191,7 @@
     "link": "cloud/overview",
     "items": [
       "cloud/getting-started",
+      "cloud/dashboards",
       "cloud/workspaces",
       "cloud/connections",
       "cloud/mods",
