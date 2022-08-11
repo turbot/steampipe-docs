@@ -1,8 +1,10 @@
+![image](https://steampipe.io/images/steampipe-social-preview-4.png)
+
 # Steampipe Docs
 
-The open-source version of the Steampipe Documentation. You can give us feedback and request for changes by submitting issues and pull requests in this repository.
+The [Steampipe Documentation](https://steampipe.io/docs) is open source! You can give us feedback and request for changes by submitting issues and pull requests in this repository.
 
-## Docs
+## Format & Structure
 
 Docs are written in markdown format and are located in `docs` folder. The entry-point document will contain front-matter with `slug: /`.
 
