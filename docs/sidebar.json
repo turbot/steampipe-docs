@@ -219,7 +219,18 @@
           "cloud/develop/plugin",
           "cloud/develop/terraform"
         ]
+      },
+
+      {
+        "type": "category",
+        "id": "reference",
+        "label": "Reference",
+        "items": [
+          "cloud/reference/query-api"
+        ]
       }
+      
+
     ]
   }
 ]
