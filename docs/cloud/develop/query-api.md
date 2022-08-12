@@ -1,12 +1,12 @@
 ---
-title:  Using the Steampipe Cloud API
-sidebar_label: API
+title:  Using the Steampipe Cloud Query API
+sidebar_label: Query API
 ---
 
-# Using the Steampipe Cloud API
+# Using the Steampipe Cloud Query API
 
 ## Authentication
-To use the Steampipe Cloud API, you must connect with an [API token](/docs/cloud/profile#api-tokens). 
+To use the [Steampipe Cloud API](cloud/reference/api), you must connect with an [API token](/docs/cloud/profile#api-tokens). 
 The examples in this section assume that you have set the [`STEAMPIPE_CLOUD_TOKEN`](reference/env-vars/steampipe_cloud_token) to a valid API token:
 ```bash
 export STEAMPIPE_CLOUD_TOKEN=spt_c6rnjt8afakemj4gha10_svpnmxqfaketokenad431k
@@ -58,15 +58,3 @@ curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
   -X POST -d sql='select name,arn from aws_s3_bucket' \
   https://cloud.steampipe.io/api/latest/user/foo/workspace/bar/query
 ```
-
-
-
-
-## Reference
-The API OpenAPI definition is available for download at https://cloud.steampipe.io/api/latest/docs/openapi.json.  
-
-You can view it any OpenAPI viewer, such as [ReDoc](https://redocly.github.io/redoc/?url=https://cloud.steampipe.io/api/latest/docs/openapi.json)
-
-
-
-

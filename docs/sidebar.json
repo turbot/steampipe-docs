@@ -61,11 +61,36 @@
       "managing/containers"
     ]
   },
-
+  {
+    "type": "category",
+    "id": "guides",
+    "label": "Guides",
+    "link": "guides/overview",
+    "items": [
+      "guides/search-path"
+    ]
+  },
+  {
+    "type": "category",
+    "id": "develop",
+    "label": "Developers",
+    "link": "develop/overview",
+    "items": [
+      "develop/writing-your-first-table",
+      "develop/writing-plugins",
+      "develop/plugin-release-checklist",
+      "develop/standards",
+      "develop/table-docs-standards",
+      "develop/writing-example-queries",
+      "develop/coding-standards",
+      "develop/writing-control-output-templates"
+    ]
+  },
   {
     "type": "category",
     "id": "reference",
     "label": "Reference",
+    "link": "reference/overview",
     "items": [
       {
         "type": "category",
@@ -168,22 +193,8 @@
       }
     ]
   },
-  {
-    "type": "category",
-    "id": "develop",
-    "label": "Developers",
-    "link": "develop/overview",
-    "items": [
-      "develop/writing-your-first-table",
-      "develop/writing-plugins",
-      "develop/plugin-release-checklist",
-      "develop/standards",
-      "develop/table-docs-standards",
-      "develop/writing-example-queries",
-      "develop/coding-standards",
-      "develop/writing-control-output-templates"
-    ]
-  },
+  
+
   {
     "type": "category",
     "id": "cloud",
@@ -214,10 +225,7 @@
         "label": "Developers",
         "link": "cloud/develop/overview",
         "items": [
-          "cloud/develop/api",
-          "cloud/develop/gosdk",
-          "cloud/develop/plugin",
-          "cloud/develop/terraform"
+          "cloud/develop/query-api"
         ]
       },
 
@@ -225,8 +233,13 @@
         "type": "category",
         "id": "reference",
         "label": "Reference",
+        "link": "cloud/reference/overview",
         "items": [
-          "cloud/reference/query-api"
+          "cloud/reference/api",
+          "cloud/reference/gosdk",
+          "cloud/reference/plugin",
+          "cloud/reference/query-filter",
+          "cloud/reference/terraform"
         ]
       }
       

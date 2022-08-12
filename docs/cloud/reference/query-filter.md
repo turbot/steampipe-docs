@@ -1,6 +1,6 @@
 ---
-title: Query Filter
-sidebar_label: Query Filter
+title: Query Filters
+sidebar_label: Query Filters
 ---
 
 # Steampipe Cloud Query Filters
@@ -21,6 +21,9 @@ The console also supports this query syntax:
 <br />
 
 
+Note that the query filter is parsed and processed by the Steampipe API, not passed to a backend database - there's no need to worry about SQL injection.  In fact, the schema of the query reflects the API output, and is entirely abstracted from the backend storage implementation.
+
+
 Note that this filter capability is not subject to SQL injection attacks, as it is parsed and processed by the Steampipe API, not passed to a backend database.  In fact, the schema of the query reflects the API output, and is entirely abstracted from the backend storage implementation.
 
 
@@ -30,7 +33,7 @@ The `where` argument syntax supports a subset of the postgres `where` clause syn
 
 You can do simple equality operations:
 ```sql
-dashboard_title  =  'AWS Account Report'
+dashboard_title = 'AWS Account Report'
 ```
 
 Or inequalities (using `!=` or `<>`):
@@ -60,22 +63,22 @@ You can use standard comparison operators (`>`, `>=`, `<`, `<=`) \:
 dashboard_title > 'S'
 ```
 ```sql
-created_at  < '2022-08-10T18:32:09Z'
+created_at < '2022-08-10T18:32:09Z'
 ```
 
 
 You can even use `now()` and `interval` to do relative date/time filters:
 ```sql
-created_at  > now() - interval '26 hr'
+created_at > now() - interval '26 hr'
 ```
 ```sql
-created_at  > now() - interval '2 days'
+created_at > now() - interval '2 days'
 ```
 ```sql
-created_at  > now() - interval '1 week'
+created_at > now() - interval '1 week'
 ```
 ```sql
-created_at  > now() - interval '1 month'
+created_at > now() - interval '1 month'
 ```
 
 
@@ -122,7 +125,7 @@ You can even do complex compound statements with `and` and  `or`:
 inputs ->> 'input.vpc_id' = 'vpc-11111111' and dashboard_title = 'AWS VPC Detail'
 ```
 ```sql
-(dashboard_title = 'Shared Access' or  dashboard_title = 'AWS Account Report') and created_at  > '2022-08-10T18:32:09Z' 
+(dashboard_title = 'Shared Access' or dashboard_title = 'AWS Account Report') and created_at > '2022-08-10T18:32:09Z' 
 ```
 
 # Queryable Columns
@@ -163,22 +166,22 @@ For example, the `snapshot` API returns:
 ```
 
 But the `snapshot` API only allows you to filter on:
+  - `created_at`
   - `dashboard_name`
   - `dashboard_title`
   - `input`
   - `tags`
   - `visibility`
-  - `created_at`
 
 
 ## Supported APIS & Columns
 
-- `./snapshot`
+- `/api/latest/{identity type}/{identity handle}/workspace/{workspace handle}/snapshot`
+  - `created_at`
   - `dashboard_name`
   - `dashboard_title`
   - `input`
   - `tags`
   - `visibility`
-  - `created_at`
 
 

@@ -24,7 +24,7 @@ Steampipe Cloud allows you to save and share dashboard **snapshots**.
 A snapshot is a saved view of a dashboard at a point in time with a given set of inputs and variables.
 
 
-To take a snapshot, click the camera icon at the top of the dashboard after the dashboard is fully loaded (the button will be disabled until the dashboard has finished loading).  
+To take a snapshot, click the **Snap** button at the top of the dashboard after the dashboard is fully loaded (the button will be disabled until the dashboard has finished loading).  
 
 <img src="/images/docs/cloud/dash_snapshot_header.png" width="400pt"/>
 <br />
@@ -55,7 +55,7 @@ You can browse and search all snapshots in your workspace. From the main dashboa
 <img src="/images/docs/cloud/dash_header_snap.png" width="400pt"/>
 <br />
 
-The Snapshots page allows you to manage all snapshots in your workspace.  The **Query** box allows you to enter a query to search and filter the snapshot list.
+The Snapshots page allows you to manage all snapshots in your workspace.  The **Query** box allows you to enter a [query filter](cloud/reference/query-api) to search and filter the snapshot list.
 
 <img src="/images/docs/cloud/dash_snap_list.png" width="400pt"/>
 <br />

@@ -5,7 +5,9 @@ sidebar_label: Terraform
 
 
 # Manage Steampipe Cloud with Terraform
-The Steampipe Cloud Terraform provider makes it easy to manage your Steampipe Cloud infrastructure as code!  Refer to the [documentation](https://registry.terraform.io/providers/turbot/steampipecloud/latest/docs) in the Terraform registry for more information.
+The Steampipe Cloud Terraform provider makes it easy to manage your Steampipe Cloud infrastructure as code!  
+
+- **[View the docs →](https://registry.terraform.io/providers/turbot/steampipecloud/latest/docs)**
 
 
 ```hcl
