@@ -210,7 +210,7 @@
       "cloud/profile",
       {
         "type": "category",
-        "id": "integrations",
+        "id": "cloud-integrations",
         "label": "Integrations",
         "link": "cloud/integrations/overview",
         "items": [
@@ -221,7 +221,7 @@
       },
       {
         "type": "category",
-        "id": "developers",
+        "id": "cloud-developers",
         "label": "Developers",
         "link": "cloud/develop/overview",
         "items": [
@@ -231,7 +231,7 @@
 
       {
         "type": "category",
-        "id": "reference",
+        "id": "cloud-reference",
         "label": "Reference",
         "link": "cloud/reference/overview",
         "items": [
