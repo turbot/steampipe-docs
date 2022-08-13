@@ -5,11 +5,11 @@ sidebar_label: Go SDK
 
 # Using the Steampipe Cloud Go SDK
 
-The Go SDK for Steampipe Cloud provides an interface to the Steampipe API for Go programmers. 
-- **[View the docs →](https://pkg.go.dev/github.com/turbot/steampipe-cloud-sdk-go)**
-- **[View the source on Github →](https://github.com/turbot/steampipe-cloud-sdk-go)**
+The Go SDK for Steampipe Cloud provides an interface to the Steampipe API for Go programmers.
 
+**[GoDoc reference for github.com/turbot/steampipe-cloud-sdk-go →](https://pkg.go.dev/github.com/turbot/steampipe-cloud-sdk-go)**
 
+**[View the source on Github →](https://github.com/turbot/steampipe-cloud-sdk-go)**
 
 ```go
 package main
