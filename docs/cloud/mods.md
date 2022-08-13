@@ -17,9 +17,6 @@ Within the install mods screen, you will be presented with a list of the officia
 
 Installation should typically only take a few seconds. You can then head over to the **Dashboards** tab where you'll see a list of the available dashboards for the mod(s) you installed.
 
-## Dashboards
-
-Once you've installed one or more mods into your workspace, all the predefined [Dashboards](dashboard/overview) (including [Benchmarks](check/overview)) will become available for you to run in the **Dashboards** tab. You can browse the list, or use the powerful search to filter by name / tag etc.
 
 ## Managing Mod Variables
 
