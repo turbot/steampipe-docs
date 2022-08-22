@@ -174,7 +174,7 @@ But the `snapshot` API only allows you to filter on:
   - `visibility`
 
 
-## Supported APIS & Columns
+## Supported APIs & Columns
 
 - `/api/latest/{identity type}/{identity handle}/workspace/{workspace handle}/snapshot`
   - `created_at`
@@ -183,5 +183,3 @@ But the `snapshot` API only allows you to filter on:
   - `input`
   - `tags`
   - `visibility`
-
-
