@@ -139,6 +139,24 @@ group by
   runtime;
 ```
 
+You can **remove duplicate rows**:
+
+```
+select distinct
+  instance_type
+from
+  aws_all.aws_ec2_instance_type
+```
+
+or remove **all but one matching row**:
+
+```
+select distinct on (name)
+  name,
+  log_group_name
+from
+  aws_all.aws_cloudwatch_log_stream
+```
 
 Of course the real power of SQL is in combining data from multiple tables!
 
