@@ -16,6 +16,7 @@ Note that plugins may also support environment variables, but these are plugin-s
 | Command | Default | Description
 |-|-|-
 | [STEAMPIPE_CACHE](reference/env-vars/steampipe_cache)| `true` | Enable/disable caching [DEPRECATED]
+| [STEAMPIPE_CACHE_MAX_SIZE_MB](reference/env-vars/steampipe_cache_max_size_mb)| unlimited | Set the maximum size of the query cache across all plugins
 | [STEAMPIPE_CACHE_TTL](reference/env-vars/steampipe_cache_ttl)| `300` | The amount of time to cache results, in seconds [DEPRECATED]
 | [STEAMPIPE_CLOUD_HOST](reference/env-vars/steampipe_cloud_host)  | `cloud.steampipe.io` | Set the Steampipe Cloud host, for connecting to Steampipe Cloud workspace
 | [STEAMPIPE_CLOUD_TOKEN](reference/env-vars/steampipe_cloud_token)  |  | Set the Steampipe Cloud authentication token for connecting to Steampipe Cloud workspace
