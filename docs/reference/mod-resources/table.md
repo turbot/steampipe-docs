@@ -55,7 +55,7 @@ table {
 
 | Property  | Type   | Default | Values                                                                                                        |
 |-----------| ------ |---------|---------------------------------------------------------------------------------------------------------------|
-| `display` | string | `all`.  | `all` (default) will show the column at all breakpoints. `none` will never show the column.                   |
+| `display` | string | `all`   | `all` (default) will show the column at all breakpoints. `none` will never show the column.                   |
 | `wrap`    | string | `none`  | `all` will wrap the column contents at all breakpoints. `none` (default) will never wrap the column contents. |
 | `href`    | string |         | A url that the column should link to.  The `href` may use a [jq template](#jq-templates) to dynamically generate the link for each row.  |
 
