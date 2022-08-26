@@ -33,21 +33,21 @@ By default, the results are in JSON. You can get the results in other formats by
 
 ```bash
 curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
-  -d sql'=select name,arn from aws_s3_bucket' \
+  -d 'sql=select name,arn from aws_s3_bucket' \
   https://cloud.steampipe.io/api/latest/user/foo/workspace/bar/query/my-file.csv
 ```
 
 Or markdown:
 ```bash
 curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
-  -d sql'=select name,arn from aws_s3_bucket' \
+  -d 'sql=select name,arn from aws_s3_bucket' \
   https://cloud.steampipe.io/api/latest/user/foo/workspace/bar/query/my-file.md
 ```
 
 Alternatively, you can set the content type in the `content_type` query parameter:
 ```bash
 curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
-  -d sql'=select name,arn from aws_s3_bucket' \
+  -d 'sql=select name,arn from aws_s3_bucket' \
   https://cloud.steampipe.io/api/latest/user/foo/workspace/bar/query?content_type=csv
 ```
 
@@ -55,6 +55,6 @@ Or via HTTP headers:
 ```bash
 curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
   -H "Accept: text/csv" \
-  -X POST -d sql='select name,arn from aws_s3_bucket' \
+  -X POST -d 'sql=select name,arn from aws_s3_bucket' \
   https://cloud.steampipe.io/api/latest/user/foo/workspace/bar/query
 ```
