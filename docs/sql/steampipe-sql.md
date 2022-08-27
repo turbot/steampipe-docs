@@ -139,7 +139,7 @@ group by
   runtime;
 ```
 
-You can **remove duplicate rows**:
+You can **exclude duplicate rows**:
 
 ```
 select distinct
@@ -148,7 +148,7 @@ from
   aws_all.aws_ec2_instance_type
 ```
 
-or remove **all but one matching row**:
+or exclude **all but one matching row**:
 
 ```
 select distinct on (name)
