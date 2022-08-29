@@ -10,7 +10,7 @@ You are probably here for one of the following reasons:
 - You cant figure out why steampipe isn't using your aggregator
 - You want to run steampipe query, check, or dashboard against a specific connection
 - You want to change your 'default' connection
-- You've seen references to the search path elsewhere, but you're not sure why its important
+- You've seen references to the search path elsewhere, but you're not sure why it's important
 - You asked what you thought was a simple question on the steampipe slack, and instead of an answer they sent you this link (ugh...homework...)
 
 This guide will attempt to answer these questions, in 5 minutes or less.
