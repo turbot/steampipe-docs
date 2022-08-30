@@ -30,8 +30,4 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry)  | `info` | Set the level of telemetry data to collect and send
 | [STEAMPIPE_UPDATE_CHECK](reference/env-vars/steampipe_update_check)| `true` | Enable/disable automatic update checking
 | [STEAMPIPE_WORKSPACE_CHDIR](reference/env-vars/steampipe_workspace_chdir)  | current working directory | Set the workspace working directory
-| [STEAMPIPE_WORKSPACE_DATABASE](reference/env-vars/steampipe_workspace_database)  | `local` | Workspace database.  this can be `local` or a remote Steampipe Cloud database
-
-
-
-
+| [STEAMPIPE_WORKSPACE_DATABASE](reference/env-vars/steampipe_workspace_database)  | `local` | Workspace database.  This can be `local` or a remote Steampipe Cloud database
