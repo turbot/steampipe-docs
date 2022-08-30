@@ -49,7 +49,13 @@ You can also run `steampipe check` to run controls and benchmarks defined in the
 steampipe check all 
 ```
 
-When steampipe runs, it loads all the resources defined in the mod and its dependencies and makes their resources available to `steampipe query`, `steampipe check`, and `steampipe dashboard`.  In addition, steampipe creates a set of reflection tables that allow you to introspect the resources in the workspace.  For example, you can list all the benchmarks in the workspace:
+When steampipe runs, it loads all the resources defined in the mod and its dependencies and makes their resources available to `steampipe query`, `steampipe check`, and `steampipe dashboard`.  Steampipe can even create a set of introspection tables that allow you to query the mod resources in the workspace.  For performance reasons, introspection is disabled by default, however you can enable it by setting the [STEAMPIPE_INTROSPECTION](reference/env-vars/steampipe_introspection) environment variable:
+
+```bash
+export STEAMPIPE_INTROSPECTION=info
+```
+
+Once enabled, you can query the introspection tables.  For example, you can list all the benchmarks in the workspace:
 
 ```
 > select resource_name from steampipe_benchmark order by resource_name
