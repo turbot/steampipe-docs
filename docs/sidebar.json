@@ -133,7 +133,7 @@
         ]
       },
 
-      {
+      { 
         "type": "category",
         "id": "env-vars",
         "label": "Environment Variables",
@@ -146,6 +146,7 @@
           "reference/env-vars/steampipe_cloud_token",
           "reference/env-vars/steampipe_database_password",
           "reference/env-vars/steampipe_install_dir",
+          "reference/env-vars/steampipe_introspection",
           "reference/env-vars/steampipe_log",
           "reference/env-vars/steampipe_max_parallel",
           "reference/env-vars/steampipe_otel_level",
