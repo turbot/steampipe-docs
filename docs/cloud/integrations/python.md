@@ -14,7 +14,7 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 
 <br/>
 
-It's the usual drill: specify your connection string, create a connection, run a query, fetch results.
+It's the usual drill: import [psycopg2](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial),  specify your connection string, create a connection, run a query, fetch results.
 
 ```python
 import json, psycopg2
@@ -115,6 +115,3 @@ print(json.dumps(r.json(),indent=4))
     ]
 }
 ```
-## Related guides
-
-- [Pyscopg2 Tutorial](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial)
