@@ -7,18 +7,20 @@ sidebar_label: Using search_path
 # Using search_path to target connections and aggregators
 
 You are probably here for one of the following reasons:
-- You cant figure out why steampipe isn't using your aggregator
-- You want to run steampipe query, check, or dashboard against a specific connection
-- You want to change your 'default' connection
+- You can't figure out why Steampipe isn't using your aggregator
+- You want to run `steampipe query`, `check`, or `dashboard` against a specific connection
+- You want to change your default connection
 - You've seen references to the search path elsewhere, but you're not sure why it's important
-- You asked what you thought was a simple question on the steampipe slack, and instead of an answer they sent you this link (ugh...homework...)
+- You asked what you thought was a simple question on the Steampipe Slack, and instead of an answer they sent you this link (ugh...homework...)
 
-This guide will attempt to answer these questions, in 5 minutes or less.
+This guide will attempt to answer these questions in 5 minutes or less.
 
 ## Schemas in Postgres
+
 Steampipe leverages PostgreSQL foreign data wrappers to provide a SQL interface to external services and systems. The Steampipe database is an embedded PostgreSQL database.
 
-A PostgreSQL database contains one or more [schemas](https://www.postgresql.org/docs/current/ddl-schemas.html).  A schema is a namespaced collection of named objects, like tables, functions, and views.  Steampipe creates a Postgres schema for each steampipe connection.  In fact, if you query the Postgres information schema, you can get a list of the schemas in the database:
+A PostgreSQL database contains one or more [schemas](https://www.postgresql.org/docs/current/ddl-schemas.html).  A schema is a namespaced collection of named objects, like tables, functions, and views.  Steampipe creates a Postgres schema for each Steampipe connection.  In fact, if you query the Postgres information schema, you can get a list of the schemas in the database:
+
 ```sql
 select 
   schema_name 
@@ -28,7 +30,7 @@ order by
   schema_name;
 ```
 
-Note that the schema names match your steampipe connection names:
+Note that the schema names match your Steampipe connection names:
 ```sql
 .inspect
 ```
@@ -50,9 +52,9 @@ Or more simply, using the steampipe `.inspect` command:
 .inspect aws
 ```
 
-In steampipe, a [plugin](https://steampipe.io/docs/managing/plugins) defines and implements a set of related foreign tables.  All connections for a given plugin will contain the same set of tables - they will contain same table names and same columns.  
+In Steampipe, a [plugin](https://steampipe.io/docs/managing/plugins) defines and implements a set of related foreign tables.  All connections for a given plugin will contain the same set of tables.  
 
-Within a schema, table names must be unique, however the same table name can be used in different schemas.  You can reference tables using a **qualified name** to disambiguate.   A qualified name consists of the schema name and the object name, separated by a period.  For example, to query the `aws_account` table in the `aws_prod` schema (which corresponds to the `aws_prod` connection) you can refer to it as `aws_prod.aws_account`:
+Within a schema, table names must be unique, however the same table name can be used in different schemas.  You can reference tables using a **qualified name** to disambiguate.   A qualified name consists of the schema name and the object name, separated by a period.  For example, to query the `aws_account` table in the `aws_prod` schema (which corresponds to the `aws_prod` connection) you can refer to it as `aws_prod.aws_account`: 
 
 ```sql
 select 
@@ -63,7 +65,9 @@ from
 
 
 ## Unqualified Success
+
 Postgres also allows you to use **unqualified names**:
+
 ```sql
 select 
   * 
@@ -71,12 +75,13 @@ from
   aws_account
 ```
 
-Note that the `aws_account` table is specified, but the schema is not.  If you have the same table name in multiple schemas, how does postgres determine which table to use?  As you probably guessed, this is where the [schema search path](https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-PATH) comes in.  The search path allows you to specify a list of schemas to be searched for the object.  The first schema in the list that contains an object that matches the name will be used.  
+Note that the `aws_account` table is specified, but the schema is not.  If you have the same table name in multiple schemas, how does Postgres determine which table to use?  As you probably guessed, this is where the [schema search path](https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-PATH) comes in.  The search path allows you to specify a list of schemas to be searched for the object.  The first schema in the list that contains an object that matches the name will be used.  
 
 For example, assume that that search path is set to `gcp_prod, azure_prod, aws_prod, aws_test`, and you run `select * from aws_account`.  
-1. Postgres will look in the `gcp_prod` for a table named `aws_account`, but it does not exist so it continues to the next schema in the list
-2. Postgres will look in the `azure_prod` for a table named `aws_account`, but it does not exist so it continues to the next schema in the list
-3. Postgres will look in the `aws_prod` for a table named `aws_account`. It finds the `aws_account` table, so it runs the query against the `aws_prod.aws_account` table.  
+
+1. Postgres will look in the `gcp_prod` schema for a table named `aws_account`, but it does not exist so it continues to the next schema in the list
+2. Postgres will look in the `azure_prod` schema for a table named `aws_account`, but it does not exist so it continues to the next schema in the list
+3. Postgres will look in the `aws_prod` schema for a table named `aws_account`. It finds the `aws_account` table, so it runs the query against the `aws_prod.aws_account` table.  
 
 
 Queries in Steampipe [Mods](https://steampipe.io/docs/mods/overview) are written using **unqualified names**.   This allows you to run the exact same queries, dashboards, and benchmarks against any connection, just by changing the search path!  
@@ -87,9 +92,9 @@ Queries in Steampipe [Mods](https://steampipe.io/docs/mods/overview) are written
 By default, Steampipe sets the schema search path as follows:
 1. The `public` schema first.  This schema is writable, and allows you to create your own objects (views, tables, functions, etc).
 2. Connection schemas, in **alphabetical order** by default.
-3. The `internal` schema last.   This schema contains steampipe built-in functions and other internal Steampipe objects.  This schema is not displayed or managed by the steampipe search path commands and options -  it is always controlled by steampipe (though you will see it in native SQL commands, such as `show search_path`).
+3. The `internal` schema last.   This schema contains Steampipe built-in functions and other internal Steampipe objects.  This schema is not displayed or managed by the Steampipe search path commands and options, but you'll see it in native SQL commands such as `show search_path`.
 
-Since the connection schemas are added to the search_path alphabetically by default, the simplest way to set the "default" is to simply rename the connections. For example, lets assume that I have 3 AWS accounts and an aggregator, and I want the aggregator to be the first in the search path.  I could name them as follows:
+Since the connection schemas are added to the search_path alphabetically by default, the simplest way to set the default is to rename the connections. For example, let's assume that I have 3 AWS accounts and an aggregator, and I want the aggregator to be the first in the search path.  I could name them as follows:
 - `aws_prod` - Production AWS account
 - `aws_qa`   - QA AWS account
 - `aws_dev`  - Development AWS account
@@ -106,7 +111,7 @@ Steampipe will add the aggregator before the other aws connections because `aws`
 +-------------------------------------+
 ```
 
-If you prefer, you can explicitly set the search path in the [database options ](https://steampipe.io/docs/reference/config-files/database) in your `~/.steampipe/config/default.spc` file.  Note that this is somewhat brittle though - every time you install or uninstall a plugin, add or remove a connection, etc you will need to update the file with the new search_path.
+If you prefer, you can explicitly set the `search_path` in the [database options ](https://steampipe.io/docs/reference/config-files/database) in your `~/.steampipe/config/default.spc` file.  Note that this is somewhat brittle because every time you install or uninstall a plugin, or add or remove a connection, you will need to update the file with the new  `search_path`.
 
 
 ## Search Path Prefix
@@ -124,14 +129,13 @@ steampipe check benchmark.cis_v140 --search_path_prefix aws_prod
 
 ## Tips & Tricks
 
-- Manage your "default" search path with a good connection naming strategy. For most users, this means aggregator first.  For example, I tend to use the plugin name as the name of my aggregator (e.g. `aws`), and as a prefix to the other connections (e.g. `aws_prod`, `aws_dev`, etc).  By doing this, my aggregator is always first, even when adding and removing connections.
-- Use the search path **prefix** command or argument when modifying the search path when you just want to prefer a connection.  
+- Manage your default search path with a good connection-naming strategy. For most users, this means aggregator first.  With AWS, for example, use the plugin name as the name of the aggregator (e.g. `aws`), and as a prefix to the other connections (e.g. `aws_prod`, `aws_dev`, etc).  With this approach the aggregator always comes first, even when adding and removing connections.
+- Use the search path **prefix** command or argument to modify the search path when you want to prefer a connection.  
 - When writing mods, use **unqualified** table names:
   - Qualified names would require you to know the connection names, which you don't know (they are defined by the user).
-  - Users of your mod can use the search path to target different connections
+  - Users of your mod can vary the search path to target different connections
 - If you create custom views or other objects, make sure you keep the `public` schema in your path.
-- Since the `public` schema is first (by default), you can create your own tables and views to use instead of the steampipe tables.  If, for example, there is a table that you want to 'permanently' cache (or only manually refresh), you can create a materialized view with the same name: `create materialized view aws_iam_credential_report as select * from aws_iam_credential_report`.   
-
+- Since the `public` schema is first (by default), you can create your own tables and views to use instead of the steampipe tables.  If, for example, there is a table that you want to 'permanently' cache (or only manually refresh), you can create a materialized view with the same name: `create materialized view aws_iam_credential_report as select * from aws_iam_credential_report`. 
 
 
 ## More Information
