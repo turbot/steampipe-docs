@@ -8,7 +8,7 @@ slug: /
 # Learn Steampipe
 
 
-Steampipe exposes APIs and services as a high-performance relational database, giving you the ability to write SQL-based queries to explore dynamic data. Mods extend Steampipe's capabilities with dashboards, reports, and controls built with simple HCL.
+Steampipe exposes APIs and services as a high-performance relational database, giving you the ability to write SQL-based queries to explore dynamic data. Mods extend Steampipe's capabilities with dashboards, reports, and controls built with simple [HCL](https://github.com/hashicorp/hcl).
 
 Let's dive in...
 

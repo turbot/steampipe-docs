@@ -5,7 +5,7 @@ sidebar_label: input
 
 # input
 
-Allow user input in a dashboard using common form components such as `text`, `select` and `multiselect`. Data can either be static or derived from a SQL query.
+Allow user input in a dashboard using common form components such as `text`, `select`, `multiselect`, `combo` and `multicombo`. Data can either be static or derived from a SQL query.
 
 Dashboard components can depend on the value of an input within the dashboard by referring to `self` e.g. `self.input.<input_name>.value`.  This allows you to pass the value of an input as an argument to a query (or any other dashboard element) to create dynamic dashboards!
 
@@ -43,13 +43,23 @@ input "vpc_id" {
 | `args` | Map | Optional| A map of arguments to pass to the query. 
 | `base`        | String	 | Optional  | A reference to a named `input` resource that this `input` should source its definition from. `title`, `sql`, `type`, `options` and `width` can be overridden after sourcing via `base`. |
 | `option`     | Block	 | Optional  | [option](#option) block to add static values to the input                            |
-| `placeholder` | String	 | Optional  | Placeholder text to display.  If a `placeholder` is set for a `select` or `multiselect`, then dependent resources will not run until a selection is made.  If no `placeholder` is set, the first item in the list will be selected by default.
+| `placeholder` | String	 | Optional  | Placeholder text to display.  If a `placeholder` is set for a `combo`, `multicombo`, `select` or `multiselect`, then dependent resources will not run until a selection is made.  If no `placeholder` is set, the first item in the list will be selected by default.
 | `param` | Block | Optional| A [param](reference/mod-resources/query#param) block that defines the parameters that can be passed in to the query.  `param` blocks may only be specified for inputs that specify the `sql` argument. 
-| `query` | Query Reference | Optional | A reference to a [query](reference/mod-resources/query) resource that defines the query to run.  An `input`  may either specify the `query` argument or the `sql` argument, but not both.
+| `query` | Query Reference | Optional | A reference to a [query](reference/mod-resources/query) resource that defines the query to run.  An `input` may either specify the `query` argument or the `sql` argument, but not both.
 | `sql` |  String	| Optional |  An SQL string to provide data for the `input`.  An `input` may either specify the `query` argument or the `sql` argument, but not both.
 | `title`       | String	 | Optional  | A plain text [title](/docs/reference/mod-resources/dashboard#title) to display for this input.                                                                                          |
-| `type`        | String	 | Optional  | The type of the input. Can be `text`, `select` or `multiselect`.                                                                                                              |
+| `type`        | String	 | Optional  | The [type of the input](#input-types). Can be `text`, `combo`, `multicombo`, `select` or `multiselect`.                                                                                                              |
 | `width`       | Number	 | Optional  | The [width](/docs/reference/mod-resources/dashboard#width) as a number of grid units that this item should consume from its parent.                                                     |
+
+
+## Input Types
+| Type | Description
+|------|-----------------
+| [text](#text-input)                               | Enter a single line of text
+| [select](#select-with-dynamic-options)            | Select a single item from a dropdown list
+| [multiselect](#multi-select-with-dynamic-options) | Select one or more items from a dropdown list
+| [combo](#combo-box)                               | Select a single item from a dropdown list, or enter a new value
+| [multicombo](#multi-select-combo-box)             | Select one or more items from a dropdown list, or enter new values
 
 
 ## Common Input Properties
@@ -68,7 +78,7 @@ Add static options to an input.  Applies to `select` and `multiselect`.  The blo
  
 The data structure for an `input` will depend on the `type`.
 
-## select / multiselect
+## select / multiselect / combo / multicombo
 
 | label               | value                 | tags                             |
 | ------------------- | --------------------- |----------------------------------|
@@ -208,6 +218,64 @@ input "search_string" {
 }
 
 ```
+
+
+
+### Combo box
+
+<img src="/images/reference_examples/input_combo.png" width="200pt" />
+
+<br />
+
+```hcl
+input "cost_center" {
+  title = "Select a Cost Center:"
+  type  = "combo"
+  width = 2
+
+  sql   = <<-EOQ
+    select distinct
+      tags ->> 'costcenter' as label,
+      tags ->> 'costcenter' as value
+    from
+      aws_tagging_resource
+    where
+      tags ->> 'costcenter' is not null;
+  EOQ
+}
+```
+
+### Multi-select combo box
+
+<img src="/images/reference_examples/input_multicombo.png" width="200pt" />
+
+<br />
+
+```hcl
+input "cost_centers" {
+  title = "Select a Cost Center:"
+  type  = "multicombo"
+  width = 3
+
+  sql   = <<-EOQ
+    select distinct
+      tags ->> 'costcenter' as label,
+      tags ->> 'costcenter' as value
+    from
+      aws_tagging_resource
+    where
+      tags ->> 'costcenter' is not null;
+  EOQ
+}
+```
+
+
+
+
+
+
+
+
 
 <!--   To DO - not yet in as of alpha 10
 

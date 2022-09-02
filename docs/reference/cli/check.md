@@ -160,6 +160,11 @@ Run the cis_v130_1_4 and cis_v130_2_1_1 controls:
 steampipe check control.cis_v130_1_4 control.cis_v130_2_1_1
 ```
 
+Run the foundational_security benchmark, but suppress items:
+```bash
+steampipe check benchmark.foundational_security --where "tags ->> 'foundational_security_item_id' !=  all(ARRAY['cloudformation_1','s3_11'])"
+```
+
 Use plain text and no progress (typical for CI or batch jobs)
 ```bash
 steampipe check all --theme=plain --progress=false
