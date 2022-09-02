@@ -13,7 +13,7 @@ You are probably here for one of the following reasons:
 - You've seen references to the search path elsewhere, but you're not sure why it's important
 - You asked what you thought was a simple question on the Steampipe Slack, and instead of an answer they sent you this link (ugh...homework...)
 
-This guide answers your questions.
+This guide will attempt to answer these questions in 5 minutes or less.
 
 ## Schemas in Postgres
 
@@ -54,7 +54,7 @@ Or more simply, using the steampipe `.inspect` command:
 
 In Steampipe, a [plugin](https://steampipe.io/docs/managing/plugins) defines and implements a set of related foreign tables.  All connections for a given plugin will contain the same set of tables.  
 
-Within a schema, table names must be unique. However the same table name can be used in different schemas.  You can reference tables using a **qualified name** to disambiguate.   A qualified name comprises the schema name and the object name, separated by a period.  For example, to query the `aws_account` table in the `aws_prod` schema (which corresponds to the `aws_prod` connection) you can refer to it as `aws_prod.aws_account`:
+Within a schema, table names must be unique, however the same table name can be used in different schemas.  You can reference tables using a **qualified name** to disambiguate.   A qualified name consists of the schema name and the object name, separated by a period.  For example, to query the `aws_account` table in the `aws_prod` schema (which corresponds to the `aws_prod` connection) you can refer to it as `aws_prod.aws_account`: 
 
 ```sql
 select 
@@ -92,7 +92,7 @@ Queries in Steampipe [Mods](https://steampipe.io/docs/mods/overview) are written
 By default, Steampipe sets the schema search path as follows:
 1. The `public` schema first.  This schema is writable, and allows you to create your own objects (views, tables, functions, etc).
 2. Connection schemas, in **alphabetical order** by default.
-3. The `internal` schema last.   This schema contains Steampipe built-in functions and other internal Steampipe objects.  This schema is not displayed or managed by the Steampipe search path commands and options. However you'll see it in native SQL commands such as `show search_path`.
+3. The `internal` schema last.   This schema contains Steampipe built-in functions and other internal Steampipe objects.  This schema is not displayed or managed by the Steampipe search path commands and options, but you'll see it in native SQL commands such as `show search_path`.
 
 Since the connection schemas are added to the search_path alphabetically by default, the simplest way to set the default is to rename the connections. For example, let's assume that I have 3 AWS accounts and an aggregator, and I want the aggregator to be the first in the search path.  I could name them as follows:
 - `aws_prod` - Production AWS account
@@ -111,7 +111,7 @@ Steampipe will add the aggregator before the other aws connections because `aws`
 +-------------------------------------+
 ```
 
-If you prefer, you can explicitly set the search path in the [database options ](https://steampipe.io/docs/reference/config-files/database) in your `~/.steampipe/config/default.spc` file.  Note that this is somewhat brittle. Every time you install or uninstall a plugin, add or remove a connection, etc you will need to update the file with the new search_path.
+If you prefer, you can explicitly set the `search_path` in the [database options ](https://steampipe.io/docs/reference/config-files/database) in your `~/.steampipe/config/default.spc` file.  Note that this is somewhat brittle because every time you install or uninstall a plugin, or add or remove a connection, you will need to update the file with the new  `search_path`.
 
 
 ## Search Path Prefix
@@ -135,7 +135,7 @@ steampipe check benchmark.cis_v140 --search_path_prefix aws_prod
   - Qualified names would require you to know the connection names, which you don't know (they are defined by the user).
   - Users of your mod can vary the search path to target different connections
 - If you create custom views or other objects, make sure you keep the `public` schema in your path.
-- Since the `public` schema is first (by default), you can create your own tables and views to use instead of the Steampipe tables.  If, for example, there is a table that you want to permanently cache, you can create a table with the same name: `create table  aws_iam_credential_report as select * from aws_iam_credential_report`. If you want to be able to refresh that table periodically, you can use a materialized view instead -- `create materialized view aws_iam_credential_report as select * from aws_iam_credential_report` -- and then periodically use `refresh materialized view aws_iam_credential_report`.
+- Since the `public` schema is first (by default), you can create your own tables and views to use instead of the steampipe tables.  If, for example, there is a table that you want to 'permanently' cache (or only manually refresh), you can create a materialized view with the same name: `create materialized view aws_iam_credential_report as select * from aws_iam_credential_report`. 
 
 
 ## More Information
