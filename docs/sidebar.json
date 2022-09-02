@@ -220,6 +220,7 @@
           "cloud/integrations/metabase",
           "cloud/integrations/pgcli",
           "cloud/integrations/psql",
+          "cloud/integrations/python",
           "cloud/integrations/tableau"
         ]
       },
