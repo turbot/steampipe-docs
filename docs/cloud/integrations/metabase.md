@@ -11,13 +11,11 @@ Steampipe provides a single interface to all your cloud, code, logs and more.  B
 
 The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides the details you need to connect Metabase to Steampipe Cloud.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
+<div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
 <img src="/images/docs/cloud/cloud-connect-tab.jpg" />
 </div>
 
-## Connect to Steampipe CLI from Metabase
-
-To connect Metabase to [Steampipe CLI](https://steampipe.io/downloads), run `steampipe service start --show-password` and use the displayed connection details. 
+You can also connect Metabase to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details. 
 
 ```
 Steampipe service is running:
