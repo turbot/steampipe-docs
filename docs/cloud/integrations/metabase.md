@@ -15,6 +15,23 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 <img src="/images/docs/cloud/cloud-connect-tab.jpg" />
 </div>
 
+## Connect to Steampipe CLI from Metabase
+
+To connect Metabase to [Steampipe CLI](https://steampipe.io/downloads), run `steampipe service start --show-password` and use the displayed connection details. 
+
+```
+Steampipe service is running:
+
+Database:
+
+  Host(s):            localhost, 127.0.0.1, 172.28.158.171
+  Port:               9193
+  Database:           steampipe
+  User:               steampipe
+  Password:           9a**-****-**7e
+  Connection string:  postgres://steampipe:9a49-42e2-a57e@localhost:9193/steampipe
+  ```
+
 ## Getting started
 
 Metabase is a JVM app that you can run as a JAR file, or in a container, or as a native Mac app. 
