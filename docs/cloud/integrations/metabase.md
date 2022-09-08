@@ -11,9 +11,24 @@ Steampipe provides a single interface to all your cloud, code, logs and more.  B
 
 The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides the details you need to connect Metabase to Steampipe Cloud.
 
-<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
+<div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
 <img src="/images/docs/cloud/cloud-connect-tab.jpg" />
 </div>
+
+You can also connect Metabase to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details. 
+
+```
+Steampipe service is running:
+
+Database:
+
+  Host(s):            localhost, 127.0.0.1, 172.28.158.171
+  Port:               9193
+  Database:           steampipe
+  User:               steampipe
+  Password:           9a**-****-**7e
+  Connection string:  postgres://steampipe:9a49-42e2-a57e@localhost:9193/steampipe
+  ```
 
 ## Getting started
 
