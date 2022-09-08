@@ -7,7 +7,7 @@ sidebar_label: Using search_path
 # Using search_path to target connections and aggregators
 
 You are probably here for one of the following reasons:
-- You can't figure out why Steampipe isn't using your aggregator
+- You can't figure out why Steampipe isn't using your [aggregator](https://steampipe.io/docs/managing/connections#querying-multiple-connections)
 - You want to run `steampipe query`, `check`, or `dashboard` against a specific connection
 - You want to change your default connection
 - You've seen references to the search path elsewhere, but you're not sure why it's important
@@ -94,7 +94,7 @@ By default, Steampipe sets the schema search path as follows:
 2. Connection schemas, in **alphabetical order** by default.
 3. The `internal` schema last.   This schema contains Steampipe built-in functions and other internal Steampipe objects.  This schema is not displayed or managed by the Steampipe search path commands and options, but you'll see it in native SQL commands such as `show search_path`.
 
-Since the connection schemas are added to the search_path alphabetically by default, the simplest way to set the default is to rename the connections. For example, let's assume that I have 3 AWS accounts and an aggregator, and I want the aggregator to be the first in the search path.  I could name them as follows:
+Since the connection schemas are added to the search_path alphabetically by default, the simplest way to set the default is to rename the connections. For example, let's assume that I have 3 AWS accounts and an [aggregator](https://steampipe.io/docs/managing/connections#querying-multiple-connections), and I want the aggregator to be the first in the search path.  I could name them as follows:
 - `aws_prod` - Production AWS account
 - `aws_qa`   - QA AWS account
 - `aws_dev`  - Development AWS account
