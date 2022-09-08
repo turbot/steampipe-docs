@@ -16,6 +16,21 @@ The [Connect](./docs/cloud/connecting/overview#connecting-to-your-workspace) tab
 
 Once you've tested the connection to Steampipe Cloud, you can browse the tables provided by your Steampipe plugins, run queries, and build dashboards.
 
+You can also connect Tableau to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details. 
+
+```
+Steampipe service is running:
+
+Database:
+
+  Host(s):            localhost, 127.0.0.1, 172.28.158.171
+  Port:               9193
+  Database:           steampipe
+  User:               steampipe
+  Password:           9a**-****-**7e
+  Connection string:  postgres://steampipe:9a**-****-**7e@localhost:9193/steampipe
+  ```
+
 ## Getting started
 
 Tableau is available on the desktop and the cloud. The examples here use Tableau Online, so start by creating an account there if you don't already have one.

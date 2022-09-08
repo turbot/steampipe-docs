@@ -27,7 +27,7 @@ Database:
   Database:           steampipe
   User:               steampipe
   Password:           9a**-****-**7e
-  Connection string:  postgres://steampipe:9a49-42e2-a57e@localhost:9193/steampipe
+  Connection string:  postgres://steampipe:9a**-****-**7e@localhost:9193/steampipe
   ```
 
 ## Getting started
