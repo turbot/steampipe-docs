@@ -140,6 +140,12 @@ Alternative values are `none`, which applies no data transforms, or `crosstab` w
 | `display`  | string | `auto`  | `auto`, `always` or `none`.         | `auto` will display a legend if there are multiple data series. `show` will ensure a legend is `always` shown, or `hide` will never show a legend. |
 | `position` | string | `top`   | `top`, `right`, `bottom` or `left`. | By default the chart will display a legend at the `top` of the chart, but this can be overridden to `right`, `bottom` or `left` if required.       |
 
+### point
+
+| Property | Type   | Default                                                              | Values                                                                                                                                  | Description |
+| -------- | ------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `color`  | string | The matching color from the default theme for the data series index. |A [valid color value](reference/mod-resources/dashboard#color).  This may be a named color, RGB or RGBA string, or a control status color. |             |
+
 ### series
 
 | Property | Type   | Default                                                              | Values                                                                                                                                  | Description |
@@ -278,6 +284,7 @@ chart {
 ```
 
 ### Donut Chart
+
 <img src="/images/reference_examples/donut_chart_ex_1.png" width="100%" />
 
 ```hcl
@@ -296,6 +303,28 @@ chart {
     order by
         Total desc
   EOQ
+}
+```
+### Multiple donut charts 
+
+<img src="/images/reference_examples/donut_chart_ex_2.png" width="100%" />
+
+```hcl
+chart "cloud_base" {
+  series "mentions" {
+    point "AWS" {
+      color = "#FF9900"
+    }
+    point "Azure" {
+      color = "blue"
+    }
+    point "Google Cloud|GCP" {
+      color = "#4285F4"
+    }
+    point "Oracle Cloud" {
+      color = "red"
+    }
+  }
 }
 ```
 
