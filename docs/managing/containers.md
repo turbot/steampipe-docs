@@ -171,7 +171,8 @@ docker run \
   -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY \
   -e AWS_REGION=us-east-1 \
   -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
-  --name steampipe-insights
+  --name steampipe-insights \
+  steampipe-aws-insights
 ```
 
 ## Running Steampipe DB as a service
@@ -266,7 +267,7 @@ Hit Ctrl+C to stop the service
 
 And then connect with your 3rd party tool:
 ```bash
-$ pgcli postgres://steampipe:adcd-ef12-3456@localhost:9193/steampipe?sslmode=require
+$ pgcli "postgres://steampipe:adcd-ef12-3456@localhost:9193/steampipe?sslmode=require"
 Server: PostgreSQL 12.1
 Version: 3.1.0
 Chat: https://gitter.im/dbcli/pgcli
