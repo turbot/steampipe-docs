@@ -310,20 +310,45 @@ chart {
 <img src="/images/reference_examples/donut_chart_ex_2.png" width="100%" />
 
 ```hcl
-chart "cloud_base" {
+chart "db_base" {
   series "mentions" {
-    point "AWS" {
-      color = "#FF9900"
+    point "DB2" {
+      color = "brown"
     }
-    point "Azure" {
-      color = "blue"
+    point "Citus" {
+      color = "green"
     }
-    point "Google Cloud|GCP" {
-      color = "#4285F4"
+    point "MongoDB" {
+      color = "gray"
     }
-    point "Oracle Cloud" {
+    point "MySQL|MariaDB" {
+      color = "orange"
+    }
+    point "Oracle" {
       color = "red"
     }
+    point "Postgres" {
+      color = "lightblue"
+    }
+    point "Steampipe" {
+      color = "black"
+    }
+    point "Supabase" {
+      color = "yellow"
+    }
+    point "Timescale" {
+      color = "purple"
+    }
+    point "Scala" {
+      color = "DarkCyan"
+    }
+    point "SQLite" {
+      color = "purple"
+    }
+    point "Yugabyte" {
+      color = "lightgreen"
+    }
+
   }
 }
 ```
