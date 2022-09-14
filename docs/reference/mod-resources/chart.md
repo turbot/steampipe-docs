@@ -146,7 +146,7 @@ Alternative values are `none`, which applies no data transforms, or `crosstab` w
 | -------- | ------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `title`  | string | The column name that the series data resides in.                     | Max 50 characters                                                                                                                       |             |
 | `color`  | string | The matching color from the default theme for the data series index. |A [valid color value](reference/mod-resources/dashboard#color).  This may be a named color, RGB or RGBA string, or a control status color. |             |
-| `point`  | string | An element of a [series](reference/mod-resources/dashboard#series). |A [point](reference/mod-resources/dashboard#point). |             |
+| `point`  | string | An element of a series. |A [point](reference/mod-resources/chart#point). |             |
 
 ### point
 
