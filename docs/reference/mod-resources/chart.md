@@ -140,19 +140,19 @@ Alternative values are `none`, which applies no data transforms, or `crosstab` w
 | `display`  | string | `auto`  | `auto`, `always` or `none`.         | `auto` will display a legend if there are multiple data series. `show` will ensure a legend is `always` shown, or `hide` will never show a legend. |
 | `position` | string | `top`   | `top`, `right`, `bottom` or `left`. | By default the chart will display a legend at the `top` of the chart, but this can be overridden to `right`, `bottom` or `left` if required.       |
 
-### point
-
-| Property | Type   | Default                                                              | Values                                                                                                                                  | Description |
-| -------- | ------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `color`  | string | The matching color from the default theme for the data series index. |A [valid color value](reference/mod-resources/dashboard#color).  This may be a named color, RGB or RGBA string, or a control status color. |             |
-
 ### series
 
 | Property | Type   | Default                                                              | Values                                                                                                                                  | Description |
 | -------- | ------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `title`  | string | The column name that the series data resides in.                     | Max 50 characters                                                                                                                       |             |
 | `color`  | string | The matching color from the default theme for the data series index. |A [valid color value](reference/mod-resources/dashboard#color).  This may be a named color, RGB or RGBA string, or a control status color. |             |
+| `point`  | string | An element of a [series](reference/mod-resources/dashboard#series). |A [point](reference/mod-resources/dashboard#point). |             |
 
+### point
+
+| Property | Type   | Default                                                              | Values                                                                                                                                  | Description |
+| -------- | ------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `color`  | string | The matching color from the default theme for the data series index. |A [valid color value](reference/mod-resources/dashboard#color).  This may be a named color, RGB or RGBA string, or a control status color. |             |
 
 
 ## More Examples
