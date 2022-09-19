@@ -5,7 +5,7 @@ sidebar_label: Metabase
 
 #  Connect to Steampipe Cloud from Metabase
 
-[Metabase](https://metabase.com/) is an open source tool that connects to many databases, including Postgres, and enables users to explore, query, and visualize data. 
+[Metabase](https://metabase.com/) is an open source tool that connects to many databases, including Postgres, and enables users to explore, query, and visualize data!
 
 Steampipe provides a single interface to all your cloud, code, logs and more.  Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including Metabase -- can connect to. 
 
