@@ -42,7 +42,7 @@ Documentation:    https://hub.steampipe.io/plugins/turbot/aws
 
 ## Run your first query
 
-To launch Steampipe in query mode, type `steampipe query`.
+To launch Steampipe in query mode, do this:
 
 ```bash
 ./steampipe query
@@ -80,5 +80,5 @@ To see the full set of columns for any table, along with examples of their use, 
 <img src="/images/docs/cloudshells/aws-cloudshell-inspect.jpg" />
 </div>
 
-If you haven't used SQL lately, is rusty, see our [handy guide](https://steampipe.io/docs/sql/steampipe-sql) for writing Steampipe queries.
+If you haven't used SQL lately, see our [handy guide](https://steampipe.io/docs/sql/steampipe-sql) for writing Steampipe queries.
 
