@@ -74,7 +74,7 @@ Your output should look like:
 +-------------------------------------------+--------------------------------------------------------+----------------------+-------------------------+
 ```
 
-That's it! You didn't have to read AWS API docs, or install an API client library like `boto3`, or learn how to use that client to make API calls and unpack JSON responses. Steampipe did all that for you. It works the way for every AWS table. And because you can use SQL to join across AWS tables, it's easy to reason over your entire AWS infrastructure.
+That's it! You didn't have to read AWS API docs, or install an API client library like `boto3`, or learn how to use that client to make API calls and unpack JSON responses. Steampipe did all that for you. It works the same way for every AWS table. And because you can use SQL to join across AWS tables, it's easy to reason over your entire AWS infrastructure.
 
 To see the full set of columns for any table, along with examples of their use, visit the [Steampipe Hub](https://hub.steampipe.io/plugins/turbot/aws/tables/). For S3 buckets, visit [aws_s3_bucket](https://hub.steampipe.io/plugins/turbot/aws/tables/aws_s3_bucket). For quick reference you can autocomplete table names directly in the shell.
 
