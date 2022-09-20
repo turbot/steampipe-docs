@@ -192,6 +192,15 @@
           "reference/mod-resources/text",
           "reference/mod-resources/variable"
         ]
+      },
+      {
+        "type": "category",
+        "id": "cloudshells",
+        "label": "CloudShells",
+        "link": "reference/cloudshells/overview",
+        "items": [
+          "reference/cloudshells/aws"
+        ]
       }
     ]
   },
