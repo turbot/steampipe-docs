@@ -192,15 +192,6 @@
           "reference/mod-resources/text",
           "reference/mod-resources/variable"
         ]
-      },
-      {
-        "type": "category",
-        "id": "cli-integrations",
-        "label": "Integrationss",
-        "link": "reference/integrations/overview",
-        "items": [
-          "cloudshells/gcp"
-        ]
       }
     ]
   },
