@@ -199,7 +199,9 @@
         "label": "CloudShells",
         "link": "reference/cloudshells/overview",
         "items": [
-          "reference/cloudshells/aws"
+          "reference/cloudshells/aws",
+          "reference/cloudshells/azure",
+          "reference/cloudshells/gcp"
         ]
       }
     ]
