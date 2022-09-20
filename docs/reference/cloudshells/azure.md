@@ -11,7 +11,7 @@ sidebar_label: Azure Cloud Shell
 
 ## About the Azure Cloud Shell
 
-The Cloud Shell is free to all Azure users. It comes with a few [limitations](https://learn.microsoft.com/en-us/azure/cloud-shell/limitations). For example, it will use an existing resource group but must be able to create storage accounts and file shares. You may incur a cost for the file share that persists your data. Also, since you are not a `sudo` user and cannot touch files or directories outside your home directory, we will install Steampipe there and refer to it as `.steampipe`. Finally, note that Azure will shut down your session if inactive for 20 minutes.
+The Cloud Shell is free to all Azure users. It comes with a few [limitations](https://learn.microsoft.com/en-us/azure/cloud-shell/limitations). For example, it will use an existing resource group but must be able to create storage accounts and file shares. You may incur a cost for the file share that persists your data. Also, since you are not a user with permission to `sudo` and cannot modify files or directories outside your home directory, we will install Steampipe there and refer to it as `./steampipe`. Finally, be aware that Azure will shut down your session if inactive for 20 minutes.
 
 To start the shell, look for its icon on the top navigation bar of the Azure portal.
 
@@ -76,7 +76,7 @@ from
 +--------------------------------------+--------------+---------+----------------------+-----------------------+
 ```
 
-To see the full set of columns for any table, along with examples of their use, visit the [Steampipe Hub](https://hub.steampipe.io). For quick reference you can autocomplete table names directly in the shell.
+To see the full set of columns for any table, along with examples of their use, visit the [Steampipe Hub](https://hub.steampipe.io/plugins/turbot/azure/tables). For quick reference you can autocomplete table names directly in the shell.
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
 <img src="/images/docs/cloudshells/azure_cloudshell_autocomplete.png" />
