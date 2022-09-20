@@ -15,7 +15,7 @@ To start the shell, visit an URL like https://us-east-1.console.aws.amazon.com/c
 <img src="/images/docs/cloudshells/aws-cloudshell-homescreen.jpg" />
 </div>
 
-CloudShell includes 1 GB of free persistent storage per region. When you exit the shell, AWS preserves only the files inside your home directory. So we'll install Steampipe in your home directory (vs `/usr/local/bin`), and we'll run Steampipe as `./steampipe` (vs `steampipe`). 
+Cloud Shell includes 1 GB of free persistent storage per region. When you exit the shell, AWS preserves only the files inside your home directory. So we'll install Steampipe in your home directory (vs `/usr/local/bin`), and we'll run Steampipe as `./steampipe` (vs `steampipe`). 
 
 ## Installing Steampipe in AWS Cloud Shell
 
