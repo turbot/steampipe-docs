@@ -15,7 +15,7 @@ When the Google Cloud Shell terminates, only files inside the home directory are
 
 To get started with the Google Cloud Shell, go to the [Google Cloud Console](https://console.cloud.google.com/). You want to select a Google Project that has billing enabled, then click on the Cloud Shell icon in the upper right.
 
-!["Google Cloud Screenshot showing project selection and location of the Google Cloud Shell icon"](/images/integrations/GCP_Cloud_Shell.png)
+!["Google Cloud Screenshot showing project selection and location of the Google Cloud Shell icon"](/images/docs/cloudshells/GCP_Cloud_Shell.png)
 
 
 ## Installing Steampipe in Google Cloud Shell
@@ -65,7 +65,7 @@ from
 
 You main find that the first time you want to run a query, a dialog box will appear prompt you to authorize CloudSell to use you credentials. You should just click "Authorize".
 
-!["Screenshot of Google prompting a user to Authorize Cloud Shell"](/images/integrations/Authorize_GCP_CloudShell.png)
+!["Screenshot of Google prompting a user to Authorize Cloud Shell"](/images/docs/cloudshells/Authorize_GCP_CloudShell.png)
 
 To view the information about your [GCP Organization](https://hub.steampipe.io/plugins/turbot/gcp/tables/gcp_organization), you can run:
 
