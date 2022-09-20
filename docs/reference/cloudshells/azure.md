@@ -76,6 +76,8 @@ from
 +--------------------------------------+--------------+---------+----------------------+-----------------------+
 ```
 
+That's it! You didn't have to read Azure API docs, or install an [API client library](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/api/client-libraries), or learn how to use that client to make API calls and unpack JSON responses. Steampipe did all that for you. It works the same way for every Azure table. And because you can use SQL to join across Azure tables, it's easy to reason over your entire Azure infrastructure.
+
 To see the full set of columns for any table, along with examples of their use, visit the [Steampipe Hub](https://hub.steampipe.io/plugins/turbot/azure/tables). For quick reference you can autocomplete table names directly in the shell.
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
