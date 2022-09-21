@@ -63,7 +63,7 @@ You may find that the first time you run a query, a dialog box will prompt you t
 
 !["Screenshot of Google prompting a user to Authorize Cloud Shell"](/images/docs/cloudshells/Authorize_GCP_CloudShell.png)
 
- That's it! You didn't have to read [GCP API docs](https://cloud.google.com/apis/docs/overview), install an [API client library](https://cloud.google.com/python/docs/reference), or [learn how to use that client](https://cloud.google.com/python/docs/reference) to make API calls and unpack JSON responses. Steampipe did all that for you. It works the same way for every AWS table. And because you can use SQL to join across multiple tables representing GCP service, it's easy to reason over your entire GCP organization.
+ That's it! You didn't have to read [GCP API docs](https://cloud.google.com/apis/docs/overview), install an [API client library](https://cloud.google.com/python/docs/reference), or learn how to use that client to make API calls and unpack JSON responses. Steampipe did all that for you. It works the same way for every GCP table. And because you can use SQL to join across multiple tables representing GCP services, it's easy to reason over your entire GCP organization.
 
 
 To view the information about your [GCP Organization](https://hub.steampipe.io/plugins/turbot/gcp/tables/gcp_organization), you can run:
