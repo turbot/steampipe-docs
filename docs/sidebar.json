@@ -203,7 +203,17 @@
           "reference/cloudshells/azure",
           "reference/cloudshells/gcp"
         ]
+      },
+      {
+        "type": "category",
+        "id": "ci-cd-pipelines",
+        "label": "CI/CD Pipelines",
+        "link": "reference/ci-cd-pipelines/overview",
+        "items": [
+          "reference/ci-cd-pipelines/gitlab"
+        ]
       }
+
     ]
   },
   
