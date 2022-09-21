@@ -7,7 +7,7 @@ sidebar_label: GitLab
 
 GitLab provides a [hosted environment](https://docs.gitlab.com/ee/ci/) in which you can build, test, and deploy software. This happens in a [GitLab Runner](https://docs.gitlab.com/runner/). Let's install Steampipe into a shared runner on gitlab.com, then install a plugin and run a query.
 
-## Installing Steampipe in a GitLab.com Runner
+## Installing Steampipe in a GitLab Runner
 
 To run scripts when you push changes to a gitlab.com repo, you place them in a file called `.gitlab-ci.yml`. Here's an example that installs Steampipe into the runner's environment.
 
@@ -21,7 +21,7 @@ install:
 
 The official command to install Steampipe begins with `sudo`. That isn't necessary here, though, because in this environment you already are the root user.
 
-## Running Steampipe in a GitLab.com Runner
+## Running Steampipe in a GitLab Runner
 
 Steampipe cannot, however, run as root. So we'll create a non-privileged user, and switch to that user in order to run Steampipe commands. Our first command will install the [Hacker News](https://hub.steampipe.io/plugins/turbot/hackernews) plugin.
 
@@ -75,4 +75,4 @@ install:
 <img alt="gitlab-query-output" src="/images/docs/ci-cd-pipelines/gitlab-query-output.jpg" />
 </div>
 
-
+That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) and [mods](https://hub.steampipe.io/mods) to enrich your GitLab pipelines.
