@@ -1,6 +1,6 @@
 ---
 title: Using Steampipe in a GitLab CI/CD Pipeline
-sidebar_label: GitLab
+sidebar_label: GitLab CI/CD
 ---
 
 # Using Steampipe in a GitLab CI/CD Pipeline

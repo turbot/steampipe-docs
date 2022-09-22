@@ -111,6 +111,18 @@
       },
       {
         "type": "category",
+        "id": "integrations",
+        "label": "Integrations",
+        "link": "reference/integrations/overview",
+        "items": [
+          "reference/integrations/aws_cloudshell",
+          "reference/integrations/azure_cloudshell",
+          "reference/integrations/gcp_cloudshell",
+          "reference/integrations/gitlab_ci_cd"
+        ]
+      },
+      {
+        "type": "category",
         "id": "dot-commands",
         "label": "Meta-Commands",
         "link": "reference/dot-commands/overview",
@@ -132,7 +144,6 @@
           "reference/dot-commands/timing"
         ]
       },
-
       { 
         "type": "category",
         "id": "env-vars",
@@ -192,28 +203,7 @@
           "reference/mod-resources/text",
           "reference/mod-resources/variable"
         ]
-      },
-      {
-        "type": "category",
-        "id": "cloudshells",
-        "label": "CloudShells",
-        "link": "reference/cloudshells/overview",
-        "items": [
-          "reference/cloudshells/aws",
-          "reference/cloudshells/azure",
-          "reference/cloudshells/gcp"
-        ]
-      },
-      {
-        "type": "category",
-        "id": "ci-cd-pipelines",
-        "label": "CI/CD Pipelines",
-        "link": "reference/ci-cd-pipelines/overview",
-        "items": [
-          "reference/ci-cd-pipelines/gitlab"
-        ]
       }
-
     ]
   },
   
