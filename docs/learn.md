@@ -14,7 +14,7 @@ Let's dive in...
 
 ## Install the AWS plugin
 
-This tutorial uses the [AWS plugin](https://hub.steampipe.io/plugins/turbot/aws). To gets started, [download and install Steampipe](/downloads), and then install the plugin:
+This tutorial uses the [AWS plugin](https://hub.steampipe.io/plugins/turbot/aws). To get started, [download and install Steampipe](/downloads), and then install the plugin:
 
 ```bash
 steampipe plugin install aws
