@@ -20,7 +20,7 @@ The command will return the url to view the snapshot that you created:
 Snapshot uploaded to https://cloud.steampipe.io/user/costanza/workspace/vandelay/snapshot/snap_abcdefghij0123456789_asdfghjklqwertyuiopzxcvbn
 ```
 
-You may use the `--output` argument if you prefer to see the the normal text output written to stdout (or an alternate format such as brief, csv, html, json or md,).  Note that when `--output` is specified, the url will not be returned on stdout, though you can view all of your snapshots from the **snapshots** page on the [Steampipe Cloud](/docs/cloud/overview) console:
+You may use the `--output` argument if you prefer to see the normal text output written to stdout (or an alternate format such as brief, csv, html, json or md,).  Note that when `--output` is specified, the url will not be returned on stdout, though you can view all of your snapshots from the **snapshots** page on the [Steampipe Cloud](/docs/cloud/overview) console:
 
 ```bash
 steampipe check --snapshot benchmark.cis_v140  --output text
