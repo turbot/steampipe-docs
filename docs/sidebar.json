@@ -72,6 +72,18 @@
   },
   {
     "type": "category",
+    "id": "integrations",
+    "label": "Integrations",
+    "link": "integrations/overview",
+    "items": [
+      "integrations/aws_cloudshell",
+      "integrations/azure_cloudshell",
+      "integrations/gcp_cloudshell",
+      "integrations/gitlab_ci_cd"
+    ]
+  },
+  {
+    "type": "category",
     "id": "develop",
     "label": "Developers",
     "link": "develop/overview",
@@ -107,18 +119,6 @@
           "reference/cli/query",
           "reference/cli/service",
           "reference/cli/variable"
-        ]
-      },
-      {
-        "type": "category",
-        "id": "integrations",
-        "label": "Integrations",
-        "link": "reference/integrations/overview",
-        "items": [
-          "reference/integrations/aws_cloudshell",
-          "reference/integrations/azure_cloudshell",
-          "reference/integrations/gcp_cloudshell",
-          "reference/integrations/gitlab_ci_cd"
         ]
       },
       {
