@@ -38,6 +38,18 @@
   },
   {
     "type": "category",
+    "id": "snapshots",
+    "label": "Take Snapshots",
+    "link": "snapshots/overview",
+    "items": [
+      "snapshots/query",
+      "snapshots/dashboard",
+      "snapshots/check"
+    ]
+  },
+
+  {
+    "type": "category",
     "id": "working-with-mods",
     "label": "Build Mods",
     "link": "mods/overview",
