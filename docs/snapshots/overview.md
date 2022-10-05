@@ -11,6 +11,4 @@ A snapshot may be shared only with Steampipe Cloud users that have access to the
 
 You may create tags on your snapshots. Tags can be used to search for and organize snapshots.
 
-You can create snapshots directly from the Steampipe CLI, however if you with to subsequently modify them (add/remove tags, change visibility) or delete them, you must do so from the Steampipe Cloud console. You may access the snapshot list by clicking the **Snapshots** button on the top of your workspace's **Dashboards** page.
-
-
+You can create snapshots directly from the Steampipe CLI, however if you with to subsequently [modify]](/docs/cloud/dashboards#managing-snapshots) them (add/remove tags, change visibility) or delete them, you must do so from the Steampipe Cloud console. You may [browse the snapshot list](/docs/cloud/dashboards#browsing-snapshots) by clicking the **Snapshots** button on the top of your workspace's **Dashboards** page.

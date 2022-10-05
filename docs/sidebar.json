@@ -42,10 +42,7 @@
     "label": "Take Snapshots",
     "link": "snapshots/overview",
     "items": [
-      "snapshots/query",
-      "snapshots/dashboard",
-      "snapshots/check",
-      "snapshots/snapshot-create"
+      "snapshots/creating"
     ]
   },
 
