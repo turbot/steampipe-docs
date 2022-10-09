@@ -20,7 +20,7 @@ This tutorial uses the [AWS plugin](https://hub.steampipe.io/plugins/turbot/aws)
 steampipe plugin install aws
 ```
 
-Steampipe will download and install additional components the first time you run `steampipe query` so it may take a few seconds to load initially.
+Steampipe will download and install additional components the first time you run the `steampipe query` so it may take a few seconds to load initially.
 
 Out of the box, Steampipe will use your default AWS credentials from your credential file and/or environment variables, so you'll need to make sure those are set up as well.  If you can run `aws ec2 describe-vpcs`, you're good to go.  (The AWS plugin provides additional examples to [configure your credentials](https://hub.steampipe.io/plugins/turbot/aws#configuring-aws-credentials), and even configure steampipe to query [multiple accounts](https://hub.steampipe.io/plugins/turbot/aws#multi-account-connections) and [multiple regions](https://hub.steampipe.io/plugins/turbot/aws#multi-region-connections
 ).)
@@ -30,10 +30,10 @@ Out of the box, Steampipe will use your default AWS credentials from your creden
 
 
 ## Explore
-Steampipe provides commands that allow you to discover and explore the tables and data without leaving the query shell.  (Of course this information is all available in [the hub](https://hub.steampipe.io/plugins/turbot/aws/tables) if online docs are more your speed...)
+Steampipe provides commands that allow you to discover and explore the tables and data without leaving the query shell.  (Of course, this information is all available in [the hub](https://hub.steampipe.io/plugins/turbot/aws/tables) if online docs are more your speed...)
 
 
-Let's fire up Steampipe!  Run `steampipe query` to open an interactive query session:
+Let's fire up Steampipe!  Run the `steampipe query` to open an interactive query session:
 
 ```bash
 $ steampipe query
@@ -60,7 +60,7 @@ Now run the `.tables` meta-command to list the available tables:
 +----------------------------------------+---------------------------------------------+
 ```
 
-As you can see, there are quite a few tables available in the aws plugin!  
+As you can see, there are quite a few tables available in the AWS plugin!  
 
 It looks like there's an `aws_iam_role` table - let's run `.inspect` to see what's in that table:
 ```
@@ -135,7 +135,7 @@ Now that we know what columns are available in the `aws_iam_role` table, let's r
 
 ```
 
-Now lets ask a more interesting question.  Lets find roles that have no boundary policy applied:
+Now let's ask a more interesting question.  Let's find roles that have no boundary policy applied:
 
 ```sql
 select
@@ -205,13 +205,13 @@ While Steampipe plugins provide an easy way to query your configuration, Steampi
 
 Steampipe **dashboards** allow you to visualize your steampipe data.
 
-Lets download the AWS Insights mod and view the dashboards.  First, lets clone the repo:
+Let's download the AWS Insights mod and view the dashboards.  First, let's clone the repo:
 
 ```bash
 git clone https://github.com/turbot/steampipe-mod-aws-insights.git
 ```
 
-Now lets change to that directory and run `steampipe dashboard`:
+Now, let's change to that directory and run the `steampipe dashboard`:
 ```bash
 cd steampipe-mod-aws-insights
 steampipe dashboard
@@ -221,28 +221,28 @@ steampipe dashboard
 
 
 
-Steampipe will load the embedded web server on port 9194 and open `http://localhost:9194/` in your browser.  The home page lists the available dashboards, and is searchable by title or tags.  Click on the title of a report to view it.  For example, click the `AWS CloudTrail Trail Dashboard` to view it.
+Steampipe will load the embedded web server on port 9194 and open `http://localhost:9194/` in your browser.  The home page lists the available dashboards and is searchable by title or tags.  Click on the title of a report to view it.  For example, click the `AWS CloudTrail Trail Dashboard` to view it.
 
 <img src="/images/docs/cloudtrail_dash_ex.png" width="100%" />
 
-You can type in the search bar at the top of any page to navigate to another dashboard.  Alternately, you can click the Steampipe logo in the top left to return to the home page.  When you are finished, you can return to the terminal console and type `Ctrl+c` to exit.
+You can type in the search bar at the top of any page to navigate to another dashboard.  Alternatively, you can click the Steampipe logo in the top left to return to the home page.  When you are finished, you can return to the terminal console and type `Ctrl+c` to exit.
 
-There are hundreds of dashboards packaged in [Steampipe Mods](https://hub.steampipe.io/mods) available on the [Steampipe Hub](https://hub.steampipe.io).  You can also [create your own dashboards](/docs/mods/writing-dashboards) - its simple, fast, and fun!
+There are hundreds of dashboards packaged in [Steampipe Mods](https://hub.steampipe.io/mods) available on the [Steampipe Hub](https://hub.steampipe.io).  You can also [create your own dashboards](/docs/mods/writing-dashboards) - it's simple, fast, and fun!
 
 ## Run Controls
 Steampipe mods can also define **benchmarks and controls** to assess your environment against security, compliance, operational, and cost controls.
 
 
-Lets download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).  
+Let's download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).  
 
-Lets clone the repo:
+Let's clone the repo:
 
 ```bash
 git clone https://github.com/turbot/steampipe-mod-aws-compliance.git
 ```
 
 
-Steampipe benchmarks automatically appear as [dashboards](/docs/dashboard/overview) when you run `steampipe dashboard` in the mod.  From the dashboard home, you can select any benchmark to run it and view it in an interactive HTML format.  You can even export the benchmark results as a CSV from the [panel view](/docs/dashboard/panel).
+Steampipe benchmarks automatically appear as [dashboards](/docs/dashboard/overview) when you run the `steampipe dashboard` in the mod.  From the dashboard home, you can select any benchmark to run it and view it in an interactive HTML format.  You can even export the benchmark results as a CSV from the [panel view](/docs/dashboard/panel).
 
 <img src="/images/reference_examples/benchmark_dashboard_view.png" />
 
@@ -260,5 +260,5 @@ The console will show progress as its runs, and will print the results to the sc
 
 <img src="/images/steampipe-check-output-sample-1.png" width="100%" />
 
-`steampipe check` provides a flexible interface for [running controls](docs/check/overview), including options to [select which controls to run](docs/check/filtering) and [control the output format](docs/check/formatting).  You can find many more controls and benchmarks on the [Steampipe Hub](https://hub.steampipe.io/mods).  You can even [create your own controls and benchmarks](docs/mods/writing-controls)!
+`steampipe check` provides a flexible interface for [running controls](docs/check/overview), including options to [select which controls to run](docs/check/filtering) and [control the output format](docs/check/formatting).  You can find many more controls and benchmarks on the [Steampipe Hub](https://hub.steampipe.io/mods).  You can even [create your controls and benchmarks](docs/mods/writing-controls)!
 
