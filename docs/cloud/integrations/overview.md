@@ -3,7 +3,7 @@ title:  Integrations
 sidebar_label: Integrations
 ---
 
-# Integrations
+## Integrations
 
 Your Steampipe workspace database has a public IP address, allowing you to connect to it from anywhere using the Steampipe CLI or other standard tools and utilities that support Postgres.
 

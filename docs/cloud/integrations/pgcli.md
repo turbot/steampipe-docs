@@ -2,7 +2,7 @@
 title:  Connect to Steampipe Cloud with pgcli
 sidebar_label: pgcli
 ---
-# Connect to Steampipe Cloud with pgcli
+## Connect to Steampipe Cloud with pgcli
 
 Since your Steampipe Cloud workspace is just a PostgreSQL database, you can use `pgcli` to query your workspace database.
 
