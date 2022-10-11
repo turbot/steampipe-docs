@@ -2,7 +2,7 @@
 title:  Connect to Steampipe Cloud with Python
 sidebar_label: Python
 ---
-# Connect to Steampipe Cloud from Python
+## Connect to Steampipe Cloud from Python
 
 Since your Steampipe Cloud workspace is just a Postgres database, you can use the standard `psycopg2` adapter to query your workspace database from Python.
 
