@@ -228,6 +228,7 @@
         "link": "cloud/integrations/overview",
         "items": [
           "cloud/integrations/cli",
+          "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
           "cloud/integrations/pgcli",
           "cloud/integrations/psql",
