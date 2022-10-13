@@ -48,8 +48,8 @@ ALL tables that represent a resource should contain the following standard colum
 | Column Name | Data Type | Description
 |-|-|-
 | `title` | `ColumnType_STRING` | The display name for this resource.
-| `akas` | `ColumnType_JSON` | A JSON array of AKAs (also-known-as) that uniquely identify this resource.  The format of the akas varies by plugin (arns in aws, resource paths for azure) but they must be unique and should be immutable.
-| `tags` | `ColumnType_JSON` | The tags on this resource, **as a map of `key:value` pairs**.  Many resources support tags, though not all in the same format.  If the provider tags are in a different format, expose them in the native format in a `tags_raw` column, and convert them to `key:value` map in the `tags` column.  When tags are simple labels with no key:value (like github issue lables), use the format `label:true`.
+| `akas` | `ColumnType_JSON` | A JSON array of AKAs (also-known-as) that uniquely identify this resource.  The format of the AKAs varies by plugin (arns in aws, resource paths for azure) but they must be unique and should be immutable.
+| `tags` | `ColumnType_JSON` | The tags on this resource, **as a map of `key:value` pairs**.  Many resources support tags, though not all in the same format.  If the provider tags are in a different format, expose them in the native format in a `tags_raw` column, and convert them to `key:value` map in the `tags` column.  When tags are simple labels with no key:value (like Github issue labels), use the format `label:true`.
 
 
 You may choose to define additional standard columns that are specific to your plugin as well, and it is recommended to do so when appropriate.  For example, we define standard columns for our cloud provider plugins:

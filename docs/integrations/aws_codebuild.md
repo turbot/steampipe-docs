@@ -49,7 +49,7 @@ Running streampipe in CodeBuild uses the same `run-as: codebuild-user` as the in
 
 Because the `steampipe check all` command returns the number of violations and we want CodeBuild to exit cleanly, we add `on-failure: CONTINUE` to the build phase.
 
-For the actuall check, we just need to tell steampipe where to find the mod `export STEAMPIPE_WORKSPACE_CHDIR`, then we change directory to the terraform and run the  `steampipe check all` command. Since steampipe was installed in the parent directory of terraform, we call it as `../steampipe`.
+For the actual check, we just need to tell steampipe where to find the mod `export STEAMPIPE_WORKSPACE_CHDIR`, then we change directory to the terraform and run the  `steampipe check all` command. Since steampipe was installed in the parent directory of terraform, we call it as `../steampipe`.
 
 
 That's it! Now you can use any of Steampipe's plugins and mods as part of your CodeBuild projects.

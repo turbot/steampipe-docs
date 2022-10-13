@@ -7,7 +7,7 @@ sidebar_label: Writing Example Queries
 
 - [Sample Guidelines](#sample-guidelines)
 - [Basic Examples](#basic-examples)
-- [Advanced Exampes](#advanced-examples)
+- [Advanced Examples](#advanced-examples)
 
 ## Sample Guidelines
 
