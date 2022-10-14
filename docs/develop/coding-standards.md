@@ -31,7 +31,7 @@ Code should be formatted with <a href="https://golang.org/cmd/gofmt/" target="_b
 
 ## Repo Structure
 
-Each plugin should reside in a separate github repository, named `steampipe-plugin-{plugin name}`.  The repo should contain:
+Each plugin should reside in a separate Github repository, named `steampipe-plugin-{plugin name}`.  The repo should contain:
 - `README.md`
 - `LICENSE`
 - `main.go`
