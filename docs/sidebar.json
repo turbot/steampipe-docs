@@ -79,7 +79,9 @@
       "integrations/aws_cloudshell",
       "integrations/azure_cloudshell",
       "integrations/gcp_cloudshell",
-      "integrations/gitlab_ci_cd"
+      "integrations/github_action",
+      "integrations/gitlab_ci_cd",
+      "integrations/aws_codebuild"
     ]
   },
   {
