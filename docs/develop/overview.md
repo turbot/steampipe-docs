@@ -42,7 +42,7 @@ The magic of Steampipe is that it feels like a database, yet it doesn't store an
 While much of this work is handled by Steampipe itself, you should endeavor to keep things tight in your plugins as well:
 - Don't make extraneous API calls.
 - Make intelligent use of caching.
-- Back off intelligently it you get throttled by your API.
+- Back off intelligently if you get throttled by your API.
 - Attempt to design tables and columns such that you do not overwhelm the service or API that you are connecting to.
 
 ### It should be clever and flexible
@@ -50,5 +50,5 @@ As we first started building Steampipe, we realized we were on to something beca
 
 When you write your plugin, make hard things easy, and many things possible:
 - Normalize complex structures, but make raw json available as well.
-- Build something useable and share it as soon as its MVP.  Be agile - iterate!
+- Build something usable and share it as soon as its MVP.  Be agile - iterate!
 - Design for real use-cases, and imagine possibilities.
