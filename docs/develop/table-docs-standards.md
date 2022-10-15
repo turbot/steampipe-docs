@@ -136,18 +136,18 @@ Queries</a>.
   - Please test your queries after formatting them in case unexpected changes are made
 - Example descriptions should be in the imperative mood, e.g., `List buckets that are...`, `Count the number of instances...`
   - Good
-    - `### List unecrypted databases`
+    - `### List unencrypted databases`
     - `### List users named foo`
   - Bad: Should use "List" instead of "Listing"
-    - `### Listing unecrypted databases`
+    - `### Listing unencrypted databases`
   - Bad: Should not include "of"
     - `### List of users named foo`
 - Example descriptions should use the plural form of the resource name if the query can return more than 1 row
   - Good
-    - `### List unecrypted instances`
+    - `### List unencrypted instances`
     - `### Get the instance with a specific resource ID`
   - Bad: "instance" should be the plural form "instances"
-    - `### List unecrypted instance`
+    - `### List unencrypted instance`
   - Bad: "instances" should be singular since only one row can be returned
     - `### Get the instances with a specific resource ID`
 - Example descriptions should follow the provider's documentation on capitalization for resource and property names

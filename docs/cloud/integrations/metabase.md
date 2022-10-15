@@ -3,7 +3,7 @@ title: Connect to Steampipe Cloud from Metabase
 sidebar_label: Metabase
 ---
 
-#  Connect to Steampipe Cloud from Metabase
+##  Connect to Steampipe Cloud from Metabase
 
 [Metabase](https://metabase.com/) is an open source tool that connects to many databases, including Postgres, and enables users to explore, query, and visualize data. 
 
@@ -14,6 +14,8 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
 <img src="/images/docs/cloud/cloud-connect-tab.jpg" />
 </div>
+
+##  Connect to Steampipe CLI from Metabase
 
 You can also connect Metabase to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details. 
 
