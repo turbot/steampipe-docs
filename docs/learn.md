@@ -56,7 +56,7 @@ Now run the `.tables` meta-command to list the available tables:
 +----------------------------------------+---------------------------------------------+
 ```
 
-As you can see, there are quite a few tables available in the aws plugin!  
+As you can see, there are quite a few tables available in the AWS plugin!  
 
 It looks like there's an `aws_iam_role` table - let's run `.inspect` to see what's in that table:
 ```
@@ -219,14 +219,16 @@ Steampipe will load the embedded web server on port 9194 and open `http://localh
 
 You can type in the search bar at the top of any page to navigate to another dashboard.  Alternatively, you can click the Steampipe logo in the top left to return to the home page.  When you are finished, you can return to the terminal console and type `Ctrl+c` to exit.
 
-There are hundreds of dashboards packaged in [Steampipe Mods](https://hub.steampipe.io/mods) available on the [Steampipe Hub](https://hub.steampipe.io).  You can also [create your own dashboards](/docs/mods/writing-dashboards) - its simple, fast, and fun!
+There are hundreds of dashboards packaged in [Steampipe Mods](https://hub.steampipe.io/mods) available on the [Steampipe Hub](https://hub.steampipe.io).  You can also [create your own dashboards](/docs/mods/writing-dashboards) - it's simple, fast, and fun!
 
 ## Run Controls
 Steampipe mods can also define **benchmarks and controls** to assess your environment against security, compliance, operational, and cost controls.
 
 Let's download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).  
 
-Let's clone the repo:
+Lets download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).  
+
+Lets clone the repo:
 
 ```bash
 git clone https://github.com/turbot/steampipe-mod-aws-compliance.git
