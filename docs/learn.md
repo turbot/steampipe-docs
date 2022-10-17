@@ -226,8 +226,6 @@ Steampipe mods can also define **benchmarks and controls** to assess your enviro
 
 Let's download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).  
 
-Lets download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).  
-
 Lets clone the repo:
 
 ```bash
