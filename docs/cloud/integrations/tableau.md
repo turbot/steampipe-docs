@@ -2,7 +2,7 @@
 title: Connect to Steampipe Cloud from Tableau
 sidebar_label: Tableau
 ---
-# Connect to Steampipe Cloud from Tableau
+## Connect to Steampipe Cloud from Tableau
 
 [Tableau](https://www.tableau.com) is a visual analytics platform that is "transforming the way we use data to solve problems."
 

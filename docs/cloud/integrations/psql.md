@@ -2,7 +2,7 @@
 title:  Connect to Steampipe Cloud with psql
 sidebar_label: psql
 ---
-# Connect to Steampipe Cloud with psql
+## Connect to Steampipe Cloud with psql
 
 Since your Steampipe Cloud workspace is just a PostgreSQL database, you can use `psql` to query your workspace database.
 

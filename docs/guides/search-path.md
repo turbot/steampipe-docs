@@ -124,7 +124,7 @@ You can change the search path in your interactive terminal session with the [se
 You can also pass a search path or prefix to the `steampipe query`, `steampipe dashboard`, or `steampipe check` commands to change the search path for that command.  For instance, to run the CIS Benchmark against the `aws_prod` connection, you can run.
 
 ```bash
-steampipe check benchmark.cis_v140 --search_path_prefix aws_prod
+steampipe check benchmark.cis_v140 --search-path-prefix aws_prod
 ```
 
 ## Tips & Tricks

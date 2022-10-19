@@ -5,7 +5,7 @@ sidebar_label: Plugin Release Checklist
 
 # Plugin Release Checklist
 
-As of May 2022, we've absorbed 70+ plugins into the hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
+As of May 2022, we've absorbed 80+ plugins into the hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
 
 - [Basic Configuration](#basic-configuration)
 - [Configuration File](#configuration-file)
@@ -20,7 +20,7 @@ As of May 2022, we've absorbed 70+ plugins into the hub. If you want to contribu
 
 <input type="checkbox"/> <b>Go version</b>
 
-The Go version in `go.mod` and any workflows is 1.18.
+The Go version in `go.mod` and any workflows is 1.19.
 
 <input type="checkbox"/> <b>.goreleaser.yml</b>
 
