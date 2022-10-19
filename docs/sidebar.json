@@ -72,6 +72,20 @@
   },
   {
     "type": "category",
+    "id": "integrations",
+    "label": "Integrations",
+    "link": "integrations/overview",
+    "items": [
+      "integrations/aws_cloudshell",
+      "integrations/azure_cloudshell",
+      "integrations/gcp_cloudshell",
+      "integrations/github_action",
+      "integrations/gitlab_ci_cd",
+      "integrations/aws_codebuild"
+    ]
+  },
+  {
+    "type": "category",
     "id": "develop",
     "label": "Developers",
     "link": "develop/overview",
@@ -132,7 +146,6 @@
           "reference/dot-commands/timing"
         ]
       },
-
       {
         "type": "category",
         "id": "env-vars",
