@@ -8,7 +8,7 @@ sidebar_label: TablePlus
 
 Since the Steampipe Cloud workspace is a PostgreSQL database, you can directly connect TablePlus to your workspace and query the database.
 
-The [Connect](https://steampipe.io/docs/cloud/connections) tab for your workspace provides the details you need to connect TablePlus to Steampipe Cloud.
+The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides the details you need to connect TablePlus to Steampipe Cloud.
 
 <img src="/images/docs/cloud/steampipe-cloud-connection.png" />
 
