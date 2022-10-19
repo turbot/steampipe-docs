@@ -6,9 +6,9 @@ sidebar_label: Tableau
 
 [Tableau](https://www.tableau.com) is a visual analytics platform that is "transforming the way we use data to solve problems."
 
-Steampipe provides a single interface to all your cloud, code, logs and more.  Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including Tableau -- can connect to. 
+Steampipe provides a single interface to all your cloud, code, logs and more.  Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including Tableau -- can connect to.
 
-The [Connect](./docs/cloud/connecting/overview#connecting-to-your-workspace) tab for your workspace provides the details you need to connect Tableau to Steampipe Cloud.
+The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides the details you need to connect Tableau to Steampipe Cloud.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/cloud-connect-tab.jpg" />
@@ -16,7 +16,7 @@ The [Connect](./docs/cloud/connecting/overview#connecting-to-your-workspace) tab
 
 Once you've tested the connection to Steampipe Cloud, you can browse the tables provided by your Steampipe plugins, run queries, and build dashboards.
 
-You can also connect Tableau to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details. 
+You can also connect Tableau to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details.
 
 ```
 Steampipe service is running:
@@ -45,7 +45,7 @@ Now drag the `aws_cost_by_service_daily` table from the sidebar to the canvas, t
 
 ## Summarize and chart one AWS table
 
-Switch from the workbook's `Data Source` tab to its `Sheet 1` tab. Drag the `Blended Cost Amount` column to the `Rows` shelf, and the `Period Start` column to the `Columns` shelf. 
+Switch from the workbook's `Data Source` tab to its `Sheet 1` tab. Drag the `Blended Cost Amount` column to the `Rows` shelf, and the `Period Start` column to the `Columns` shelf.
 
 The `Period Start` indicator defaults to YEAR. Open its dropdown and choose the second `Day` option which reports full dates. Tableau charts the daily sums of costs for all your AWS services.
 
@@ -68,19 +68,19 @@ This time, open the `aws_cost_by_service` dropdown and choose `Convert to Custom
 In the `Convert to SQL` editor, replace code with the following.
 
 ```
-select 
+select
  service,
   blended_cost_amount,
   period_start
-from 
+from
   aws_cost_by_service_daily
-where 
-  service = 
+where
+  service =
 order by
   period_start
 ```
 
-Then click `Insert Parameter → Create a New Parameter`. Name the parameter `Service`, set its type to `String`, for `Allowable Values` chose `List`, click `Add Values From`, and choose `Service`. 
+Then click `Insert Parameter → Create a New Parameter`. Name the parameter `Service`, set its type to `String`, for `Allowable Values` chose `List`, click `Add Values From`, and choose `Service`.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"60%"}}>
 <img src="/images/docs/cloud/tableau-create-parameter.jpg" />
@@ -89,11 +89,11 @@ Then click `Insert Parameter → Create a New Parameter`. Name the parameter `Se
 Click `OK`, then (if necessary) edit the `Convert to SQL` text so it reads like so.
 
 ```
-select 
+select
  service,
   blended_cost_amount,
   period_start
-from 
+from
   aws_cost_by_service_daily
 where
    service = <Parameters.Service>
@@ -101,7 +101,7 @@ order by
   period_start
 ```
 
-Click `OK`. Then visit the `Sheet 1` tab, choose `Parameters → Service → Show Parameter`. 
+Click `OK`. Then visit the `Sheet 1` tab, choose `Parameters → Service → Show Parameter`.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-initial-sheet-with-service-dropdown.jpg" />
@@ -121,7 +121,7 @@ Publish the workbook as `daily cost for selected service`, again with `Embed pas
 
 ## Send alerts
 
-Open the project (`Explore → Steampipe`), reopen the `daily cost for all AWS services` workbook, reopen `Sheet 1`, and click `Watch → Alerts`. 
+Open the project (`Explore → Steampipe`), reopen the `daily cost for all AWS services` workbook, reopen `Sheet 1`, and click `Watch → Alerts`.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableau-initial-watch-alerts.jpg" />
