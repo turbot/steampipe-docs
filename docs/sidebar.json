@@ -146,7 +146,7 @@
           "reference/dot-commands/timing"
         ]
       },
-      { 
+      {
         "type": "category",
         "id": "env-vars",
         "label": "Environment Variables",
@@ -208,7 +208,7 @@
       }
     ]
   },
-  
+
 
   {
     "type": "category",
@@ -230,6 +230,7 @@
         "link": "cloud/integrations/overview",
         "items": [
           "cloud/integrations/cli",
+          "cloud/integrations/javascript",
           "cloud/integrations/metabase",
           "cloud/integrations/pgcli",
           "cloud/integrations/psql",
@@ -260,7 +261,7 @@
           "cloud/reference/terraform"
         ]
       }
-      
+
 
     ]
   }
