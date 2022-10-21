@@ -10,4 +10,4 @@ defined in OpenAPI, providing a complete reference.
 
 **[OpenAPI definition in JSON →](https://cloud.steampipe.io/api/latest/docs/openapi.json)**
 
-**[Browse the API docs with ReDoc →](https://redocly.github.io/redoc/?url=https://cloud.steampipe.io/api/latest/docs/openapi.json)**
+**[Browse the API docs with ReDoc →](https://redocly.github.io/redoc/?url=https://cloud.steampipe.io/api/latest/docs/openapi.json&nocors)**
