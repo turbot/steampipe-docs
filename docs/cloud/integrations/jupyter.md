@@ -14,7 +14,7 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 
 <br/>
 
-It's the usual drill: import [psycopg2](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial),  specify your connection string, create a connection, then run a query.
+It's the usual drill: import [psycopg2](https://wiki.postgresql.org/wiki/Psycopg2_Tutorial), specify your connection string, create a connection, then run a query. (See also: [Connect to Steampipe Cloud from Python](https://steampipe.io/docs/cloud/integrations/python).)
 
 In this example we connect from an instance of Jupyter Notebook running in VSCode, load the query results into a <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">pandas.DataFrame</a>, then use its <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html">describe</a> method to summarize the data.
 
