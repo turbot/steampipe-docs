@@ -35,7 +35,7 @@ Database:
 
 [TablePlus](https://tableplus.com/download) is available on the desktop and the free version can be used without any need for account creation. In this example we will create a Steampipe Cloud connection with TablePlus and query the AWS EC2 SSL policies.
 
-To establish a new connection click on `Create a new connection`, select PostgreSQL and click Create. Once the PostgreSQL connection screen pops up, enter the Steampipe Cloud connection details and click `Test` to verify the connection. To note here, the default SSL mode for TablePlus is set to `Preferred` which can be changed if needed but it will fail to create a connection when the SSL mode is set to DISABLED.
+To establish a new connection click on `Create a new connection`, select PostgreSQL and click `Create`. Enter the Steampipe Cloud connection details, keep the SSL mode (`Preferred`), and click `Test` to verify the connection.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableplus-connection-success.png" />
@@ -47,7 +47,7 @@ Once you've connected to Steampipe Cloud, you can access the AWS plugin and its 
 <img src="/images/docs/cloud/tableplus-namespace-select.png" />
 </div>
 
-Now select and run the `aws_ec2_ssl_policy` table. TablePlus will display the table's schema and preview the data. You may also choose to export the data in a CSV, JSON or SQL format if needed.
+Here we select the `aws_ec2_ssl_policy` table. TablePlus displays the table's schema and previews the data. You may also choose to export the data to CSV, JSON or SQL.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/tableplus-ec2-ssl-data-preview.png" />
