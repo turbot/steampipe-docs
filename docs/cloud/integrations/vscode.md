@@ -35,7 +35,7 @@ Database:
 
 There are a number of VS Code extensions that connect to and query databases. For this example we'll use [Chris Koklman's extension](https://marketplace.visualstudio.com/items?itemName=ckolkman.vscode-postgres).
 
-To create a connection via the command palette, enter `PostgreSQL: Add Connection` and add the connection details.
+To create a connection via the command palette, choose `PostgreSQL: Add Connection` and add the connection details.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/vscode-add-connection.png" />
