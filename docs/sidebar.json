@@ -230,15 +230,15 @@
         "link": "cloud/integrations/overview",
         "items": [
           "cloud/integrations/cli",
+          "cloud/integrations/javascript",
           "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
           "cloud/integrations/pgcli",
           "cloud/integrations/psql",
           "cloud/integrations/python",
-          "cloud/integrations/tableplus",
           "cloud/integrations/tableau",
+          "cloud/integrations/tableplus",
           "cloud/integrations/vscode"
-
         ]
       },
       {
