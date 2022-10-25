@@ -18,6 +18,10 @@ As of May 2022, we've absorbed 80+ plugins into the hub. If you want to contribu
 
 ## Basic Configuration
 
+<input type="checkbox"/> <b>Repository name</b>
+
+The repository name should use the format `steampipe-plugin-<pluginName>`, e.g., `steampipe-plugin-aws`, `steampipe-plugin-googledirectory`, `steampipe-plugin-microsoft365`. The plugin name should be one word, so there are always 3 parts in the repository name.
+
 <input type="checkbox"/> <b>Go version</b>
 
 The Go version in `go.mod` and any workflows is 1.19.
@@ -110,13 +114,11 @@ The plugin sets a preferred transform as the default. For example, the [GitLab p
 
 <input type="checkbox"/> <b>Pagination</b>
 
-The plugin implements pagination if supported by the API's SDK. If pagination is implemented, the plugin sets the page size per request to the maximum allowed.
+The plugin implements pagination in each table's List function supported by the API's SDK. If pagination is implemented, the plugin sets the page size per request to the maximum allowed; however, if `QueryContext.Limit` is smaller than that page size, the page size should be set to the limit. See [example](https://github.com/turbot/steampipe-plugin-tfe/blob/253107f6d9851e14cc593ff657ddd3cb41c505bc/tfe/table_tfe_team.go#L48-L59).
 
-<input type="checkbox"/> <b>Page Size</b>
+<input type="checkbox"/> <b>Hydrate function pagination</b>
 
-For hydrate functions that have pagination implemented, by default, the plugin sets the page size per request to the maximum allowed; however, if `QueryContext.Limit` is smaller than that page size, the plugin honors the latter.
-
-See [example](https://github.com/turbot/steampipe-plugin-tfe/blob/253107f6d9851e14cc593ff657ddd3cb41c505bc/tfe/table_tfe_team.go#L48-L59).
+If a non-List hydrate function requires paging, consider separating that data into a separate table. Columns that require separate hydrate data that uses paging can lead to throttling and rate limiting errors unexpectedly.
 
 <input type="checkbox"/> <b>Backoff and retry</b>
 

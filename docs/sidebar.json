@@ -231,6 +231,7 @@
         "items": [
           "cloud/integrations/cli",
           "cloud/integrations/javascript",
+          "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
           "cloud/integrations/pgcli",
           "cloud/integrations/psql",
