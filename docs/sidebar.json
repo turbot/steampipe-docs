@@ -237,7 +237,8 @@
           "cloud/integrations/psql",
           "cloud/integrations/python",
           "cloud/integrations/tableau",
-          "cloud/integrations/tableplus"
+          "cloud/integrations/tableplus",
+          "cloud/integrations/vscode"
         ]
       },
       {
