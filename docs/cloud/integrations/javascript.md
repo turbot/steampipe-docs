@@ -12,7 +12,8 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 <img src="/images/docs/cloud/steampipe-cloud-connect-details.jpg" />
 </div>
 
-To start, you would need to install the postgres client with `nmp i pg`, specify the connection string, establish a successful connection, run your query and get the results. In this example, we query the state and the region of `aws_vpc` using Javascript.
+You'll need the Postgres client for JavaScript, which you can install using `npm i pg` or `yarn add pg`.
+Then you specify the connection string, create a connection, run a query, and fetch results. In this example, we query the state and the region of `aws_vpc`.
 
 ```javascript
 const postgres = require("pg");
