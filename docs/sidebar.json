@@ -236,7 +236,8 @@
           "cloud/integrations/pgcli",
           "cloud/integrations/psql",
           "cloud/integrations/python",
-          "cloud/integrations/tableau"
+          "cloud/integrations/tableau",
+          "cloud/integrations/tableplus"
         ]
       },
       {
