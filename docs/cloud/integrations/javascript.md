@@ -1,12 +1,12 @@
 ---
-title:  Connect to Steampipe Cloud with Javascript
-sidebar_label: Javascript
+title:  Connect to Steampipe Cloud with JavaScript
+sidebar_label: JavaScript
 ---
-# Connect to Steampipe Cloud from Javascript
+# Connect to Steampipe Cloud from JavaScript
 
-The Steampipe Cloud workspace is a Postgres database, with the use of the `pg` client you can connect and query your workspace database with Javascript.
+The Steampipe Cloud workspace is a Postgres database, with the use of the `pg` client you can connect and query your workspace database with JavaScript.
 
-The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides the details you need to connect Steampipe Cloud with Javascript.
+The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides the details you need to connect Steampipe Cloud with JavaScript.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/steampipe-cloud-connect-details.jpg" />
@@ -52,9 +52,9 @@ pgClient.query("Select vpc_id, region, state from aws_vpc", (err, res) => {
 ]
 ```
 
-## Connect to Steampipe CLI from Javascript
+## Connect to Steampipe CLI from JavaScript
 
-To connect Javascript to [Steampipe CLI](https://steampipe.io/downloads), run `steampipe service start --show-password` and use the displayed connection details.
+To connect JavaScript to [Steampipe CLI](https://steampipe.io/downloads), run `steampipe service start --show-password` and use the displayed connection details.
 
 ```
 Steampipe service is running:
@@ -67,9 +67,9 @@ Database:
   Connection string:  postgres://steampipe:99**_****_**8c@localhost:9193/steampipe
 ```
 
-## Call the Steampipe Cloud API from Javascript
+## Call the Steampipe Cloud API from JavaScript
 
-You can also use the [Steampipe Cloud query API](https://steampipe.io/docs/cloud/develop/query-api) with the Javascript `request` client. Grab your [token](https://steampipe.io/docs/cloud/profile#api-tokens), put it an environment variable like `STEAMPIPE_CLOUD_TOKEN`, and use this pattern.
+You can also use the [Steampipe Cloud query API](https://steampipe.io/docs/cloud/develop/query-api) with the JavaScript `request` client. Grab your [token](https://steampipe.io/docs/cloud/profile#api-tokens), put it an environment variable like `STEAMPIPE_CLOUD_TOKEN`, and use this pattern.
 
 ```javascript
 const request = require('request');
