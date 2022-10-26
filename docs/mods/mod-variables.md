@@ -126,7 +126,7 @@ azure_tags.mandatory_tags = ["Owner","Application","Environment"]
 
 Or pass them to the command with the `--var` argument `
 ```bash
- steampipe dashbaord --var 'aws_tags.mandatory_tags=["Owner","Application","Environment"]'  --var 'azure_tags.mandatory_tags=["Owner","Application","Environment"]' --var 'gcp_labels.mandatory_labels=["Owner","Application","Environment"]'
+ steampipe dashboard --var 'aws_tags.mandatory_tags=["Owner","Application","Environment"]'  --var 'azure_tags.mandatory_tags=["Owner","Application","Environment"]' --var 'gcp_labels.mandatory_labels=["Owner","Application","Environment"]'
  ```
 
 ##  Local Variables
