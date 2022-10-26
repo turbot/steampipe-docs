@@ -21,15 +21,13 @@ const postgres = require("pg");
 const conn = {
   connectionString:
     "postgresql://rahulsrivastav14:f3**-****-**2c@rahulsrivastav14-rahulsworkspace.usea1.db.steampipe.io:9193/dea4px",
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl: {},
 };
 
-let pgClient = new postgres.Client(conn);
+const pgClient = new postgres.Client(conn);
 pgClient.connect();
 
-pgClient.query("Select vpc_id, region, state from aws_vpc", (err, res) => {
+pgClient.query("select vpc_id, region, state from aws_vpc", (err, res) => {
   if (err) console.error(err);
   console.log(res.rows);
   pgClient.end();
