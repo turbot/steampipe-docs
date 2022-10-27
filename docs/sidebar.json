@@ -230,6 +230,7 @@
         "link": "cloud/integrations/overview",
         "items": [
           "cloud/integrations/cli",
+          "cloud/integrations/datagrip",
           "cloud/integrations/javascript",
           "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
