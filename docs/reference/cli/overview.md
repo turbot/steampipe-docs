@@ -13,6 +13,7 @@ sidebar_label: Steampipe CLI
 | [steampipe completion](reference/cli/completion)| Generate the autocompletion script for the specified shell
 | [steampipe dashboard](reference/cli/dashboard)| Steampipe dashboards
 | [steampipe help](reference/cli/help)      | Help about any command
+| [steampipe login](reference/cli/login)        | Log in to Steampipe CLoud
 | [steampipe mod](reference/cli/mod)        | Steampipe mod management
 | [steampipe plugin](reference/cli/plugin)  | Steampipe plugin management
 | [steampipe query](reference/cli/query)    | Execute SQL queries interactively or by argument

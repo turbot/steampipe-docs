@@ -42,7 +42,8 @@
     "label": "Take Snapshots",
     "link": "snapshots/overview",
     "items": [
-      "snapshots/creating"
+      "snapshots/creating",
+      "snapshots/viewing"
     ]
   },
 
@@ -68,6 +69,7 @@
       "managing/service",
       "managing/plugins",
       "managing/connections",
+      "managing/workspaces",
       "managing/containers"
     ]
   },
@@ -126,6 +128,7 @@
           "reference/cli/completion",
           "reference/cli/dashboard",
           "reference/cli/help",
+          "reference/cli/login",
           "reference/cli/mod",
           "reference/cli/plugin",
           "reference/cli/query",
@@ -187,11 +190,11 @@
         "link": "reference/config-files/overview",
         "items": [
           "reference/config-files/connection",
-          "reference/config-files/database",
-          "reference/config-files/general",
-          "reference/config-files/terminal"
+          "reference/config-files/options",
+          "reference/config-files/workspace"
         ]
       },
+
       {
         "type": "category",
         "id": "mod-resources",
