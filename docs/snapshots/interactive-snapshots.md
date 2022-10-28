@@ -3,6 +3,20 @@ title: Interactive Snapshots
 sidebar_label:  Interactive Snapshots
 ---
 
-# Taking Snapshots in the Dashboard
+# Interactive Snapshots
 
-You can  view the saved snapshot using the `steampipe dashboard` command...
+Saving and viewing snapshots in the Steampipe Dashboard is a breeze.  You can take a snapshot from any dashboard. Once the dashboard is loaded, click the `Snap` button at the top of the page.  The snapshot file will be downloaded by your browser.
+
+<img src="/images/docs/snapshots/snapshot-lambda-dash.png" width="100%" />
+
+<br />
+
+To view a previously save snapshot file, click the `Open Snap` button at the top of the page.  This will open a file chooser dialog.
+
+<img src="/images/docs/snapshots/snapshot-chooser.png" width="100%" />
+
+<br />
+
+Select the snapshot file and upload it.  Notice that when viewing a snapshot file, the file name is displayed at the top of the dashboard.  
+
+<img src="/images/docs/snapshots/snapshot-opened.png" width="100%" />
