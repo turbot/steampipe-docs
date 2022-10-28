@@ -3,13 +3,13 @@ title: connection
 sidebar_label: connection
 ---
 
-## connection 
+# connection 
 
 The `connection` block defines a steampipe [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators). 
 
 Most `connection` arguments are plugin-specific, and they are used to specify credentials, accounts, and other options.  The [Steampipe Hub](https://hub.steampipe.io/plugins) provides detailed information about the arguments for each plugin. 
 
-### Supported options  
+## Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `plugin` | none     | [plugin version string](#plugin-version-strings) |  The plugin version that this connection uses.  This must refer to an [installed plugin version](http://localhost:3000/docs/managing/plugins#installing-plugins). 
@@ -19,7 +19,7 @@ Most `connection` arguments are plugin-specific, and they are used to specify cr
 
 
 
-#### Plugin Version Strings 
+### Plugin Version Strings 
 
 Steampipe plugin versions are in the format:
 ```
@@ -64,7 +64,7 @@ connection "myplugin" {
 }
 ```
 
-### Examples
+## Examples
 ```hcl
 connection "aws_all" {
   type        = "aggregator"

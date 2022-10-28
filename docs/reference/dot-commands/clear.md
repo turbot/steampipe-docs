@@ -3,10 +3,10 @@ title: .clear
 sidebar_label: .clear
 ---
 
-## .clear
+# .clear
 Clear the console screen.
 
-### Usage
+## Usage
 ```
 .clear
 ```

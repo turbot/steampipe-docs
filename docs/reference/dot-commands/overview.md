@@ -7,7 +7,7 @@ sidebar_label: Meta-Commands
 
 # Meta-Commands
 
-### Available Commands
+## Available Commands
 
 | Command | Description
 |-|-

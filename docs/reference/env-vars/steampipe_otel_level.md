@@ -2,7 +2,7 @@
 title: STEAMPIPE_OTEL_LEVEL
 sidebar_label: STEAMPIPE_OTEL_LEVEL
 ---
-### STEAMPIPE_OTEL_LEVEL
+# STEAMPIPE_OTEL_LEVEL
 Specify which [OpenTelemetry](https://opentelemetry.io/) data to send via OTLP.  Accepted values are:
 
 | Level | Description
@@ -20,7 +20,7 @@ The Steampipe Plugin SDK added OpenTelemetry support in version 3.3.0 - plugins 
 
 
 
-#### Usage 
+## Usage 
 
 Trace a single query and send to default endpoint (`localhost:4317`):
 

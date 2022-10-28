@@ -3,8 +3,7 @@ title: steampipe query
 sidebar_label: steampipe query
 ---
 
-
-## steampipe query
+# steampipe query
 Execute SQL queries interactively, or by a query argument.
 
 To open the interactive query shell, run `steampipe query` with no arguments.  The query shell provides a way to explore your data and run multiple queries. 
@@ -13,12 +12,12 @@ If a query string is passed on the command line then it will be run immediately 
 
 If the Steampipe service was previously started by `steampipe service start`, steampipe will connect to the service instance - otherwise, the query command will start the `service`. At the end of the query command or session, if other sessions have not connected to the `service` already, the `service` will be shutdown. If other session have already connected to the `service`, then the last session to exit will shutdown the `service`.
 
-### Usage
+## Usage
 ```bash
 steampipe query [query] [flags] 
 ```
 
-### Flags
+## Flags
 
 | Flag | Description
 |-|-
@@ -34,7 +33,7 @@ steampipe query [query] [flags]
 
 
 
-### Examples
+## Examples
 
 Open an interactive query console:
 ```bash

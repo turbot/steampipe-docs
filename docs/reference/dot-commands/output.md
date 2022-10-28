@@ -3,16 +3,16 @@ title: .output
 sidebar_label: .output
 ---
 
-## .output
+# .output
 Change the output mode.  By default, the output format is `table` which provides a tabular, human-readable view. You can use the `.output` command to choose a different format.  Valid values for this command are `json`, `csv`, `line`, and `table`.
 
 
-### Usage
+## Usage
 ```
 .output [ table | json | csv | line]
 ```
 
-### Examples
+## Examples
 Change the output mode to json:
 ```
 .output json

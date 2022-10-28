@@ -2,7 +2,7 @@
 title:  workspace
 sidebar_label: workspace
 ---
-## workspace 
+# workspace 
 
 A Steampipe `workspace` is a "profile" that allows you to define a unified environment 
 that the Steampipe client can interact with.  Each workspace is composed of:
@@ -17,7 +17,7 @@ To learn more, see **[Managing Workspaces →](/docs/managing/workspaces)**
 
 
 
-### Supported options  
+## Supported options  
 
 | Argument            |    Default  | Description
 |---------------------|-----------------------------------------------|-----------------------------------------
@@ -53,7 +53,7 @@ except using underscore in place of dash:
 | `query_timeout`               | `STEAMPIPE_QUERY_TIMEOUT`      | `--query_timeout`     |
 
 
-### Examples
+## Examples
 
 
 ```hcl

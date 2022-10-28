@@ -3,7 +3,7 @@ title: options
 sidebar_label: options
 ---
 
-## options
+# options
 Configuration options are defined using HCL `options` blocks in one or more Steampipe config files.  Steampipe will load ALL configuration files from `~/.steampipe/config` that have a `.spc` extension.  By default, Steampipe creates a `~/.steampipe/config/default.spc` file for setting `options`.  
 
 
@@ -29,19 +29,19 @@ The following `options` are currently supported:
 
 
 
-### Check Options
+## Check Options
 
 **Check** options can be used to change query output formats and other `steampipe check` options.  The options and values correspond to the [command line arguments](docs/reference/cli/check) of the same name.
 
 
-#### Supported options  
+### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `header` |  `true` |  `true`, `false` | Enable or disable column headers.
 | `output` | `table` | `brief`,`csv`,`html`,`json`,`md`,`text`,`none` | Set output format.
 | `separator` | `,` | Any single character | Set csv output separator.
 
-#### Example: Check Options
+### Example: Check Options
 
 ```hcl
   options "query" { 
@@ -53,20 +53,20 @@ The following `options` are currently supported:
 
 ---
 
-### Connection Options
+## Connection Options
 **Connection** options are options that can be set on a per-connection basis.  Connection options may be set at 2 scopes:
 - Defined in a top-level `options "connection"`, these apply to ALL connections that do not explicitly override them.
 - Defined in an `options` block under a `connection`, these apply only to that connection.  Per-connection options always override top-level connection options, and their arguments are identical.
 
 
-#### Supported options  
+### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `cache` | `true` | `true`, `false`  | Enable or disabled caching
 | `cache_ttl` | `300` | an integer    | The length of time to cache results, in seconds
 
 
-#### Example: Top-Level Connection Options
+### Example: Top-Level Connection Options
 Top-Level connection options apply to ALL connections (unless overridden in an `options` block within a `connection`).
 ```hcl
 options "connection" {
@@ -75,7 +75,7 @@ options "connection" {
 }
 ```
 
-#### Example: Per-Connection Options
+### Example: Per-Connection Options
 ```hcl
 connection "aws_account1" {
     plugin    = "aws"  
@@ -91,11 +91,11 @@ connection "aws_account1" {
 
 ---
 
-### Database Options
+## Database Options
 
 **Database** options are used to control database options, such as the IP address and port on which the database listens.
 
-#### Supported options  
+### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `port` | `9193` | any valid, open port number | The TCP port that postgres will listen on
@@ -103,7 +103,7 @@ connection "aws_account1" {
 | `search_path` | All connections, alphabetically | Comma separated string | Set an exact [search path](managing/connections#setting-the-search-path).  Note that setting the search path in the database options sets it in the database; this setting will also be in effect when connecting to Steampipe from 3rd party tools.
 
 
-#### Example: Database Options
+### Example: Database Options
 
 ```hcl
 options "database" {
@@ -117,16 +117,16 @@ options "database" {
 
 
 
-### General options
+## General options
 **General** options apply generally to the steampipe CLI. 
 
-#### Supported options  
+### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `max_parallel` | `5` | an integer| Set the maximum number of parallel executions. When running `steampipe check`, Steampipe will attempt to run up to this many controls in parallel. This can also be set via the  `STEAMPIPE_MAX_PARALLEL` environment variable.
 | `telemetry` | `none` | `none`, `info` | Set the telemetry level in Steampipe. This can also be set via the  [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry) environment variable.
 | `update_check` | `true` | `true`, `false` | Enable or disable automatic update checking. This can also be set via the  [STEAMPIPE_UPDATE_CHECK](reference/env-vars/steampipe_update_check) environment variable.
-#### Example: General Options  
+### Example: General Options  
 
 ```hcl
 options "general" {
@@ -141,12 +141,12 @@ options "general" {
 
 
 
-### Query Options
+## Query Options
 
 **Query** options can be used to change query output formats and other `steampipe query` options.  Typically, these can also be set via [meta-commands](/docs/reference/dot-commands/overview) or [command line arguments](/docs/reference/cli/query) of the same name.
 
 
-#### Supported options  
+### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `header` |  `true` |  `true`, `false` | Enable or disable column headers.
@@ -156,7 +156,7 @@ options "general" {
 | `timing` | `false` |  `true`, `false` | Enable or disable query execution timing.
 | `autocomplete` |  `true` |  `true`, `false` |  Enable or disable autocomplete in interactive mode.
 
-#### Example: Query Options
+### Example: Query Options
 
 ```hcl
   options "query" { 
@@ -171,14 +171,14 @@ options "general" {
 
 ---
 
-### Terminal Options
+## Terminal Options
 
 ***`terminal` options have been deprecated - please use `query` and `check` options instead***
 
 **Terminal** options can be used to change query output formats and other terminal options.  Typically, these can also be set via [meta-commands](/docs/reference/dot-commands/overview) or [command line arguments](/docs/reference/cli/overview) of the same name.
 
 
-#### Supported options  
+### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `header` |  `true` |  `true`, `false` | Enable or disable column headers.
@@ -190,7 +190,7 @@ options "general" {
 | `search_path_prefix`| Empty | Comma separated string |  Move connections to the front of the [search path](managing/connections#setting-the-search-path).
 | `watch` |  `true` |  `true`, `false` |  Watch SQL files in the current workspace for changes (works only in interactive mode).
 
-#### Example: Terminal Options
+### Example: Terminal Options
 
 ```hcl
 options "terminal" {

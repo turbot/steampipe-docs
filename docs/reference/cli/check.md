@@ -5,16 +5,16 @@ sidebar_label: steampipe check
 
 
 
-## steampipe check
+# steampipe check
 Execute one or more Steampipe benchmarks and controls.
 
 You may specify one or more benchmarks or controls to run, or run `steampipe check all` to run all controls in the workspace.
 
-### Usage
+## Usage
 ```bash
 steampipe check [item,item,...] [flags]
 ```
-### Available Commands:
+## Available Commands:
 
 <table>
   <tr> 
@@ -95,7 +95,7 @@ steampipe check [item,item,...] [flags]
 </table>
 
 
-### Output Formats
+## Output Formats
 | Format | Description 
 |-|-
 | `asff` | [Findings](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings.html) in [asff](https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-findings-format-syntax.html) json format. Only used with AWS controls.
@@ -108,7 +108,7 @@ steampipe check [item,item,...] [flags]
 | `nunit3` | Results in [nunit3](https://docs.nunit.org/articles/nunit/technical-notes/usage/Test-Result-XML-Format.html) xml format.
 | `text` | Full text based output with details and summary.  This is the default console output format.
 
-### Examples
+## Examples
 Run all  controls:
 ```bash
 steampipe check all 

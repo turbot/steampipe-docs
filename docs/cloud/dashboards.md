@@ -18,7 +18,7 @@ Click on a dashboard to run it.
 
 
 
-# Saving & Sharing Snapshots
+## Saving & Sharing Snapshots
 
 Steampipe Cloud allows you to save and share dashboard **snapshots**.
 A snapshot is a saved view of a dashboard at a point in time with a given set of inputs and variables.
@@ -38,7 +38,7 @@ restrict access to only those with access to your workspace, or share it such th
 
 
 
-# Browsing Snapshots
+## Browsing Snapshots
 
 From any dashboard, you can browse and navigate its snapshot history.  Click the **View** button at the top of the dashboard to display the menu.  You can select a date from the calendar and the snapshots from that date are listed beneath.  Click any snapshot to open it.
 
@@ -48,7 +48,7 @@ From any dashboard, you can browse and navigate its snapshot history.  Click the
 Clicking **All matching snapshots** at the bottom of the menu will take you to the snapshot page (you can also navigate to this page by clicking the **snapshots** button at the top of the **dashboards** pane).
 
 
-# Managing Snapshots
+## Managing Snapshots
 
 You can browse and search all snapshots in your workspace. From the main dashboard page, click the **Snapshots** button at the top of the page.  
 

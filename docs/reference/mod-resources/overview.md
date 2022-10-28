@@ -5,7 +5,7 @@ sidebar_label: Mod Resources
 
 # Mod Resources
 
-### General
+## General
 
 | Type | Description
 |-|-
@@ -15,7 +15,7 @@ sidebar_label: Mod Resources
 | [variable](reference/mod-resources/variable) | Variables are module level objects that essentially act as parameters for a module.
 
 
-### Benchmarks and Controls
+## Benchmarks and Controls
 
 | Type | Description
 |-|-
@@ -23,7 +23,7 @@ sidebar_label: Mod Resources
 | [control](reference/mod-resources/control) | Controls provide a defined structure and interface for queries that draw a specific conclusion (e.g. 'ok', 'alarm') about each row.
 
 
-### Dashboards
+## Dashboards
 
 | Type        | Description                                                                                                                                                           | Valid children types                                                                                               | Allowed at top-level |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------- |

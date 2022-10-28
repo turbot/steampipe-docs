@@ -4,10 +4,10 @@ sidebar_label: STEAMPIPE_UPDATE_CHECK
 ---
 
 
-### STEAMPIPE_UPDATE_CHECK
+# STEAMPIPE_UPDATE_CHECK
 Enable or disable automatic update checking.  Update checking is enabled by default.  Set to `false` to disable update checking.
 
-#### Usage 
+## Usage 
 Disable update check:
 ```bash
 export STEAMPIPE_UPDATE_CHECK=false 

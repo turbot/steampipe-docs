@@ -4,15 +4,15 @@ sidebar_label: steampipe completion
 ---
 
 
-## steampipe completion
+# steampipe completion
 Generate the autocompletion script for `steampipe` for supported shells. This helps you configure your terminal’s shell so that `steampipe` commands autocomplete when you press the TAB key.
 
-### Usage
+## Usage
 ```bash
 steampipe completion [bash|fish|zsh]
 ```
 
-### Sub-Commands
+## Sub-Commands
 
 | Command | Description
 |-|-

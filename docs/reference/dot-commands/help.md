@@ -4,10 +4,10 @@ sidebar_label: .help
 ---
 
 
-## .help
+# .help
 Show help for Steampipe.
 
-### Usage
+## Usage
 ```
 .help
 ```

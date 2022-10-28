@@ -3,17 +3,17 @@ title: steampipe dashboard
 sidebar_label: steampipe dashboard
 ---
 
-## steampipe dashboard
+# steampipe dashboard
 Run the Steampipe Dashboard server.
 
 The Dashboard loads the `mod` in the current working directory or the `--workspace-chdir` and listens for changes to dashboards defined in the `mod`.
 
-### Usage
+## Usage
 ```bash
 steampipe dashboard [flags]
 ```
 
-### Flags
+## Flags
 
 
 <table>
@@ -65,7 +65,7 @@ steampipe dashboard [flags]
   </tr>
 </table>
 
-#### Examples
+### Examples
 
 Start the dashboard server and launch the browser to the dashboard home page:
 

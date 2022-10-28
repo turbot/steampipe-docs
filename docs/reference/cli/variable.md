@@ -3,34 +3,29 @@ title: steampipe variable
 sidebar_label: steampipe variable
 ---
 
-## steampipe variable
+# steampipe variable
 
 Manage steampipe variables in the current mod and its direct dependents.
 
 
-### Usage
+## Usage
 ```bash
 steampipe variable [command] [flags]
 ```
 
-### Sub-Commands
+## Sub-Commands
 
 | Command | Description
 |-|-
 | `list` | List variables for the the current mod and its direct dependents.
 
-
-
-### Flags
+## Flags
 
 | Flag | Applies to | Description
 |-|-|-
 | `--output string` | `list` |  Select a console output format: `table` or `json` (default `table`)
 
-
-
-
-### Examples
+## Examples
 
 List variables:
 

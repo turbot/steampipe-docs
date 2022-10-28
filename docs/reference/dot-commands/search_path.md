@@ -3,16 +3,16 @@ title: .search_path
 sidebar_label: .search_path
 ---
 
-## .search_path
+# .search_path
 Display the current [search path](managing/connections#setting-the-search-path), or set the search path by passing in a comma-separated list.
 
 
-### Usage
+## Usage
 ```
 .search_path [string,string,...]
 ```
 
-### Examples
+## Examples
 show the current search_path:
 ```
 .search_path

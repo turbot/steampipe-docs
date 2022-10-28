@@ -3,20 +3,18 @@ title: steampipe plugin
 sidebar_label: steampipe plugin
 ---
 
-
-
-## steampipe plugin
+# steampipe plugin
 Steampipe plugin management.
 
 Plugins extend Steampipe to work with many different services and providers. Find plugins using the public registry at [hub.steampipe.io](https://hub.steampipe.io).
 
 
-### Usage
+## Usage
 ```bash
 steampipe plugin [command]
 ```
 
-### Available Commands:
+## Available Commands:
 
 | Command | Description
 |-|-
@@ -29,7 +27,7 @@ steampipe plugin [command]
 |-|-
 |` --all` | Applies only to `plugin update`, updates ALL installed plugins
 
-### Examples
+## Examples
 
 Install or update a plugin:
 ```bash

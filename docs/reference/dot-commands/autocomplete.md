@@ -4,15 +4,15 @@ sidebar_label: .autocomplete
 ---
 
 
-## .autocomplete
+# .autocomplete
 Turn autocomplete on or off in the interactive query shell. 
 
-### Usage
+## Usage
 ```
 .autocomplete [on | off]
 ```
 
-### Examples
+## Examples
 
 Turn off autocomplete:
 ```

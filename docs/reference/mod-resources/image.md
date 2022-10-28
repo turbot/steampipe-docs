@@ -10,9 +10,6 @@ Display images in dashboard, either from a known publicly-accessible `src` URL, 
 Image blocks can be declared as named resources at the top level of a mod, or be declared as anonymous blocks inside a `dashboard` or `container`, or be re-used inside a `dashboard` or `container` by using an `image` with `base = <mod>.image.<image_resource_name>`.
 
 
-<!--   To DO - broken in alpha 10
-
--->
 ## Example Usage
 
 <img src="/images/reference_examples/image_ex_1.png" width="200pt" />

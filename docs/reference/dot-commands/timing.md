@@ -4,15 +4,15 @@ sidebar_label: .timing
 ---
 
 
-## .timing
+# .timing
 Turn query execution timing on or off. 
 
-### Usage
+## Usage
 ```
 .timing [on | off]
 ```
 
-### Examples
+## Examples
 
 Turn off query timing:
 ```

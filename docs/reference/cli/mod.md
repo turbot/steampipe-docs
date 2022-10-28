@@ -4,18 +4,18 @@ sidebar_label: steampipe mod
 ---
 
 
-## steampipe mod
+# steampipe mod
 Steampipe mod management.
 
 Mods provide an easy way to share Steampipe queries, controls, and benchmarks.  Find mods using the public registry at [hub.steampipe.io](https://hub.steampipe.io/mods).
 
 
-### Usage
+## Usage
 ```bash
 steampipe mod [command]
 ```
 
-### Available Commands:
+## Available Commands:
 
 | Command | Description
 |-|-
@@ -33,7 +33,7 @@ steampipe mod [command]
 
 
 
-### Examples
+## Examples
 List installed mods:
 ```bash
 steampipe mod list
