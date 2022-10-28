@@ -11,6 +11,7 @@ sidebar_label: Meta-Commands
 
 | Command | Description
 |-|-
+| [.autocomplete](reference/dot-commands/autocomplete) | Enable or disable autocomplete
 | [.cache](reference/dot-commands/cache)               | Enable, disable or clear the query cache
 | [.clear](reference/dot-commands/clear)               | Clear the console screen
 | [.connections](reference/dot-commands/connections)   | List active connections

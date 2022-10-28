@@ -42,8 +42,8 @@
     "label": "Take Snapshots",
     "link": "snapshots/overview",
     "items": [
-      "snapshots/creating",
-      "snapshots/viewing"
+      "snapshots/interactive-snapshots",
+      "snapshots/batch-snapshots"
     ]
   },
 
@@ -142,6 +142,7 @@
         "label": "Meta-Commands",
         "link": "reference/dot-commands/overview",
         "items": [
+          "reference/dot-commands/autocomplete",
           "reference/dot-commands/cache",
           "reference/dot-commands/clear",
           "reference/dot-commands/connections",

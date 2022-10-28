@@ -89,7 +89,7 @@ Database:
 
 ## Call the Steampipe Cloud API from Python
 
-You can also use the [Steampipe Cloud query API](https://steampipe.io/docs/cloud/develop/query-api). Grab your [token](https://steampipe.io/docs/cloud/profile#api-tokens), put it an environment variable like `STEAMPIPE_CLOUD_TOKEN`, and use this pattern.
+You can also use the [Steampipe Cloud query API](https://steampipe.io/docs/cloud/develop/query-api). Grab your [token](https://steampipe.io/docs/cloud/profile#tokens), put it an environment variable like `STEAMPIPE_CLOUD_TOKEN`, and use this pattern.
 
 ```python
 import json, os, requests

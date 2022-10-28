@@ -2,13 +2,13 @@
 title: Managing Workspaces
 sidebar_label: Workspaces
 ---
-# Managing Workspaces (Workspace Profiles)
+# Managing Workspaces
 
-A Steampipe **Workspace** is a "profile" that allows you to define a unified environment 
+A Steampipe `workspace` is a "profile" that allows you to define a unified environment 
 that the Steampipe client can interact with.  Each workspace is composed of:
 - a single steampipe database instance
 - a single mod directory (which may also contain dependency mods)
-- one or more locations for other artifacts, such as snapshot files
+- context-specific settings and options  (snapshot location, search path, query options, etc)
 
 Steampipe workspaces allow you to [define multiple named configurations](#defining-workspaces):
 
@@ -39,35 +39,18 @@ steampipe query --workspace acme_prod "select * from aws_account"
 steampipe dashboard --workspace dev_insights
 ```
 
-Steampipe Cloud workspaces are [also supported](#implicit-workspaces)
+Steampipe Cloud workspaces are [automatically supported](#implicit-workspaces):
 ```bash
 steampipe query --workspace acme/dev "select * from aws_account"
 ```
 
 
 ## Defining Workspaces
-Workspace configurations can be defined in any `.spc` file in the  `~/.steampipe/config` directory, but by convention they are defined in `~/.steampipe/config/workspaces.spc` file.  This file may contain multiple `workspace` definitions that can then be referenced
+[Workspace](/docs/reference/config-files/workspace) configurations can be defined in any `.spc` file in the  `~/.steampipe/config` directory, but by convention they are defined in `~/.steampipe/config/workspaces.spc` file.  This file may contain multiple `workspace` definitions that can then be referenced
 by name. 
 
-Note that the HCL argument names are the same as the equivalent cli argument names,
-except using underscore in place of dash:
 
-| Workspace Argument            | Environment Variable           |     Flag             
-|-------------------------------|--------------------------------|----------------------|
-| `cloud_host`                  | `STEAMPIPE_CLOUD_HOST`         | `--cloud-host`       |
-| `cloud_token`                 | `STEAMPIPE_CLOUD_TOKEN`        | `--cloud-token`      |
-| `snapshot_location`           | `STEAMPIPE_SNAPSHOT_LOCATION`  | `--snapshot-location`|
-| `mod_location`                | `STEAMPIPE_MOD_LOCATION`       | `--mod-location`     |
-| `workspace_database`          | `STEAMPIPE_WORKSPACE_DATABASE` | `--workspace-database`|
-| `search_path`                 | none                           | `--search-path`       |
-| `search_path_prefix`          | none                           | `--search-path-prefix`|
-| `watch`                       | none                           | `--watch`             |
-| `max_parallel`                | `STEAMPIPE_MAX_PARALLEL`       | `--max-parallel`      |
-| `query_timeout`               | `STEAMPIPE_QUERY_TIMEOUT`      | `--query_timeout`     |
-
-
-
-Any unset arguments will assume use the default values - you don't need to set them all.
+Any unset arguments will assume use the default values - you don't need to set them all:
 
 ```hcl
 workspace "default" {
@@ -86,9 +69,9 @@ workspace "dev" {
 ```
 
 The `workspace_database` may be `local` (which is the default):
-```
+```hcl
 workspace "local_db" {
-  workspace_database = "local" # this is the default
+  workspace_database = "local"
 }
 ```
 
@@ -108,8 +91,7 @@ workspace "acme_prod" {
 }
 ```
 
-or if it doesn't match that pattern it will be interpreted to be a path to a 
-directory in the local filesystem where snapshots should be written to:
+If it doesn't match thew `{identity_handle}/{workspace_handle}` pattern it will be interpreted to be a path to a directory in the local filesystem where snapshots should be written to:
 
 ```hcl
 workspace "local" {
@@ -118,18 +100,17 @@ workspace "local" {
 }
 ```
 
-The `mod_location` can only be a local filesystem path, as mod files are always read from the machine on which the steampipe client runs.  Often the default
-(the working directory) is appropriate, but you can set it explicitly for a workspace.
+The `mod_location` can only be a local filesystem path, as mod files are always read from the machine on which the Steampipe client runs.  Often the default (the working directory) is appropriate, but you can set it explicitly for a workspace.
 
 ```hcl
 workspace "aws_insights" {
+  workspace_database = "local"
+  snapshot_location  = "home/raj/my-snapshots"
   mod_location       = "~/src/steampipe/mods/steampipe-mod-aws-insights"
-  workspace_database = "local" # this is the default
-  snapshot_location  = "~/src/steampipe/snaps/steampipe-mod-aws-insights
 }
 ```
 
-You can even specify [`option` blocks for query](/docs/reference/config-files/options#query-options) and [check](/docs/reference/config-files/options#check-options) in a workspace:
+You can specify [`option` blocks for query](/docs/reference/config-files/options#query-options) and [check](/docs/reference/config-files/options#check-options) in a workspace:
 
 ```hcl
 workspace "local_dev" {
@@ -137,12 +118,11 @@ workspace "local_dev" {
   watch  			  = false
   query_timeout       = 300 
   max_parallel        = 5   
-
-  cloud_token        = "spt_999faketoken99999999_111faketoken1111111111111"
-  cloud_host         = "cloud.steampipe.io"
-  snapshot_location  = "acme/dev"
-  mod_location       = "~/mods/steampipe-mod-aws-insights"
-  workspace_database = "local" 
+  cloud_token         = "spt_999faketoken99999999_111faketoken1111111111111"
+  cloud_host          = "cloud.steampipe.io"
+  snapshot_location   = "acme/dev"
+  mod_location        = "~/mods/steampipe-mod-aws-insights"
+  workspace_database  = "local" 
 
   options "query" { 
     multi               = false   # true, false
@@ -158,23 +138,22 @@ workspace "local_dev" {
     header              = true    # true, false
     separator           = ","     # any single char
   }
+}
 ```
 
 
-You can even set the `install-dir` for a workspace if you want to use a steampipe data
-layer from another [steampipe installation directory](https://steampipe.io/docs/reference/env-vars/steampipe_install_dir).
+You can even set the `install-dir` for a workspace if you want to use a steampipe data layer from another [steampipe installation directory](https://steampipe.io/docs/reference/env-vars/steampipe_install_dir).
 
-This allows you to define workspaces in
-any install dir:
+This allows you to define workspaces that use a database from another installation directory:
 
 ```hcl
 workspace "steampipe_2" {
   workspace_database = "local" 
-  install_dir  = "/home/raj/steampipe2" # use that db layer (db, plugins, etc)
+  install_dir        = "/home/raj/steampipe2" # use that db layer (db, plugins, etc)
 }
 ```
 
-And simply pass the `--workspace` flag (you don't also need to pass `--install-dir`):
+ and easily switch between them with the `--workspace` flag:
 ```bash
 steampipe dashboard --workspace steampipe_2
 ```
@@ -182,6 +161,7 @@ steampipe dashboard --workspace steampipe_2
 
 
 ## Using Workspaces
+Workspaces may be defined in any `.spc` file in the `~/.steampipe/config` directory, but by convention they should be placed in the `~/.steampipe/config/workspaces.spc` file.
 
 The workspace named `default` is special; If a workspace named `default` exists,
 `--workspace` is not  specified in the command, and `STEAMPIPE_WORKSPACE` is not set, 
@@ -203,7 +183,7 @@ Or do the same with the `STEAMPIPE_WORKSPACE` environment variable:
 STEAMPIPE_WORKSPACE=acme_dev steampipe query --snapshot "select * from aws_account" 
 ```
 
-If you specify a workspace on the cli AND environment variable, cli flag wins
+If you specify the `--workspace` argument and the `STEAMPIPE_WORKSPACE` environment variable, the `--workspace` argument wins:
 
 ```bash
 # acme_prod will be used as the effective workspace
@@ -211,7 +191,7 @@ export STEAMPIPE_WORKSPACE=acme_dev
 steampipe query --snapshot --workspace=acme_prod "select * from aws_account" 
 ```
 
-If you specify a workspace on the cli AND more specific flags, any more specific flags will override the workspace values
+If you specify the `--workspace` argument and more specific arguments (`workspace_database`, `mod_location`, etc), any more specific arguments will override the workspace values:
 
 ```bash
 # will use "local" as the db, and acme_prod workspace for any OTHER options
@@ -221,8 +201,7 @@ steampipe query --snapshot \
   "select * from aws_account" 
 ```
 
-Environment variable values override 'default' workspace settings when 
-'default' workspace is *implicitly used*
+Environment variable values override `default` workspace settings when the `default` workspace is *implicitly used*:
 
 ```bash
 # will use acme/dev as DB, but get the rest of the values from default workspace
@@ -230,8 +209,7 @@ export STEAMPIPE_WORKSPACE_DATABASE=acme/dev
 steampipe query --snapshot "select * from aws_account" 
 ```
 
-If the default  workspace is *explicitly* passed to the `--workspace` argument, 
-its values will override any individual environment variables:
+If the default  workspace is *explicitly* passed to the `--workspace` argument, its values will override any individual environment variables:
 
 ```bash
 # will NOT use acme/dev as DB - will use ALL of the values from default workspace
@@ -253,8 +231,8 @@ the slash (`/`) character.  If you pass a value to `--workspace` or `STEAMPIPE_W
 in the form of `{identity_handle}/{workspace_handle}`, it will be interpreted as
 an **implicit workspace**.  Implicit workspaces, as the name suggests, do not
 need to be specified in the `workspaces.spc` file.  Instead they will be assumed
-to refer to a Steampipe Cloud workspace, which will be used as both the database
-and snapshot location.
+to refer to a Steampipe Cloud workspace, which will be used as both the database (`workspace_database`)
+and snapshot location (`snapshot_location`).
 
 Essentially, `--workspace acme/dev` is equivalent to:
 ```hcl

@@ -2,16 +2,18 @@
 title:  workspace
 sidebar_label: workspace
 ---
-# Workspace 
+## workspace 
 
-A Steampipe **Workspace** is a "profile" that allows you to define a unified environment 
+A Steampipe `workspace` is a "profile" that allows you to define a unified environment 
 that the Steampipe client can interact with.  Each workspace is composed of:
 - a single steampipe database instance
 - a single mod directory (which may also contain dependency mods)
-- one or more locations for other artifacts, such as snapshot files
+- context-specific settings and options  (snapshot location, search path, query options, etc)
 
 Steampipe workspaces allow you to define multiple named configurations and easily switch between them using the `--workspace` argument or `STEAMPIPE_WORKSPACE` 
 environment variable. 
+
+To learn more, see **[Managing Workspaces →](/docs/managing/workspaces)**
 
 
 
@@ -31,6 +33,25 @@ environment variable.
 | `max_parallel`      | 5                                             | Set the maximum number of parallel executions. When running steampipe check, Steampipe will attempt to run up to this many controls in parallel 
 | `query_timeout`     | no limit                                      | The maximum time (in seconds) a query is allowed to run before it times out
 | `option`            | none                                          | An option block to set command-specific options for this workspace.   Only `query` and `check` options are supported
+
+
+
+Note that the HCL argument names are the same as the equivalent CLI argument names,
+except using underscore in place of dash:
+
+| Workspace Argument            | Environment Variable           |     Flag             
+|-------------------------------|--------------------------------|----------------------|
+| `cloud_host`                  | `STEAMPIPE_CLOUD_HOST`         | `--cloud-host`       |
+| `cloud_token`                 | `STEAMPIPE_CLOUD_TOKEN`        | `--cloud-token`      |
+| `snapshot_location`           | `STEAMPIPE_SNAPSHOT_LOCATION`  | `--snapshot-location`|
+| `mod_location`                | `STEAMPIPE_MOD_LOCATION`       | `--mod-location`     |
+| `workspace_database`          | `STEAMPIPE_WORKSPACE_DATABASE` | `--workspace-database`|
+| `search_path`                 | none                           | `--search-path`       |
+| `search_path_prefix`          | none                           | `--search-path-prefix`|
+| `watch`                       | none                           | `--watch`             |
+| `max_parallel`                | `STEAMPIPE_MAX_PARALLEL`       | `--max-parallel`      |
+| `query_timeout`               | `STEAMPIPE_QUERY_TIMEOUT`      | `--query_timeout`     |
+
 
 ### Examples
 
@@ -76,7 +97,10 @@ workspace "dev" {
 ```
 
 
-See [Managing Workspaces](/docs/managing/workspaces) for more examples.
+
+
+
+
 
 
 

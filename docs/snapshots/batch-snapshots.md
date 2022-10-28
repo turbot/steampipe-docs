@@ -1,11 +1,11 @@
 ---
-title: Creating Snapshots
-sidebar_label: Creating Snapshots
+title: Batch Snapshots
+sidebar_label: Batch Snapshots
 ---
 
-## Creating Snapshots
+# Taking Snapshots from the Command Line
 
-> To upload snapshots to Steampipe Cloud, you must either [log in via the `steampipe login` command](reference/cli/login) or create an [API token](/docs/cloud/profile#api-tokens) and pass it via the [`--cloud-token`](reference/cli/overview#global-flags) flag or [`STEAMPIPE_CLOUD_TOKEN`](reference/env-vars/steampipe_cloud_token) environment variable.
+> To upload snapshots to Steampipe Cloud, you must either [log in via the `steampipe login` command](reference/cli/login) or create an [API token](/docs/cloud/profile#tokens) and pass it via the [`--cloud-token`](reference/cli/overview#global-flags) flag or [`STEAMPIPE_CLOUD_TOKEN`](reference/env-vars/steampipe_cloud_token) environment variable.
 
 To take a snapshot and save it to [Steampipe Cloud](/docs/cloud/overview), simply add the `--snapshot` flag to your command.  
 
@@ -71,14 +71,14 @@ steampipe check --snapshot vandelay-industries/latex-dev \
 
 ## Passing Inputs
 
-If your dashboard takes input parameters, you may specify them with one or more `--dashboard-input` arguments:
+If your dashboard has [inputs](/docs/reference/mod-resources/input), you may specify them with one or more `--dashboard-input` arguments:
 
 ```bash
 steampipe dashboard --snapshot --dashboard-input vpc_id=vpc-9d7ae1e7 \
   aws_insights.dashboard.aws_vpc_detail  
 ```
 
-## Tagging snapshots
+## Tagging Snapshots
 
 You may want to tag your snapshots to make it easier to organize them.  You can use the `--snapshot-tag` argument to add a tag:
 
@@ -93,20 +93,63 @@ steampipe dashboard --snapshot-tag env=local --snapshot-tag owner=george  \
   --snapshot aws_insights.dashboard.aws_account_report
 ```
 
+
+## Saving Snapshots to Local Files
+
+Steampipe Cloud makes it easy to save and share your snapshots, however it is not strictly required;  You can save and view snapshots using only the CLI.  
+
+You can specify a local path in the `--snapshot-location` argument or `STEAMPIPE_SNAPSHOT_LOCATION` environment variable to save your snapshots to a directory in your filesystem:
+
+```bash
+steampipe check --snapshot --snapshot-location . benchmark.cis_v150
+```
+
+You can also set `snapshot_location` in a [workspace](/docs/managing/workspaces) if you wish to make it the default location.
+
+
+Alternatively, you can use the `--export` argument to export a query, dashboard, or benchmark in the Steampipe snapshot format.  This will create a file with a `.sps` extension in the current directory:
+
+```bash
+steampipe dashboard --export sps dashboard.aws_account_report
+```
+
+The `snapshot` export/output type is an alias for `sps`:
+
+```bash
+steampipe dashboard --export snapshot dashboard.aws_account_report
+```
+
+To give the file a name, simply use `{filename}.sps`, for example:
+
+```bash
+steampipe dashboard --export account_report.sps dashboard.aws_account_report
+```
+
+Alternatively, you can write the steampipe snapshot to stdout with `--output sps`
+```bash
+steampipe query --output sps  "select * from aws_account" > mysnap.sps
+```
+
+or `--output snapshot`
+```bash
+steampipe query --output snapshot  "select * from aws_account" > mysnap.sps
+```
+
+
 ## Controlling Output
 When using `--share` or `--snapshot`, the output will include the URL to view the snapshot that you created in addition to the usual output:
 ```bash
 Snapshot uploaded to https://cloud.steampipe.io/user/costanza/workspace/vandelay/snapshot/snap_abcdefghij0123456789_asdfghjklqwertyuiopzxcvbn
 ```
 
-You may use the `--progress=false` argument to suppress displaying the URL and other progress data:
+You can use the `--progress=false` argument to suppress displaying the URL and other progress data.  This may be desirable when you are using an alternate output format, especially when piping the output to another command:
 
 ```bash
-steampipe query --snapshot --output csv --progress=false \
-  "select * from aws_account"
+steampipe query --snapshot --output json  \
+  --progress=false  "select * from aws_account" | jq
 ```
 
-You can use all the usual `--export` or `--output` formats with `--snapshot` and `--share`.  Neither the `--output` nor the `--export` flag affect the snapshot format though - the snapshot itself is always a json file that is saved to Steampipe Cloud and viewable as html:
+You can use all the usual `--export` or `--output` formats with `--snapshot` and `--share`.  Neither the `--output` nor the `--export` flag affect the snapshot format though -- the snapshot itself is always a json file that is saved to Steampipe Cloud and viewable as html:
 
 ```bash
 steampipe check --snapshot --export cis.csv --export cis.json  benchmark.cis_v140
@@ -117,42 +160,4 @@ In fact, all the usual arguments will work with snapshots:
 steampipe check --snapshot all 
 steampipe check --snapshot aws_compliance.control.cis_v140_1_1 
 steampipe check --snapshot --where "severity in ('critical', 'high')" all
-```
-
-## Saving snapshots to local files
-
-Steampipe Cloud makes it easy to save and share your snapshots, however it is not strictly required;  You can save and view snapshots using only the CLI.  
-
-You can specify a local path in `--mod-location` argument or `STEAMPIPE_MOD_LOCATION` environment variable to save your snapshots to a directory in your filesystem:
-
-```bash
-steampipe check --snapshot --snapshot-location . benchmark.cis_v150
-```
-
-Alternately, you can use the `--export` argument to export a query, dashboard, or benchmark in the steampipe snapshot format.  This will create a file with a `.sps` extension in the current directory.
-
-```bash
-steampipe dashboard --export sps dashboard.aws_account_report
-```
-
-The `snapshot` export/output type is an alias for `sps`:
-
-```
-steampipe dashboard --export snapshot dashboard.aws_account_report
-```
-
-To give the file a name, simply use `{filename}.sps`, for example:
-
-```bash
-steampipe dashboard --export account_report.sps dashboard.aws_account_report
-```
-
-Alternatively, you can write the native steampipe snapshot to stdout with `--output sps`
-```bash
-steampipe query --output sps  "select * from aws_account" > mysnap.sps
-```
-
-or `--output snapshot`
-```bash
-steampipe query --output snapshot  "select * from aws_account" > mysnap.sps
 ```

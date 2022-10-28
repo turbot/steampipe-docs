@@ -3,6 +3,8 @@ title: Configuration Files
 sidebar_label: Configuration Files
 ---
 
+# Configuration Files
+
 Configuration file resource are defined using HCL in one or more Steampipe config files.  Steampipe will load ALL configuration files from `~/.steampipe/config` that have a `.spc` extension.  
 
 

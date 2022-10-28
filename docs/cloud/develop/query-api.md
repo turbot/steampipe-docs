@@ -6,7 +6,7 @@ sidebar_label: Query API
 # Using the Steampipe Cloud Query API
 
 ## Authentication
-To use the [Steampipe Cloud API](cloud/reference/api), you must connect with an [API token](/docs/cloud/profile#api-tokens). 
+To use the [Steampipe Cloud API](cloud/reference/api), you must connect with an [API token](/docs/cloud/profile#tokens). 
 The examples in this section assume that you have set the [`STEAMPIPE_CLOUD_TOKEN`](reference/env-vars/steampipe_cloud_token) to a valid API token:
 ```bash
 export STEAMPIPE_CLOUD_TOKEN=spt_c6rnjt8afakemj4gha10_svpnmxqfaketokenad431k

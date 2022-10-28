@@ -3,7 +3,7 @@ title: options
 sidebar_label: options
 ---
 
-## Options
+## options
 Configuration options are defined using HCL `options` blocks in one or more Steampipe config files.  Steampipe will load ALL configuration files from `~/.steampipe/config` that have a `.spc` extension.  By default, Steampipe creates a `~/.steampipe/config/default.spc` file for setting `options`.  
 
 
