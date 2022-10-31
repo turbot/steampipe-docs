@@ -236,6 +236,7 @@
           "cloud/integrations/pgcli",
           "cloud/integrations/psql",
           "cloud/integrations/python",
+          "cloud/integrations/razorsql",
           "cloud/integrations/tableau",
           "cloud/integrations/tableplus",
           "cloud/integrations/vscode"
