@@ -4,15 +4,15 @@ sidebar_label: Golang
 ---
 # Connect to Steampipe Cloud from Golang
 
-Since your Steampipe Cloud workspace is a Postgres database, by using the `pq` driver you can connect and query your workspace database with Golang.
+Since your Steampipe Cloud workspace is a Postgres database, you can connect and query using Go's database client.
 
-The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides the details you need to connect Steampipe Cloud with Golang.
+The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides the details you need to connect from Go.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/steampipe-cloud-connect-details.jpg" />
 </div>
 
-You'll need the Postgres driver for Go's database/sql package, which you can install using `go get github.com/lib/pq`.
+You'll need the Postgres driver for Go's `database/sql` package, which you can install using `go get github.com/lib/pq`.
 Then you specify the connection string, create a connection, run a query, and fetch results. In this example, we query the name, region and the versioning state of `aws_s3_bucket`.
 
 ```go
@@ -25,32 +25,33 @@ import (
 )
 
 var db *sql.DB
+
 func main() {
-var err error
+	var err error
 
-connStr := "postgresql://rahulsrivastav14:f3**-****-**2c@rahulsrivastav14-rahulsworkspace.usea1.db.steampipe.io:9193/dea4px"
-db, err = sql.Open("postgres", connStr)
-if err != nil {
-panic(err)
-}
-if err = db.Ping(); err != nil {
-panic(err)
-}
-rows, err := db.Query(`select name, region, versioning_enabled from aws_s3_bucket`)
-defer rows.Close()
+	connStr := "postgresql://rahulsrivastav14:f3**-****-**2c@rahulsrivastav14-rahulsworkspace.usea1.db.steampipe.io:9193/dea4px"
+	db, err = sql.Open("postgres", connStr)
+	if err != nil {
+		panic(err)
+	}
+	if err = db.Ping(); err != nil {
+		panic(err)
+	}
+	rows, err := db.Query(`select name, region, versioning_enabled from aws_s3_bucket`)
+	defer rows.Close()
 
-var name string
-var region string
-var versioning_enabled string
+	var name string
+	var region string
+	var versioning_enabled string
 
 	for rows.Next() {
-	switch err := rows.Scan(&name, &region, &versioning_enabled); err {
-	case sql.ErrNoRows:
-		fmt.Println("No matching rows")
-	case nil:
-		fmt.Println(name, region, versioning_enabled, "\n")
-	default:
-		panic(err)
+		switch err := rows.Scan(&name, &region, &versioning_enabled); err {
+		case sql.ErrNoRows:
+			fmt.Println("No matching rows")
+		case nil:
+			fmt.Println(name, region, versioning_enabled, "\n")
+		default:
+			panic(err)
 		}
 	}
 }
@@ -71,7 +72,7 @@ integratedtagsbucket2022 us-east-1 false
 
 ## Connect to Steampipe CLI from Golang
 
-To connect Golang to [Steampipe CLI](https://steampipe.io/downloads), run `steampipe service start --show-password` and use the displayed connection details.
+To connect to [Steampipe CLI](https://steampipe.io/downloads), run `steampipe service start --show-password` and use the displayed connection details.
 
 ```
 Steampipe service is running:
@@ -86,7 +87,7 @@ Database:
 
 ## Call the Steampipe Cloud API from Golang
 
-You can also use the [Steampipe Cloud query API](https://steampipe.io/docs/cloud/develop/query-api) with the Golang `net/http` driver. Grab your [token](https://steampipe.io/docs/cloud/profile#api-tokens), put it an environment variable like `STEAMPIPE_CLOUD_TOKEN`, and call this variable using Go's `os` driver.
+You can also use the [Steampipe Cloud query API](https://steampipe.io/docs/cloud/develop/query-api) with Go's `net/http`. Grab your [token](https://steampipe.io/docs/cloud/profile#api-tokens), put it an environment variable like `STEAMPIPE_CLOUD_TOKEN`, and make an HTTP request.
 
 ```go
 package main
@@ -97,11 +98,11 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	"strings"
 	"os"
+	"strings"
 )
 
-func main () {
+func main() {
 	reqURL, _ := url.Parse("https://cloud.steampipe.io/api/latest/user/rahulsrivastav14/workspace/rahulsworkspace/query")
 	reqBody := ioutil.NopCloser(strings.NewReader(`{"sql": "select state, volume_id, region from aws_ebs_volume limit 2"}`))
 	req := &http.Request{
@@ -115,7 +116,7 @@ func main () {
 	}
 	res, err := http.DefaultClient.Do(req)
 	if err != nil{
-		log.Fatal("Error:", err )
+		log.Fatal("Error:", err)
 	}
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
