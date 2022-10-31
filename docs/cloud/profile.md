@@ -13,6 +13,21 @@ On the **Settings** page for your user account, click **Profile** from the left 
 
 You can also rotate your **Database Password**.  Every Steampipe user has a single password they can use to log in to the workspaces to which they have access. (This is the password that appears in the connection string.)  You can rotate your password at any time by clicking **Rotate Password** on the profile page. This may take a couple of minutes to propagate to all of your workspaces.  Note that existing connections will not be terminated when you rotate your password.
 
+
+## Notifications
+On the **Settings** page for your user, click **Notifications** from the left hand menu to manage your Steampipe Cloud notification preferences.  Choose what type of emails you wish to receive from Steampipe Cloud:
+
+| Type | Description |
+|-|-
+| **Community Updates** | Get notified of community information and events you may be interested in.
+| **Product Updates**   | Get notified of product updates as they are released.
+| **Tips & Tricks**     | Get useful tips & tricks on using Steampipe Cloud.
+| **System**            | Important system notifications related to your Steampipe Cloud account. System notifications cannot be disabled.
+
+ 
+
+
+
 ## Tokens
 On the **Settings** page for your user, click **Tokens** from the left hand menu to manage your Steampipe Cloud tokens.  You can use these tokens to access the Steampipe Cloud API, or to connect to Steampipe Cloud workspaces from the Steampipe CLI.  You can have up to 2 tokens at a time.
 
