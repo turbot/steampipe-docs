@@ -33,7 +33,7 @@ Database:
 
 ## Getting started
 
-[DBeaver](https://dbeaver.io/download/) Community is open source and free to use on the desktop, while the PRO version can be purchased. In this example we will create a Steampipe Cloud connection with DBeaver and query the AWS S3 buckets.
+[DBeaver](https://dbeaver.io/download/) Community is open source and free to use on the desktop, while the pro version can be purchased. In this example we will create a Steampipe Cloud connection with DBeaver and query the AWS S3 buckets.
 
 To establish a new connection click on `New Database Connection`, select PostgreSQL and click `Next`. If prompted, Click `Download Drivers` to update the missing drivers required to interact with the database. Enter the Steampipe Cloud connection details and click `Test Connection` to verify.
 
@@ -55,7 +55,7 @@ Here we select the `aws_s3_bucket` table. DBeaver displays the table's schema an
 
 ## Run your first custom query
 
-DBeaver comes equipped with a SQL query editor that you may use to write a custom query. For example, we can use this query in the editor to fetch the list of AWS EC2 instance types available in us-east-1 region.
+DBeaver provides a SQL query editor that you may use to write a custom query. For example, we can use this query in the editor to fetch the list of AWS EC2 instance types available in us-east-1 region.
 
 ```
 select
