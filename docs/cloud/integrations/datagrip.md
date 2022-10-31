@@ -4,7 +4,7 @@ sidebar_label: DataGrip
 ---
 ## Connect to Steampipe Cloud from DataGrip
 
-[DataGrip](https://www.jetbrains.com/datagrip/) is a cross platform SQL IDE to query, edit and manage your databases.
+[DataGrip](https://www.jetbrains.com/datagrip/) is a cross-platform SQL IDE to query, edit and manage your databases.
 
 Steampipe provides a single interface to all your cloud, code, logs and more. Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including DataGrip -- can connect to.
 
@@ -33,9 +33,9 @@ Database:
 
 ## Getting started
 
-[DataGrip](https://www.jetbrains.com/datagrip/download/#section=mac) is available to use on the desktop and has a 30 day trial version after which a license is required. In this example we will create a Steampipe Cloud connection with DataGrip and query the AWS availability zones.
+[DataGrip](https://www.jetbrains.com/datagrip/download/#section=mac) is available to use on the desktop; there's a 30-day trial. In this example we will create a Steampipe Cloud connection from DataGrip and query the AWS availability zones.
 
-To create a new connection click on `New` and add a PostgreSQL data source. Click `Download missing driver files` at the bottom of the settings page, since DataGrip does not include bundled drivers required to interact with the database. Enter the Steampipe Cloud connection details and click `Test Connection` to Verify.
+To create a new connection click on `New` and add a PostgreSQL data source. Click `Download missing driver files` at the bottom of the settings page, since DataGrip does not include bundled drivers required to interact with the database. Enter the Steampipe Cloud connection details and click `Test Connection` to `Verify`.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/datagrip-connection-success.png" />
@@ -47,7 +47,7 @@ Once you've connected to Steampipe Cloud, you can access the AWS plugin and its 
 <img src="/images/docs/cloud/datagrip-database-explorer.png" />
 </div>
 
-Here we select the `aws_availability_zone` table. DataGrip displays the table's schema and previews the data. You can drag the columns to organize the data and choose to export the data to a wide range of formats like CSV, JSON, SQL, HTML, etc.
+Here we select the `aws_availability_zone` table. DataGrip displays the table's schema and previews the data. You can drag the columns to organize the data and choose to export the data to a [variety of formats](https://steampipe.io/docs/reference/cli/check#output-formats).
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/datagrip-availability-zone-result.png" />
@@ -55,7 +55,7 @@ Here we select the `aws_availability_zone` table. DataGrip displays the table's 
 
 ## Run your first custom query
 
-DataGrip comes with a SQL query editor that you may use to write a custom query. For example, we can use this query in the editor to fetch the list of encrypted EBS volumes.
+DataGrip provides an editor that you may use to write custom queries. Here is a query to fetch the list of encrypted EBS volumes.
 
 ```
 select
