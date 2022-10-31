@@ -2,7 +2,7 @@
 title:  Connect to Steampipe Cloud with Golang
 sidebar_label: Golang
 ---
-# Connect to Steampipe Cloud from Golang
+## Connect to Steampipe Cloud from Golang
 
 Since your Steampipe Cloud workspace is a Postgres database, you can connect and query using Go's database client.
 
