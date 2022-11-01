@@ -230,6 +230,7 @@
         "link": "cloud/integrations/overview",
         "items": [
           "cloud/integrations/cli",
+          "cloud/integrations/dbeaver",
           "cloud/integrations/datagrip",
           "cloud/integrations/golang",
           "cloud/integrations/javascript",
