@@ -63,7 +63,7 @@ mod "aws_cis" {
 | `icon` |  String | Optional | The url of an icon to use for the mod on hub.steampipe.io.
 | `opengraph` |  Block | Optional | Block of metadata for use in social media applications that support [Opengraph](#opengraph) metadata.
 | `require` | Block | Optional | A block that specifies one or more [mod dependencies](#mod-dependencies).
-| `tags` | Map | Optional | A map of key:value metadata for the benchmark, used to categorize, search, and filter.   
+| `tags` | Map | Optional | A map of key:value metadata for the mod, used to categorize, search, and filter.   
 | `title` | String | Optional | The display title of the mod.
 
 
