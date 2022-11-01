@@ -231,6 +231,7 @@
         "items": [
           "cloud/integrations/cli",
           "cloud/integrations/datagrip",
+          "cloud/integrations/golang",
           "cloud/integrations/javascript",
           "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
