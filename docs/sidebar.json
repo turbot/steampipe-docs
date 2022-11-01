@@ -231,6 +231,7 @@
         "items": [
           "cloud/integrations/cli",
           "cloud/integrations/dbeaver",
+          "cloud/integrations/golang",
           "cloud/integrations/javascript",
           "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
