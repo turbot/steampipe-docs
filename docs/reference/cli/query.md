@@ -61,7 +61,7 @@ steampipe query list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--input</inlineCode> </td> 
-    <td>  Enable interactive prompts (default true)</td> 
+    <td>  Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, use <inlineCode>--input=false</inlineCode>.  This is useful when running from scripts. (default true)</td> 
   </tr>
 
   <tr> 
