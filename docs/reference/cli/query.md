@@ -13,9 +13,21 @@ If a query string is passed on the command line then it will be run immediately 
 If the Steampipe service was previously started by `steampipe service start`, steampipe will connect to the service instance - otherwise, the query command will start the `service`. At the end of the query command or session, if other sessions have not connected to the `service` already, the `service` will be shutdown. If other session have already connected to the `service`, then the last session to exit will shutdown the `service`.
 
 ## Usage
+Run Steampipe [interactive query shell](/docs/query/query-shell):
 ```bash
-steampipe query [query] [flags] 
+steampipe query [flags]
 ```
+
+Run a [batch query](/docs/query/batch-query):
+```bash
+steampipe query {query} [flags]
+```
+
+List available [named queries](/docs/query/batch-query#named-queries):
+```bash
+steampipe query list
+```
+
 
 ## Flags
 
@@ -154,6 +166,18 @@ Run a query and share a [snapshot](/docs/snapshots/batch-snapshots):
 ```bash
 steampipe query --share "select * from aws_s3_bucket"
 ```
+
+List the named queries available to run in the current mod context:
+
+```bash
+steampipe query list
+```
+
+Run a named query:
+```bash
+steampipe query query.s3_bucket_logging_enabled
+```
+
 
 Run the SQL command in the `my_queries/my_query.sql` file:
 ```bash

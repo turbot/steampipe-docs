@@ -9,8 +9,19 @@ Run the Steampipe Dashboard server.
 The Dashboard loads the `mod` in the current working directory or the `--workspace-chdir` and listens for changes to dashboards defined in the `mod`.
 
 ## Usage
+Run [Steampipe Dashboard](/docs/dashboard/overview) interactively:
 ```bash
 steampipe dashboard [flags]
+```
+
+Take a snapshot or export of a single dashboard (non-interactively):
+```bash
+steampipe dashboard {dashboard name} [flags]
+```
+
+List available dashboards:
+```bash
+steampipe dashboard list
 ```
 
 ## Flags
@@ -144,7 +155,11 @@ Start the dashboard server, but don't open the browser:
 steampipe dashboard --browser=false
 ```
 
+List the dashboards available to run in the current mod context:
 
+```bash
+steampipe dashboard list
+```
 
 Run a dashboard and save a [snapshot](/docs/snapshots/batch-snapshots):
 

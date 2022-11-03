@@ -11,10 +11,18 @@ Execute one or more Steampipe benchmarks and controls.
 You may specify one or more benchmarks or controls to run, or run `steampipe check all` to run all controls in the workspace.
 
 ## Usage
+Run benchmarks/controls:
 ```bash
 steampipe check [item,item,...] [flags]
 ```
-## Available Commands:
+
+List available benchmarks:
+```bash
+steampipe check list
+```
+
+
+## Flags:
 
 <table>
   <tr> 
@@ -105,12 +113,10 @@ steampipe check [item,item,...] [flags]
     <td> Specify tags to set on the snapshot.  Multiple <inlineCode>--snapshot-tag </inlineCode> arguments may be passed.</td>
   </tr>
 
-
   <tr> 
     <td nowrap="true"> <inlineCode>--snapshot-title string=string  </inlineCode>  </td> 
     <td> The title to give a snapshot when uploading to Steampipe Cloud.  </td>
   </tr>
-
 
   <tr> 
     <td nowrap="true"> <inlineCode>--tag string=string</inlineCode>  </td> 
@@ -122,19 +128,17 @@ steampipe check [item,item,...] [flags]
     <td>  Select output theme (color scheme, etc).  Defaults to <inlineCode>dark</inlineCode>. Possible values are <inlineCode>light,dark, plain</inlineCode> </td>
   </tr>
 
-
   <tr> 
     <td nowrap="true"> <inlineCode>--timing  </inlineCode>  </td> 
     <td>Turn on the query timer. </td>
   </tr>
-
-
 
   <tr> 
     <td nowrap="true"> <inlineCode>--var string=string </inlineCode>  </td> 
     <td>  Specify the value of a mod variable.  Multiple <inlineCode>--var </inlineCode> arguments may be passed.
     </td>
   </tr>
+
   <tr> 
     <td nowrap="true"> <inlineCode>--var-file string</inlineCode>  </td> 
     <td>  Specify an .spvars file containing mod variable values. 
@@ -160,17 +164,21 @@ steampipe check [item,item,...] [flags]
 | `md` | Single-page markdown output with full control details and group summaries.
 | `none` | Don't send any output to stdout.
 | `nunit3` | Results in [nunit3](https://docs.nunit.org/articles/nunit/technical-notes/usage/Test-Result-XML-Format.html) xml format.
+| `snapshot` | Steampipe snapshot json (alias for `sps`)
+| `sps` | Steampipe snapshot json.
 | `text` | Full text based output with details and summary.  This is the default console output format.
 
 ## Examples
+
 Run all  controls:
 ```bash
 steampipe check all 
 ```
 
-Only show "failed"  items (alarm, error)
+List the benchmarks available to run in the current mod context:
+
 ```bash
-steampipe check all --output=brief
+steampipe check list
 ```
 
 Run the cis_v130 benchmark:
@@ -188,7 +196,10 @@ Run a benchmark and share a [snapshot](/docs/snapshots/batch-snapshots):
 steampipe check --share benchmark.cis_v130
 ```
 
-
+Only show "failed"  items (alarm, error)
+```bash
+steampipe check all --output=brief
+```
 
 Run all controls and pass variable values on the command line:
 ```bash
@@ -256,4 +267,3 @@ Send json output to stdout and pipe  to `jq `
 ```bash
 steampipe check all --output=json | jq
 ```
-
