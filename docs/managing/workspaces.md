@@ -8,19 +8,17 @@ A Steampipe `workspace` is a "profile" that allows you to define a unified envir
 that the Steampipe client can interact with.  Each workspace is composed of:
 - a single steampipe database instance
 - a single mod directory (which may also contain dependency mods)
-- context-specific settings and options  (snapshot location, search path, query options, etc)
+- context-specific settings and options  (snapshot location, query timeout, etc)
 
 Steampipe workspaces allow you to [define multiple named configurations](#defining-workspaces):
 
 ```hcl
 workspace "local" {
   workspace_database = "local"  
-  search_path_prefix = "aws_all"
 }
 
 workspace "dev_insights" {
   workspace_database = "local"  
-  search_path_prefix = "aws_dev"
   mod_location       = "~/mods/steampipe-mod-aws-insights"
 }
 
@@ -54,9 +52,7 @@ Any unset arguments will assume use the default values - you don't need to set t
 
 ```hcl
 workspace "default" {
-  search_path_prefix = "aws_prod,azure_prod,github,net"
   query_timeout       = 300 # (in seconds) 
-  max_parallel        = 3   
 }
 ```
 
@@ -64,7 +60,7 @@ You can use `base=` to inherit settings form another profile:
 ```hcl
 workspace "dev" {
   base               = workspace.default
-  search_path_prefix = "aws_dev,azure_dev,github,net"
+  workspace_database = "acme/dev"
 }
 ```
 
@@ -110,6 +106,7 @@ workspace "aws_insights" {
 }
 ```
 
+<!--
 You can specify [`option` blocks for query](/docs/reference/config-files/options#query-options) and [check](/docs/reference/config-files/options#check-options) in a workspace:
 
 ```hcl
@@ -158,7 +155,7 @@ workspace "steampipe_2" {
 steampipe dashboard --workspace steampipe_2
 ```
 
-
+-->
 
 ## Using Workspaces
 Workspaces may be defined in any `.spc` file in the `~/.steampipe/config` directory, but by convention they should be placed in the `~/.steampipe/config/workspaces.spc` file.

@@ -177,6 +177,7 @@
           "reference/env-vars/steampipe_log",
           "reference/env-vars/steampipe_max_parallel",
           "reference/env-vars/steampipe_otel_level",
+          "reference/env-vars/steampipe_query_timeout",
           "reference/env-vars/steampipe_telemetry",
           "reference/env-vars/steampipe_update_check",
           "reference/env-vars/steampipe_workspace_chdir",

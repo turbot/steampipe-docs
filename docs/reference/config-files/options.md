@@ -18,17 +18,20 @@ The following `options` are currently supported:
 
 | Option Type                       | Description
 |-|-
-| [check](#check-options)           | Options that apply to `steampipe check`
 | [connection](#connection-options) | Options that apply to connections
 | [database](#database-options)     | Database options
 | [general](#general-options)       | General CLI options, such as auto-update options
-| [query](#query-options)           | Options that apply to `steampipe query`
-| [terminal](#terminal-options)     | [DEPRECATED] Terminal options, which generally map to meta-commands
+| [terminal](#terminal-options)     | Terminal options, which generally map to meta-commands
 
+
+<!--
+| [check](#check-options)           | Options that apply to `steampipe check`
+| [query](#query-options)           | Options that apply to `steampipe query`
+-->
 ---
 
 
-
+<!--
 ## Check Options
 
 **Check** options can be used to change query output formats and other `steampipe check` options.  The options and values correspond to the [command line arguments](docs/reference/cli/check) of the same name.
@@ -52,6 +55,7 @@ The following `options` are currently supported:
 ```
 
 ---
+-->
 
 ## Connection Options
 **Connection** options are options that can be set on a per-connection basis.  Connection options may be set at 2 scopes:
@@ -139,7 +143,7 @@ options "general" {
 ---
 
 
-
+<!--
 
 ## Query Options
 
@@ -170,10 +174,14 @@ options "general" {
 ```
 
 ---
+-->
+
 
 ## Terminal Options
 
+<!--
 ***`terminal` options have been deprecated - please use `query` and `check` options instead***
+-->
 
 **Terminal** options can be used to change query output formats and other terminal options.  Typically, these can also be set via [meta-commands](/docs/reference/dot-commands/overview) or [command line arguments](/docs/reference/cli/overview) of the same name.
 

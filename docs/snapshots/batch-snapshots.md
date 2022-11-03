@@ -43,6 +43,14 @@ If you want to create a snapshot that can be shared with *anyone*, use the `--sh
 steampipe dashboard --share aws_insights.dashboard.aws_account_report
 ```
 
+
+You can set a snapshot title in Steampipe Cloud with the `--snapshot-title` argument.  This is especially useful for ad hoc queries:
+
+```bash
+steampipe query --share --snapshot-title "Public Buckets" "select name from aws_s3_bucket where bucket_policy_is_public" 
+```
+
+
 If you wish to save to the snapshot to a different workspace, such as an org workspace, you can use the `--snapshot-location` argument with `--share` or `--snapshot`:
 
 ```bash
