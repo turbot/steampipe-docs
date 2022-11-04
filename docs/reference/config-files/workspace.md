@@ -24,15 +24,14 @@ To learn more, see **[Managing Workspaces →](/docs/managing/workspaces)**
 | `base`              | none                                          | A reference to a named workspace resource that this workspace should source its definition from. Any argument can be overridden after sourcing via base
 | `cloud_host`        | `cloud.steampipe.io`                          | Set the Steampipe Cloud host, for connecting to Steampipe Cloud workspace
 | `cloud_token`       | The token obtained by `steampipe login`       | Set the Steampipe Cloud authentication token for connecting to Steampipe Cloud workspace
-| `snapshot_location` | The Steampipe Cloud user's personal workspace | Set the Steampipe Cloud workspace or filesystem path for writing snapshots
+| `install_dir`       | `~/.steampipe`                                | The directory in which the Steampipe database, plugins, and supporting files can be found
 | `mod_location`      | The current working directory                 | Set the workspace working directory
-| `workspace_database`| `local`                                       | Workspace database. This can be local or a remote Steampipe Cloud database
 | `query_timeout`     | `240` for controls, unlimited otherwise       | The maximum time (in seconds) a query is allowed to run before it times out
+| `snapshot_location` | The Steampipe Cloud user's personal workspace | Set the Steampipe Cloud workspace or filesystem path for writing snapshots
+| `workspace_database`| `local`                                       | Workspace database. This can be local or a remote Steampipe Cloud database
 
 
 <!--
-install_dir  ???
-
 
 | `search_path`       | `public`, then alphabetical                   | A comma-separated list of connections to use as a custom search path for the control run.
 | `search_path_prefix`| none                                          | A comma-separated list of connections to use as a prefix to the current search path for the control run.
@@ -54,10 +53,11 @@ except using underscore in place of dash:
 |-------------------------------|--------------------------------|----------------------|
 | `cloud_host`                  | `STEAMPIPE_CLOUD_HOST`         | `--cloud-host`       |
 | `cloud_token`                 | `STEAMPIPE_CLOUD_TOKEN`        | `--cloud-token`      |
-| `snapshot_location`           | `STEAMPIPE_SNAPSHOT_LOCATION`  | `--snapshot-location`|
+| `install_dir`                 | `STEAMPIPE_INSTALL_DIR`        | `--install-dir`     |
 | `mod_location`                | `STEAMPIPE_MOD_LOCATION`       | `--mod-location`     |
-| `workspace_database`          | `STEAMPIPE_WORKSPACE_DATABASE` | `--workspace-database`|
 | `query_timeout`               | `STEAMPIPE_QUERY_TIMEOUT`      | `--query_timeout`     |
+| `snapshot_location`           | `STEAMPIPE_SNAPSHOT_LOCATION`  | `--snapshot-location`|
+| `workspace_database`          | `STEAMPIPE_WORKSPACE_DATABASE` | `--workspace-database`|
 
 <!--
 | `search_path`                 | none                           | `--search-path`       |

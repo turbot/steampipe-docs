@@ -52,7 +52,7 @@ Any unset arguments will assume use the default values - you don't need to set t
 
 ```hcl
 workspace "default" {
-  query_timeout       = 300 # (in seconds) 
+  query_timeout       = 300
 }
 ```
 
@@ -138,24 +138,24 @@ workspace "local_dev" {
 }
 ```
 
+-->
 
-You can even set the `install-dir` for a workspace if you want to use a steampipe data layer from another [steampipe installation directory](https://steampipe.io/docs/reference/env-vars/steampipe_install_dir).
+You can even set the `install_dir` for a workspace if you want to use a steampipe data layer from another [steampipe installation directory](https://steampipe.io/docs/reference/env-vars/steampipe_install_dir).
 
 This allows you to define workspaces that use a database from another installation directory:
 
 ```hcl
 workspace "steampipe_2" {
-  workspace_database = "local" 
-  install_dir        = "/home/raj/steampipe2" # use that db layer (db, plugins, etc)
+  install_dir = "/home/raj/steampipe2"
 }
 ```
 
- and easily switch between them with the `--workspace` flag:
+and easily switch between them with the `--workspace` flag:
 ```bash
 steampipe dashboard --workspace steampipe_2
 ```
 
--->
+
 
 ## Using Workspaces
 Workspaces may be defined in any `.spc` file in the `~/.steampipe/config` directory, but by convention they should be placed in the `~/.steampipe/config/workspaces.spc` file.

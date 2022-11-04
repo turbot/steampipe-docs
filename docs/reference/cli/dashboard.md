@@ -57,7 +57,7 @@ steampipe dashboard list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--export string</inlineCode>  </td> 
-    <td> Export dashboard output to a file.  Supported export formats are <inlineCode>none</inlineCode>, <inlineCode>snapshot</inlineCode>, <inlineCode>sps</inlineCode>  
+    <td> Export dashboard output to a file.  Supported export formats are <inlineCode>none</inlineCode>, <inlineCode>sps</inlineCode> (<inlineCode>snapshot</inlineCode>).  
     </td> 
 
   </tr>
@@ -80,7 +80,7 @@ steampipe dashboard list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--output string</inlineCode> </td> 
-    <td>  Select the console <a href="#output-formats">output format</a>.  Defaults to <inlineCode>none</inlineCode>. Possible values are <inlineCode>none,snapshot,sps,</inlineCode></td> 
+    <td>  Select the console output format.  Possible values are <inlineCode>none, sps (snapshot)</inlineCode> (default <inlineCode>none</inlineCode>).</td> 
   </tr>
 
   <tr> 

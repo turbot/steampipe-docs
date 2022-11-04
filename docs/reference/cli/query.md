@@ -43,7 +43,7 @@ steampipe query list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--export string</inlineCode>  </td> 
-    <td> Export query output to a file.  You may export multiple output formats by entering multiple <inlineCode>--export</inlineCode> arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are  <inlineCode>snapshot</inlineCode>, <inlineCode>sps</inlineCode>
+    <td> Export query output to a file.  You may export multiple output formats by entering multiple <inlineCode>--export</inlineCode> arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are  <inlineCode>sps</inlineCode> (<inlineCode>snapshot</inlineCode>).
     </td> 
 
   </tr>
@@ -66,12 +66,17 @@ steampipe query list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--output string</inlineCode> </td> 
-    <td>  Select the console output format.   Possible values are <inlineCode>line, csv, json, table or snapshot</inlineCode> (default <inlineCode>table) </inlineCode>. </td> 
+    <td>  Select the console output format.   Possible values are <inlineCode>line, csv, json, table, snapshot</inlineCode> (default <inlineCode>table) </inlineCode>. </td> 
   </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--progress</inlineCode>  </td> 
     <td> Enable or disable progress information. By default, progress information is shown - set <inlineCode>--progress=false</inlineCode> to hide the progress bar.  </td>
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--query-timeout int</inlineCode>  </td> 
+    <td>  The query timeout, in seconds.  The default is <inlineCode>0</inlineCode>  (no timeout).  </td>
   </tr>
 
   <tr> 

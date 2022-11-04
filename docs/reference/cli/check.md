@@ -36,7 +36,7 @@ steampipe check list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--export string</inlineCode>  </td> 
-    <td> Export control output to a file.  You may export multiple <a href="#output-formats">output formats</a> for a single control run by entering multiple <inlineCode>--export</inlineCode> arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are <inlineCode>asff</inlineCode>, <inlineCode>csv</inlineCode>, <inlineCode>html</inlineCode>, <inlineCode>json</inlineCode>, <inlineCode>md</inlineCode>,<inlineCode>snapshot</inlineCode>,<inlineCode>sps</inlineCode>
+    <td> Export control output to a file.  You may export multiple <a href="#output-formats">output formats</a> for a single control run by entering multiple <inlineCode>--export</inlineCode> arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are <inlineCode>asff</inlineCode>, <inlineCode>csv</inlineCode>, <inlineCode>html</inlineCode>, <inlineCode>json</inlineCode>, <inlineCode>md</inlineCode>,<inlineCode>sps (snapshot)</inlineCode>
     </td> 
 
   </tr>
@@ -71,12 +71,17 @@ steampipe check list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--output string</inlineCode> </td> 
-    <td>  Select the console <a href="#output-formats">output format</a>.  Defaults to <inlineCode>text</inlineCode>. Possible values are <inlineCode>brief,csv,html,json,md,snapshot, sps,text,none</inlineCode> </td> 
+    <td>  Select the console <a href="#output-formats">output format</a>.  Defaults to <inlineCode>text</inlineCode>. Possible values are <inlineCode>brief, csv, html, json, md, sps (snapshot), text, none</inlineCode> </td> 
   </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--progress</inlineCode>  </td> 
     <td> Enable or disable progress information. By default, progress information is shown - set <inlineCode>--progress=false</inlineCode> to hide the progress bar.  </td>
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--query-timeout int</inlineCode>  </td> 
+    <td>  The query timeout, in seconds.  The default is <inlineCode>240</inlineCode>.  </td>
   </tr>
 
   <tr> 
