@@ -47,7 +47,7 @@ sidebar_label: Steampipe CLI
 
   <tr> 
     <td nowrap="true"> <inlineCode>--input</inlineCode> </td> 
-    <td>  Enable interactive prompts (default true) </td> 
+    <td>  Enable interactive prompts (default true). </td> 
   </tr>
                         
 

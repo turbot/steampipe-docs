@@ -5,7 +5,7 @@ sidebar_label: Batch Snapshots
 
 # Taking Snapshots from the Command Line
 
-> To upload snapshots to Steampipe Cloud, you must either [log in via the `steampipe login` command](reference/cli/login) or create an [API token](/docs/cloud/profile#tokens) and pass it via the [`--cloud-token`](reference/cli/overview#global-flags) flag or [`STEAMPIPE_CLOUD_TOKEN`](reference/env-vars/steampipe_cloud_token) environment variable.
+*To upload snapshots to Steampipe Cloud, you must either [log in via the `steampipe login` command](/docs/reference/cli/login) or create an [API token](/docs/cloud/profile#tokens) and pass it via the [`--cloud-token`](/docs/reference/cli/overview#global-flags) flag or [`STEAMPIPE_CLOUD_TOKEN`](/docs/reference/env-vars/steampipe_cloud_token) environment variable.*
 
 To take a snapshot and save it to [Steampipe Cloud](/docs/cloud/overview), simply add the `--snapshot` flag to your command.  
 
@@ -35,7 +35,7 @@ steampipe query --snapshot aws_compliance.query.vpc_network_acl_unused
 
 ## Sharing Snapshots
 
-The `--snapshot` flag will create a snapshot with `workspace` visibility in your user workspace. A snapshot with `workspace` visibility is visible only to users that have access to the workspace in which the snapshot resides - A user must be authenticated to Steampipe Cloud with permissions on the workspace.
+The `--snapshot` flag will create a snapshot with `workspace` visibility in your user workspace. A snapshot with `workspace` visibility is visible only to users that have access to the workspace in which the snapshot resides -- A user must be authenticated to Steampipe Cloud with permissions on the workspace.
 
 If you want to create a snapshot that can be shared with *anyone*, use the `--share` flag instead. This will create the snapshot with `anyone_with_link` visibility:
 
@@ -64,7 +64,7 @@ steampipe check --snapshot --snapshot-location vandelay-industries/latex \
   --workspace-database vandelay-industries/latex benchmark.cis_v140
 ```
 
-Steampipe provides a shortcut for this though.  The `--workspace` flag supports [passing the cloud workspace](http://localhost:3000/docs/managing/workspaces#implicit-workspaces):
+Steampipe provides a shortcut for this though.  The `--workspace` flag supports [passing the cloud workspace](/docs/managing/workspaces#implicit-workspaces):
 ```bash
 steampipe check --snapshot --workspace vandelay-industries/latex benchmark.cis_v140 
 ```
