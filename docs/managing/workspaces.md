@@ -146,7 +146,7 @@ This allows you to define workspaces that use a database from another installati
 
 ```hcl
 workspace "steampipe_2" {
-  install_dir = "/home/raj/steampipe2"
+  install_dir = "~/steampipe2"
 }
 ```
 
@@ -162,7 +162,7 @@ Workspaces may be defined in any `.spc` file in the `~/.steampipe/config` direct
 
 The workspace named `default` is special; if a workspace named `default` exists,
 `--workspace` is not  specified in the command, and `STEAMPIPE_WORKSPACE` is not set, 
-then Steampipe uses "default" workspace:
+then Steampipe uses th `default` workspace:
 
 ```bash
 steampipe query --snapshot "select * from aws_account"

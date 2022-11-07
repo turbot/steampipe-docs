@@ -11,7 +11,7 @@ sidebar_label: STEAMPIPE_WORKSPACE_CHDIR
 Sets the Steampipe workspace directory. If not specified, the workspace directory will be set to the current working directory.
 
 ## Usage 
-Set your mod token:
+Set your mod location:
 ```bash
 export STEAMPIPE_WORKSPACE_CHDIR=~/my-steampipe-mods
 ```
