@@ -5,7 +5,7 @@ sidebar_label: Grafana
 
 ##  Connect to Steampipe Cloud from Grafana
 
-[Grafana](https://grafana.com/) is a visualization tool that connects to many databases including Postgres, and enables users to query, monitor, create alerts and analyze metrics through dashboards.
+[Grafana](https://grafana.com/) is a visualization tool that connects to many databases including Postgres, and enables users to query, monitor, create alerts and analyze metrics.
 
 Steampipe provides a single interface to all your cloud, code, logs and more. Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including Grafana -- can connect to.
 
@@ -32,15 +32,15 @@ Database:
 
 ## Getting started
 
-[Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) is a open source interactive data-visualization platform that runs on the cloud, or in a container, or the desktop. To use Grafana you will need to sign up and create an account. Here, we will use the desktop version.
+[Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) is an open-source interactive data-visualization platform that runs on the cloud, or in a container, or on the desktop. To use Grafana you will need to sign up and create an account. Here, we will use the desktop version.
 
-With Grafana up and running, you can access it from the browser through `http://localhost:3000`. Click on `Data Sources` under the configuration option, then click `Add Data Source`, select `PostgreSQL` and enter the connection details. Since there is no field for port number, it should be added with the host as `Host:Port` and set the TLS/SSL mode to `Require`. Then click `Save & Test` to test your connection.
+With Grafana up and running, open a browser to `http://localhost:3000`. Click on `Data Sources` under the configuration option, then click `Add Data Source`, select `PostgreSQL`, and enter the connection details. Since there is no field for port number, use the syntax `Host:Port`. Set the TLS/SSL mode to `Require`, then click `Save & Test` to test your connection.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/grafana-connection-success.png" />
 </div>
 
-The plugins and it's tables can be accessed through the `Explore` tab and the `Edit SQL` option can be used to customize the queries.
+The plugins and its tables are available from the `Explore` tab. Use `Edit SQL` to customize the queries.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"50%"}}>
 <img src="/images/docs/cloud/grafana-explore-tables.png" />
@@ -52,9 +52,10 @@ The data can be previewed in a `Table format` or `Time series`. Here we see the 
 <img src="/images/docs/cloud/grafana-table-format-data-preview.png" />
 </div>
 
-## Dashborad to monitor resources and cost
+## Dashboard to monitor resources and cost
 
-Grafana uses panels as the building blocks of a dashboard that consists of queries, graphs, aliases, etc. We'll focus here on creating a dashboard to monitor AWS services and Cost. To being click on `Dashboards` and create a new dashboard. On the empty dashboard click `Add panel` to create a panel and select `aws_ebs_volume_metric_read_ops_daily` from the query builder, then click `Apply`. Now add panels for `aws_ec2_instance_metric_cpu_utilization_hourly`, `aws_s3_bucket_by_region` and `aws_vpc_by_region`. Similarly paste the query into a new panel to monitor the top 10 monthly costs by service.
+Panels that display charts and tables are the building blocks of Grafana dashboards. We'll focus here on a dashboard to monitor AWS services and costs. To begin, click `Dashboards` and create a new dashboard. On the empty dashboard click `Add panel`, then select `aws_ebs_volume_metric_read_ops_daily` from the query builder and click `Apply`.
+Then add panels for `aws_ec2_instance_metric_cpu_utilization_hourly`, `aws_s3_bucket_by_region` and `aws_vpc_by_region`. And finally paste this query, which monitors the top ten monthly costs by service, into a new panel.
 
 ```
 select
@@ -69,7 +70,8 @@ order by
   average desc
 limit 10;
 ```
-Grafana gives a wide range of graphics that you can use to represent the data in each panel. Now with the created panels we have our AWS Monitoring dashboard ready.
+
+Grafana provides a variety of chart types. Here we use `Time series` for aws_ebs_volume_metric_read_ops_daily, `Bar chart` for aws_ec2_instance_metric_cpu_utilization_hourly, `Pie chart` for aws_s3_bucket_by_region, `Bar gauge` for aws_vpc_by_region and `Table` for top ten monthly costs by service.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/grafana-dashboard.png" />
@@ -77,7 +79,7 @@ Grafana gives a wide range of graphics that you can use to represent the data in
 
 ## Import a dashboard with JSON file
 
-Since, a dashboard in Grafana is represented by a JSON object, which stores its metadata. We can [import a dashboard](https://grafana.com/docs/grafana/v9.0/dashboards/export-import/#import-dashboard) using json input. To import click `Import` under the Dashboards icon in the side menu and paste the below code to create a AWS S3 dashboard. With the Enterprise licensed feature you can send the dashboards as reports.
+A Grafana dashboard is represented by a JSON object that stores its metadata. Here is the JSON definition for an AWS S3 dashboard.
 
 <details>
   <summary>AWS S3 JSON</summary>
@@ -978,9 +980,12 @@ Since, a dashboard in Grafana is represented by a JSON object, which stores its 
 <img src="/images/docs/cloud/grafana-aws-s3-dashboard.png" />
 </div>
 
+To import it, click `Import` under the Dashboards icon in the side menu, then copy and paste the JSON.
+
 ## Send alerts
 
-Suppose you'd like to be notified when the CPU utilization crosses a threshold value. You can use Grafana's `Alerting` feature to create an `Alert Rule` with this query and expression to evaluate the threshold value.
+Suppose you'd like to be notified when the CPU utilization crosses a threshold value. You can achieve that with Grafana's `Alerting` feature. To start go to `Alert Rules` under the Alerting tab, then click `New Alert Rule` and paste this query under `
+Set a query and alert condition`. Then we set an [Expression](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/expression-queries/#about-expressions) with a classic condition operation to trigger an alert when the CPU utilization goes above the set value.
 
 ```
 select
@@ -996,15 +1001,15 @@ order by 1
 <img src="/images/docs/cloud/grafana-alerting-rules.png" />
 </div>
 
-You can set up [Contact-points](https://grafana.com/docs/grafana/latest/alerting/contact-points/) to send alert notifications. Grafana evaluates the set criteria and fires alerts.
+Give your alert a name and set up [Contact-points](https://grafana.com/docs/grafana/latest/alerting/contact-points/) to that should receive these notifications. Here we see an alert sent to slack.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"50%"}}>
-<img src="/images/docs/cloud/grafana-slack-alert.png" />
+<img src="/images/docs/cloud/grafana-cpu-slack-alert.png" />
 </div>
 
 ## Summary
 
-With Metabase and Steampipe Cloud you can:
+With Grafana and Steampipe Cloud you can:
 
 - Create interactive dashboards driven by data from the tables and queries in your Steampipe Cloud workspace
 
