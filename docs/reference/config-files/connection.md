@@ -5,7 +5,7 @@ sidebar_label: connection
 
 # connection 
 
-The `connection` block defines a steampipe [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators). 
+The `connection` block defines a Steampipe [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators). 
 
 Most `connection` arguments are plugin-specific, and they are used to specify credentials, accounts, and other options.  The [Steampipe Hub](https://hub.steampipe.io/plugins) provides detailed information about the arguments for each plugin. 
 
@@ -13,9 +13,9 @@ Most `connection` arguments are plugin-specific, and they are used to specify cr
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `plugin` | none     | [plugin version string](#plugin-version-strings) |  The plugin version that this connection uses.  This must refer to an [installed plugin version](http://localhost:3000/docs/managing/plugins#installing-plugins). 
-| `type`   | `plugin` | `plugin`, `aggregator` | The type of connection  - [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators)
-| `option` | none     | `options "connection"` block | An optional `option` block to set [connection options](reference/config-files/connection#connection-options) for this connection.   Only `connection` options are supported
-| `{plugin argument}`| varies |  varies|  Additional options are defined in each plugin - refer to the documentation for your plugin on the [Steampipe Hub](https://hub.steampipe.io/plugins)
+| `type`   | `plugin` | `plugin`, `aggregator` | The type of connection  - [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators).
+| `options` | none     | `options "connection"` block | An optional `options` block to set [connection options](reference/config-files/options#connection-options) for this connection.   Only `connection` options are supported.
+| `{plugin argument}`| varies |  varies|  Additional options are defined in each plugin - refer to the documentation for your plugin on the [Steampipe Hub](https://hub.steampipe.io/plugins).
 
 
 

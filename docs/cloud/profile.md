@@ -29,7 +29,7 @@ On the **Settings** page for your user, click **Notifications** from the left ha
 
 
 ## Tokens
-On the **Settings** page for your user, click **Tokens** from the left hand menu to manage your Steampipe Cloud tokens.  You can use these tokens to access the Steampipe Cloud API, or to connect to Steampipe Cloud workspaces from the Steampipe CLI.  You can have up to 2 tokens at a time.
+On the **Settings** page for your user, click **Tokens** from the left hand menu to manage your Steampipe Cloud tokens.  You can use these tokens to access the [Steampipe Cloud API](/docs/cloud/develop/query-api), or to connect to Steampipe Cloud workspaces from the Steampipe CLI.  You can have up to 2 tokens at a time.
 
 Click **New Token** to create a new API token.  The token will be masked, but you can reveal it by clicking the eye icon, or hover over it and click the clipboard icon to copy it.  Make a secure note of the token as you will not be able to retrieve it again.
 

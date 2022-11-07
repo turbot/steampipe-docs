@@ -157,7 +157,7 @@ steampipe query --snapshot --output json  \
   --progress=false  "select * from aws_account" | jq
 ```
 
-You can use all the usual `--export` or `--output` formats with `--snapshot` and `--share`.  Neither the `--output` nor the `--export` flag affect the snapshot format though -- the snapshot itself is always a json file that is saved to Steampipe Cloud and viewable as html:
+You can use all the usual `--export` or `--output` formats with `--snapshot` and `--share`.  Neither the `--output` nor the `--export` flag affect the snapshot format though; the snapshot itself is always a json file that is saved to Steampipe Cloud and viewable as html:
 
 ```bash
 steampipe check --snapshot --export cis.csv --export cis.json  benchmark.cis_v140

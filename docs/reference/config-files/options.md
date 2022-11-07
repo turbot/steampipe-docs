@@ -7,7 +7,7 @@ sidebar_label: options
 Configuration options are defined using HCL `options` blocks in one or more Steampipe config files.  Steampipe will load ALL configuration files from `~/.steampipe/config` that have a `.spc` extension.  By default, Steampipe creates a `~/.steampipe/config/default.spc` file for setting `options`.  
 
 
-Note that many of the `options` control settings that can also be specified via other mechanisms, such as command line arguments, environment variables, etc.  These settings are resolved in a standard order:
+Note that many of the `options` settings can also be specified via other mechanisms, such as command line arguments, environment variables, etc.  These settings are resolved in a standard order:
 1. Explicitly set in session (via a meta-command).
 2. Specified in command line argument.
 3. Set in environment variable.
@@ -18,15 +18,15 @@ The following `options` are currently supported:
 
 | Option Type                       | Description
 |-|-
-| [connection](#connection-options) | Options that apply to connections
-| [database](#database-options)     | Database options
-| [general](#general-options)       | General CLI options, such as auto-update options
-| [terminal](#terminal-options)     | Terminal options, which generally map to meta-commands
+| [connection](#connection-options) | Options that apply to connections.
+| [database](#database-options)     | Database options.
+| [general](#general-options)       | General CLI options, such as auto-update options.
+| [terminal](#terminal-options)     | Terminal options, which generally map to .meta-commands
 
 
 <!--
-| [check](#check-options)           | Options that apply to `steampipe check`
-| [query](#query-options)           | Options that apply to `steampipe query`
+| [check](#check-options)           | Options that apply to `steampipe check`.
+| [query](#query-options)           | Options that apply to `steampipe query`.
 -->
 ---
 
@@ -66,8 +66,8 @@ The following `options` are currently supported:
 ### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
-| `cache` | `true` | `true`, `false`  | Enable or disabled caching
-| `cache_ttl` | `300` | an integer    | The length of time to cache results, in seconds
+| `cache` | `true` | `true`, `false`  | Enable or disabled caching.
+| `cache_ttl` | `300` | an integer    | The length of time to cache results, in seconds.
 
 
 ### Example: Top-Level Connection Options
@@ -102,9 +102,9 @@ connection "aws_account1" {
 ### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
-| `port` | `9193` | any valid, open port number | The TCP port that postgres will listen on
-| `listen` | `network` | `local`, `network`| The network listen mode when steampipe is started in service mode. Use `network` to listen on all IP addresses, or `local` to restrict to localhost. 
-| `search_path` | All connections, alphabetically | Comma separated string | Set an exact [search path](managing/connections#setting-the-search-path).  Note that setting the search path in the database options sets it in the database; this setting will also be in effect when connecting to Steampipe from 3rd party tools.
+| `port` | `9193` | any valid, open port number | The TCP port that Postgres will listen on
+| `listen` | `network` | `local`, `network`| The network listen mode when steampipe is started in [service mode](/docs/managing/service#starting-the-database-in-service-mode). Use `network` to listen on all IP addresses, or `local` to restrict to localhost. 
+| `search_path` | All connections, alphabetically | Comma separated string | Set an exact [search path](managing/connections#setting-the-search-path).  Note that setting the search path in the database options sets it in the database; this setting will also be in effect when connecting to Steampipe from 3rd party tools. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).
 
 
 ### Example: Database Options
@@ -122,13 +122,13 @@ options "database" {
 
 
 ## General options
-**General** options apply generally to the steampipe CLI. 
+**General** options apply generally to the Steampipe CLI. 
 
 ### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `max_parallel` | `5` | an integer| Set the maximum number of parallel executions. When running `steampipe check`, Steampipe will attempt to run up to this many controls in parallel. This can also be set via the  `STEAMPIPE_MAX_PARALLEL` environment variable.
-| `telemetry` | `none` | `none`, `info` | Set the telemetry level in Steampipe. This can also be set via the  [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry) environment variable.
+| `telemetry` | `none` | `none`, `info` | Set the telemetry level in Steampipe. This can also be set via the  [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry) environment variable. See also: [Telemetry](https://steampipe.io/blog/release-0-15-0#telemetry). 
 | `update_check` | `true` | `true`, `false` | Enable or disable automatic update checking. This can also be set via the  [STEAMPIPE_UPDATE_CHECK](reference/env-vars/steampipe_update_check) environment variable.
 ### Example: General Options  
 
@@ -194,7 +194,7 @@ options "general" {
 | `output` | `table` | `json`, `csv`, `table`, `line` | Set output format.
 | `separator` | `,` | Any single character | Set csv output separator.
 | `timing` | `false` |  `true`, `false` | Enable or disable query execution timing.
-| `search_path` | The active database search path | Comma separated string | Set an exact [search path](managing/connections#setting-the-search-path). Note that setting the search path in the terminal options sets it for the session when running `steampipe`; this setting will not be in effect when connecting to Steampipe from 3rd party tools.
+| `search_path` | The active database search path | Comma separated string | Set an exact [search path](managing/connections#setting-the-search-path). Note that setting the search path in the terminal options sets it for the session when running `steampipe`; this setting will not be in effect when connecting to Steampipe from 3rd party tools. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).
 | `search_path_prefix`| Empty | Comma separated string |  Move connections to the front of the [search path](managing/connections#setting-the-search-path).
 | `watch` |  `true` |  `true`, `false` |  Watch SQL files in the current workspace for changes (works only in interactive mode).
 
