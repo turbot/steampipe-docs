@@ -125,7 +125,7 @@ steampipe check list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--tag string=string</inlineCode>  </td> 
-    <td>  Filter the list of controls to run by one or more tag values.  Multiple <inlineCode>--tag</inlineCode> arguments may be passed -- discrete keys are <inlineCode>and'ed</inlineCode> and duplicate keys are <inlineCode>or'ed</inlineCode>.  For example,  <inlineCode>steampipe check all --tag pci=true --tag service=ec2 --tag service=iam</inlineCode> will run only controls with a <inlineCode>service</inlineCode> tag equal to either <inlineCode>ec2</inlineCode> or <inlineCode>iam</inlineCode> that also are tagged with <inlineCode>pci=true</inlineCode>. 
+    <td>  Filter the list of controls to run by one or more tag values.  Multiple <inlineCode>--tag</inlineCode> arguments may be passed.  Discrete keys are <inlineCode>and'ed</inlineCode> and duplicate keys are <inlineCode>or'ed</inlineCode>.  For example,  <inlineCode>steampipe check all --tag pci=true --tag service=ec2 --tag service=iam</inlineCode> will run only controls with a <inlineCode>service</inlineCode> tag equal to either <inlineCode>ec2</inlineCode> or <inlineCode>iam</inlineCode> that also are tagged with <inlineCode>pci=true</inlineCode>. 
     </td>
   </tr>
   <tr> 

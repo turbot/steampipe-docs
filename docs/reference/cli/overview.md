@@ -74,8 +74,7 @@ sidebar_label: Steampipe CLI
 
   <tr> 
     <td nowrap="true"> <inlineCode>--workspace-chdir</inlineCode>  </td> 
-    <td>  <b>(DEPRECATED: please use <inlineCode>--mod-location</inlineCode>)</b> Sets the Steampipe workspace directory.  If not specified, the workspace directory will be set to the current working directory.  See <a href="/docs/reference/env-vars/steampipe_workspace_chdir">STEAMPIPE_WORKSPACE_CHDIR</a> 
-    for details. </td>
+    <td>  <b>(DEPRECATED: please use <inlineCode>--mod-location</inlineCode>)</b> Sets the Steampipe workspace directory.  If not specified, the workspace directory will be set to the current working directory.  See <a href="/docs/reference/env-vars/steampipe_workspace_chdir">STEAMPIPE_WORKSPACE_CHDIR</a> for details. </td>
   </tr>
 
   <tr> 

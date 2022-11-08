@@ -23,7 +23,7 @@ To learn more, see **[Managing Workspaces →](/docs/managing/workspaces)**
 |---------------------|-----------------------------------------------|-----------------------------------------
 | `base`              | none                                          | A reference to a named workspace resource that this workspace should source its definition from. Any argument can be overridden after sourcing via base.
 | `cloud_host`        | `cloud.steampipe.io`                          | Set the Steampipe Cloud host for connecting to Steampipe Cloud workspace.
-| `cloud_token`       | The token obtained by `steampipe login`       | Set the Steampipe Cloud authentication token for connecting to a Steampipe Cloud workspace.  This may be a token obtained by `steampipe login` or a user generated [token](/docs/cloud/profile#tokens).
+| `cloud_token`       | The token obtained by `steampipe login`       | Set the Steampipe Cloud authentication token for connecting to a Steampipe Cloud workspace.  This may be a token obtained by `steampipe login` or a user-generated [token](/docs/cloud/profile#tokens).
 | `install_dir`       | `~/.steampipe`                                | The directory in which the Steampipe database, plugins, and supporting files can be found.
 | `mod_location`      | The current working directory                 | Set the workspace working directory.
 | `query_timeout`     | `240` for controls, unlimited otherwise       | The maximum time (in seconds) a query is allowed to run before it times out.
