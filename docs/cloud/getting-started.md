@@ -3,16 +3,16 @@ title: Getting Started with Steampipe Cloud
 sidebar_label: Getting Started
 ---
 
-## Getting Started with Steampipe Cloud
+# Getting Started with Steampipe Cloud
 
-### Sign up
+## Sign up
 To sign up, go to https://cloud.steampipe.io.  You can sign up with your Github or Google login (you will need to authorize Steampipe Cloud to allow you to login using OAuth), or with an email address.
 
 <img src="/images/docs/cloud/gs_signup.png" width="300pt"/>
 
 Steampipe Cloud is currently in limited private preview. If you are not accepted into the preview, you will be added to a waiting list.
 
-### Create a Workspace
+## Create a Workspace
 
 
 Since you have no workspaces the first time you sign in, you will land on the workspace page.  To get started with Steampipe you must create a [Workspace](cloud/workspaces).
@@ -29,7 +29,7 @@ Click **New Workspace** to create a workspace.
 Each workspace must have a **handle**. The workspace handle is a friendly identifier for your workspace, and must be unique across your workspaces. Enter a handle for your workspace and click **Create Workspace**.
 
 
-### Set up a Connection
+## Set up a Connection
 
 You are now prompted to create a [Connection](cloud/connections), which represents a set of tables for a single data source. 
 
@@ -58,7 +58,7 @@ Once a connection is created, you must associate it with your workspace. You wil
 
 Note that the wizard only prompts for a single connection. You can create and attach additional connections later from the **Settings** tab for your workspace.
 
-### Install a Mod
+## Install a Mod
 
 You will then be given the opportunity to install one or more [Mods](cloud/mods), which will give you access to hundreds of off-the-shelf dashboards and benchmarks for you to visualize within your workspace. Steampipe Cloud also allows you to [manage variables](cloud/mods#managing-mod-variables) exposed by the mod, to create dynamic behavior customized to your requirements.
 
@@ -69,7 +69,7 @@ The list of mods shown are ones from the official mod registry that are compatib
 
 Note that some plugins may not have any compatible mods, and you can **Skip** this section. You can always manage mods later via the mod settings pages.
 
-### Dashboards
+## Dashboards
 
 After you create your workspace, add your connection and install a mod(s), you will be taken to the **Dashboards** tab for your workspace. 
 
@@ -81,7 +81,7 @@ You can browse the catalog of existing dashboards, including compliance framewor
 <img src="/images/docs/cloud/gs_cis_dashboard.png" width="400pt"/>
 <br />
 
-### Query
+## Query
 You can also run queries from the query tab.  You can browse or search the schemas and tables and run ad-hoc queries right from the web console!
 
 

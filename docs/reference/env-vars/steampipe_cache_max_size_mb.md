@@ -3,9 +3,7 @@ title: STEAMPIPE_CACHE_MAX_SIZE_MB
 sidebar_label: STEAMPIPE_CACHE_MAX_SIZE_MB
 ---
 
-
-
-### STEAMPIPE_CACHE_MAX_SIZE_MB
+# STEAMPIPE_CACHE_MAX_SIZE_MB
 Set the maximum size (in MB) of the query cache across all plugins.
 
 If `STEAMPIPE_CACHE_MAX_SIZE_MB` is set, Steampipe will limit the query cache ***across all plugins*** to the specified size.  Each plugin version runs in a separate process, and each plugin process has its own cache.  When `STEAMPIPE_CACHE_MAX_SIZE_MB` is set, Steampipe divides the cache based on the total number of connections and allocates memory shares to each plugin process based on the number of connections for that plugin. 
@@ -39,7 +37,7 @@ By default, Steampipe does not limit the size of the query cache.
 
 `STEAMPIPE_CACHE_MAX_SIZE_MB` only works with plugins compiled with [Steampipe Plugin SDK](https://github.com/turbot/steampipe-plugin-sdk) version 4.0.0 and later.
 
-#### Usage 
+## Usage 
 Limit cache to 4GB:
 ```bash
 export STEAMPIPE_CACHE_MAX_SIZE_MB=4096 

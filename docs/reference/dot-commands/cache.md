@@ -4,15 +4,15 @@ sidebar_label: .cache
 ---
 
 
-## .cache
+# .cache
 Enable, disable or clear the query cache.
 
-### Usage
+## Usage
 ```
 .cache [on | off | clear]
 ```
 
-### Examples 
+## Examples 
 Clear the cache  
 ```
 .cache clear

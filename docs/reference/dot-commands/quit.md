@@ -3,10 +3,10 @@ title: .quit
 sidebar_label: .quit
 ---
 
-## .quit
+# .quit
 Exit the steampipe interactive query session.  
 
-### Usage
+## Usage
 ```
 .quit
 ```

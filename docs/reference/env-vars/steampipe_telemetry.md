@@ -3,7 +3,7 @@ title: STEAMPIPE_TELEMETRY
 sidebar_label: STEAMPIPE_TELEMETRY
 ---
 
-### STEAMPIPE_TELEMETRY
+# STEAMPIPE_TELEMETRY
 
 By default, Steampipe collects usage information to help assess features, usage patterns, and bugs.  This information helps us improve and optimize the Steampipe experience.  We do not collect any sensitive information such as secrets, environment variables or file contents.  We do not share your data with anyone.  Current options are:
 - `none`: do not collect or send any telemetry data.
@@ -16,7 +16,7 @@ By default, Steampipe collects usage information to help assess features, usage 
   - workspace id
 
 
-#### Usage 
+## Usage 
 
 Disable telemetry data:
 

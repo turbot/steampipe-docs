@@ -3,15 +3,15 @@ title: .header
 sidebar_label: .header
 ---
 
-## .header
+# .header
 Turn column headers on or off.
 
-### Usage
+## Usage
 ```
 .header [on | off]
 ```
 
-### Examples
+## Examples
 Turn off column headers:
 ```
 .header off

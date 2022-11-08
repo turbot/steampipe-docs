@@ -3,15 +3,15 @@ title: steampipe help
 sidebar_label: steampipe help
 ---
 
-## steampipe help
+# steampipe help
 Display help and usage information for any command in the application.
 
-### Usage
+## Usage
 ```bash
 steampipe help [command] [flags]
 ```
 
-### Examples
+## Examples
 Show help:
 ```bash
 steampipe help 

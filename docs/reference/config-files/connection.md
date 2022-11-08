@@ -1,40 +1,94 @@
 ---
-title: Connection options
+title: connection
 sidebar_label: connection
 ---
 
-### Connection Options
-**Connection** options are options that can be set on a per-connection basis.  Connection options may be set at 2 scopes:
-- Defined in a top-level `options "connection"`, these apply to ALL connections that do not explicitly override them.
-- Defined in an `options` block under a `connection`, these apply only to that connection.  Per-connection options always override top-level connection options, and their arguments are identical.
+# connection 
 
+The `connection` block defines a Steampipe [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators). 
 
-#### Supported options  
+Most `connection` arguments are plugin-specific, and they are used to specify credentials, accounts, and other options.  The [Steampipe Hub](https://hub.steampipe.io/plugins) provides detailed information about the arguments for each plugin. 
+
+## Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
-| `cache` | `true` | `true`, `false`  | Enable or disabled caching
-| `cache_ttl` | `300` | an integer    | The length of time to cache results, in seconds
+| `plugin` | none     | [plugin version string](#plugin-version-strings) |  The plugin version that this connection uses.  This must refer to an [installed plugin version](http://localhost:3000/docs/managing/plugins#installing-plugins). 
+| `type`   | `plugin` | `plugin`, `aggregator` | The type of connection  - [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators).
+| `options` | none     | `options "connection"` block | An optional `options` block to set [connection options](reference/config-files/options#connection-options) for this connection.   Only `connection` options are supported.
+| `{plugin argument}`| varies |  varies|  Additional options are defined in each plugin - refer to the documentation for your plugin on the [Steampipe Hub](https://hub.steampipe.io/plugins).
 
 
-#### Example: Top-Level Connection Options
-Top-Level connection options apply to ALL connections (unless overridden in an `options` block within a `connection`).
+
+### Plugin Version Strings 
+
+Steampipe plugin versions are in the format:
+```
+[{organization}/]{plugin name}[@release stream]
+```
+
+The `{organization}` is optional, and if it is not specified, it is assumed to be `turbot`.  The `{release stream}` is also optional, and defaults to `@latest`.  As a result, plugin version are usually simple plugin names:
+
 ```hcl
-options "connection" {
-    cache     = true # true, false
-    cache_ttl = 300  # expiration (TTL) in seconds
+connection "net" {
+  plugin = "net"  # this is the same as turbot/net@latest
 }
 ```
 
-#### Example: Per-Connection Options
+You may specify a [specific version](/docs/managing/plugins#installing-a-specific-version):
 ```hcl
-connection "aws_account1" {
-    plugin    = "aws"  
-    profile   = "account1"
-    regions   =  ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "eu-west-1", "eu-west-2"]          
-
-    options "connection" {
-        cache     = true # true, false
-        cache_ttl = 300  # expiration (TTL) in seconds
-    }
+connection "net" {
+  plugin = "net@0.6.0"
 }
+```
+
+Or a [release stream](/docs/managing/plugins#installing-from-a-release-stream):
+```hcl
+connection "net" {
+  plugin = "net@0.6"
+}
+```
+
+
+For third-party plugins, the `{organization}` must be specified:
+```hcl
+connection "scalingo" {
+  plugin = "francois2metz/scalingo"
+}
+```
+
+You can even use a [local path](/docs/managing/plugins#installing-from-a-file) while developing plugins:
+
+```hcl
+connection "myplugin" {
+   plugin            = "local/myplugin"
+}
+```
+
+## Examples
+```hcl
+connection "aws_all" {
+  type        = "aggregator"
+  plugin      = "aws"  
+  connections = ["aws_*"]
+}
+
+connection "aws_01" {
+  plugin      = "aws" 
+  profile     = "aws_01"
+  regions     = ["*"]
+}
+
+connection "aws_02" {
+  plugin      = "aws" 
+  profile     = "aws_02"
+  regions     = ["us-*", "eu-*"]
+}
+
+connection "aws_03" {
+  plugin      = "aws" 
+  aws_access_key_id = AKIA4YFAKEKEYXTDS252
+  aws_secret_access_key = SH42YMW5p3EThisIsNotRealzTiEUwXN8BOIOF5J8m
+  regions     = ["us-east-1", "us-west-2"]
+}
+
 ```

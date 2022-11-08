@@ -4,10 +4,10 @@ sidebar_label: .exit
 ---
 
 
-## .exit
+# .exit
 Exit the steampipe interactive query session.  
 
-### Usage
+## Usage
 ```
 .exit
 ```

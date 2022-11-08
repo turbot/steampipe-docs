@@ -3,7 +3,7 @@ title: STEAMPIPE_INTROSPECTION
 sidebar_label: STEAMPIPE_INTROSPECTION
 ---
 
-### STEAMPIPE_INTROSPECTION
+# STEAMPIPE_INTROSPECTION
 
 Steampipe can create a set of introspection tables that allow you to query the mod resources in the workspace.  For performance reasons, introspection is disabled by default, however you can enable it by setting the `STEAMPIPE_INTROSPECTION` environment variable.
 
@@ -56,7 +56,7 @@ When introspection is enabled, the following tables are available to query:
 
 
 
-#### Usage 
+## Usage 
 
 
 Enable introspection data

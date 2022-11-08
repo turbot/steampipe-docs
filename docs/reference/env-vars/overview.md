@@ -26,8 +26,10 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [STEAMPIPE_LOG](reference/env-vars/steampipe_log)  | `warn` | Set the logging output level [DEPRECATED - use STEAMPIPE_LOG_LEVEL]
 | [STEAMPIPE_LOG_LEVEL](reference/env-vars/steampipe_log)  | `warn` | Set the logging output level
 | [STEAMPIPE_MAX_PARALLEL](reference/env-vars/steampipe_max_parallel)  | `5` | Set the maximum number of parallel executions
+| [STEAMPIPE_MOD_LOCATION](reference/env-vars/steampipe_mod_location)  | current working directory | Set the workspace working directory
 | [STEAMPIPE_OTEL_LEVEL](reference/env-vars/steampipe_otel_level)  | `NONE` | Specify which [OpenTelemetry](https://opentelemetry.io/) data to send via OTLP
+| [STEAMPIPE_QUERY_TIMEOUT](reference/env-vars/steampipe_query_timeout)  |  `240` for controls, unlimited in all other cases. | Set the amount of time to wait for a query to complete before timing out, in seconds.
 | [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry)  | `info` | Set the level of telemetry data to collect and send
 | [STEAMPIPE_UPDATE_CHECK](reference/env-vars/steampipe_update_check)| `true` | Enable/disable automatic update checking
-| [STEAMPIPE_WORKSPACE_CHDIR](reference/env-vars/steampipe_workspace_chdir)  | current working directory | Set the workspace working directory
+| [STEAMPIPE_WORKSPACE](reference/env-vars/steampipe_workspace)  | `default` | Set the Steampipe workspace .  This can be named workspace from `workspaces.spc` or a remote Steampipe Cloud workspace| [STEAMPIPE_WORKSPACE_CHDIR](reference/env-vars/steampipe_workspace_chdir)  | current working directory | Set the workspace working directory.  [DEPRECATED - use `STEAMPIPE_MOD_LOCATION`]
 | [STEAMPIPE_WORKSPACE_DATABASE](reference/env-vars/steampipe_workspace_database)  | `local` | Workspace database.  This can be `local` or a remote Steampipe Cloud database

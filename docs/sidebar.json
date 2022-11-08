@@ -38,6 +38,17 @@
   },
   {
     "type": "category",
+    "id": "snapshots",
+    "label": "Take Snapshots",
+    "link": "snapshots/overview",
+    "items": [
+      "snapshots/interactive-snapshots",
+      "snapshots/batch-snapshots"
+    ]
+  },
+
+  {
+    "type": "category",
     "id": "working-with-mods",
     "label": "Build Mods",
     "link": "mods/overview",
@@ -58,6 +69,7 @@
       "managing/service",
       "managing/plugins",
       "managing/connections",
+      "managing/workspaces",
       "managing/containers"
     ]
   },
@@ -116,6 +128,7 @@
           "reference/cli/completion",
           "reference/cli/dashboard",
           "reference/cli/help",
+          "reference/cli/login",
           "reference/cli/mod",
           "reference/cli/plugin",
           "reference/cli/query",
@@ -129,6 +142,7 @@
         "label": "Meta-Commands",
         "link": "reference/dot-commands/overview",
         "items": [
+          "reference/dot-commands/autocomplete",
           "reference/dot-commands/cache",
           "reference/dot-commands/clear",
           "reference/dot-commands/connections",
@@ -162,9 +176,12 @@
           "reference/env-vars/steampipe_introspection",
           "reference/env-vars/steampipe_log",
           "reference/env-vars/steampipe_max_parallel",
+          "reference/env-vars/steampipe_mod_location",
           "reference/env-vars/steampipe_otel_level",
+          "reference/env-vars/steampipe_query_timeout",
           "reference/env-vars/steampipe_telemetry",
           "reference/env-vars/steampipe_update_check",
+          "reference/env-vars/steampipe_workspace",
           "reference/env-vars/steampipe_workspace_chdir",
           "reference/env-vars/steampipe_workspace_database"
         ]
@@ -177,11 +194,11 @@
         "link": "reference/config-files/overview",
         "items": [
           "reference/config-files/connection",
-          "reference/config-files/database",
-          "reference/config-files/general",
-          "reference/config-files/terminal"
+          "reference/config-files/options",
+          "reference/config-files/workspace"
         ]
       },
+
       {
         "type": "category",
         "id": "mod-resources",

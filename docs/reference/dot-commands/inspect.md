@@ -5,15 +5,15 @@ sidebar_label: .inspect
 
 
 
-## .inspect
+# .inspect
 
 Inspect the available connections, tables, and columns.
 
-### Usage
+## Usage
 ```
 .inspect [connection][.table]
 ```
-### Examples
+## Examples
 List all active connections:
 ```
 .inspect

@@ -4,18 +4,17 @@ sidebar_label: steampipe service
 ---
 
 
-
-## steampipe service
+# steampipe service
 Steampipe service management.
 
 `steampipe service` allows you to run Steampipe as a local service, exposing it as a database endpoint for connection from any Postgres-compatible database client.
 
-### Usage
+## Usage
 ```bash
 steampipe service [command]
 ```
 
-### Sub-Commands
+## Sub-Commands
 
 | Command | Description
 |-|-
@@ -25,7 +24,7 @@ steampipe service [command]
 | `stop`    | Stop Steampipe service
 
 
-### Flags
+## Flags
 
 | Flag | Applies to | Description
 |-|-|-
@@ -45,7 +44,7 @@ steampipe service [command]
 
 
 
-### Examples
+## Examples
 
 Start Steampipe in the background (service mode):
 ```bash

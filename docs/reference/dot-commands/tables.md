@@ -3,16 +3,16 @@ title: .tables
 sidebar_label: .tables
 ---
 
-## .tables
+# .tables
 
 List the available tables.
 
-### Usage
+## Usage
 ```
 .tables [connection]
 ```
 
-### Examples
+## Examples
 List all tables in all active connections:
 ```
 .tables
