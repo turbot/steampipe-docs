@@ -69,3 +69,4 @@ order by
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/heidisql-custom-query-response.png" />
 </div>
+
