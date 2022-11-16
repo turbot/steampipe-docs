@@ -33,7 +33,7 @@ Database:
 
 ## Getting started
 
-[HeidiSQL](https://www.heidisql.com/download.php) is a free to use program that runs only on a Windows desktop. In this example we will create a Steampipe Cloud connection with HeidiSQL and query the top stories from Hacker News.
+[HeidiSQL](https://www.heidisql.com/download.php) is a program that runs on Windows. In this example we will create a Steampipe Cloud connection with HeidiSQL and query the top stories from Hacker News.
 
 To establish a new connection click on `New` at the bottom left, select PostgreSQL(TCP/IP) and enter the Steampipe Cloud connection details, check the `Use SSL` box under the SSL tab and click `Open`.
 
@@ -47,7 +47,7 @@ Once you've connected to Steampipe Cloud, you can access the Hacker News plugin 
 <img src="/images/docs/cloud/heidisql-database-explorer.png" />
 </div>
 
-Here we select the `hackernews_top` table. HeidiSQL displays the table's schema and previews the returned data. You can drag the columns to re-arrange the data and also save it to CSV, HTML, XML, LaTeX, Wiki markup or PHP files.
+Here we select the `hackernews_top` table. HeidiSQL displays the table's schema and previews the returned data. You can drag the columns to rearrange the data, then save to CSV, HTML, XML, LaTeX, Wiki markup or PHP.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/heidisql-hackernewstop-datapreview.png" />
