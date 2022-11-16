@@ -246,6 +246,7 @@
         "label": "Integrations",
         "link": "cloud/integrations/overview",
         "items": [
+          "cloud/integrations/apachesuperset",
           "cloud/integrations/cli",
           "cloud/integrations/datagrip",
           "cloud/integrations/dbeaver",
