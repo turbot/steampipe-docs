@@ -252,6 +252,7 @@
           "cloud/integrations/dbeaver",
           "cloud/integrations/golang",
           "cloud/integrations/grafana",
+          "cloud/integrations/heidisql",
           "cloud/integrations/javascript",
           "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
