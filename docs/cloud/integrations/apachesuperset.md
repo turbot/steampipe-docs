@@ -34,7 +34,7 @@ Database:
 
 ## Getting started
 
-[Apache Superset](https://superset.apache.org/docs/installation/) is a free to use open-source application that runs in a container, or on the desktop. Here we run it locally through docker compose.
+[Apache Superset](https://superset.apache.org/docs/installation/) is a free to use open-source application that runs in a container, or on the desktop. Here we run it locally using docker compose.
 
 With Apache Superset up and running, open a browser to `http://localhost:8080/`. Click on `Database Connections` under settings on the top right corner, then click `+Database` and select `PostgreSQL`. Enter the connection details, toggle the SSL mode to `Require` and click connect.
 
@@ -42,7 +42,7 @@ With Apache Superset up and running, open a browser to `http://localhost:8080/`.
 <img src="/images/docs/cloud/apache-superset-connection-success.png" />
 </div>
 
-Alternatively, you can connect to the database through the `SQLALCHEMY URI` option and use the connection String.
+Alternatively, you can connect to the database using the `SQLALCHEMY URI` option and use the connection string.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/apache-superset-uri-connection.png" />
@@ -62,7 +62,7 @@ To create the table, select the `azure_compute_disk` dataset, set the `QUERY MOD
 
 ## Create charts with custom queries.
 
-You can augment your SQL queries through Supersets `SQL Lab` under the SQL tab and visualize it with a suite of charts. To try that, click `SQL Lab` and paste this SQL that returns the number of compute disks region wise.
+You can augment your SQL queries using Superset's `SQL Lab` (under the SQL tab) and visualize them with a suite of charts. To try that, click `SQL Lab` and paste this SQL that returns the number of compute disks per region.
 
 ```
 select
@@ -74,15 +74,15 @@ group by
   region;
   ```
 
-Once the result is returned, click `CREATE CHART` and select `PIE CHART`. Now Update the region and count columns into the dimensions field, set the metric field to aggregate `MAX` count and click `UPDATE CHART`. Custom queries can also be saved as datasets.
+Once the result is returned, click `CREATE CHART` and select `PIE CHART`. Now update the region and count columns into the dimensions field, set the metric field to aggregate `MAX` count and click `UPDATE CHART`. Custom queries can also be saved as datasets.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/apache-superset-custom-query.png" />
 </div>
 
-## Create dashboard to analyze resources
+## Create a dashboard to analyze resources
 
-Charts that display data are the building blocks of Apache Superset dashboards. We'll focus here on a creating a dashboard that monitors the Azure VMs and disks. To being, click `+Dashboard` from the Dashboards tab, and click `+Create a New Chart`. Then Create datasets and charts with `azure_compute_virtual_machine_metric_cpu_utilization_hourly` and `azure_compute_disk_metric_read_ops_daily` tables. Finally paste these queries to create dataset charts for VMs with disks not encrypted by customer managed key and list of unattached disks.
+Charts that display data are the building blocks of Apache Superset dashboards. We'll focus here on a creating a dashboard that monitors the Azure VMs and disks. To begin, click `+Dashboard` from the Dashboards tab, and click `+Create a New Chart`. Then create datasets and charts with `azure_compute_virtual_machine_metric_cpu_utilization_hourly` and `azure_compute_disk_metric_read_ops_daily` tables. Finally paste these queries to create dataset charts for VMs with disks not encrypted by customer-managed key, and for unattached disks.
 
 ```
 select
@@ -118,5 +118,8 @@ Superset provides a variety of chart types. Here we use `Bar Chart` for azure_co
 
 With Apache Superset and Steampipe Cloud you can:
 
-- Create interactive dashboards driven by data from the tables and queries in your Steampipe Cloud workspace
+- View tables in your Steampipe Cloud workspace
 
+- Write custom queries for those tables
+
+- Create interactive dashboards driven by your tables and queries
