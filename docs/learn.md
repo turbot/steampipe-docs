@@ -56,7 +56,7 @@ Now run the `.tables` meta-command to list the available tables:
 +----------------------------------------+---------------------------------------------+
 ```
 
-As you can see, there are quite a few tables available in the AWS plugin!  
+As you can see, there are quite a few tables available in the AWS plugin!
 
 It looks like there's an `aws_iam_role` table - let's run `.inspect` to see what's in that table:
 ```
@@ -168,7 +168,7 @@ from
   aws_iam_role as r,
   jsonb_array_elements_text(attached_policy_arns) as policy_arn,
   aws_iam_policy as p
-where 
+where
   p.arn = policy_arn
   and p.is_aws_managed;
 
@@ -224,7 +224,7 @@ There are hundreds of dashboards packaged in [Steampipe Mods](https://hub.steamp
 ## Run Controls
 Steampipe mods can also define **benchmarks and controls** to assess your environment against security, compliance, operational, and cost controls.
 
-Let's download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).  
+Let's download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).
 
 Lets clone the repo:
 
@@ -238,7 +238,7 @@ Steampipe benchmarks automatically appear as [dashboards](/docs/dashboard/overvi
 
 <br />
 
-You can also run controls and benchmarks in batch mode with the [steampipe check](/docs/reference/cli/check) command.  The `steampipe check` command provides options for selecting which controls to run, supports many output formats, and provides capabilities often required when using `steampipe` in your scripts, pipelines, and other automation scenarios.  
+You can also run controls and benchmarks in batch mode with the [steampipe check](/docs/reference/cli/check) command.  The `steampipe check` command provides options for selecting which controls to run, supports many output formats, and provides capabilities often required when using `steampipe` in your scripts, pipelines, and other automation scenarios.
 
 We can run ALL the benchmarks in the mod with the `steampipe check` command:
 
@@ -250,4 +250,4 @@ The console will show progress as its runs, and will print the results to the sc
 
 <img src="/images/steampipe-check-output-sample-1.png" width="100%" />
 
-`steampipe check` provides a flexible interface for [running controls](docs/check/overview), including options to [select which controls to run](docs/check/filtering) and [control the output format](docs/check/formatting).  You can find many more controls and benchmarks on the [Steampipe Hub](https://hub.steampipe.io/mods).  You can even [create your own controls and benchmarks](docs/mods/writing-controls)!
+`steampipe check` provides a flexible interface for [running controls](docs/check/overview), including options to select which controls to run and [control the output format](docs/check/formatting). You can find many more controls and benchmarks on the [Steampipe Hub](https://hub.steampipe.io/mods). You can even [create your own controls and benchmarks](docs/mods/writing-controls)!
