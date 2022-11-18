@@ -59,7 +59,7 @@ steampipe check list
 
   <tr>
     <td nowrap="true"> <inlineCode>--max-parallel integer</inlineCode>  </td> 
-    <td> Set the maximum number of parallel executions. When running steampipe check, Steampipe will attempt to run up to this many controls in parallel.  See the <a href="reference/env-vars/steampipe_max_parallel">STEAMPIPE_MAX_PARALLEL</a> environment variable documentation for details. </td> 
+    <td> Set the maximum number of database connections to open. When running steampipe check, Steampipe will also attempt to run up to this many controls in parallel.  See the <a href="reference/env-vars/steampipe_max_parallel">STEAMPIPE_MAX_PARALLEL</a> environment variable documentation for details. </td> 
   </tr>
 
 
