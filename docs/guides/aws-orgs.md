@@ -13,13 +13,17 @@ There are some considerations when querying hundreds of accounts across all the 
 
 This guide also assumes you want to query across all the regions. Why would you do that? A global company is probably going to have a global footprint. Your APAC division probably uses the Singapore and Tokyo regions. Your Italian subsidiary wants to enable eu-south-1. That Oslo acquisition you just made deployed all its infrastructure in eu-north-1. You must assume you have infrastructure in every AWS Region at a certain point. It's why [AWS tells you to enable GuardDuty](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_settingup.html#setup-before), CloudTrail, and IAM Access Analyzer in all the regions, not just the ones you think you have deployed resources into.
 
-## Three ways to query your whole AWS Organization.
+## Three ways to query all your AWS Accounts.
 
-This guide will offer three scenarios for accessing all of your AWS accounts.
+This guide will offer three scenarios for accessing all of your AWS accounts using [cross-account roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html).
 
-1. [Leverage AWS SSO](#aws-sso-for-local-workstation) (recently renamed to AWS Identity Center) for every AWS account. This use case works when you're running from your local machine and either don't have a cross-account audit role or don't plan to automate your queries.
-2. [Leverage local credentials](#local-authentication-with-a-cross-account-role) to authenticate to a security or audit account, then leverage [a cross-account role](https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/security-ou-and-accounts.html#security-read-only-access-account) that is deployed to all your accounts. This option is ideal when you're working from your local machine but have access to a centralized security account with an audit role.
-3. [Leverage an EC2 Instance](#ec2-instance) in the security/audit account to assume the cross-account audit role. This is the option if you want to leverage Steampipe in an automated fashion, like to [pull data to feed Splunk lookup tables](https://steampipe.io/blog/splunk-lookup-tables).
+1. Leverage local credentials to authenticate and assume the cross-account role in a single AWS Organization.
+2. Leverage EC2 Instance credentials to authenticate and assume the cross-account role in a single Organization.
+3. Leverage EC2 Instance credentials to authenticate and assume the same cross-account role in multiple Organizations.
+
+Why cross-account roles? Simply put, they are AWS best-practice for accessing multiple AWS accounts. [AWS recommends](https://docs.aws.amazon.com/accounts/latest/reference/credentials-access-keys-best-practices.html) customers leverage roles over long-term access keys. [AWS Identity Center](https://aws.amazon.com/iam/identity-center/) (formerly known as AWS Single Sign On or SSO) works for a small number of accounts, but as an end-user, you must run `aws sso login` for each account.
+
+This guide recommends implementing a [Security view-only access](https://docs.aws.amazon.com/whitepapers/latest/organizing-your-aws-environment/security-ou-and-accounts.html#security-read-only-access-account) AWS Account. All of the other accounts in your AWS Organization(s) should have a security-audit role that trusts the security account.
 
 Each example provided below will create a [Steampipe configuration file](https://hub.steampipe.io/plugins/turbot/aws#multi-account-connections) that will query _all_ your accounts by default. Each connection (i.e. account) is prefixed with `aws_`, and all the aws [connections are aggregated](https://steampipe.io/docs/using-steampipe/managing-connections#using-aggregators) via the wildcard `connections = ["aws_*"]` which is placed in the front of the [search path](https://steampipe.io/docs/managing/connections#setting-the-search-path).
 
@@ -46,68 +50,28 @@ connection "aws_fooli_payer" {
 }
 ```
 
-The primary difference is how the AWS config file is generated. If you're leveraging AWS SSO, the config will look like:
+The primary difference is how the AWS config file is generated.
 
+If Steampipe is leveraging local credentials to assume the security-audit role:
 ```
-[profile fooli-sandbox]
-sso_start_url = https://fooli.awsapps.com/start
-sso_region = us-east-1
-sso_account_id = 111111111111
-sso_role_name = AdministratorAccess
-region = us-east-1
-```
-
-If you're using cross account roles with local credentials via AWS SSO, then you need both the AWS SSO profile, and each account profile that references the AWS SSO profile. As an example:
-```
-[profile fooli-security]
-sso_start_url = https://fooli.awsapps.com/start
-sso_region = us-east-1
-sso_account_id = 222222222222
-sso_role_name = AdministratorAccess
-
 [profile sp_fooli-sandbox]
-role_arn = arn:aws:iam::111111111111:role/fooli-audit
+role_arn = arn:aws:iam::111111111111:role/security-audit
 source_profile = fooli-security
 role_session_name = steampipe
 ```
 
-Finally, if all the AWS accounts are running in an EC2 Instance that has permission to assume that cross-account role, you would use `credential_source = Ec2InstanceMetadata` rather than `source_profile =` like so:
+If Steampipe is leveraging the EC2 Instance Credentials to assume the security-audit role:
 ```
 [profile sp_fooli-sandbox]
-role_arn = arn:aws:iam::111111111111:role/fooli-audit
-credential_source = Ec2InstanceMetadata
-role_session_name = steampipe
-
-[profile sp_fooli-security]
-role_arn = arn:aws:iam::222222222222:role/fooli-audit
+role_arn = arn:aws:iam::111111111111:role/security-audit
 credential_source = Ec2InstanceMetadata
 role_session_name = steampipe
 ```
+
+-----
 
 
 ## How to run these scripts
-
-
-### AWS Identity Center / AWS SSO
-
-1. Clone the [steampipe-samples](https://github.com/turbot/steampipe-samples) repo.
-```bash
-git clone https://github.com/turbot/steampipe-samples.git
-cd steampipe-samples/all/aws-organizations-scripts
-```
-2. Run the `generate_config_for_sso.sh` script.
-```bash
-./generate_config_for_sso.sh fooli security-audit ~/.steampipe/config/aws.spc ~/.aws/fooli-config
-https://device.sso.us-east-1.amazonaws.com/?user_code=HVWL-TLBX was opened in your browser. Please click allow.
-Press Enter when complete
-
-Creating Steampipe Connections in /Users/chris/.steampipe/config/aws.spc and AWS Profiles in /Users/chris/.aws/fooli-config
-```
-  * In the above example fooli is the AWS SSO Prefix from the start URL: `https://fooli.awsapps.com/start`
-  * `security-audit` is the name of the AWS SSO Role you have access to
-  * `~/.steampipe/config/aws.spc` is the output location of the Steampipe connection file
-  * `~/.aws/fooli-config` is the location of the AWS config file
-3. Before adding the contents of the `~/.aws/fooli-config` file to your `~/.aws/config`, you want to make sure there are no duplicate `[profile <name>]` blocks in either file.
 
 ### Local Authentication with a cross-account role
 
@@ -121,15 +85,17 @@ cd steampipe-samples/all/aws-organizations-scripts
 ```
 3. Run the `generate_config_for_cross_account_roles.sh` script.
 ```bash
-./generate_config_for_cross_account_roles.sh SSO security-audit ~/.aws/fooli-config fooli-security
+./generate_config_for_cross_account_roles.sh LOCAL security-audit ~/.aws/fooli-config fooli-security
 ```
-  * In the above example `SSO` is the method of authentication.
-  * `security-audit` is the name of the Cross Account Role you have access to
+  * In the above example `LOCAL` is the method of authentication.
+  * `security-audit` is the name of the cross-account role you have access to
   * `~/.aws/fooli-config` is the location of the AWS config file
   * `fooli-security` is the name of an _existing_ AWS profile in the audit account that can assume the `security-audit` role
 4. Before adding the contents of the `~/.aws/fooli-config` file to your `~/.aws/config`, you want to make sure there are no duplicate `[profile <name>]` blocks in either file.
 
-Note: this script will not append or overwrite the default `~/.aws/config` file. While we try and prevent conflicts by prefixing all the profiles with `sp_`, you will want to reconcile what is generated with the other profiles in your  `~/.aws/config` file or the aws CLI will fail to run.
+**Note:** this script will not append or overwrite the default `~/.aws/config` file. While we try and prevent conflicts by prefixing all the profiles with `sp_`, you will want to reconcile what is generated with the other profiles in your  `~/.aws/config` file or the aws CLI may fail to run.
+
+You can override the default `~/.aws/config` file with the [`AWS_CONFIG_FILE`](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html#cli-configure-files-where) environment variable. If you do that, you will need make sure to define the `source_profile` in the generated config file.
 
 ### EC2 Instance
 
@@ -149,10 +115,10 @@ cd steampipe-samples/all/aws-organizations-scripts
   * In the above example `SSO` is the method of authentication.
   * `security-audit` is the name of the Cross Account Role you have access to
   * `~/.aws/fooli-config` is the location of the AWS config file
-4. Verify the contents of the `~/.aws/fooli-config` and copy or append it to `~/.aws/config`
+4. Verify the contents of the `~/.aws/fooli-config` and copy or append it to `~/.aws/config`. Unlike the above example, you do not need to ensure there is a source_profile defined. Running the script in IMDS mode can be made idempotent.
 
 
-## Extending this pattern to multiple AWS Organizations.
+### Multiple AWS Organizations
 
 At some point, you will find yourself with a second AWS organization. Maybe you created a new organization to test Service Control Policies. Or you've acquired another company and can't migrate accounts until your legal department, and AWS's legal department agree to update terms or adjust spending commitments.
 
