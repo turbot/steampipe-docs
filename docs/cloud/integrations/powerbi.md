@@ -34,15 +34,15 @@ Database:
 
 ## Getting started
 
-[Power BI](https://powerbi.microsoft.com/en-us/downloads/) is available to use on a windows desktop. Here we will create a Steampipe Cloud connection from Power BI.
+[Power BI](https://powerbi.microsoft.com/en-us/downloads/) is available for Windows. Here we will create a Steampipe Cloud connection from Power BI.
 
-To create a new connection first install the [PostgreSQL ODBC driver](https://www.postgresql.org/ftp/odbc/versions/) since remote databases are not accessible with the built-in data source support. Enter the Steampipe Cloud connection details into the driver data source, set the SSL Mode to require and click `Test` to `Verify` then click `Save`.
+To create a new connection, first install the [PostgreSQL ODBC driver](https://www.postgresql.org/ftp/odbc/versions/). (Remote databases are not accessible with the built-in data source support.) Enter the Steampipe Cloud connection details, set the SSL Mode to require and click `Test` to `Verify` then click `Save`.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/powerbi-connection-success.png" />
 </div>
 
-To connect the database to Power BI, click on `Get data` from the ribbon, select ODBC and connect to the data source.
+To connect the database to Power BI, click `Get data` from the ribbon, select ODBC, and connect to the data source.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"50%"}}>
 <img src="/images/docs/cloud/powerbi-odbc-connect.png" />
@@ -56,7 +56,7 @@ Once the data source is connected, select and load the database from the navigat
 
 ## Create a report dashboard to analyze resources
 
-Power BI dashboards are built with visuals that display data. We'll focus here on creating a dashboard to monitor and analyze AWS services. To begin, click on `Transform data` from the ribbon to open the `Power Query editor` and add the data source either by clicking on `New Source` or by selecting it from under `Recent Sources`. Since tables from the plugins are not listed, we will create a visual for instance types per region using this query.
+We'll focus here on creating a dashboard to monitor and analyze AWS services. To begin, click `Transform data` from the ribbon to open the `Power Query editor`, then add the data source either by clicking on `New Source` or by selecting it from under `Recent Sources`. Since tables from the plugins are not listed, we will create a [visual](https://powerbi.microsoft.com/en-us/power-bi-visuals/) for instance types per region that uses this query.
 
 ```
 = Odbc.Query("dsn=<data source name>", "select
@@ -68,13 +68,13 @@ group by location")
 
 ```
 
-Once Power BI previews the data, click on `Close & Apply` to save. You may also save it into a CSV file using the export option under visual settings.
+Once Power BI previews the data, click on `Close & Apply` to save. You may also save it into a CSV file using the export option.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"60%"}}>
 <img src="/images/docs/cloud/powerbi-instancetype-visual.png" />
 </div>
 
-Now click on `New Visual` from the ribbon and similarly create visuals for CPU utilization, buckets with default encryption disabled and top 10 cost by service with these queries.
+Now click `New Visual` from the ribbon and create visuals for CPU utilization, buckets with default encryption disabled, and top 10 cost by service with these queries.
 
 ```
 = Odbc.Query("dsn=<data source name>", "select
@@ -114,7 +114,7 @@ order by
 limit 10;")
 ```
 
-Power BI provides a variety of visuals under the Visualizations tab. Here we use `Stacked column chart` for Instance types per region, `Funnel` for CPU utilization, `Gauge` to show buckets with default encryption disabled and `Pie chart` to show top 10 cost by service. The dashboard can also be downloaded as a PDF file to be shared by simply using `Export to PDF` from the Export option under the file menu.
+Power BI provides a variety of visuals under the Visualizations tab. Here we use `Stacked column chart` for instance types per region, `Funnel` for CPU utilization, `Gauge` to show buckets with default encryption disabled, and `Pie chart` to show top 10 cost by service. The dashboard can also be downloaded as a PDF file to be shared by simply using `Export to PDF` from the Export option under the file menu.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/powerbi-dashboard-preview.png.png" />
