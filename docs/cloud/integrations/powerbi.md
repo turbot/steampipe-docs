@@ -117,7 +117,7 @@ limit 10;")
 Power BI provides a variety of visuals under the Visualizations tab. Here we use `Stacked column chart` for instance types per region, `Funnel` for CPU utilization, `Gauge` to show buckets with default encryption disabled, and `Pie chart` to show top 10 cost by service. The dashboard can also be downloaded as a PDF file to be shared by simply using `Export to PDF` from the Export option under the file menu.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
-<img src="/images/docs/cloud/powerbi-dashboard-preview.png.png" />
+<img src="/images/docs/cloud/powerbi-dashboard-preview.png" />
 </div>
 
 ## Summary
