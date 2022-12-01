@@ -34,7 +34,38 @@ Database:
 
 ## Getting started
 
-[Azure Data Studio](https://learn.microsoft.com/en-gb/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16) is available to use on the desktop. Here we will create a Steampipe Cloud connection from Azure Data Studio and as an example build a visual chart for DNS records associated with `steampipe.io` using the [NET](https://hub.steampipe.io/plugins/turbot/net) plugin.
+[Azure Data Studio](https://learn.microsoft.com/en-gb/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16) is available to use on the desktop. First let's create a Steampipe Cloud connection from Azure Data Studio, then chart ...
+
+<blockquote>
+I don't think it makes sense to chart the data from "select * from net_dns_record where domain = 'steampipe.io' and dns_server = '1.1.1.1:53'"
+
+How about something like this?
+
+<pre>
+select distinct
+  jsonb_array_elements_text(dns_names) as domain, count(*)
+from
+  crtsh_certificate
+where
+  query = 'steampipe.io' group by domain order by count desc
+
++----------------------------------+-------+
+| domain                           | count |
++----------------------------------+-------+
+| steampipe.io                     | 26    |
+| www.steampipe.io                 | 26    |
+| hub.steampipe.io                 | 23    |
+| cloud.steampipe.io               | 16    |
+| *.usea1.db.steampipe.io          | 10    |
+| *.usea1.dashboard.steampipe.io   | 8     |
+| prom.cloud.steampipe.io          | 8     |
+| es.cloud.steampipe.io            | 6     |
+| news.steampipe.io                | 6     |
+| 0001.usea1.db.steampipe.io       | 4     |
+| 0001.usea1.db.cloud.steampipe.io | 2     |
++----------------------------------+-------+
+</pre>
+</blockquote>
 
 To create a new connection, first install the [PostgreSQL](https://learn.microsoft.com/en-gb/sql/azure-data-studio/extensions/postgres-extension?view=sql-server-ver16) extension from the `Extensions` tab in the sidebar. Click on `New Connection` from the Connections tab, select PostgreSQL as the `Connection type` and add the connection details. Click `Advanced` and update the Port number and set the SSL mode to Require.
 
@@ -60,7 +91,11 @@ where
   and dns_server = '1.1.1.1:53';
   ```
 
-Data studio previews the data in a table form. Now click `Chart` from the side bar and select `Chart Type` as Line. The data can be saved as a CSV, XML, JSON, Excel formats or as an Image. You may also choose to save it as a custom insight widget for the dashboard by using the `Create Insight`(code in JSON) feature.
+Data studio previews the data in a table form. Now click `Chart` from the side bar and select `Chart Type` as Line. The data can be saved as a CSV, XML, JSON, Excel formats or as an Image. You may also choose to save it as a custom widget for the dashboard by using the `Create Insight` (code in JSON) feature.
+
+<blockquote>
+What does `(code in JSON)` mean?
+</blockquote>
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/azure-datastudio-linechart.png" />
@@ -68,8 +103,9 @@ Data studio previews the data in a table form. Now click `Chart` from the side b
 
 ## Create a dashboard to analyze Azure resources
 
-The Insight widget charts are the building blocks of the dashboard. We'll focus here on creating a dashboard that monitors and analyzes Azure resources. To begin, create insights with these queries for `Storage accounts with versioning disabled`, `Disk metric read ops daily`, `List of unattached disks` and `Virtual machine count per region`.
-Data Studio provides a variety of chart types. Here we use `Doughnut` for Storage accounts with versioning disabled, `Line` for Disk metric read ops daily, `Table` for List of unattached disks and `Pie` for Virtual machine count per region.
+The Insight widget charts are the building blocks of the dashboard. Here we'll build a dashboard that monitors and analyzes Azure resources. To begin, create Insights with these three queries.
+
+### Storage accounts with versioning disabled
 
 ```
 select
@@ -79,6 +115,8 @@ from
 where
   not blob_versioning_enabled;
   ```
+
+### Disk metric read ops daily
 
 ```
 select
@@ -94,6 +132,8 @@ order by
   timestamp;
   ```
 
+### List of unattached disks
+
 ```
 select
   name,
@@ -107,6 +147,7 @@ from
 where
   disk_state = 'Unattached';
   ```
+### Virtual machine count per region
 
 ```
 select
@@ -118,13 +159,19 @@ group by
   region;
   ```
 
-To build the dashboard add insight configuration(JSON code) to `dashboard.database.widgets` found under `User Settings`. To note here, Data Studio requires the queries to be save in a `.sql` file with the `queryFile:` configuration property pointing at its path.
+To build the dashboard add insight configuration(JSON code) to `dashboard.database.widgets` found under `User Settings`. To note here, Data Studio requires the queries to be saved in a `.sql` file with the `queryFile:` configuration property pointing at its path.
+
+<blockquote>
+> insight configuration(JSON code)
+
+OK, I'm getting the impression this (JSON code) thing appears as a label on some piece of UX? If so, showing that will help explain this otherwise puzzling phrase.
+</blockquote>
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/azure-datastudio-widget-config.png" />
 </div>
 
-Once the settings are saved, Right click on the database name and select `Manage` to display the Dashboard with the data.
+Once the settings are saved, right-click the database name and select `Manage` to display the Dashboard with the data.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/azure-datastudio-dashboard.png" />
