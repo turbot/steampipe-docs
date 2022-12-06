@@ -153,7 +153,7 @@ group by
   region;
   ```
 
-To build, open `Dashboard` under `Preferences: Open User Settings` and click `Edit in settings.json` for  `Dashboard > Database: Widgets`. Paste the insight JSON configuration for the visuals under `"dashboard.database.widgets"`. To note here, Data Studio requires the queries to be saved in a `.sql` file with the `queryFile:` configuration property pointing at its path.
+To build, open `Dashboard` under `Preferences: Open User Settings` and click `Edit in settings.json` for  `Dashboard > Database: Widgets`. Paste the insight JSON configuration for the visuals under `dashboard.database.widgets`. To note here, Data Studio requires the queries to be saved in a `.sql` file with the `queryFile:` configuration property pointing at its path.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"50%"}}>
 <img src="/images/docs/cloud/azure-datastudio-widget-config.png" />
