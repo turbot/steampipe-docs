@@ -97,7 +97,7 @@ You can save the chart configuration and add it as a custom widget to display da
 
 ## Create a dashboard to analyze Azure resources
 
-The charts made with Insights widget are the building blocks of a dashboard. Here we'll build a dashboard that monitors and analyzes Azure resources. To begin, create charts with these four queries using `Doughnut` for Storage accounts with versioning disabled, `Line` for Disk metric read ops daily, `Table` for List of unattached disks and `Pie` for Virtual machine count per region. Then, click `Create Insight` to save their JSON configurations.
+The charts made with Insights widget are the building blocks of a dashboard. Here we'll build a dashboard that monitors and analyzes Azure resources. To begin, create charts with these four queries using `Doughnut` for *Storage accounts with versioning disabled*, `Line` for *Disk metric read ops daily*, `Table` for *List of unattached disks* and `Pie` for *Virtual machine count per region*. Then, click `Create Insight` to save their JSON configurations.
 
 ### Storage accounts with versioning disabled
 
