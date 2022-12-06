@@ -34,7 +34,7 @@ Database:
 
 ## Getting started
 
-[Azure Data Studio](https://learn.microsoft.com/en-gb/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16) is available to use on the desktop. First let's create a Steampipe Cloud connection from Azure Data Studio, then chart Apple hourly price history using the [Finance](https://hub.steampipe.io/plugins/turbot/finance) plugin.
+[Azure Data Studio](https://learn.microsoft.com/en-gb/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16) is available to use on the desktop. First let's create a Steampipe Cloud connection from Azure Data Studio, then chart Apple's hourly price history using the [Finance](https://hub.steampipe.io/plugins/turbot/finance) plugin.
 
 To create a new connection, first install the [PostgreSQL](https://learn.microsoft.com/en-gb/sql/azure-data-studio/extensions/postgres-extension?view=sql-server-ver16) extension from the `Extensions` tab in the sidebar. Click on `New Connection` from the Connections tab, select PostgreSQL as the `Connection type` and add the connection details. Click `Advanced` and update the Port number and set the SSL mode to Require.
 
