@@ -63,7 +63,7 @@ order by
 
 Data studio previews the data in a table form. To convert it into a visual, click `Chart` from the sidebar and select `Chart Type` as Bar. The data can be saved in CSV, XML, JSON, Excel formats or as an Image.
 
-<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"70%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em"}}>
 <img src="/images/docs/cloud/azure-datastudio-appl-barchart.png" />
 </div>
 
