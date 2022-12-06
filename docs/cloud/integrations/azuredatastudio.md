@@ -34,38 +34,7 @@ Database:
 
 ## Getting started
 
-[Azure Data Studio](https://learn.microsoft.com/en-gb/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16) is available to use on the desktop. First let's create a Steampipe Cloud connection from Azure Data Studio, then chart ...
-
-<blockquote>
-I don't think it makes sense to chart the data from "select * from net_dns_record where domain = 'steampipe.io' and dns_server = '1.1.1.1:53'"
-
-How about something like this?
-
-<pre>
-select distinct
-  jsonb_array_elements_text(dns_names) as domain, count(*)
-from
-  crtsh_certificate
-where
-  query = 'steampipe.io' group by domain order by count desc
-
-+----------------------------------+-------+
-| domain                           | count |
-+----------------------------------+-------+
-| steampipe.io                     | 26    |
-| www.steampipe.io                 | 26    |
-| hub.steampipe.io                 | 23    |
-| cloud.steampipe.io               | 16    |
-| *.usea1.db.steampipe.io          | 10    |
-| *.usea1.dashboard.steampipe.io   | 8     |
-| prom.cloud.steampipe.io          | 8     |
-| es.cloud.steampipe.io            | 6     |
-| news.steampipe.io                | 6     |
-| 0001.usea1.db.steampipe.io       | 4     |
-| 0001.usea1.db.cloud.steampipe.io | 2     |
-+----------------------------------+-------+
-</pre>
-</blockquote>
+[Azure Data Studio](https://learn.microsoft.com/en-gb/sql/azure-data-studio/download-azure-data-studio?view=sql-server-ver16) is available to use on the desktop. First let's create a Steampipe Cloud connection from Azure Data Studio, then chart Apple hourly price history using the [Finance](https://hub.steampipe.io/plugins/turbot/finance) plugin.
 
 To create a new connection, first install the [PostgreSQL](https://learn.microsoft.com/en-gb/sql/azure-data-studio/extensions/postgres-extension?view=sql-server-ver16) extension from the `Extensions` tab in the sidebar. Click on `New Connection` from the Connections tab, select PostgreSQL as the `Connection type` and add the connection details. Click `Advanced` and update the Port number and set the SSL mode to Require.
 
@@ -83,27 +52,52 @@ Now to create a chart, first right click on the database name, select `New Query
 
 ```
 select
-  *
+  close
 from
-  net_dns_record
+  finance_quote_hourly
 where
-  domain = 'steampipe.io'
-  and dns_server = '1.1.1.1:53';
-  ```
+  symbol = 'AAPL'
+order by
+  timestamp desc
+```
 
-Data studio previews the data in a table form. Now click `Chart` from the side bar and select `Chart Type` as Line. The data can be saved as a CSV, XML, JSON, Excel formats or as an Image. You may also choose to save it as a custom widget for the dashboard by using the `Create Insight` (code in JSON) feature.
+Data studio previews the data in a table form. To convert it into a visual, click `Chart` from the side bar and select `Chart Type` as Bar. The data can be saved in CSV, XML, JSON, Excel formats or as an Image.
 
-<blockquote>
-What does `(code in JSON)` mean?
-</blockquote>
-
-<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
-<img src="/images/docs/cloud/azure-datastudio-linechart.png" />
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"70%"}}>
+<img src="/images/docs/cloud/azure-datastudio-appl-barchart.png" />
 </div>
+
+You can save the chart configuration and add it as a custom widget to display data in a dashboard. To do that, click `Create Insight` under the Chart tab and save the code displayed in a JSON format.
+
+```json
+{
+    "name": "Apple hourly price history",
+    "gridItemConfig": {
+        "sizex": 2,
+        "sizey": 1
+    },
+    "widget": {
+        "insights-widget": {
+            "type": {
+                "bar": {
+                    "dataDirection": "horizontal",
+                    "columnsAsLabels": true,
+                    "labelFirstColumn": false,
+                    "legendPosition": "none",
+                    "xAxisMin": "2022-12-05T17:41",
+                    "xAxisMax": "2022-12-06T17:41",
+                    "dataType": "point"
+                }
+            },
+            "queryFile": "Users/<user>/applquery.sql"
+        }
+    }
+}
+```
 
 ## Create a dashboard to analyze Azure resources
 
-The Insight widget charts are the building blocks of the dashboard. Here we'll build a dashboard that monitors and analyzes Azure resources. To begin, create Insights with these three queries.
+The charts made with Insights widget are the building blocks of a dashboard. Here we'll build a dashboard that monitors and analyzes Azure resources. To begin, create charts with these four queries using `Doughnut` for Storage accounts with versioning disabled, `Line` for Disk metric read ops daily, `Table` for List of unattached disks and `Pie` for Virtual machine count per region. Then, click `Create Insight` to save their JSON configurations.
 
 ### Storage accounts with versioning disabled
 
@@ -159,19 +153,13 @@ group by
   region;
   ```
 
-To build the dashboard add insight configuration(JSON code) to `dashboard.database.widgets` found under `User Settings`. To note here, Data Studio requires the queries to be saved in a `.sql` file with the `queryFile:` configuration property pointing at its path.
+To build, open `Dashboard` under `Preferences: Open User Settings` and click `Edit in settings.json` for  `Dashboard > Database: Widgets`. Paste the insight JSON configuration for the visuals under `"dashboard.database.widgets"`. To note here, Data Studio requires the queries to be saved in a `.sql` file with the `queryFile:` configuration property pointing at its path.
 
-<blockquote>
-> insight configuration(JSON code)
-
-OK, I'm getting the impression this (JSON code) thing appears as a label on some piece of UX? If so, showing that will help explain this otherwise puzzling phrase.
-</blockquote>
-
-<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"50%"}}>
 <img src="/images/docs/cloud/azure-datastudio-widget-config.png" />
 </div>
 
-Once the settings are saved, right-click the database name and select `Manage` to display the Dashboard with the data.
+Save the user settings and right-click on the database name and select `Manage` to display the Dashboard.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/azure-datastudio-dashboard.png" />
