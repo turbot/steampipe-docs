@@ -5,11 +5,11 @@ sidebar_label: mod
 
 
 # mod
-Every mod must contain a `mod.sp` file with a single `mod` block: 
+Every mod must contain a `mod.sp` file with a single `mod` block.
 
-The `mod` block contains metadata for the mod (including metadata used in the hub site and social media), as well as dependency data.  A mod author may edit the mod block directly, but Steampipe will **also** edit the file, adding removing and modifying dependencies in the file when users add and remove mods via the `steampipe mod` commands.
+The `mod` block contains metadata for the mod (including metadata used in the hub site and social media), as well as dependency data.  A mod author may edit the mod block directly, but Steampipe will **also** edit the file, adding, removing and modifying dependencies in the file when users add and remove mods via the [`steampipe mod` commands](/docs/reference/cli/mod).  For this reason, it is recommended that the `mod.sp` *only* contain a `mod` block; do not add other mod resources (`query`, `control`, `dashboard`, etc) to this file.
 
-The block name (`aws_cis` in the example) is the mod name.  <!-- This name is used as the name of the mod if it is not aliased when imported via a `require` block.  --> Mod names (and aliases) use lower_snake_case. They may contain lowercase chars, numbers or underscores, and must start with a letter.
+The block name (`aws_cis` in the example) is the mod name.  <!-- This name is used as the name of the mod if it is not aliased when imported via a `require` block.  --> Mod names use lower_snake_case. They may contain lowercase chars, numbers or underscores, and must start with a letter.
 
 
 ## Example Usage
@@ -20,7 +20,7 @@ mod "aws_cis" {
   title          = "AWS CIS"
   description    = "AWS CIS Reporting and remediation"
   color          = "#FF9900"
-  documentation  = file(./aws_cis_docs.md)
+  documentation  = file("./aws_cis_docs.md")
   icon           = "/images/plugins/turbot/aws.svg"
   categories         = ["Public Cloud", "AWS"]
 
@@ -30,16 +30,14 @@ mod "aws_cis" {
   }
 
   require {
-    steampipe {
-      version = ">0.10.0"
-    }
+    steampipe  = "0.10.0"
 
     plugin "aws"{
-      version = "^0.24"
+      version = "0.86"
     }
 
     plugin "gcp"{
-      version = "^0.12"
+      version = "0.29"
     }
 
     mod "github.com/turbot/steampipe-mod-aws-compliance" {
@@ -80,37 +78,50 @@ The `opengraph` block is an optional block of metadata for use in social media a
 #### Mod Dependencies
 A mod may contain a `require` block to specify version dependencies for the Steampipe CLI, plugins, and mods.  While it is possible to edit this section manually, Steampipe will also modify it (including reordering and removing comments) when you run a `steampipe mod` command to install, update, or uninstall a mod.
 
-A mod may specify a dependency on the Steampipe CLI.  Steampipe will evaluate the dependency when the mod is loaded, and will error if the constraint is not met, but it will not install or upgrade the CLI.  Typically, a `steampipe` dependency should be a `>=` constraint:
+A mod may specify a dependency on the Steampipe CLI.  Steampipe will evaluate the dependency when the mod is loaded, and will error if the constraint is not met, but it will not install or upgrade the CLI.  A `steampipe` constraint specifies a *minimum version*, and does not support semver syntax:
 ```hcl
 require {
-  steampipe {
-    version = ">=0.10.0"
-  }
+  steampipe = "0.10.0"
 }
 ```
 
-A mod may specify a dependency on one or more plugins.  Steampipe will evaluate the dependency when the mod is loaded, and will error if the constraint is not met, but it will not install or upgrade the plugin.  Typically, a `plugin` dependency should be a loose constraint (`>=`, `^`, `*`):
+A mod may specify a dependency on one or more plugins.  Steampipe will evaluate the dependency when the mod is loaded, and will error if the constraint is not met, but it will not install or upgrade the plugin. A `plugin` constraint specifies a *minimum version*, and does not support semver syntax:
 ```hcl
 require {
   plugin "aws"{
-    version = "^0.24"
+    version = "0.24"
   }
 }
 ```
 
-A mod may specify dependencies on other mods.  While you can manually edit the `mod` dependencies in the `mod.sp`, they are more commonly managed by Steampipe when you install, update, or uninstall mods via the [steampipe mod commands](/docs/reference/cli/mod).  The `version` can be an exact version<!-- ,a tag name, a branch name, a local file --> or a semver string.  You may optionally specify an `alias`, which is useful when have a name collision (as when requiring multiple versions of a given mod):
-```
+A mod may specify dependencies on other mods.  While you can manually edit the `mod` dependencies in the `mod.sp`, they are more commonly managed by Steampipe when you install, update, or uninstall mods via the [steampipe mod commands](/docs/reference/cli/mod).  The `version` can be an exact version<!-- ,a tag name, a branch name, a local file --> or a [semver](https://semver.org/) string:
+
+```hcl
 require {
   mod "github.com/turbot/steampipe-mod-aws-compliance" {
     version = "^0.10"
   }
+  mod "github.com/turbot/steampipe-mod-aws-insights" {
+    version = "2.0"
+  }
+  mod "github.com/turbot/steampipe-mod-gcp-compliance" {
+    version = "*"
+  }
+}
+```
+
+<!--
+You may optionally specify an `alias`, which is useful when have a name collision (as when requiring multiple versions of a given mod):
+```
+require {
+
   mod "github.com/turbot/steampipe-mod-aws-compliance" {
     version = "2.0"
     alias   = "aws_compliance2"
   }
 }
 ```
-
+-->
 <!--
 ```
 require {
