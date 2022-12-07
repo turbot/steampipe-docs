@@ -50,7 +50,7 @@ Once the integration is successful, click `View Schema` from the navigation bar 
 
 ## Create a chart with custom query
 
-We'll focus here on creating a chart to analyze the regular market change percent for bitcoins using the [Finance](https://hub.steampipe.io/plugins/turbot/finance) plugin. To being, click the `SQL` block and select the integrated database from the dropdown list seen on the projects page. Paste this query in the command palette and click `Run notebook`. You can refresh the notebook on an hourly, daily or weekly schedule to update the data using the `Schedule notebook` feature.
+Let's use the [Finance](https://hub.steampipe.io/plugins/turbot/finance) plugin to chart the change percentage for bitcoin during regular market session. To begin, click the `SQL` block and select the integrated database from the dropdown list on the projects page. Paste this query in the command palette and click `Run notebook`. You can refresh the notebook on an hourly, daily or weekly schedule to update the data using the `Schedule notebook` feature.
 
 ```
 select
