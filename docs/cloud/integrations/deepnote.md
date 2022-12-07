@@ -34,7 +34,7 @@ Database:
 
 ## Getting started
 
-[Deepnote](https://deepnote.com/sign-up) is accessible through any web-browser. Here we will create a Steampipe Cloud connection from Deepnote.
+[Deepnote](https://deepnote.com/sign-up) works with any web browser.
 
 To create a new connection, first click on `Projects` to create a new project. Then click `Create new` from the `Integrations` tab at the right-hand sidebar, select `PostgreSQL` and enter the connection details.
 
