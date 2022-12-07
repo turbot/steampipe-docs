@@ -42,7 +42,7 @@ To create a new connection, first click on `Projects` to create a new project. T
 <img src="/images/docs/cloud/deepnote-connection-success.png" />
 </div>
 
-Once the integration is successful, click `View Schema` from the navigation bar to explore the plugins and its tables.
+Once the integration is successful, click `View Schema` from the navigation bar to explore the connections in your workspace.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"40%"}}>
 <img src="/images/docs/cloud/deepnote-navigationbar.png" />
