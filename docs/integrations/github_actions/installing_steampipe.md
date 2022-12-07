@@ -1,9 +1,9 @@
 ---
-title: Using Steampipe in GitHub Actions
-sidebar_label: GitHub Actions
+title: Installing Steampipe in GitHub Actions
+sidebar_label: Installing Steampipe
 ---
 
-# Using Steampipe in GitHub Actions
+# Installing Steampipe in GitHub Actions
 
 GitHub provides a [hosted environment](https://docs.github.com/en/actions/) in which you can build, test, and deploy software.
 
