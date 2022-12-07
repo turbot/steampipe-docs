@@ -71,7 +71,7 @@ Deepnote previews the data in a table form. The data can also be exported in a C
 <img src="/images/docs/cloud/deepnote-table-preview.png" />
 </div>
 
-Now click `Visualize` to open the visualize data form and select Type as `Bar chart`. Update the X and Y Axis data fields with `regular_market_change_percent` and `symbol` to display the chart with the data. Deepnote also allows `Block sharing` with an auto-generated link where anyone with the link will be able to view the shared block.
+Now click `Visualize` to open the visualize data form and select Type as `Bar chart`. Update the X and Y Axis data fields with `regular_market_change_percent` and `symbol` to display the chart with the data. Deepnote also supports `Block sharing`: it can generate a link that anyone can use to view the shared block.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/deepnote-bitcoin-chart.png" />
