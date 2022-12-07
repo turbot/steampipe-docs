@@ -5,7 +5,7 @@ sidebar_label: Deepnote
 
 ##  Connect to Steampipe Cloud from Deepnote
 
-[Deepnote](https://deepnote.com/home) is a collaborative notebook for discovering, understanding and sharing data that connects to many databases, including Postgres, and enables users to explore, query, and visualize data.
+[Deepnote](https://deepnote.com/home) is a collaborative notebook for discovering, understanding and sharing data. It connects to many databases, including Postgres, and enables users to explore, query, and visualize data.
 
 Steampipe provides a single interface to all your cloud, code, logs and more. Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including Deepnote -- can connect to.
 
