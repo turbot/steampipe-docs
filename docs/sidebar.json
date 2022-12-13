@@ -91,7 +91,16 @@
       "integrations/aws_cloudshell",
       "integrations/azure_cloudshell",
       "integrations/gcp_cloudshell",
-      "integrations/github_action",
+      {
+        "type": "category",
+        "id": "integrations-github-actions",
+        "label": "GitHub Actions",
+        "link": "integrations/github_actions/overview",
+        "items": [
+          "integrations/github_actions/installing_steampipe",
+          "integrations/github_actions/aws_oidc"
+        ]
+      },
       "integrations/gitlab_ci_cd",
       "integrations/aws_codebuild"
     ]
