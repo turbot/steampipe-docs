@@ -18,8 +18,8 @@ This guide also assumes you want to query across all the regions. Why would you 
 This guide will offer three scenarios for accessing all of your AWS accounts using [cross-account roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html).
 
 1. Leverage local credentials to authenticate and assume the cross-account role in a single AWS Organization.
-2. Leverage EC2 Instance credentials to authenticate and assume the cross-account role in a single Organization.
-3. Leverage EC2 Instance credentials to authenticate and assume the same cross-account role in multiple Organizations.
+2. Leverage EC2 Instance credentials to authenticate and assume the cross-account role in a single AWS Organization.
+3. Leverage EC2 Instance credentials to authenticate and assume the same cross-account role in multiple AWS Organizations.
 
 Why cross-account roles? Simply put, they are AWS best-practice for accessing multiple AWS accounts. [AWS recommends](https://docs.aws.amazon.com/accounts/latest/reference/credentials-access-keys-best-practices.html) customers leverage roles over long-term access keys. [AWS Identity Center](https://aws.amazon.com/iam/identity-center/) (formerly known as AWS Single Sign On or SSO) works for a small number of accounts, but as an end-user, you must run `aws sso login` for each account.
 
@@ -75,7 +75,7 @@ role_session_name = steampipe
 
 ### Local Authentication with a cross-account role
 
-In this scenario, you're still running from a local workstation and using your existing authentication methods to the trusted security account. This could be an IAM User; temporary credentials provided by [aws-gimme-creds](https://github.com/Nike-Inc/gimme-aws-creds) or AWS SSO.  All other connections will leverage a cross-account audit role.
+In this scenario, you're running from a local workstation and using your existing authentication methods to the trusted security account. This could be an IAM User; temporary credentials provided by [aws-gimme-creds](https://github.com/Nike-Inc/gimme-aws-creds) or AWS SSO.  All other connections will leverage a cross-account audit role.
 
 1. You need to dedicate one account in your AWS Organization for the purposes of auditing all the other accounts (the "audit account"). You then need to deploy an IAM Role (the "security-audit role") in all AWS accounts that trusts the audit account.
 2. Clone the [steampipe-samples](https://github.com/turbot/steampipe-samples) repo.
