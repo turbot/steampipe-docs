@@ -36,7 +36,7 @@ Database:
 
 [Deepnote](https://deepnote.com/sign-up) works with any web browser.
 
-To create a new connection, first click on `Projects` to create a new project. Then click `Create new` from the `Integrations` tab on the right sidebar, select `PostgreSQL` and enter the connection details.
+To create a new connection, first click on `Projects` to create a new project. Then click `Create new` from the `Integrations` tab on the right sidebar, select `PostgreSQL` and enter the connection details. If your connection is protected, you might need to [whitelist](https://deepnote.com/docs/authorize-deepnote-ip-addresses) Deepnote's IP adresses.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/deepnote-connection-success.png" />
