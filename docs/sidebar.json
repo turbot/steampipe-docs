@@ -247,7 +247,6 @@
         "link": "cloud/integrations/overview",
         "items": [
           "cloud/integrations/apachesuperset",
-          "cloud/integrations/azuredatastudio",
           "cloud/integrations/cli",
           "cloud/integrations/datagrip",
           "cloud/integrations/dbeaver",
