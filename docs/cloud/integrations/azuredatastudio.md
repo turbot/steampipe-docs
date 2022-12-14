@@ -21,9 +21,7 @@ You can also connect Azure Data Studio to [Steampipe CLI](https://steampipe.io/d
 
 ```
 Steampipe service is running:
-
 Database:
-
   Host(s):            localhost, 127.0.0.1, 192.168.29.204
   Port:               9193
   Database:           steampipe
