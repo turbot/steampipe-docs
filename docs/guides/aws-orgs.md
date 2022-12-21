@@ -5,10 +5,6 @@ sidebar_label: AWS Organizations
 
 # Using Steampipe CLI with AWS Organizations
 
-## Statement of Problem
-
-As a security practitioner, you may need to answer a question about your entire cloud estate. Depending on the organization, this could entail hundreds or even thousands of AWS accounts and, with mergers and acquisitions, multiple payers.  While we often demonstrate the power of Steampipe with simple experimental examples, you can also use it across a large enterprise.
-
 There are some considerations when querying hundreds of accounts across all the regions. Steampipe has to have both a [_connection_](https://hub.steampipe.io/plugins/turbot/aws#configuration) defining the specific AWS accounts and an [AWS Credential _profile_](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html#cli-configure-files-settings) that defines how credentials for the connection are obtained. In a large or dynamic environment, you might have multiple accounts created or closed in any given week. Manually managing the profiles and connections can lead to mistakes and blindspots in your organization, so it's critical that these are kept up to date.
 
 This guide also assumes you want to query across all the regions. Why would you do that? A global company is probably going to have a global footprint. Your APAC division probably uses the Singapore and Tokyo regions. Your Italian subsidiary wants to enable eu-south-1. That Oslo acquisition you just made deployed all its infrastructure in eu-north-1. You must assume you have infrastructure in every AWS Region at a certain point. It's why [AWS tells you to enable GuardDuty](https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_settingup.html#setup-before), CloudTrail, and IAM Access Analyzer in all the regions, not just the ones you think you have deployed resources into.
@@ -179,9 +175,3 @@ from aws_ec2_instance as ec2,
   aws_payer.aws_organizations_account as org
 where org.id = ec2.account_id;
 ```
-
-## Conclusion
-
-There you have it. Three ways to automate the management of AWS config and Steampipe connection files to run queries, benchmarks, and dashboards across your entire enterprise AWS footprint. Are you responsible for the security of a large cloud footprint? Have you built new ways to scale and improve your practices?  If so, please [let us know](https://steampipe.io/community/join): we love to collaborate with our community!
-
-
