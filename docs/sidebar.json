@@ -206,22 +206,29 @@
         "label": "Mod Resources",
         "link": "reference/mod-resources/overview",
         "items": [
+          "reference/mod-resources/query-providers",
+          "reference/mod-resources/node-edge-providers",
           "reference/mod-resources/benchmark",
           "reference/mod-resources/card",
+          "reference/mod-resources/category",
           "reference/mod-resources/chart",
           "reference/mod-resources/container",
           "reference/mod-resources/control",
           "reference/mod-resources/dashboard",
+          "reference/mod-resources/edge",
           "reference/mod-resources/flow",
+          "reference/mod-resources/graph",
           "reference/mod-resources/hierarchy",
           "reference/mod-resources/image",
           "reference/mod-resources/input",
           "reference/mod-resources/locals",
           "reference/mod-resources/mod",
+          "reference/mod-resources/node",
           "reference/mod-resources/query",
           "reference/mod-resources/table",
           "reference/mod-resources/text",
-          "reference/mod-resources/variable"
+          "reference/mod-resources/variable",
+          "reference/mod-resources/with"
         ]
       }
     ]
