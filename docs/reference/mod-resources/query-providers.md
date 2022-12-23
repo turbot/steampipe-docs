@@ -55,7 +55,7 @@ query "bucket_count" {
 ```
 
 
-# Params v/s Args
+## Params v/s Args
 
 Query providers allow you to specify parameters that the `sql` accepts and to specify what arguments to pass to the `query` or `sql`.  The difference between `param` and `args` is a common source of confusion.
 
@@ -177,15 +177,12 @@ query "bucket_count_for_region" {
 ```
 
 
-# `with` blocks
+## `with` blocks
 
-Query provider resources may also include `with` blocks. Similar to a `with` clause in a postgres CTE, the `with` block allows you to specify additional queries or sql statements to run **before* running "main" query specified in the `sql` or `query` argument.
-
-
-Like `param`, you can only specify `with` blocks on top-level named resources in your mod. The results of the `with` query can be referenced within the resource in which it is defined (including any sub-blocks) as `with.{name}`. `with` is not a top-level named resource in its own right - it is ONLY a block within other resources. 
+Query provider resources may also include [with blocks](/docs/reference/mod-resources/with). Similar to a `with` clause in a postgres CTE, the `with` block allows you to specify additional queries or sql statements to run **before* running "main" query specified in the `sql` or `query` argument.
 
 
-# running from the steampipe cli
+## running from the steampipe cli
 
 You can run a query for any top-level named query provider resources from `steampipe query`.  If the query provides defaults for all the parameters, you can run it without arguments in the same way you would run a query or control that takes no parameters, and it will run with the default values:
 

@@ -487,9 +487,6 @@ category "plugin_tag" {
 
 ## Categories
 
-Node/Edge providers allow you to specify a `category` for each node and edge.  Categories are used to define display properties such as color, title, and icon to provide a consistent look and feel across panels and dashboards.  
+Node/Edge providers allow you to specify a [category](/docs/reference/mod-resources/category) for each node and edge.  Categories are used to define display properties such as color, title, and icon to provide a consistent look and feel across panels and dashboards.  
 
 Categories may be defined either at the mod level or at the top level of a `graph`, `flow`, or `hierarchy`.  When using `node` and `edge` blocks, it is typically preferable to define the categories as top-level, named mod resources.  This allows you to reference them via the `category` HCL argument in a node or edge.  When specifying a `category` in SQL, such as when using the monolithic query approach, you will need to define the category at the top level of the graph, flow, or hierarchy.
-
-
-<! -- ## nested graphs / flows / hierarchies -->

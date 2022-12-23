@@ -302,6 +302,15 @@ Many dashboard elements contain a `color` argument.  The color arguments support
 - An [RGBA color value](https://www.w3schools.com/css/css3_colors.asp#:~:text=RGBA%20color%20values%20are%20an,and%201.0%20(fully%20opaque).) of the format `color = "rgb(128, 0, 128, 0.5)"`
 
 
+### icon
+
+Many dashboard elements contain an `icon` argument.  The icon arguments support a standard set of functionality and options, and may be:
+- A google [material symbols icon](https://fonts.google.com/icons).  If no prefix is specified, the icon will be chosen from google material symbols.  For example, `icon = "verified-user"` will use the `verified_user` icon from google material symbols.
+- A [heroicons](https://heroicons.com/) icon. To use heroicons, prefix the icon name with `heroicons-outline:` or `heroicons-solid:`. For example, `icon = "heroicons-outline:shield-check"` will use the `shield-check` icon from heroicons outline. 
+- A custom icon.  To use a custom icon, specify the icon URL, for example `icon = "https://steampipe.io/images/steampipe-logo.png"`.
+- Text.  To use text as an icon, prefix the icon with `text:`, for example `icon = "text:OK"` will display the text "OK" in place of an icon.  Any unicode characters may appear, so you can even use `icon = "text:👍"`.
+
+
 ### href - Using jq Templates
 Some elements ( `card`, `column` in a `table`) allow you to specify a [jq](https://stedolan.github.io/jq/) template to dynamically generate a hyperlink from the data in the row. To use a jq template, enclose the jq in double curly braces (`{{ }}`).  
 

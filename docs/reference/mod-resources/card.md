@@ -40,7 +40,7 @@ card {
 |-|-|-|-
 | `args` | Map | Optional| A map of arguments to pass to the query. 
 | `base` |  Card Reference		| Optional | A reference to a named `card` resource that this `card` should source its definition from. `label`, `title`, `value`, `type` and `width` can be overridden after sourcing via `base`.
-| `icon` |  String	| Optional | A custom icon to use on the card. All [heroicons](https://heroicons.com/) are available. Either with no scheme (`shield-check`) which defaults to outline, or specify the outline or solid schema with `heroicons-outline:shield-check` or `heroicons-solid:shield-check` respectively. Any icon provided via SQL is considered most specific, followed by an icon in the HCL, followed by any icon provided by the `type`. 
+| `icon` |  String	| Optional | An [icon]((reference/mod-resources/dashboard#icon)) to use for the elements with this category. 
 | `href`    | String |Optional | A url that the card should link to.  The `href` may use a [jq template](#jq-templates) to dynamically generate the link the card.  |
 | `label` |  String	| Optional | Inferred from the first column name in simple data format. Else can be set explicitly in HCL, or returned by the query in the `label` column in the formal data format.
 | `param` | Block | Optional| A [param](reference/mod-resources/query#param) block that defines the parameters that can be passed in to the query.  `param` blocks may only be specified for cards that specify the `sql` argument. 

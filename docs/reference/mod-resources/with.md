@@ -5,7 +5,7 @@ sidebar_label: with
 
 # with
 
-Some resources may also include `with` blocks. Similar to a `with` clause in a postgres CTE, the `with` block allows you to specify additional queries or sql statements to run **before** running "main" query specified in the `sql` or `query` argument for the resource.
+Some resources may also include `with` blocks. Similar to a `with` clause in a postgres CTE, the `with` block allows you to specify additional queries or SQL statements to run **first**, and then pass the query results as arguments to `sql`, `query`, and `node` & `edge` blocks.
 
 `with` is not a top-level named resource in its own right - it is ONLY a block within other resources. 
 
@@ -196,12 +196,21 @@ category "aws_vpc_subnet" {
 }
 ```
 
+## Argument Reference
+| Argument | Type | Optional? | Description
+|-|-|-|-
+| `args` | Map | Optional| A map of arguments to pass to the query. 
+| `query` | Query Reference | Optional | A reference to a [query](reference/mod-resources/query) resource that defines the query to run.  You must either specify the `query` argument or the `sql` argument, but not both.
+| `sql` |  String	| Optional |  An SQL string to provide data for the `edge`.  You must either specify the `query` argument or the `sql` argument, but not both.
+
+
+
 ## Referencing `with` results
-`with` blocks are scoped to the resource in which they are defined.  You can reference the results of a `with` block in any sub-block of that resource.  Y
+`with` blocks are scoped to the top-level resource in which they are defined.  You can reference the results of a `with` block in any sub-block of that resource. 
 
 `with` blocks can only be added to **top-level named resources**.  You cannot add `with` blocks to **top-level anonymous resources** or **sub-resources**.  
 
-You can reference the with block results as `with.<name>.rows`. 
+You can reference the `with` query results as `with.<name>.rows`. 
 
 For example, given the following `with` block:
 ```h
@@ -229,20 +238,46 @@ with.stuff1.rows[*].a
 
 
 
-
-
-    
-
-
-## Argument Reference
-| Argument | Type | Optional? | Description
-|-|-|-|-
-| `args` | Map | Optional| A map of arguments to pass to the query. 
-| `query` | Query Reference | Optional | A reference to a [query](reference/mod-resources/query) resource that defines the query to run.  You must either specify the `query` argument or the `sql` argument, but not both.
-| `sql` |  String	| Optional |  An SQL string to provide data for the `edge`.  You must either specify the `query` argument or the `sql` argument, but not both.
-
-
-
-
-
 ## More Examples
+
+### `with` block using a named query
+```hcl
+dashboard "with_ex_1" {
+
+  input "lambda_function_arn" {
+    query   = query.lambda_function_input
+    width  = 6
+  }
+
+  with "vpc_info" {
+    query = query.lambda_function_vpc_info
+    args = [self.input.lambda_function_arn.value]
+  }
+  
+  graph {
+
+    node {
+      base = node.aws_lambda_function_node
+      args = {
+        lambda_function_arn = self.input.lambda_function_arn.value
+      }
+    }
+  }
+}
+
+query "lambda_function_vpc_info" {
+    sql = <<-EOQ
+      select
+        vpc_id,
+        subnet as subnet_id
+      from
+        aws_lambda_function,
+        jsonb_array_elements_text(vpc_subnet_ids) as subnet
+      where
+        arn = $1
+    EOQ
+
+    param "lambda_function_arn" {}
+  }
+
+```
