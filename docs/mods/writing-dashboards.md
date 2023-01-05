@@ -190,7 +190,7 @@ Note that this `chart` block is named. Resource blocks *nested in a dashboard* a
 
 ```hcl
 chart {
-  base = chart. steampipe_io_blog_posts_by_month_line_chart
+  base = chart.steampipe_io_blog_posts_by_month_line_chart
 }
 ```
 
@@ -198,7 +198,7 @@ This pattern works for any dashboard component (except for [container](reference
 
 ```hcl
 chart {
-  base = chart. steampipe_io_blog_posts_by_month_line_chart
+  base = chart.steampipe_io_blog_posts_by_month_line_chart
   type = "pie"
 }
 ```
