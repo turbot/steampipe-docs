@@ -114,7 +114,7 @@ dashboard "compose_other" {
 | `documentation` | String (Markdown)| Optional | A markdown string containing a long form description, used as documentation for the dashboard on hub.steampipe.io. 
 | `flow` | Block	| Optional |  [flow](/docs/reference/mod-resources/flow)  blocks to visualize flows using types such as `sankey`. 
 | `hierarchy` | Block	| Optional |  [hierarchy](/docs/reference/mod-resources/hierarchy)  blocks to visualize hierarchical data using types such as `tree`. 
-| `image`     | Block	| Optional | [image](/docs/reference/mod-resources/image)    blocks to embed images in dashboards. Supports static URLs, or can be derived from SQL.                                                                               
+| `image`     | Block	| Optional | [image](/docs/reference/mod-resources/image)    blocks to embed images in dashboards. Supports static URLs, or can be derived from SQL.
 | `input`     | Block	| Optional | [input](/docs/reference/mod-resources/input) blocks to make dynamic dashboards based on user-provided input.     
 | `table`      | Block	| Optional | [table](/docs/reference/mod-resources/table)   blocks to show tabular data in a dashboard.
 | `tags` | Map | Optional | A map of key:value metadata for the dashboard, used to categorize, search, and filter.  The structure is up to the mod author. 

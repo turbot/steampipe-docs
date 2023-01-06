@@ -206,8 +206,6 @@
         "label": "Mod Resources",
         "link": "reference/mod-resources/overview",
         "items": [
-          "reference/mod-resources/query-providers",
-          "reference/mod-resources/node-edge-providers",
           "reference/mod-resources/benchmark",
           "reference/mod-resources/card",
           "reference/mod-resources/category",

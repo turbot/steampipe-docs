@@ -44,7 +44,6 @@ edge "plugin_to_version" {
 | `query` | Query Reference | Optional | A reference to a [query](reference/mod-resources/query) resource that defines the query to run.  You must either specify the `query` argument or the `sql` argument, but not both.
 | `sql` |  String	| Optional |  An SQL string to provide data for the `edge`.  You must either specify the `query` argument or the `sql` argument, but not both.
 | `title` |  String	| Optional | A plain text [title](/docs/reference/mod-resources/dashboard#title) to display for this edge.
-| `with` | Block | Optional| [with](/docs/reference/mod-resources/with)) blocks that define prerequisite queries to run.  `with` blocks may only be specified when the edge is defined as a top-level (mod level), named resource.
 
 
 ## Data Format

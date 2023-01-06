@@ -7,9 +7,9 @@ sidebar_label: with
 
 Some resources may also include `with` blocks. Similar to a `with` clause in a postgres CTE, the `with` block allows you to specify additional queries or SQL statements to run **first**, and then pass the query results as arguments to `sql`, `query`, and `node` & `edge` blocks.
 
-`with` is not a top-level named resource in its own right - it is ONLY a block within other resources. 
+`with` is not a top-level named resource in its own right - it is ONLY a block within other resources.
 
-You can only specify `with` blocks on **top-level named resources** in your mod. The results of the `with` query can be referenced only within the resource in which it is defined (including any sub-blocks).  
+You can only specify `with` blocks on `dashboard`, `graph`, `hierarchy`, and `flow`, and only when the they are defined as **top-level named resources** in your mod. The results of the `with` query can be referenced only within the resource in which it is defined (including any sub-blocks).
 
 ## Example Usage
 ```hcl

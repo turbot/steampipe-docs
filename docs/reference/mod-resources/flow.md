@@ -5,7 +5,7 @@ sidebar_label: flow
 
 # flow
 
-A flow allows visualization of queries using types such as `sankey`.
+A flow allows visualization of queries using types such as `sankey`.  Flows are [node/edge visualizations](/docs/reference/mod-resources/graph#nodeedge-visualizations).  The data to be displayed is specified using a series of nodes and edges. The nodes define the vertices of the graph, and the edges define the connections between them.
 
 Flow blocks can be declared as named resources at the top level of a mod, or can be declared as anonymous blocks inside a `dashboard` or `container`, or be re-used inside a `dashboard` or `container` by using a `flow` with `base = <mod>.flow.<flow_resource_name>`.
 
@@ -74,12 +74,15 @@ flow {
 | `args` | Map | Optional| A map of arguments to pass to the query. 
 | `base` |  flow Reference		| Optional | A reference to a named `flow` resource that this `flow` should source its definition from. `title` and `width` can be overridden after sourcing via `base`.
 | `category` | Block | Optional| [category](#category) blocks that specify display options for nodes with that category.
+| `edge` | Block | Optional| [edge](/docs/reference/mod-resources/edge) blocks that define the edges in the flow.
+| `node` | Block | Optional| [node](/docs/reference/mod-resources/node) blocks that define the nodes in the flow.
 | `param` | Block | Optional| [param](reference/mod-resources/query#param) blocks that defines the parameters that can be passed in to the query.  `param` blocks may only be specified for hierarchies that specify the `sql` argument. 
 | `query` | Query Reference | Optional | A reference to a [query](reference/mod-resources/query) resource that defines the query to run.  A `flow`  may either specify the `query` argument or the `sql` argument, but not both.
 | `sql` |  String	| Optional |  An SQL string to provide data for the `flow`.  A `flow` may either specify the `query` argument or the `sql` argument, but not both.
 | `title` |  String	| Optional | A plain text [title](/docs/reference/mod-resources/dashboard#title) to display for this flow.
 | `type` |  String	| Optional | The type of the flow. Can be `sankey` or `table`.
 | `width` |  Number	| Optional | The [width](/docs/reference/mod-resources/dashboard#width) as a number of grid units that this item should consume from its parent.
+| `with` | Block | Optional| [with](/docs/reference/mod-resources/with) blocks that define prerequisite queries to run.  `with` blocks may only be specified when the flow is defined as a top-level (mod level), named resource.
 
 
 

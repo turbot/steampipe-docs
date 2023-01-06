@@ -33,8 +33,6 @@ card {
 ```
 
 
-
-
 ## Argument Reference
 | Argument | Type | Optional? | Description
 |-|-|-|-
