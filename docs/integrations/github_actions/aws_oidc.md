@@ -11,7 +11,7 @@ The example shown in this post uses the OIDC method in a workflow that:
 
 1. Installs Steampipe (along with a cloud-specific plugin and compliance mod).
 
-2. Runs a compliance benchmark, and save its output in the repository.
+2. Runs a compliance benchmark, and saves the output in the repository.
 
 ## What is OIDC?
 
@@ -95,15 +95,15 @@ A workflow comprises one or more jobs that run in parallel, each with one or mor
 
 Here's the step that configures the credentials Steampipe will use to access AWS.
 
-```
+```yaml
 - name: "Configure AWS credentials"
-	id: config-aws-auth
-	uses: aws-actions/configure-aws-credentials@v1-node16
-	with:
-		role-to-assume: ${{ secrets.OIDC_AWS_ROLE_TO_ASSUME }}
-		role-session-name: "steampipe-demo"
-		role-duration-seconds: 900
-		aws-region: "us-east-1" 
+  id: config-aws-auth
+  uses: aws-actions/configure-aws-credentials@v1-node16
+  with:
+    role-to-assume: ${{ secrets.OIDC_AWS_ROLE_TO_ASSUME }}
+    role-session-name: "steampipe-demo"
+    role-duration-seconds: 900
+    aws-region: "us-east-1"
 ```
 
 Once the cloud provider successfully validates the claims presented in the OIDC JWT ID token, it then provides a short-lived access token that is available only for the duration of the job. The short-lived access token is exported as environment variables like AWS_DEFAULT_REGION, AWS_REGION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN.
@@ -113,33 +113,32 @@ Before running the compliance benchmark, create a new folder in your GitHub repo
 
 Here's the step that runs the [AWS Compliance](https://hub.steampipe.io/mods/turbot/aws_compliance) mod.
 
-```
+```yaml
 - name: "Run Steampipe benchmark"
-	id: steampipe-benchmark
-	run: |
+  id: steampipe-benchmark
+  run: |
 
-		# Install the Steampipe AWS Compliance mod
-		steampipe mod install github.com/turbot/steampipe-mod-aws-compliance 
-	steampipe mod install github.com/turbot/steampipe-mod-aws-compliance 
-		steampipe mod install github.com/turbot/steampipe-mod-aws-compliance 
-		cd .steampipe/mods/github.com/turbot/steampipe-mod-aws-compliance*
-		# Run the AWS CIS v1.5.0 benchmark
-		steampipe check benchmark.cis_v150 --export=${GITHUB_WORKSPACE}/steampipe/benchmarks/aws/cis_v150_"$(date +"%d_%B_%Y")".html --output=none
+    # Install the Steampipe AWS Compliance mod
+    steampipe mod install github.com/turbot/steampipe-mod-aws-compliance 
+    cd .steampipe/mods/github.com/turbot/steampipe-mod-aws-compliance*
+    # Run the AWS CIS v1.5.0 benchmark
+    steampipe check benchmark.cis_v150 --export=${GITHUB_WORKSPACE}/steampipe/benchmarks/aws/cis_v150_"$(date +"%d_%B_%Y")".html --output=none
 ```
+
 
 Here's the step that pushes the benchmark to your repository. Update the `working-directory` to the folder created in the above step. This should be the same location used in the above `export` argument.
 
-```
+```yaml
 - name: "Commit the file to github"
-	id: push-to-gh
-	working-directory: steampipe/benchmarks/aws
-	run: |
+  id: push-to-gh
+  working-directory: steampipe/benchmarks/aws
+  run: |
 
-		git config user.name github-actions
-		git config user.email github-actions@github.com
-		git add cis_v150_"$(date +"%d_%B_%Y")".html 
-		git commit -m "Add Steampipe Benchmark Results"
-		git push
+    git config user.name github-actions
+    git config user.email github-actions@github.com
+    git add cis_v150_"$(date +"%d_%B_%Y")".html 
+    git commit -m "Add Steampipe Benchmark Results"
+    git push
 ```
 
 ### Run the workflow
@@ -147,7 +146,7 @@ Here's the step that pushes the benchmark to your repository. Update the `workin
 The job will run on schedule, but it's always helpful to [run manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) for sanity-check. Make sure you select the correct branch when executing this manually, this should be listed in the Trust Relationships of your IAM Role. (`github_branch` variable in the Terraform script).
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="manual_run" src="/images/docs/ci-cd-pipelines/oidc/manual_run.mov" />
+<img alt="manual_run" src="/images/docs/ci-cd-pipelines/oidc/manual_run.png" />
 </div>
 
 Here's the result in the GitHub Actions log.
