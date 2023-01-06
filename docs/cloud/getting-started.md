@@ -6,7 +6,7 @@ sidebar_label: Getting Started
 # Getting Started with Steampipe Cloud
 
 ## Sign up
-To sign up, go to https://cloud.steampipe.io.  You can sign up with your Github or Google login (you will need to authorize Steampipe Cloud to allow you to login using OAuth), or with an email address.
+To sign up, go to [cloud.steampipe.io](https://cloud.steampipe.io).  You can sign up with your Github or Google login (you will need to authorize Steampipe Cloud to allow you to login using OAuth), or with an email address.
 
 <img src="/images/docs/cloud/gs_signup.png" width="300pt"/>
 
