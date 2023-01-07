@@ -122,7 +122,7 @@ If a non-List hydrate function requires paging, consider separating that data in
 
 <input type="checkbox"/> <b>Backoff and retry</b>
 
-If the API SDK doesn't automate backoff and retry, the plugin leverages capabilities of the Steampipe plugin SDK's [RetryHydrate function](https://pkg.go.dev/github.com/turbot/steampipe-plugin-sdk/plugin#RetryHydrate). For instance, the `github_issue` table uses this function when [listing issues]((https://github.com/turbot/steampipe-plugin-github/blob/d0a70b72e125c75940006ee6c66072c8bfa2e210/github/table_github_issue.go#L142)) due to the strict throttling of the GitHub API.
+If the API SDK doesn't automate backoff and retry, the plugin leverages capabilities of the Steampipe plugin SDK's [RetryHydrate function](https://pkg.go.dev/github.com/turbot/steampipe-plugin-sdk/plugin#RetryHydrate). For instance, the `github_issue` table uses this function when [listing issues](https://github.com/turbot/steampipe-plugin-github/blob/d0a70b72e125c75940006ee6c66072c8bfa2e210/github/table_github_issue.go#L142) due to the strict throttling of the GitHub API.
 
 <input type="checkbox"/> <b>Maximum concurrency</b>
 
