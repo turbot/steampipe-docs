@@ -7,8 +7,6 @@ sidebar_label: node
 
 The `node` block represents a vertex in a `graph`, `hierarchy` or `flow`.  
 
-Like most dashboard elements, nodes and edges are query-provider resources; they may have either a `sql` or `query` argument (but not both), as well as `with` blocks, `param` blocks and `args`, and these behave the same as they do for other resources that run sql (`control`, `chart`, `card`, etc).
-
 Anonymous `node` blocks can be declared inside a `graph`, `hierarchy` or `flow`.  They may also may be declared as named resources at the top level of a mod and referenced via `base` from other nodes in a `graph`, `hierarchy` or `flow`.
 
 
@@ -51,16 +49,14 @@ node {
 
 
 ## Data Format
-Data must be provided in a format where each row represents a *node* (vertex). 
-
-Significant columns are:
+Data must be provided in a format where each row represents a *node* (vertex).  Significant columns are:
 
 | Name       | Description
 |------------|---------------------------------------------------
 | `id`       | A unique identifier for the node. `id` is required for nodes.
 | `title`    | An optional title to display for the node.
-| `category` | An optional display category.  This must be a reference to a named `category` declared in the parent `graph`, `flow`, or `hierarchy`. 
-| `depth`    | An integer to set the position of the node in a flow. The layout of the nodes is inferred from the query, however you can force placement with the `depth` column if you need to override the default behavior. The `depth` column is optinoal, and is only used in `flow` resources.
+| `category` | An optional display category.  This must be the name of a `category` declared in the parent `graph`, `flow`, or `hierarchy`. 
+| `depth`    | An integer to set the position of the node in a flow. The layout of the nodes is inferred from the query, however you can force placement with the `depth` column if you need to override the default behavior. The `depth` column is optional, and is only used in `flow` resources.
 | `properties`| A jsonb key/value map of properties to display for the node/edge when the user hovers over it.  The `properties` column is optional.
 
 The `category`, `depth`, and `title` may be specified either in the SQL results or in HCL.  If both are specified, the value in the SQL result set has precedence.  

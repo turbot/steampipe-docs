@@ -5,7 +5,7 @@ sidebar_label: category
 
 # category
 
-The `category` block defines a category for a graph node or edge.  Categories are used to define display properties the item, such as the color, icon, and folding options.
+The `category` block defines a category for a graph node or edge.  Categories are used to define display properties for the item, such as the color, icon, and folding options.
 
 
 ## Example Usage
@@ -57,7 +57,7 @@ category "iam_policy" {
 }
 ```
 
-If defined as a block inside a graph node or edge block, the category will only be available to that node or edge.  In this case, you cannot set the category with `category` HCL property, but can set it dynamically for each row in the SQL result set using the `category` column:
+If defined as a block inside a `graph`, `flow`, or `hierarchy`, the category will only be available to that `graph`, `flow`, or `hierarchy`.  In this case, you cannot set the category with `category` HCL property, but can set it dynamically for each row in the SQL result set using the `category` column:
   
 ```hcl
 dashboard "categories_ex2" {
@@ -136,7 +136,7 @@ category "iam_policy" {
 ## Argument Reference
 | Argument | Type | Optional? | Description
 |-|-|-|-
-| `color`  | string | The matching color from the default theme for the data series index. | A [valid color value](reference/mod-resources/dashboard#color).  This may be a named color, RGB or RGBA string, or a control status color. |  The color to display for this category.           |
+| `color`  | String | The matching color from the default theme for the data series index. | A [valid color value](reference/mod-resources/dashboard#color).  This may be a named color, RGB or RGBA string, or a control status color. |  The color to display for this category.           |
 | `href`    | String | Optional | A url that the item should link to.  The `href` may use a [jq template](reference/mod-resources/dashboard#jq-templates) to dynamically generate the link.  |
 | `icon` |  String	| Optional | An [icon]((reference/mod-resources/dashboard#icon)) to use for the elements with this category. 
 | `title` |  String	| Optional | A plain text [title](/docs/reference/mod-resources/dashboard#title) to display for this category.
@@ -146,9 +146,9 @@ category "iam_policy" {
 
 ## Folding
 
-The `graph` resource supports *folding*, collapsing multiple nodes that have the same category into a single node.  You can click to expand or collapse the folded nodes.  To be considered for folding, the node must have have the same category and the same edges.
+The `graph` resource supports *folding*, allowing you to collapse multiple nodes that have the same category into a single node.  You can click to expand or collapse the folded nodes.  To be considered for folding, the nodes must have the same category and the same edges.
 
-By default, folding is enabled with a threshold of `3`.  This means that if a node has the same category as 3 or more other nodes, it will be folded into a single node.  You can change the fold options in the `fold` block in the category definition.  The `fold` block has the following properties:
+By default, folding is enabled with a threshold of `3`.  This means that if there are 3 or more nodes with the same category and edges, they will be folded into a single node.  You can change the fold options in the `fold` block in the category definition.  The `fold` block has the following properties:
 
 | Argument | Type | Optional? | Description
 |-|-|-|-

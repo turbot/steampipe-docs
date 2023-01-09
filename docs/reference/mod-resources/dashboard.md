@@ -120,7 +120,7 @@ dashboard "compose_other" {
 | `tags` | Map | Optional | A map of key:value metadata for the dashboard, used to categorize, search, and filter.  The structure is up to the mod author. 
 | `text`       | Block	| Optional | [text](/docs/reference/mod-resources/text) blocks to add GitHub-flavoured markdown to a dashboard.      
 | `title` |  String	| Optional | Plain text [title](/docs/reference/mod-resources/dashboard#title) used to display in lists, page title etc. When viewing the dashboard in a browser, will be rendered as a `h1`.
-
+| `with` | Block | Optional| [with](/docs/reference/mod-resources/with) blocks that define prerequisite queries to run.
 
 
 ## Common Properties

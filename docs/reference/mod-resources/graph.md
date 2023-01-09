@@ -5,7 +5,7 @@ sidebar_label: graph
 
 # graph
 
-A graph is a component that can be used to display data in a graphical format within a dashboard. It allows you to visualize the relationships between different resources and understand how they are connected.
+A graph is a dashboard component that allows you to visualize the relationships between different resources and understand how they are connected.
 
 Graphs can be declared as a block inside a dashboard or container. The data to be displayed in the graph is specified using a series of nodes and edges. The nodes  define the vertices of the graph, and the edges define the connections between them.
 
@@ -148,7 +148,7 @@ Typically, it is preferable to specify `node` and `edge` blocks than to use the 
 
 In the node / edge model, your `graph`, `flow`, or `hierarchy` block will not specify the `sql` or `query` argument, but instead will contain one or more `node` blocks and `edge` blocks.  The `node` and `edge` blocks will specify the `sql` or `query` argument to retrieve the data for the node or edge.
 
-The sql column names are identical to the monolithic query format.  Note that some fields (`category`, `title`) may be specified in HCL OR in the query results.  When both are specified, the SQL value takes precedence.
+The sql column names are identical to the monolithic query format.  Note that some fields (`category`, `title`) may be specified in HCL *or* in the query results.  When *both* are specified, the SQL value takes precedence.
 
 
 ##### Example: Graph with node/edge blocks
@@ -265,7 +265,7 @@ category "plugin_tag" {
 }
 ```
 
-Including the full node and edge block definitions within the graph can become unwieldy as the graph becomes more complex.  It is often preferable to define the node and edge blocks as top-level resources include them in the graph with the `base`.  This allows you to reuse the nodes and edges in multiple node/edge visualizations.  You can even define parameters in them, and pass arguments from the graph.
+Including the full node and edge block definitions within the graph can become unwieldy as the graph becomes more complex.  It is often preferable to define the node and edge blocks as top-level resources and include them in the graph with the `base` argument.  This allows you to reuse the nodes and edges in multiple node/edge visualizations.  You can even define parameters in the the nodes and edges, and pass arguments from the graph.
 
 ```hcl
 
@@ -476,7 +476,7 @@ Most commonly, you should specify nodes and edges as separate rows.  In this cas
 | 3       |  4        |  <null\>         | <null\>          | fidget           |
 
 
-If the data is strictly hierarchical (where each node can only have a single parent), it may be simpler to format the results such that each row species a node (with an `id`, and optionally `title`, `category`, and/or `depth`) and an edge, by specifying a `from_id`:
+If the data is strictly hierarchical (where each node can only have a single parent, as for a `hierarchy`), it may be simpler to format the results such that each row species a node (with an `id`, and optionally `title`, `category`, and/or `depth`) and an edge, by specifying a `from_id`:
 
 | from_id | id               | title            | category         |
 |---------|------------------|------------------|------------------|
@@ -603,7 +603,7 @@ dashboard "plugin_versions_mono" {
 
 Node/Edge visualizations allow you to specify a [category](/docs/reference/mod-resources/category) for each node and edge.  Categories are used to define display properties such as color, title, and icon to provide a consistent look and feel across panels and dashboards.
 
-Categories may be defined either at the mod level or at the top level of a `graph`, `flow`, or `hierarchy`.  When using `node` and `edge` blocks, it is typically preferable to define the categories as top-level, named mod resources.  This allows you to reference them via the `category` HCL argument in a node or edge.  When specifying a `category` in SQL, such as when using the monolithic query approach, you will need to define the category at the top level of the graph, flow, or hierarchy.
+Categories may be defined either at the mod level or in a `graph`, `flow`, or `hierarchy`.  When using `node` and `edge` blocks, it is typically preferable to define the categories as top-level, named mod resources.  This allows you to reference them via the `category` HCL argument in a node or edge.  When specifying a `category` column in SQL, such as when using the monolithic query approach, you will need to define the category in the graph, flow, or hierarchy.
 
 ### With blocks
 

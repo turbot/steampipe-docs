@@ -22,7 +22,7 @@ You can run a query by its fully qualified name in the Steampipe query shell:
 > aws_ec2_reports.query.prohibited_instance_types 
 ```
 
-or in a non-interactive `steampipe query` command:
+Or in a non-interactive `steampipe query` command:
 ```bash 
 $ steampipe query "aws_ec2_reports.query.plus_size_instances"
 ```
@@ -31,18 +31,21 @@ $ steampipe query "aws_ec2_reports.query.plus_size_instances"
 
 | Argument |Type | Required? | Description
 |-|-|-|-
-| `sql` | String | Required | SQL statement to define the query.
 | `description` | String |  Optional| A description of the query.
 | `documentation` | String (Markdown)| Optional | A markdown string containing a long form description, used as documentation for the mod on hub.steampipe.io. 
-| `param` | Block | Optional| A [param](#param) block that defines the parameters that can be passed in to the control's query.  `param` blocks may only be specified for controls that specify the `sql` argument. 
-| `search_path` | String | Optional| A schema search path to use for this query.
-| `search_path_prefix` | String | Optional| A schema to prefer for this query.
-| `tags` | Map | Optional | A map of key:value metadata for the benchmark, used to categorize, search, and filter.  The structure is up to the mod author and varies by benchmark and provider. 
+| `param` | Block | Optional| A [param](#param) block that defines the parameters that can be passed in to the query.  
+| `sql` | String | Required | SQL statement to define the query.
+| `tags` | Map | Optional | A map of key:value metadata for the query, used to categorize, search, and filter.  The structure is up to the mod author and varies by mod. 
 | `title` | String | Optional | A display title for the query.
 
+<!-- 
+// removed ?
+| `search_path` | String | Optional| A schema search path to use for this query.
+| `search_path_prefix` | String | Optional| A schema to prefer for this query.
 
+-->
 #### param
-One or more `param` blocks may optionally be used in a query or control to define parameters that the query accepts.  Note that the SQL statement only supports positional arguments (`$1`, `$2`, ...) and that the param blocks are assigned in order -- the first param block describes `$1`, the second describes `$2`, etc.
+One or more `param` blocks may optionally be used in a query to define parameters that the query accepts.  Note that the SQL statement only supports positional arguments (`$1`, `$2`, ...) and that the param blocks are assigned in order -- the first param block describes `$1`, the second describes `$2`, etc.
 
 | Name | Type| Description
 |-|-|-
@@ -103,7 +106,7 @@ query.bucket_count_for_regions(["us-east-2", "us-east-1"])
 
 # Query-based Resources
 
-There are many steampipe mod elements that execute a query, including `control` and most dashboard visualization elements (`card`,`chart`, `node`, `edge`, `graphs` etc). These resources essentially implement the same interface:
+There are many Steampipe mod elements that execute a query, including `control` and most dashboard visualization elements (`card`,`chart`, `node`, `edge`, `graphs` etc). These resources essentially implement the same interface:
   - They have a `sql` argument for specifying a SQL string to execute
   - They have a `query` argument for referencing a `query` to execute
   - They require the user to set either `sql` or `query`, but both may not be specified.
@@ -117,7 +120,7 @@ When using a query-based resource, you **must** specify either the `sql` or `que
 
 The difference between these arguments is somewhat subtle.
 
-The `sql` argument is a simple *string* that defines a SQL statement to execute. This allows you to inline the statement in the resource definition.
+The `sql` argument is a simple *string* that defines a SQL statement to execute. This allows you to inline the statement in the resource definition:
 
 ```hcl
 card {
@@ -133,7 +136,6 @@ card {
 ```
 
 The `query` argument is a *reference to a named `query` resource* to run. This allows you to reuse a query from multiple other resources:
-
 
 ```hcl
 card {
@@ -181,7 +183,6 @@ card "bucket_count_for_region" {
 ```
 
 ***You can only specify `param` blocks for resources that are defined as top-level named resources in your mod.***  It would not make sense to specify a `param` block for an anonymous resource that is defined in dashboard, since you cannot reference it anyway.
-
 
 The `args` argument is used to pass values to a query at run time.  If the `query` resource has parameters defined, then the `args` argument is used to pass values to the query:
 
