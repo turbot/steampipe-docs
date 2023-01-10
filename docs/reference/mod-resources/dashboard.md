@@ -311,8 +311,8 @@ Many dashboard elements contain an `icon` argument.  The icon arguments support 
 - Text.  To use text as an icon, prefix the icon with `text:`, for example `icon = "text:OK"` will display the text "OK" in place of an icon.  Any unicode characters may appear, so you can even use `icon = "text:👍"`.
 
 
-### href - Using jq Templates
-Some elements ( `card`, `column` in a `table`) allow you to specify a [jq](https://stedolan.github.io/jq/) template to dynamically generate a hyperlink from the data in the row. To use a jq template, enclose the jq in double curly braces (`{{ }}`).  
+### jq Templates
+Some elements ( `card`, `column` in a `table`) allow you to specify a [jq](https://stedolan.github.io/jq/) template in the `href` argument to dynamically generate a hyperlink from the data in the row. To use a jq template, enclose the jq in double curly braces (`{{ }}`).  
 
 Steampipe will pass each row of data to jq in the same format that is returned by [steampipe query json mode output](reference/dot-commands/output), where the keys are the column names and the values are the data for that row. 
 

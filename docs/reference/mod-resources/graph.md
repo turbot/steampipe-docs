@@ -265,7 +265,7 @@ category "plugin_tag" {
 }
 ```
 
-Including the full node and edge block definitions within the graph can become unwieldy as the graph becomes more complex.  It is often preferable to define the node and edge blocks as top-level resources and include them in the graph with the `base` argument.  This allows you to reuse the nodes and edges in multiple node/edge visualizations.  You can even define parameters in the the nodes and edges, and pass arguments from the graph.
+Including the full node and edge block definitions within the graph can become unwieldy as the graph becomes more complex.  It is often preferable to define the node and edge blocks as top-level resources and include them in the graph with the `base` argument.  This allows you to reuse the nodes and edges in multiple node/edge visualizations.  You can even define parameters in the nodes and edges, and pass arguments from the graph.
 
 ```hcl
 

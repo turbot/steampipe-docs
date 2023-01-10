@@ -5,7 +5,7 @@ sidebar_label: with
 
 # with
 
-Some resources may also include `with` blocks. Similar to a `with` clause in a postgres CTE, the `with` block allows you to specify additional queries or SQL statements to run **first**, and then pass the query results as arguments to `sql`, `query`, and `node` & `edge` blocks.
+Some resources may also include `with` blocks. Similar to a `with` clause in a Postgres CTE, the `with` block allows you to specify additional queries or SQL statements to run **first**, and then pass the query results as arguments to `sql`, `query`, and `node` & `edge` blocks.
 
 `with` is not a top-level named resource in its own right - it is ONLY a block within other resources.
 
@@ -224,7 +224,7 @@ Rows is essentially a list, and you can index it to get a single row. Each row, 
 with.stuff1.rows[0].a
 ```
 
-If you splat the row, then you can get an array of a single column from all rows.  This would be passed to sql as an array:
+If you [splat](https://developer.hashicorp.com/terraform/language/expressions/splat) the row, then you can get an array of a single column from all rows.  This would be passed to sql as an array:
 ```h
 with.stuff1.rows[*].a
 ```
