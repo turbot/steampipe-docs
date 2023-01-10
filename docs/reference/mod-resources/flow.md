@@ -15,57 +15,102 @@ Flow blocks can be declared as named resources at the top level of a mod, or can
 
 <img src="/images/reference_examples/sankey_ex_1.png" width="100%" />
 
+
 ```hcl
-flow {
-  type  = "sankey"
-  title = "AWS VPC Subnets by AZ"
-  width = 6
+dashboard "flow_ex_node_edge" {
 
-  sql = <<-EOQ
+  input "vpc_input" {
+    width = 4
 
-    with vpc as
-      (select 'vpc-9d7ae1e7' as vpc_id)
+    sql = <<-EOQ
+      select
+        title as label,
+        vpc_id as value
+      from
+        aws_vpc
+    EOQ
+  }
 
-    select
-      null as from_id,
-      vpc_id as id,
-      vpc_id as title,
-      0 as depth,
-      'aws_vpc' as category
-    from
-      aws_vpc
-    where
-      vpc_id in (select vpc_id from vpc)
+  flow {
+    title = "AWS VPC Subnets by AZ"
 
-    union all
-    select
-      distinct on (availability_zone)
-      vpc_id as from_id,
-      availability_zone as id,
-      availability_zone as title,
-      1 as depth,
-      'aws_availability_zone' as category
-    from
-      aws_vpc_subnet
-    where
-      vpc_id in (select vpc_id from vpc)
+    node {
+      sql = <<-EOQ
+        select
+          vpc_id as id,
+          vpc_id as title
+        from
+          aws_vpc
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
 
 
-    union all
-    select
-      availability_zone as from_id,
-      subnet_id as id,
-      subnet_id as title,
-      2 as depth,
-      'aws_vpc_subnet' as category
-    from
-      aws_vpc_subnet
-    where
-      vpc_id in (select vpc_id from vpc)
+    node {
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          availability_zone as id,
+          availability_zone as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
 
-  EOQ
+      args = [self.input.vpc_input.value]
+    }
+
+    node {
+      sql = <<-EOQ
+        select
+          subnet_id as id,
+          subnet_id as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
+
+    edge {
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          vpc_id as from_id,
+          availability_zone as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+      
+    }
+
+    edge {
+      sql = <<-EOQ
+        select
+          availability_zone as from_id,
+          subnet_id as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc_input.value]
+    }
+  }
+
 }
 ```
+
 
 
 ## Argument Reference
@@ -143,8 +188,180 @@ For flows that do not conform to a single-parent hierarchical structure, its usu
 
 ## More Examples
 
-
 ### Sankey with color by category
+
+<img src="/images/reference_examples/sankey_ex_category.png" width="100%" />
+
+```hcl
+dashboard "flow_ex_node_edge_category" {
+
+  input "vpc_input" {
+    width = 4
+
+    sql = <<-EOQ
+      select
+        title as label,
+        vpc_id as value
+      from
+        aws_vpc
+    EOQ
+  }
+
+  flow {
+    title = "AWS VPC Subnets by AZ"
+
+    node {
+      category = category.aws_vpc
+
+      sql = <<-EOQ
+        select
+          vpc_id as id,
+          vpc_id as title
+        from
+          aws_vpc
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
+
+
+    node {
+      category = category.aws_availability_zone
+
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          availability_zone as id,
+          availability_zone as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
+
+    node {
+      category = category.aws_vpc_subnet
+
+      sql = <<-EOQ
+        select
+          subnet_id as id,
+          subnet_id as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
+
+    edge {
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          vpc_id as from_id,
+          availability_zone as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+      
+    }
+
+    edge {
+      sql = <<-EOQ
+        select
+          availability_zone as from_id,
+          subnet_id as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc_input.value]
+    }
+  }
+
+}
+
+category "aws_vpc" {
+  color = "orange"
+}
+
+category "aws_availability_zone" {
+  color = "tan"
+}
+
+category "aws_vpc_subnet" {
+  color = "green"
+}
+```
+
+### sankey with monolithic query
+
+<img src="/images/reference_examples/sankey_ex_1.png" width="100%" />
+
+```hcl
+flow {
+  type  = "sankey"
+  title = "AWS VPC Subnets by AZ"
+  width = 6
+
+  sql = <<-EOQ
+
+    with vpc as
+      (select 'vpc-9d7ae1e7' as vpc_id)
+
+    select
+      null as from_id,
+      vpc_id as id,
+      vpc_id as title,
+      0 as depth,
+      'aws_vpc' as category
+    from
+      aws_vpc
+    where
+      vpc_id in (select vpc_id from vpc)
+
+    union all
+    select
+      distinct on (availability_zone)
+      vpc_id as from_id,
+      availability_zone as id,
+      availability_zone as title,
+      1 as depth,
+      'aws_availability_zone' as category
+    from
+      aws_vpc_subnet
+    where
+      vpc_id in (select vpc_id from vpc)
+
+
+    union all
+    select
+      availability_zone as from_id,
+      subnet_id as id,
+      subnet_id as title,
+      2 as depth,
+      'aws_vpc_subnet' as category
+    from
+      aws_vpc_subnet
+    where
+      vpc_id in (select vpc_id from vpc)
+
+  EOQ
+}
+```
+
+### Sankey with color by category (monolithic query)
 
 <img src="/images/reference_examples/sankey_ex_category.png" width="100%" />
 

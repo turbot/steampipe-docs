@@ -15,54 +15,69 @@ Hierarchy blocks can be declared as named resources at the top level of a mod, o
 <img src="/images/reference_examples/tree_ex_1.png" width="100%" />
 
 ```hcl
-hierarchy {
-  type  = "tree"
-  title = "AWS VPC Subnets by AZ"
-  width = 6
+dashboard "tree_ex_nodeonly" {
 
-  sql = <<-EOQ
+  input "vpc" {
+    width = 4
 
-    with vpc as
-      (select 'vpc-9d7ae1e7' as vpc_id)
+    sql = <<-EOQ
+      select
+        title as label,
+        vpc_id as value
+      from
+        aws_vpc
+    EOQ
+  }
 
-    select
-      null as from_id,
-      vpc_id as id,
-      vpc_id as title,
-      0 as depth,
-      'aws_vpc' as category
-    from
-      aws_vpc
-    where
-      vpc_id in (select vpc_id from vpc)
+  hierarchy {
+    title = "AWS VPC Subnets by AZ"
 
-    union all
-    select
-      distinct on (availability_zone)
-      vpc_id as from_id,
-      availability_zone as id,
-      availability_zone as title,
-      1 as depth,
-      'aws_availability_zone' as category
-    from
-      aws_vpc_subnet
-    where
-      vpc_id in (select vpc_id from vpc)
+    node {
+      sql = <<-EOQ
+        select
+          vpc_id as id,
+          vpc_id as title
+        from
+          aws_vpc
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc.value]
+    }
 
 
-    union all
-    select
-      availability_zone as from_id,
-      subnet_id as id,
-      subnet_id as title,
-      2 as depth,
-      'aws_vpc_subnet' as category
-    from
-      aws_vpc_subnet
-    where
-      vpc_id in (select vpc_id from vpc)
+    node {
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          vpc_id as from_id,
+          availability_zone as id,
+          availability_zone as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc.value]
+      
+    }
 
-  EOQ
+    node {
+      sql = <<-EOQ
+        select
+          availability_zone as from_id,
+          subnet_id as id,
+          subnet_id as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc.value]
+    }
+
+  }
+
 }
 ```
 
@@ -150,7 +165,67 @@ Alternately, you may specify nodes and edges as separate rows.  In this case, no
 ## More Examples
 
 
-### Tree with color by category
+
+### Tree via monolithic query
+
+
+<img src="/images/reference_examples/tree_ex_1.png" width="100%" />
+
+
+```hcl
+hierarchy {
+  type  = "tree"
+  title = "AWS VPC Subnets by AZ"
+  width = 6
+
+  sql = <<-EOQ
+
+    with vpc as
+      (select 'vpc-9d7ae1e7' as vpc_id)
+
+    select
+      null as from_id,
+      vpc_id as id,
+      vpc_id as title,
+      0 as depth,
+      'aws_vpc' as category
+    from
+      aws_vpc
+    where
+      vpc_id in (select vpc_id from vpc)
+
+    union all
+    select
+      distinct on (availability_zone)
+      vpc_id as from_id,
+      availability_zone as id,
+      availability_zone as title,
+      1 as depth,
+      'aws_availability_zone' as category
+    from
+      aws_vpc_subnet
+    where
+      vpc_id in (select vpc_id from vpc)
+
+
+    union all
+    select
+      availability_zone as from_id,
+      subnet_id as id,
+      subnet_id as title,
+      2 as depth,
+      'aws_vpc_subnet' as category
+    from
+      aws_vpc_subnet
+    where
+      vpc_id in (select vpc_id from vpc)
+
+  EOQ
+}
+```
+
+
+### Tree with color by category [monolithic]
 
 <img src="/images/reference_examples/tree_ex_color.png" width="100%" />
 
