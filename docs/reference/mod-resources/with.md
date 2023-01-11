@@ -13,186 +13,85 @@ You can only specify `with` blocks on `dashboard`, `graph`, `hierarchy`, and `fl
 
 ## Example Usage
 ```hcl
-dashboard "with_ex_1" {
+dashboard "with_ex2" {
 
-  input "lambda_function_arn" {
-    query   = query.lambda_function_input
-    width  = 6
+  input "vpc" {
+    sql = <<-EOQ
+      select 
+        title as label,
+        vpc_id as value
+      from aws_vpc
+    EOQ
   }
 
-  with "vpc_info" {
+  with "subnets" {
     sql = <<-EOQ
       select
-        vpc_id,
-        subnet as subnet_id
+        subnet_id
       from
-        aws_lambda_function,
-        jsonb_array_elements_text(vpc_subnet_ids) as subnet
+        aws_vpc_subnet
       where
-        arn = $1
+      vpc_id = $1
     EOQ
 
-    args = [self.input.lambda_function_arn.value]
+    args = [self.input.vpc.value]          
   }
 
   graph {
 
-    node {
-      base = node.aws_lambda_function_node
-      args = {
-        lambda_function_arn = self.input.lambda_function_arn.value
-      }
-    }
+    node "subnet" {
+      sql = <<-EOQ
+        select
+          subnet_id as id,
+          title,
+          json_build_object(
+            'id', subnet_id,
+            'region', region,
+            'account id', account_id
+          ) as properties
+        from
+          aws_vpc_subnet
+        where
+          subnet_id = any($1)
+      EOQ
 
-    node {
-      base = node.aws_vpc
-      args = {
-        vpc_id = with.vpc_info.rows[*].vpc_id
-      }
+      args = [with.subnets.rows[*].subnet_id]
     }
+        
+    node "vpc"{
+      sql = <<-EOQ
+        select
+          vpc_id as id,
+          title,
+          json_build_object(
+            'id', vpc_id,
+            'region', region,
+            'account id', account_id
+          ) as properties
+        from
+          aws_vpc
+        where
+          vpc_id = $1
+      EOQ
 
-    node {
-      base = node.aws_vpc_subnet
-      args = {
-        subnet_id = with.vpc_info.rows[*].subnet_id
-      }
+      args = [self.input.vpc.value]
     }
 
     edge {
-      base = edge.aws_lambda_function_to_vpc_subnet
-      args = {
-        lambda_function_arn = self.input.lambda_function_arn.value
-      }
-    }
+      sql = <<-EOQ
+        select
+          vpc_id as from_id,
+          subnet_id as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
 
-    edge {
-      base = edge.aws_vpc_subnet_to_vpc
-      args = {
-        subnet_id = with.vpc_info.rows[*].subnet_id
-      }
+      args = [self.input.vpc.value]
     }
 
   }
-}
-
-query "lambda_function_input"{
-  sql = <<-EOQ
-    select
-      arn as value,
-      arn as label
-    from 
-      aws_lambda_function
-  EOQ
-}
-
-node "aws_lambda_function_node"{
-  category = category.aws_lambda_function
-
-  sql = <<-EOQ
-    select
-      arn as id,
-      title,
-      json_build_object(
-        'name', name,
-        'runtime', runtime
-      ) as properties
-    from
-      aws_lambda_function
-    where
-      arn = $1
-  EOQ
-
-  param "lambda_function_arn" {}
-}
-
-node "aws_vpc" {
-  category = category.aws_vpc
-
-  sql = <<-EOQ
-    select
-      distinct on (vpc_id)
-      vpc_id as id,
-      title,
-      json_build_object(
-        'name', tags ->> 'Name',
-        'id', vpc_id,
-        'cidr', cidr_block
-      ) as properties
-    from
-      aws_vpc
-    where
-      vpc_id = any($1)
-  EOQ
-
-  param "vpc_id" {}
-}
-
-node "aws_vpc_subnet" {
-  category = category.aws_vpc_subnet
-
-  sql = <<-EOQ
-    select
-      subnet_id as id,
-      title,
-      json_build_object(
-        'id', subnet_id,
-        'cidr', cidr_block
-      ) as properties
-    from
-      aws_vpc_subnet
-    where
-      subnet_id = any($1)
-  EOQ
-
-  param "subnet_id" {}
-}
-
-edge "aws_lambda_function_to_vpc_subnet" {
-  sql = <<-EOQ
-    select
-      arn as from_id,
-      subnet_id as to_id
-    from
-      aws_lambda_function,
-      jsonb_array_elements_text(vpc_subnet_ids) as subnet_id
-    where
-      arn = $1
-  EOQ
-
-  param "lambda_function_arn" {}
-
-}
-
-edge "aws_vpc_subnet_to_vpc" {
-  sql = <<-EOQ
-    select
-      subnet_id as from_id,
-      vpc_id as to_id
-    from
-      aws_vpc_subnet
-    where
-      subnet_id = any($1)
-  EOQ
-
-  param "subnet_id" {}
-}
-
-category "aws_lambda_function" {
-  title = "Lambda Function"
-  icon = "function"
-  color = "#FF9900"
-}
-
-category "aws_vpc" {
-  title = "VPC"
-  icon = "cloud"
-  color = "#FF9900"
-}
-
-category "aws_vpc_subnet" {
-  title = "Subnet"
-  icon = "lan"
-  color = "#FF9900"
 }
 ```
 
@@ -219,7 +118,7 @@ with "stuff1" {
 }
 ```
 
-Rows is essentially a list, and you can index it to get a single row. Each row, in turn, contains all the columns, so you can get a single column of a single row:
+`with.<name>.rows` is a list, and you can index it to get a single row. Each row, in turn, contains all the columns, so you can get a single column of a single row:
 ```h
 with.stuff1.rows[0].a
 ```
@@ -229,55 +128,10 @@ If you [splat](https://developer.hashicorp.com/terraform/language/expressions/sp
 with.stuff1.rows[*].a
 ```
 - if `a` is a scalar value, then `with.stuff1.rows[*].a` is an array of scalar values
-- if `a` is an array (or jsonb array, then `with.stuff1.rows[*].a` is an array of arrays.  
+- if `a` is an array or jsonb array, then `with.stuff1.rows[*].a` is an array of arrays.  
 
+At this time, you cannot pass an entire set (`with.<name>.rows`) to a query - you may pass either a single value (`with.<name>.rows[0].column`) or an array from a single column (`with.<name>.rows[*].column`).
 <!--
   - You can subsequently flatten it with the hcl `flatten` function if desired: `flatten(with.stuff1.rows[*].a)`
   - duplicates values are not automatically removed from the array, but you can remove them with the hcl `distinct` function if desired:: `distinct(flatten(with.stuff1.rows[*].a))`
 -->
-
-
-
-## More Examples
-
-### `with` block using a named query
-```hcl
-dashboard "with_ex_1" {
-
-  input "lambda_function_arn" {
-    query   = query.lambda_function_input
-    width  = 6
-  }
-
-  with "vpc_info" {
-    query = query.lambda_function_vpc_info
-    args = [self.input.lambda_function_arn.value]
-  }
-  
-  graph {
-
-    node {
-      base = node.aws_lambda_function_node
-      args = {
-        lambda_function_arn = self.input.lambda_function_arn.value
-      }
-    }
-  }
-}
-
-query "lambda_function_vpc_info" {
-    sql = <<-EOQ
-      select
-        vpc_id,
-        subnet as subnet_id
-      from
-        aws_lambda_function,
-        jsonb_array_elements_text(vpc_subnet_ids) as subnet
-      where
-        arn = $1
-    EOQ
-
-    param "lambda_function_arn" {}
-  }
-
-```

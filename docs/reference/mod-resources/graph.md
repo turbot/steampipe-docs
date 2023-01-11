@@ -142,7 +142,7 @@ Key differences between nodes and edges are:
 #### Node & Edge Blocks
 Typically, it is preferable to specify `node` and `edge` blocks than to use the monolithic query format:
 - Using `node` and `edge` results in simpler, more readable, maintainable configuration.
-- Developing large union queries is difficult. Syntax errors are hard to find and errors are difficult to locate.  The `node` and `edge` model provides smaller, simpler queries that can be run and tested independently.
+- Developing large union queries is difficult. Errors are hard to find and fix.  The `node` and `edge` model provides smaller, simpler queries that can be run and tested independently.
 - You can reuse nodes and edges in multiple node/edge visualizations.
 - Steampipe can run the node/edge queries in parallel, and can provide better status information while the visualization is loading.
 
