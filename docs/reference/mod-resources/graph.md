@@ -92,6 +92,23 @@ dashboard "tables" {
   }
 }
 
+category "catalog" {
+  title = "catalog"
+  icon  = "library-books"
+  color = "orange"
+}
+
+category "schema" {
+  title = "schema"
+  icon  = "schema"
+  color = "blue"
+}
+
+category "table" {
+  title = "table"
+  icon  = "table"
+  color = "green"
+}
 ```
 
 ## Argument Reference
