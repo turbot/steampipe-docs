@@ -5,7 +5,7 @@ sidebar_label: flow
 
 # flow
 
-A flow allows visualization of queries using types such as `sankey`.
+A flow allows visualization of queries using types such as `sankey`.  Flows are [node/edge visualizations](/docs/reference/mod-resources/graph#nodeedge-visualizations).  The data to be displayed is specified using a series of nodes and edges. The nodes define the vertices of the graph, and the edges define the connections between them.
 
 Flow blocks can be declared as named resources at the top level of a mod, or can be declared as anonymous blocks inside a `dashboard` or `container`, or be re-used inside a `dashboard` or `container` by using a `flow` with `base = <mod>.flow.<flow_resource_name>`.
 
@@ -15,57 +15,102 @@ Flow blocks can be declared as named resources at the top level of a mod, or can
 
 <img src="/images/reference_examples/sankey_ex_1.png" width="100%" />
 
+
 ```hcl
-flow {
-  type  = "sankey"
-  title = "AWS VPC Subnets by AZ"
-  width = 6
+dashboard "flow_ex_node_edge" {
 
-  sql = <<-EOQ
+  input "vpc_input" {
+    width = 4
 
-    with vpc as
-      (select 'vpc-9d7ae1e7' as vpc_id)
+    sql = <<-EOQ
+      select
+        title as label,
+        vpc_id as value
+      from
+        aws_vpc
+    EOQ
+  }
 
-    select
-      null as from_id,
-      vpc_id as id,
-      vpc_id as title,
-      0 as depth,
-      'aws_vpc' as category
-    from
-      aws_vpc
-    where
-      vpc_id in (select vpc_id from vpc)
+  flow {
+    title = "AWS VPC Subnets by AZ"
 
-    union all
-    select
-      distinct on (availability_zone)
-      vpc_id as from_id,
-      availability_zone as id,
-      availability_zone as title,
-      1 as depth,
-      'aws_availability_zone' as category
-    from
-      aws_vpc_subnet
-    where
-      vpc_id in (select vpc_id from vpc)
+    node {
+      sql = <<-EOQ
+        select
+          vpc_id as id,
+          vpc_id as title
+        from
+          aws_vpc
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
 
 
-    union all
-    select
-      availability_zone as from_id,
-      subnet_id as id,
-      subnet_id as title,
-      2 as depth,
-      'aws_vpc_subnet' as category
-    from
-      aws_vpc_subnet
-    where
-      vpc_id in (select vpc_id from vpc)
+    node {
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          availability_zone as id,
+          availability_zone as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
 
-  EOQ
+      args = [self.input.vpc_input.value]
+    }
+
+    node {
+      sql = <<-EOQ
+        select
+          subnet_id as id,
+          subnet_id as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
+
+    edge {
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          vpc_id as from_id,
+          availability_zone as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+      
+    }
+
+    edge {
+      sql = <<-EOQ
+        select
+          availability_zone as from_id,
+          subnet_id as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc_input.value]
+    }
+  }
+
 }
 ```
+
 
 
 ## Argument Reference
@@ -74,12 +119,15 @@ flow {
 | `args` | Map | Optional| A map of arguments to pass to the query. 
 | `base` |  flow Reference		| Optional | A reference to a named `flow` resource that this `flow` should source its definition from. `title` and `width` can be overridden after sourcing via `base`.
 | `category` | Block | Optional| [category](#category) blocks that specify display options for nodes with that category.
+| `edge` | Block | Optional| [edge](/docs/reference/mod-resources/edge) blocks that define the edges in the flow.
+| `node` | Block | Optional| [node](/docs/reference/mod-resources/node) blocks that define the nodes in the flow.
 | `param` | Block | Optional| [param](reference/mod-resources/query#param) blocks that defines the parameters that can be passed in to the query.  `param` blocks may only be specified for hierarchies that specify the `sql` argument. 
 | `query` | Query Reference | Optional | A reference to a [query](reference/mod-resources/query) resource that defines the query to run.  A `flow`  may either specify the `query` argument or the `sql` argument, but not both.
 | `sql` |  String	| Optional |  An SQL string to provide data for the `flow`.  A `flow` may either specify the `query` argument or the `sql` argument, but not both.
 | `title` |  String	| Optional | A plain text [title](/docs/reference/mod-resources/dashboard#title) to display for this flow.
 | `type` |  String	| Optional | The type of the flow. Can be `sankey` or `table`.
 | `width` |  Number	| Optional | The [width](/docs/reference/mod-resources/dashboard#width) as a number of grid units that this item should consume from its parent.
+| `with` | Block | Optional| [with](/docs/reference/mod-resources/with) blocks that define prerequisite queries to run.  `with` blocks may only be specified when the flow is defined as a top-level (mod level), named resource.
 
 
 
@@ -140,8 +188,180 @@ For flows that do not conform to a single-parent hierarchical structure, its usu
 
 ## More Examples
 
-
 ### Sankey with color by category
+
+<img src="/images/reference_examples/sankey_ex_category.png" width="100%" />
+
+```hcl
+dashboard "flow_ex_node_edge_category" {
+
+  input "vpc_input" {
+    width = 4
+
+    sql = <<-EOQ
+      select
+        title as label,
+        vpc_id as value
+      from
+        aws_vpc
+    EOQ
+  }
+
+  flow {
+    title = "AWS VPC Subnets by AZ"
+
+    node {
+      category = category.aws_vpc
+
+      sql = <<-EOQ
+        select
+          vpc_id as id,
+          vpc_id as title
+        from
+          aws_vpc
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
+
+
+    node {
+      category = category.aws_availability_zone
+
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          availability_zone as id,
+          availability_zone as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
+
+    node {
+      category = category.aws_vpc_subnet
+
+      sql = <<-EOQ
+        select
+          subnet_id as id,
+          subnet_id as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+    }
+
+    edge {
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          vpc_id as from_id,
+          availability_zone as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+
+      args = [self.input.vpc_input.value]
+      
+    }
+
+    edge {
+      sql = <<-EOQ
+        select
+          availability_zone as from_id,
+          subnet_id as to_id
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc_input.value]
+    }
+  }
+
+}
+
+category "aws_vpc" {
+  color = "orange"
+}
+
+category "aws_availability_zone" {
+  color = "tan"
+}
+
+category "aws_vpc_subnet" {
+  color = "green"
+}
+```
+
+### sankey with monolithic query
+
+<img src="/images/reference_examples/sankey_ex_1.png" width="100%" />
+
+```hcl
+flow {
+  type  = "sankey"
+  title = "AWS VPC Subnets by AZ"
+  width = 6
+
+  sql = <<-EOQ
+
+    with vpc as
+      (select 'vpc-9d7ae1e7' as vpc_id)
+
+    select
+      null as from_id,
+      vpc_id as id,
+      vpc_id as title,
+      0 as depth,
+      'aws_vpc' as category
+    from
+      aws_vpc
+    where
+      vpc_id in (select vpc_id from vpc)
+
+    union all
+    select
+      distinct on (availability_zone)
+      vpc_id as from_id,
+      availability_zone as id,
+      availability_zone as title,
+      1 as depth,
+      'aws_availability_zone' as category
+    from
+      aws_vpc_subnet
+    where
+      vpc_id in (select vpc_id from vpc)
+
+
+    union all
+    select
+      availability_zone as from_id,
+      subnet_id as id,
+      subnet_id as title,
+      2 as depth,
+      'aws_vpc_subnet' as category
+    from
+      aws_vpc_subnet
+    where
+      vpc_id in (select vpc_id from vpc)
+
+  EOQ
+}
+```
+
+### Sankey with color by category (monolithic query)
 
 <img src="/images/reference_examples/sankey_ex_category.png" width="100%" />
 

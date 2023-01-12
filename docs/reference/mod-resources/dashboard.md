@@ -114,13 +114,13 @@ dashboard "compose_other" {
 | `documentation` | String (Markdown)| Optional | A markdown string containing a long form description, used as documentation for the dashboard on hub.steampipe.io. 
 | `flow` | Block	| Optional |  [flow](/docs/reference/mod-resources/flow)  blocks to visualize flows using types such as `sankey`. 
 | `hierarchy` | Block	| Optional |  [hierarchy](/docs/reference/mod-resources/hierarchy)  blocks to visualize hierarchical data using types such as `tree`. 
-| `image`     | Block	| Optional | [image](/docs/reference/mod-resources/image)    blocks to embed images in dashboards. Supports static URLs, or can be derived from SQL.                                                                               
+| `image`     | Block	| Optional | [image](/docs/reference/mod-resources/image)    blocks to embed images in dashboards. Supports static URLs, or can be derived from SQL.
 | `input`     | Block	| Optional | [input](/docs/reference/mod-resources/input) blocks to make dynamic dashboards based on user-provided input.     
 | `table`      | Block	| Optional | [table](/docs/reference/mod-resources/table)   blocks to show tabular data in a dashboard.
 | `tags` | Map | Optional | A map of key:value metadata for the dashboard, used to categorize, search, and filter.  The structure is up to the mod author. 
 | `text`       | Block	| Optional | [text](/docs/reference/mod-resources/text) blocks to add GitHub-flavoured markdown to a dashboard.      
 | `title` |  String	| Optional | Plain text [title](/docs/reference/mod-resources/dashboard#title) used to display in lists, page title etc. When viewing the dashboard in a browser, will be rendered as a `h1`.
-
+| `with` | Block | Optional| [with](/docs/reference/mod-resources/with) blocks that define prerequisite queries to run.
 
 
 ## Common Properties
@@ -302,8 +302,17 @@ Many dashboard elements contain a `color` argument.  The color arguments support
 - An [RGBA color value](https://www.w3schools.com/css/css3_colors.asp#:~:text=RGBA%20color%20values%20are%20an,and%201.0%20(fully%20opaque).) of the format `color = "rgb(128, 0, 128, 0.5)"`
 
 
-### href - Using jq Templates
-Some elements ( `card`, `column` in a `table`) allow you to specify a [jq](https://stedolan.github.io/jq/) template to dynamically generate a hyperlink from the data in the row. To use a jq template, enclose the jq in double curly braces (`{{ }}`).  
+### icon
+
+Many dashboard elements contain an `icon` argument.  The icon arguments support a standard set of functionality and options, and may be:
+- A google [material symbols icon](https://fonts.google.com/icons).  If no prefix is specified, the icon will be chosen from google material symbols.  For example, `icon = "verified-user"` will use the `verified_user` icon from google material symbols.
+- A [heroicons](https://heroicons.com/) icon. To use heroicons, prefix the icon name with `heroicons-outline:` or `heroicons-solid:`. For example, `icon = "heroicons-outline:shield-check"` will use the `shield-check` icon from heroicons outline. 
+- A custom icon.  To use a custom icon, specify the icon URL, for example `icon = "https://steampipe.io/images/steampipe-logo.png"`.
+- Text.  To use text as an icon, prefix the icon with `text:`, for example `icon = "text:OK"` will display the text "OK" in place of an icon.  Any unicode characters may appear, so you can even use `icon = "text:👍"`.
+
+
+### jq Templates
+Some elements ( `card`, `column` in a `table`) allow you to specify a [jq](https://stedolan.github.io/jq/) template in the `href` argument to dynamically generate a hyperlink from the data in the row. To use a jq template, enclose the jq in double curly braces (`{{ }}`).  
 
 Steampipe will pass each row of data to jq in the same format that is returned by [steampipe query json mode output](reference/dot-commands/output), where the keys are the column names and the values are the data for that row. 
 

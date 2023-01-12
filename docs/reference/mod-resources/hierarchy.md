@@ -5,66 +5,79 @@ sidebar_label: hierarchy
 
 # hierarchy
 
-A hierarchy allows visualization of queries using types such as `tree`.
+A hierarchy allows visualization of queries using types such as `tree`.    Hierarchies are [node/edge visualizations](/docs/reference/mod-resources/graph#nodeedge-visualizations).  The data to be displayed is specified using a series of nodes and edges. The nodes define the vertices of the graph, and the edges define the connections between them.
 
 Hierarchy blocks can be declared as named resources at the top level of a mod, or be declared as anonymous blocks inside a `dashboard` or `container`, or be re-used inside a `dashboard` or `container` by using a `hierarchy` with `base = <mod>.hierarchy.<hierarchy_resource_name>`.
 
 
-
 ## Example Usage
-
 
 <img src="/images/reference_examples/tree_ex_1.png" width="100%" />
 
 ```hcl
-hierarchy {
-  type  = "tree"
-  title = "AWS VPC Subnets by AZ"
-  width = 6
+dashboard "tree_ex_nodeonly" {
 
-  sql = <<-EOQ
+  input "vpc" {
+    width = 4
 
-    with vpc as
-      (select 'vpc-9d7ae1e7' as vpc_id)
+    sql = <<-EOQ
+      select
+        title as label,
+        vpc_id as value
+      from
+        aws_vpc
+    EOQ
+  }
 
-    select
-      null as from_id,
-      vpc_id as id,
-      vpc_id as title,
-      0 as depth,
-      'aws_vpc' as category
-    from
-      aws_vpc
-    where
-      vpc_id in (select vpc_id from vpc)
+  hierarchy {
+    title = "AWS VPC Subnets by AZ"
 
-    union all
-    select
-      distinct on (availability_zone)
-      vpc_id as from_id,
-      availability_zone as id,
-      availability_zone as title,
-      1 as depth,
-      'aws_availability_zone' as category
-    from
-      aws_vpc_subnet
-    where
-      vpc_id in (select vpc_id from vpc)
+    node {
+      sql = <<-EOQ
+        select
+          vpc_id as id,
+          vpc_id as title
+        from
+          aws_vpc
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc.value]
+    }
 
 
-    union all
-    select
-      availability_zone as from_id,
-      subnet_id as id,
-      subnet_id as title,
-      2 as depth,
-      'aws_vpc_subnet' as category
-    from
-      aws_vpc_subnet
-    where
-      vpc_id in (select vpc_id from vpc)
+    node {
+      sql = <<-EOQ
+        select
+          distinct on (availability_zone)
+          vpc_id as from_id,
+          availability_zone as id,
+          availability_zone as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc.value]
+      
+    }
 
-  EOQ
+    node {
+      sql = <<-EOQ
+        select
+          availability_zone as from_id,
+          subnet_id as id,
+          subnet_id as title
+        from
+          aws_vpc_subnet
+        where
+          vpc_id = $1
+      EOQ
+      args = [self.input.vpc.value]
+    }
+
+  }
+
 }
 ```
 
@@ -75,12 +88,15 @@ hierarchy {
 | `args` | Map | Optional| A map of arguments to pass to the query. 
 | `base` |  Hierarchy Reference		| Optional | A reference to a named `hierarchy` resource that this `hierarchy` should source its definition from. `title` and `width` can be overridden after sourcing via `base`.
 | `category` | Block | Optional| [category](#category) blocks that specify display options for nodes with that category.
+| `edge` | Block | Optional| [edge](/docs/reference/mod-resources/edge) blocks that define the edges in the hierarchy.
+| `node` | Block | Optional| [node](/docs/reference/mod-resources/node) blocks that define the nodes in the hierarchy.
 | `param` | Block | Optional| [param](reference/mod-resources/query#param) blocks that defines the parameters that can be passed in to the query.  `param` blocks may only be specified for hierarchies that specify the `sql` argument. 
 | `query` | Query Reference | Optional | A reference to a [query](reference/mod-resources/query) resource that defines the query to run.  A `hierarchy`  may either specify the `query` argument or the `sql` argument, but not both.
 | `sql` |  String	| Optional |  An SQL string to provide data for the `hierarchy`.  A `hierarchy` may either specify the `query` argument or the `sql` argument, but not both.
 | `title` |  String	| Optional | A plain text [title](/docs/reference/mod-resources/dashboard#title) to display for this hierarchy.
 | `type` |  String	| Optional | The type of the hierarchy. Can be `tree` or `table`.
 | `width` |  Number	| Optional | The [width](/docs/reference/mod-resources/dashboard#width) as a number of grid units that this item should consume from its parent.
+| `with` | Block | Optional| [with](/docs/reference/mod-resources/with) blocks that define prerequisite queries to run.  `with` blocks may only be specified when the hierarchy is defined as a top-level (mod level), named resource.
 
 
 
@@ -92,8 +108,6 @@ hierarchy {
 | Property | Type   | Default                                                              | Values                                                                                                                                  | Description |
 | -------- | ------ |----------------------------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | `color`  | string | The matching color from the default theme for the data series index. | A [valid color value](reference/mod-resources/dashboard#color).  This may be a named color, RGB or RGBA string, or a control status color. |  The color to display for this category.           |
-
-
 
 ## Data Format
 
@@ -152,8 +166,66 @@ Alternately, you may specify nodes and edges as separate rows.  In this case, no
 
 
 
+### Tree via monolithic query
 
-### Tree with color by category
+
+<img src="/images/reference_examples/tree_ex_1.png" width="100%" />
+
+
+```hcl
+hierarchy {
+  type  = "tree"
+  title = "AWS VPC Subnets by AZ"
+  width = 6
+
+  sql = <<-EOQ
+
+    with vpc as
+      (select 'vpc-9d7ae1e7' as vpc_id)
+
+    select
+      null as from_id,
+      vpc_id as id,
+      vpc_id as title,
+      0 as depth,
+      'aws_vpc' as category
+    from
+      aws_vpc
+    where
+      vpc_id in (select vpc_id from vpc)
+
+    union all
+    select
+      distinct on (availability_zone)
+      vpc_id as from_id,
+      availability_zone as id,
+      availability_zone as title,
+      1 as depth,
+      'aws_availability_zone' as category
+    from
+      aws_vpc_subnet
+    where
+      vpc_id in (select vpc_id from vpc)
+
+
+    union all
+    select
+      availability_zone as from_id,
+      subnet_id as id,
+      subnet_id as title,
+      2 as depth,
+      'aws_vpc_subnet' as category
+    from
+      aws_vpc_subnet
+    where
+      vpc_id in (select vpc_id from vpc)
+
+  EOQ
+}
+```
+
+
+### Tree with color by category [monolithic]
 
 <img src="/images/reference_examples/tree_ex_color.png" width="100%" />
 
