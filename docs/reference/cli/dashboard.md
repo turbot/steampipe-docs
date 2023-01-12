@@ -72,6 +72,10 @@ steampipe dashboard list
     <td>  Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, use <inlineCode>--input=false</inlineCode>.  This is useful when running from scripts. (default true)</td> 
   </tr>
 
+  <tr>
+    <td nowrap="true"> <inlineCode>--max-parallel integer</inlineCode>  </td> 
+    <td> Set the maximum number of database connections to open.  See the <a href="reference/env-vars/steampipe_max_parallel">STEAMPIPE_MAX_PARALLEL</a> environment variable documentation for details. (default <inlineCode>10</inlineCode>). </td> 
+  </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--mod-install bool</inlineCode>  </td> 
