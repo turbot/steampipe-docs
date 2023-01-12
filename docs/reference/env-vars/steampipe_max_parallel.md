@@ -4,7 +4,7 @@ sidebar_label: STEAMPIPE_MAX_PARALLEL
 ---
 
 # STEAMPIPE_MAX_PARALLEL
-Set the maximum number of parallel executions. When running `steampipe check`, Steampipe will attempt to run up to this many controls in parallel.  This is essentially a connection pool size - Steampipe will open a database connection for each parallel instance.  The default is 5.
+Set the maximum number of database connections to open.  Steampipe will attempt to run up to this many queries in parallel.  This is essentially a connection pool size - Steampipe will open a database connection for each parallel instance.  The default is 10.
 
 ## Usage 
 ```bash
