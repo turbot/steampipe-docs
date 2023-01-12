@@ -189,6 +189,7 @@ options "general" {
 ### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
+| `autocomplete` |  `true` |  `true`, `false` | Enable or disable autocomplete in the interactive query shell. 
 | `header` |  `true` |  `true`, `false` | Enable or disable column headers.
 | `multi` | `false` |  `true`, `false` | Enable or disable multiline mode.
 | `output` | `table` | `json`, `csv`, `table`, `line` | Set output format.
@@ -202,6 +203,7 @@ options "general" {
 
 ```hcl
 options "terminal" {
+  autocomplete       = true                # true, false
   header             = true                # true, false
   multi              = false               # true, false
   output             = "table"             # json, csv, table, line
@@ -210,7 +212,6 @@ options "terminal" {
   search_path        = "aws,aws2,gcp,gcp2" # comma-separated string; an exact search_path
   search_path_prefix = "aws2,gcp2"         # comma-separated string; a search_path_prefix to prepend to the search_path
   watch              =  true               # true, false
-
 }
 ```
 
