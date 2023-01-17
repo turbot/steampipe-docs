@@ -58,7 +58,7 @@ control "s3_untagged" {
 }
 ```
 
-This snippet defines a control named `s3_untagged`, including a sql query to find untagged S3 buckets.  Note that the query returns the [required control columns](/docs/reference/mod-resources/control#required-control-columns) (`resource`, `status`, and `reason`), as well as additional columns, or [dimensions](http://localhost:3000/docs/reference/mod-resources/control#additional-control-columns--dimensions), to provide context that is specific to AWS (`region`, `account_id`).
+This snippet defines a control named `s3_untagged`, including a sql query to find untagged S3 buckets.  Note that the query returns the [required control columns](/docs/reference/mod-resources/control#required-control-columns) (`resource`, `status`, and `reason`), as well as additional columns, or [dimensions](/docs/reference/mod-resources/control#additional-control-columns--dimensions), to provide context that is specific to AWS (`region`, `account_id`).
 
 Now lets run our control:
 ```bash

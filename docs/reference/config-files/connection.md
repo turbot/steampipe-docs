@@ -12,7 +12,7 @@ Most `connection` arguments are plugin-specific, and they are used to specify cr
 ## Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
-| `plugin` | none     | [plugin version string](#plugin-version-strings) |  The plugin version that this connection uses.  This must refer to an [installed plugin version](http://localhost:3000/docs/managing/plugins#installing-plugins). 
+| `plugin` | none     | [plugin version string](#plugin-version-strings) |  The plugin version that this connection uses.  This must refer to an [installed plugin version](/docs/managing/plugins#installing-plugins).
 | `type`   | `plugin` | `plugin`, `aggregator` | The type of connection  - [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators).
 | `options` | none     | `options "connection"` block | An optional `options` block to set [connection options](reference/config-files/options#connection-options) for this connection.   Only `connection` options are supported.
 | `{plugin argument}`| varies |  varies|  Additional options are defined in each plugin - refer to the documentation for your plugin on the [Steampipe Hub](https://hub.steampipe.io/plugins).
