@@ -520,3 +520,4 @@ For example, consider a `myplugin` plugin that you have developed.  To install i
     }
     ```
 - Your connection will be loaded the next time Steampipe runs.  If Steampipe is running service mode, you must restart it to load the connection.
+
