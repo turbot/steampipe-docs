@@ -42,15 +42,40 @@ Running streampipe in CodeBuild uses the same `run-as: codebuild-user` as the in
     run-as: codebuild-user
     commands:
       - ./steampipe --version # for debugging
-      - export STEAMPIPE_WORKSPACE_CHDIR=`pwd`/steampipe-mod-terraform-aws-compliance
+      - export STEAMPIPE_MOD_LOCATION=`pwd`/steampipe-mod-terraform-aws-compliance
       - cd terraform ; ../steampipe check all --output html > steampipe_report.html
 
 ```
 
 Because the `steampipe check all` command returns the number of violations and we want CodeBuild to exit cleanly, we add `on-failure: CONTINUE` to the build phase.
 
-For the actual check, we just need to tell steampipe where to find the mod `export STEAMPIPE_WORKSPACE_CHDIR`, then we change directory to the terraform and run the  `steampipe check all` command. Since steampipe was installed in the parent directory of terraform, we call it as `../steampipe`.
+For the actual check, we just need to tell steampipe where to find the mod `export STEAMPIPE_MOD_LOCATION`, then we change directory to the terraform and run the  `steampipe check all` command. Since steampipe was installed in the parent directory of terraform, we call it as `../steampipe`.
 
 
-That's it! Now you can use any of Steampipe's plugins and mods as part of your CodeBuild projects.
+## Using Steampipe Cloud
+
+Steampipe can also push snapshots to Steampipe Cloud via AWS CodeBuild. To do this we make a few changest to the buildspec file.
+
+First, we must add the Steampipe Cloud envionment variables (stored in Secrets Manager). Add this to the top of the file (before phases):
+```yaml
+env:
+  # Store the Steampipe Cloud host, token and workspace in AWS Secrets Manager
+  secrets-manager:
+    STEAMPIPE_CLOUD_TOKEN: steampipe-cloud:STEAMPIPE_CLOUD_TOKEN
+    WORKSPACE: steampipe-cloud:WORKSPACE
+```
+
+Next, replace the last line of the build with a call to Steampipe Cloud:
+```yaml
+      - cd terraform ; ../steampipe check all --snapshot-location $WORKSPACE --snapshot --snapshot-title "Terraform Report"
+```
+This command will run steampipe and save the output of the check as "Terraform Report" in the specified Workspace. By default, the CLI looks for your steampipe cloud token in the `STEAMPIPE_CLOUD_TOKEN` [environment variable](https://steampipe.io/docs/reference/env-vars/overview).
+
+Finally, you need to create the secret in [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/):
+```bash
+aws secretsmanager create-secret --name steampipe-cloud --secret-string \
+  '{"STEAMPIPE_CLOUD_TOKEN":"spt_PUTYOURTOKENHERE","WORKSPACE":"fooli"}'
+```
+
+That's it! Now you can use any of Steampipe's plugins and mods as part of your CodeBuild projects, either locally of leveraging the power of Steampipe Cloud.
 
