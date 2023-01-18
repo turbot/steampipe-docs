@@ -123,7 +123,7 @@ select * from aws_account
 
 You can aggregate or search for data across multiple connections by using an **aggregator** connection.  Aggregators allow you to query data from multiple connections for a plugin as if they are a single connection.  For example, using aggregators, you can create tables that allow you to query multiple AWS accounts:
 
-```
+```hcl
 connection "aws_all" {
   plugin      = "aws" 
   type        = "aggregator"
