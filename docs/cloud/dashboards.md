@@ -66,3 +66,7 @@ To delete a snapshot, click the trash can icon for the snapshot you wish to dele
 
 <img src="/images/docs/cloud/dash_snap_delete_confirm.png" width="400pt"/>
 <br />
+
+## Can I automate this?
+
+Absolutely! Steampipe Cloud can take away the hassle of manually capturing snapshots by allowing you to [schedule](cloud/snapshots#scheduled-snapshots) them.
