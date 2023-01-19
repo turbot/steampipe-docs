@@ -52,7 +52,7 @@ For the actual check, we just need to tell steampipe where to find the mod `expo
 
 ## Using Steampipe Cloud
 
-Steampipe can also push snapshots to Steampipe Cloud via AWS CodeBuild. To do this we make a few changes to the buildspec file.
+CodeBuild can also integrate with [Steampipe Cloud](https://steampipe.io/docs/cloud/overview) to push [snapshots](https://steampipe.io/docs/snapshots/overview) into your [workspace](https://steampipe.io/docs/cloud/workspaces). To do this we make a few changes to the buildspec file.
 
 First, we must add the Steampipe Cloud environment variables (stored in Secrets Manager). Add this to the top of the file (before phases):
 ```yaml
@@ -69,13 +69,13 @@ Next, replace the last line of the build with a call to Steampipe Cloud:
 ```
 This command will run steampipe and save the output of the check as "Terraform Report" in the specified Workspace. By default, the CLI looks for your steampipe cloud token in the `STEAMPIPE_CLOUD_TOKEN` [environment variable](https://steampipe.io/docs/reference/env-vars/overview).
 
-Finally, you need to create the secret in [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/):
+You can create your [Steampipe Cloud token](https://steampipe.io/docs/cloud/profile#tokens) via the Settings page (click on your avatar in the upper right). Once you have your token (which begins with `spt_`), you need to create the secret in [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/):
 ```bash
 aws secretsmanager create-secret --name steampipe-cloud --secret-string \
   '{"STEAMPIPE_CLOUD_TOKEN":"spt_PUTYOURTOKENHERE","WORKSPACE":"fooli"}'
 ```
 
-You can find the entire file [here in our samples repository](https://github.com/turbot/steampipe-samples/blob/main/all/aws-codebuild/steampipe-cloud-buildspec.yaml).
+You can find the entire buildspec file [here in our samples repository](https://github.com/turbot/steampipe-samples/blob/main/all/aws-codebuild/steampipe-cloud-buildspec.yaml).
 
 
 That's it! Now you can use any of Steampipe's plugins and mods as part of your CodeBuild projects, either locally of leveraging the power of Steampipe Cloud.
