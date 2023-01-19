@@ -64,7 +64,7 @@ If you select `New Schedule` you'll be presented with the following screen.
   </tr>
 </table>
 
-After scheduling a snapshot, you will be taken to the `[pipeline detail](#pipelines)` page, which shows you editable details 
+After scheduling a snapshot, you will be taken to the [pipeline detail](#pipelines) page, which shows you editable details 
 of  the schedule, information on its next run and last run status, along with a link out to the process logs.
 
 <img src="/images/docs/cloud/dash-snapshot-schedule-detail.png" width="400pt"/>
@@ -77,3 +77,7 @@ you to test out the schedule / notifications etc.
 
 Under the cover, Steampipe Cloud schedules and runs this as a `pipeline`, which can be used to compose anything from simple 
 tasks to long-running, complex workflows. This allows the process to be fault-tolerant, retryable (where applicable) and scalable.
+
+The scheduled snapshot pipeline will upload the snapshot to your workspace as the `system` user, rather than attribute the 
+activity to the user creating the schedule. We will retry steps in the pipeline where possible e.g. any 5xx series errors 
+from a call to a notification webhook will retry up to a maximum of 2 times, whereas a 400 error would not retry.
