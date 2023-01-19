@@ -7,13 +7,11 @@ sidebar_label: AWS CodeBuild
 
 AWS [CodeBuild](https://aws.amazon.com/codebuild/) is a managed continuous integration service that can build code and run tests. All AWS customers get [100 minutes of free usage](https://aws.amazon.com/codebuild/pricing/?loc=ft#Free_Tier) of AWS CodeBuild each month. Let's install Steampipe into a CodeBuild Project, then install a plugin and mod, then test some terraform code.
 
-<!-- AWS [CodePipeline](https://aws.amazon.com/codepipeline/) is a managed continuous delivery service to manage release pipelines for applications and infrastructure. -->
-
 ## Installing Steampipe in CodeBuild
 
 Installing Steampipe in CodeBuild is easy. CodeBuild uses [buildspec files](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html) to define how the build should be done.
 
-By default, CodeBuild runs as root in the build container. However for security reasons, Steampipe will not run as root. We will need to install and run Steampipe as a non-root user. Here is a `buildspec.yaml` file that would install Steampipe:
+By default, CodeBuild runs as root in the build container. However for security reasons, Steampipe will not run as root. We will need to install and run Steampipe as a non-root user. Here is a `buildspec.yaml` file that would install Steampipe ([link](https://github.com/turbot/steampipe-samples/blob/main/all/aws-codebuild/steampipe-buildspec.yaml)):
 
 ```yaml
 version: 0.2
@@ -33,7 +31,7 @@ This BuildSpec file will execute all the commands as `codebuild-user`. We instal
 
 ## Running Steampipe in CodeBuild
 
-Running streampipe in CodeBuild uses the same `run-as: codebuild-user` as the install step. Add this new phase to the buildspec file:
+Running Steampipe in CodeBuild uses the same `run-as: codebuild-user` as the install step. Add this new phase to the buildspec file:
 
 ```yaml
   build:
@@ -54,9 +52,9 @@ For the actual check, we just need to tell steampipe where to find the mod `expo
 
 ## Using Steampipe Cloud
 
-Steampipe can also push snapshots to Steampipe Cloud via AWS CodeBuild. To do this we make a few changest to the buildspec file.
+Steampipe can also push snapshots to Steampipe Cloud via AWS CodeBuild. To do this we make a few changes to the buildspec file.
 
-First, we must add the Steampipe Cloud envionment variables (stored in Secrets Manager). Add this to the top of the file (before phases):
+First, we must add the Steampipe Cloud environment variables (stored in Secrets Manager). Add this to the top of the file (before phases):
 ```yaml
 env:
   # Store the Steampipe Cloud host, token and workspace in AWS Secrets Manager
@@ -76,6 +74,9 @@ Finally, you need to create the secret in [AWS Secrets Manager](https://aws.amaz
 aws secretsmanager create-secret --name steampipe-cloud --secret-string \
   '{"STEAMPIPE_CLOUD_TOKEN":"spt_PUTYOURTOKENHERE","WORKSPACE":"fooli"}'
 ```
+
+You can find the entire file [here in our samples repository](https://github.com/turbot/steampipe-samples/blob/main/all/aws-codebuild/steampipe-cloud-buildspec.yaml).
+
 
 That's it! Now you can use any of Steampipe's plugins and mods as part of your CodeBuild projects, either locally of leveraging the power of Steampipe Cloud.
 
