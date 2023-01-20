@@ -36,7 +36,7 @@ steampipe check list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--export string</inlineCode>  </td> 
-    <td> Export control output to a file.  You may export multiple <a href="#output-formats">output formats</a> for a single control run by entering multiple <inlineCode>--export</inlineCode> arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are <inlineCode>asff</inlineCode>, <inlineCode>csv</inlineCode>, <inlineCode>html</inlineCode>, <inlineCode>json</inlineCode>, <inlineCode>md</inlineCode>,<inlineCode>sps (snapshot)</inlineCode>
+    <td> Export control output to a file.  You may export multiple <a href="#output-formats">output formats</a> for a single control run by entering multiple <inlineCode>--export</inlineCode> arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are <inlineCode>asff</inlineCode>, <inlineCode>csv</inlineCode>, <inlineCode>html</inlineCode>, <inlineCode>json</inlineCode>, <inlineCode>md</inlineCode>,<inlineCode>nunit3</inlineCode>, <inlineCode>sps (snapshot)</inlineCode>
     </td> 
 
   </tr>
