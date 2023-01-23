@@ -5,7 +5,7 @@ sidebar_label: Jenkins
 
 # Using Steampipe in Jenkins
 
-Jenkins provides a [hosted environment](https://www.jenkins.io/) in which you can build, test, and deploy software. This happens in a [Jenkins Pipeline](https://www.jenkins.io/doc/book/pipeline/). Let's install Steampipe through using the pipeline, then install a plugin and run a query.
+Jenkins provides a [hosted environment](https://www.jenkins.io/) in which you can build, test, and deploy software. This happens in a [Jenkins Pipeline](https://www.jenkins.io/doc/book/pipeline/). Let's use a pipeline to install Steampipe, then install a plugin and run a query.
 
 ## Installing Steampipe in a Jenkins pipeline
 
@@ -28,7 +28,7 @@ pipeline {
 
 ## Running Steampipe in a Jenkins pipeline
 
-In order to run Steampipe commands. We will first install the [Hacker News](https://hub.steampipe.io/plugins/turbot/hackernews) plugin.
+In order to run Steampipe commands, we will first install the [Hacker News](https://hub.steampipe.io/plugins/turbot/hackernews) plugin.
 
 ```
 pipeline {
