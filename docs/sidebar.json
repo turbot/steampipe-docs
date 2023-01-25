@@ -94,7 +94,8 @@
       "integrations/gcp_cloudshell",
       "integrations/github_action",
       "integrations/gitlab_ci_cd",
-      "integrations/aws_codebuild"
+      "integrations/aws_codebuild",
+      "integrations/jenkins"
     ]
   },
   {
