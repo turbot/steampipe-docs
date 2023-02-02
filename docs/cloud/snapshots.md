@@ -5,7 +5,7 @@ sidebar_label: Snapshots
 
 # Scheduling Snapshots
 
-Rather than manually capture dashboard [snapshots](/cloud/dashboards#saving--sharing-snapshots), Steampipe Cloud allows you to schedule 
+Rather than manually capture dashboard [snapshots](/docs/cloud/dashboards#saving--sharing-snapshots), Steampipe Cloud allows you to schedule 
 them and be notified when complete.
 
 Scheduling a snapshot is as simple as navigating to the dashboard you wish to schedule, optionally setting it up with any 
@@ -64,8 +64,8 @@ If you select `New Schedule` you'll be presented with the following screen.
   </tr>
 </table>
 
-After scheduling a snapshot, you will be taken to the [pipeline detail](/cloud/pipelines) page, which shows you editable details 
-of the schedule, information on its next run and last run status, along with a link out to the [process](/cloud/processes) logs.
+After scheduling a snapshot, you will be taken to the [pipeline detail](/docs/cloud/pipelines) page, which shows you editable details 
+of the schedule, information on its next run and last run status, along with a link out to the [process](/docs/cloud/processes) logs.
 
 The scheduled snapshot pipeline will upload the snapshot to your workspace as the `system` user, rather than attribute the
 activity to the user creating the schedule. We will retry steps in the pipeline where possible e.g. any 5xx series errors

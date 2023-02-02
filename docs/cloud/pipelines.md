@@ -10,7 +10,7 @@ tasks to long-running, complex workflows. This allows the process to be fault-to
 
 To view your currently defined pipelines, head to your workspace and navigate to the `Pipelines` tab. Here you'll see a list of
 all the defined pipelines, with information on when they last run and when they are next due to run. Clicking on the `Last run`
-option will take you to the [process](/cloud/processes) for that run.  
+option will take you to the [process](/docs/cloud/processes) for that run.  
 
 <img src="/images/docs/cloud/cloud-pipelines.png" width="400pt"/>
 <br />
