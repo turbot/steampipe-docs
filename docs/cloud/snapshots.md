@@ -28,7 +28,7 @@ If you select `New Schedule` you'll be presented with the following screen.
   </tr>
   <tr> 
     <td nowrap="true">Title</td> 
-    <td>The title of the <a href="#pipelines">pipeline</a> that will run this schedule.</td>
+    <td>The title of the <a href="/cloud/pipelines">pipeline</a> that will run this schedule.</td>
   </tr>
 
   <tr> 
@@ -36,11 +36,11 @@ If you select `New Schedule` you'll be presented with the following screen.
     <td>When should this scheduled snapshot run? The options you have here depend on your plan:
       <br/>
       <br/>
-      Developer: <inlineCode>Daily</inlineCode><br/>
-      Team: <inlineCode>Daily</inlineCode>, <inlineCode>Hourly</inlineCode><br/>
-      Enterprise: <inlineCode>Daily</inlineCode>, <inlineCode>Hourly</inlineCode>, <inlineCode>Custom</inlineCode><br/><br/>
-      For <inlineCode>Daily</inlineCode> and <inlineCode>Hourly</inlineCode> frequencies, Steampipe Cloud will automatically 
-      allocate a random time for these. For a <inlineCode>Custom</inlineCode> frequency, you can supply a cron schedule. 
+      Developer: <inlineCode>Weekly</inlineCode>, <inlineCode>Daily</inlineCode><br/>
+      Team: <inlineCode>Weekly</inlineCode>, <inlineCode>Daily</inlineCode>, <inlineCode>Hourly</inlineCode><br/>
+      Enterprise: <inlineCode>Weekly</inlineCode>, <inlineCode>Daily</inlineCode>, <inlineCode>Hourly</inlineCode>, <inlineCode>Custom</inlineCode><br/><br/>
+      For <inlineCode>Weekly</inlineCode>, <inlineCode>Daily</inlineCode> and <inlineCode>Hourly</inlineCode> frequencies, Steampipe Cloud will automatically 
+      allocate a random time for these, with `Weekly` schedules being run on a Sunday. For a <inlineCode>Custom</inlineCode> frequency, you can supply a cron schedule. 
      The cron must not run more than every 15 minutes.
     </td>
   </tr>
@@ -64,8 +64,8 @@ If you select `New Schedule` you'll be presented with the following screen.
   </tr>
 </table>
 
-After scheduling a snapshot, you will be taken to the [pipeline detail](#pipelines) page, which shows you editable details 
-of the schedule, information on its next run and last run status, along with a link out to the [process](#processes) logs.
+After scheduling a snapshot, you will be taken to the [pipeline detail](/cloud/pipelines) page, which shows you editable details 
+of the schedule, information on its next run and last run status, along with a link out to the [process](/cloud/processes) logs.
 
 The scheduled snapshot pipeline will upload the snapshot to your workspace as the `system` user, rather than attribute the
 activity to the user creating the schedule. We will retry steps in the pipeline where possible e.g. any 5xx series errors

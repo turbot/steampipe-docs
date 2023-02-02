@@ -5,7 +5,7 @@ sidebar_label: Processes
 
 ## Processes
 
-Whilst [pipelines](#pipelines) encapsulate the steps required to perform various workflows, each discrete step in a pipeline 
+Whilst [pipelines](/cloud/pipelines) encapsulate the steps required to perform various workflows, each discrete step in a pipeline 
 will be made up of at least one `process`. A process will show who initiated it and provide detailed logs of the output.
 
 To view your processes, navigate to either your own identity or workspace `Activity`
