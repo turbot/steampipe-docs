@@ -270,6 +270,7 @@
           "cloud/integrations/python",
           "cloud/integrations/r",
           "cloud/integrations/razorsql",
+          "cloud/integrations/rstudio",
           "cloud/integrations/tableau",
           "cloud/integrations/tableplus",
           "cloud/integrations/vscode"
