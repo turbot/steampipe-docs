@@ -28,7 +28,7 @@ If you select `New Schedule` you'll be presented with the following screen.
   </tr>
   <tr> 
     <td nowrap="true">Title</td> 
-    <td>The title of the <a href="/cloud/pipelines">pipeline</a> that will run this schedule.</td>
+    <td>The title of the <a href="/docs/cloud/pipelines">pipeline</a> that will run this schedule.</td>
   </tr>
 
   <tr> 
@@ -40,7 +40,7 @@ If you select `New Schedule` you'll be presented with the following screen.
       Team: <inlineCode>Weekly</inlineCode>, <inlineCode>Daily</inlineCode>, <inlineCode>Hourly</inlineCode><br/>
       Enterprise: <inlineCode>Weekly</inlineCode>, <inlineCode>Daily</inlineCode>, <inlineCode>Hourly</inlineCode>, <inlineCode>Custom</inlineCode><br/><br/>
       For <inlineCode>Weekly</inlineCode>, <inlineCode>Daily</inlineCode> and <inlineCode>Hourly</inlineCode> frequencies, Steampipe Cloud will automatically 
-      allocate a random time for these, with `Weekly` schedules being run on a Sunday. For a <inlineCode>Custom</inlineCode> frequency, you can supply a cron schedule. 
+      allocate a random time for these, with `Weekly` schedules being run at that time on a Sunday. For a <inlineCode>Custom</inlineCode> frequency, you can supply a cron schedule. 
      The cron must not run more than every 15 minutes.
     </td>
   </tr>
