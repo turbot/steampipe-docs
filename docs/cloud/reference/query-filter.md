@@ -169,9 +169,12 @@ But the `snapshot` API only allows you to filter on:
   - `created_at`
   - `dashboard_name`
   - `dashboard_title`
-  - `input`
+  - `id`
+  - `inputs`
   - `tags`
+  - `title`
   - `visibility`
+  - `expires_at`
 
 
 ## Supported APIs & Columns
