@@ -5,11 +5,11 @@ sidebar_label: CircleCI
 
 # Using Steampipe in CircleCI
 
-CircleCI provides a [hosted environment](https://circleci.com/) in which you can build, test, and deploy software. It integrates with services such as Github, Gitlab and Bitbucket to listen to events that trigger pipelines or consume source code. Here we integrate a GitLab project with CircleCI to install Steampipe, then install a plugin and run a query.
+CircleCI provides a [hosted environment](https://circleci.com/) in which you can build, test, and deploy software. It integrates with services such as GitHub, GitLab and Bitbucket to listen to events that trigger pipelines or consume source code. Here we integrate a GitLab project with CircleCI to install Steampipe, then install a plugin and run a query.
 
 ## Installing Steampipe in CircleCI
 
-To run scripts, first connect your Gitlab repository to CirlcleCI and create a `config.yml` file that contains the definitions of the Pipeline. Here's an example that installs Steampipe.
+To run scripts, first connect your GitLab repository to CircleCI and create a `config.yml` file that contains the definitions of the Pipeline. Here's an example that installs Steampipe.
 
 ```yaml
 version: 2.1
