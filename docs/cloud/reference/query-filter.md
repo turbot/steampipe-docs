@@ -169,9 +169,12 @@ But the `snapshot` API only allows you to filter on:
   - `created_at`
   - `dashboard_name`
   - `dashboard_title`
-  - `input`
+  - `id`
+  - `inputs`
   - `tags`
+  - `title`
   - `visibility`
+  - `expires_at`
 
 
 ## Supported APIs & Columns
@@ -180,6 +183,28 @@ But the `snapshot` API only allows you to filter on:
   - `created_at`
   - `dashboard_name`
   - `dashboard_title`
-  - `input`
+  - `id`
+  - `inputs`
   - `tags`
+  - `title`
   - `visibility`
+  - `expires_at`
+- `/api/latest/{identity type}/{identity handle}/workspace/{workspace handle}/pipeline`
+  - `args`
+  - `created_at`
+  - `id`
+  - `identity_id`
+  - `pipeline`
+  - `tags`
+  - `title`
+  - `updated_at`
+  - `workspace_id`
+- `/api/latest/{identity type}/{identity handle}/workspace/{workspace handle}/process`
+  - `created_at`
+  - `id`
+  - `identity_id`
+  - `pipeline_id`
+  - `state`
+  - `type`
+  - `updated_at`
+  - `workspace_id`

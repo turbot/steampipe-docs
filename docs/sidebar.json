@@ -245,6 +245,8 @@
       "cloud/workspaces",
       "cloud/connections",
       "cloud/mods",
+      "cloud/pipelines",
+      "cloud/activity",
       "cloud/organizations",
       "cloud/profile",
       {

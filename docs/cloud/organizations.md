@@ -30,10 +30,6 @@ To revoke access from a user, select the options menu button (hamburger) to the 
 On the **Settings** page for your organization, click **Profile** from the left hand menu to manage your profile data.  You can modify your organization's **Display Name** or **Avatar URL**.
 
 
-## Audit Log
-On the **Settings** page, click **Audit Log** from the left hand menu to view a log of API activity associated with the organization.
-
-
 ## Updating Your Organization Handle
 You can update your organization handle at any time.  Note, however, that your workspace DNS names all contain your organization handle;  changing it will result in changing the DNS name for ALL of your organization's workspaces.
 

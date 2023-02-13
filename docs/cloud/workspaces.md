@@ -49,10 +49,6 @@ To remove a user from the organization, select the options menu button (hamburge
 You can delete a workspace from its **Settings** tab.  From the **Workspaces** tab for your user account or organization, click on the workspace you wish to delete.  On the workspace page, go to the **Settings** tab, select **Advanced** from the menu on the left, and click **Delete workspace**.  You will be prompted to confirm deletion; enter the workspace name and click **Delete**.
 
 
-## Viewing Query Logs
-You can view the query log for your workspace from your workspace page.  Go to the **Settings** tab for your workspace, then select **DB Logs** from the menu on the left.
-
-
 ## Workspace Maintenance
 Your workspace may be updated and rebooted during the weekly maintenance window, Sundays 2:00am - 5:00am EST/EDT.  This window is not currently configurable.  
 
