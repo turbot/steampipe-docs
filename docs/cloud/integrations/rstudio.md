@@ -4,7 +4,7 @@ sidebar_label: RStudio
 ---
 # Connect to Steampipe Cloud from RStudio
 
-[RStudio](https://posit.co/products/open-source/rstudio/) is a IDE platform that uses R language to enable users to explore, query, and visualize data.
+[RStudio](https://posit.co/products/open-source/rstudio/) is an IDE that uses the R language to enable users to explore, query, and visualize data.
 
 Steampipe provides a single interface to all your cloud, code, logs and more. Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including RStudio -- can connect to.
 
@@ -37,8 +37,7 @@ Database:
 
 To get started, Install the [RPostgres](https://cran.r-project.org/web/packages/RPostgres/index.html) package, specify your connection string, create a connection, then run a query.
 
-In this example we connect from the RStudio console, load the query results and use the [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html) package to create statistical graphics showing versioning status of AWS S3 buckets in an account. It can also be exported as an image or a PDF file for sharing.
-
+In this example we connect from the RStudio console, load the query results and use the [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html) package to chart the versioning status of AWS S3 buckets in an account.
 ```r
 install.packages('RPostgres')
 install.packages("ggplot2")
