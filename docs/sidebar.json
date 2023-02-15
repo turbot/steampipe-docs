@@ -90,11 +90,12 @@
     "link": "integrations/overview",
     "items": [
       "integrations/aws_cloudshell",
+      "integrations/aws_codebuild",
       "integrations/azure_cloudshell",
+      "integrations/circleci",
       "integrations/gcp_cloudshell",
       "integrations/github_action",
       "integrations/gitlab_ci_cd",
-      "integrations/aws_codebuild",
       "integrations/jenkins"
     ]
   },
