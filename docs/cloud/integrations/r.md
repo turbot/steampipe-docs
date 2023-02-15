@@ -11,38 +11,26 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 <div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
 <img src="/images/docs/cloud/steampipe-cloud-connect-details.jpg" />
 </div>
-
 <br/>
 
-Install [RPostgres](https://cran.r-project.org/web/packages/RPostgres/index.html), specify your connection string, create a connection, run a query, fetch results.
+To get started, Install the [RPostgres](https://cran.r-project.org/web/packages/RPostgres/index.html) package, specify your connection string, create a connection, then run a query.
+
+In this example we connect from the R console, load the query results, then use its [summary](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/summary) function to summarize the data.
 
 ```r
 install.packages('RPostgres')
-install.packages("rjson")
 library(DBI)
-library("rjson")
 db <- 'dea4px'
 host_db <- 'rahulsrivastav14-rahulsworkspace.usea1.db.steampipe.io'
 db_port <- '9193'
 db_user <- 'rahulsrivastav14'
-db_password <- 'f4**-****-**2g'
+db_password <- 'f4**-****-**2s'
 con <- dbConnect(RPostgres::Postgres(), dbname=db, host=host_db, port=db_port, user=db_user, password=db_password)
-tbl <- dbGetQuery(con, 'select * from hackernews_new limit 2')
-toJSON(tbl)
+tbl <- dbGetQuery(con, 'select name, region, versioning_enabled from aws_s3_bucket')
+summary(tbl)
 ```
 
-```json
-{
-    "title": [
-        "Astonishing regularity in learning rate among college students",
-        "Morning exposure to deep red light improves declining eyesight"
-    ],
-    "score": [
-        2.57e-322,
-        8.25e-322
-    ]
-}
-```
+<div style={{"borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}> <img src="/images/docs/cloud/r-data-summary.png" /> </div>
 
 ## Connect to Steampipe CLI from R
 
@@ -66,26 +54,27 @@ Database:
 You can also use the [Steampipe Cloud query API](https://steampipe.io/docs/cloud/develop/query-api). Grab your [token](https://steampipe.io/docs/cloud/profile#tokens), put it an environment variable like `STEAMPIPE_CLOUD_TOKEN`, and use this pattern.
 
 ```r
- install.packages("httr")
-install.packages("jsonlite")
+install.packages("httr")
 library(httr)
-library(jsonlite)
-POST(url="https://cloud.steampipe.io/api/latest/user/rahulsrivastav14/workspace/rahulsworkspace/query",
-     config=add_headers(c("Authorization"= "Bearer, {STEAMPIPE_CLOUD_TOKEN}",
-                          "Content-Type: application/json")),
-     body= "{select title, score from hackernews_top order by score desc limit 2}")
+response <- POST( url="https://cloud.steampipe.io/api/latest/user/rahulsrivastav14/workspace/rahulsworkspace/query",
+add_headers(.headers = c(
+'Authorization'='Bearer {STEAMPIPE_CLOUD_TOKEN}',
+'Content-Type' = 'application/json',
+'Encoding' = "UTF-8")),
+body = '{"sql":"select name, region from aws_s3_bucket limit 2"}')
+content(response, "text")
 ```
 
 ```json
 {
   "items": [
     {
-      "score": 1285,
-      "title": "Easter egg in flight path of last 747 delivery flight"
+      "name": "amplify-authcra-devc-deployment",
+      "region": "us-east-2"
     },
     {
-      "score": 1004,
-      "title": "ChatGPT Plus"
+      "name": "appstream-app-settings-us-east-1-v01a5",
+      "region": "us-east-1"
     }
   ]
 }
