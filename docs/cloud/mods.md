@@ -19,7 +19,7 @@ Installation should typically only take a few seconds. You can then head over to
 
 ## Installing Custom Mods
 
-Rather than selecting an official mod within the install mods screen, you can choose to install your own [custom mod](https://steampipe.io/docs/mods/writing-dashboards) by clicking on the **install a custom mod** link. Steampipe Cloud supports installation of custom mods subject to the following rules:
+Rather than selecting an official mod within the install mods screen, you can choose to install your own [custom mod](https://steampipe.io/docs/mods/overview) by clicking on the **install a custom mod** link. Steampipe Cloud supports installation of custom mods subject to the following rules:
 * The repo must be publicly hosted on GitHub.
 * There must be at least [one semver tag](https://devhints.io/semver) (not a pre-release) satisfying the provided semver constraint.
 * The tagged version must contain a mod.sp file at the root of the repo.
