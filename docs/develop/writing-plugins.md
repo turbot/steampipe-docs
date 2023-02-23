@@ -107,7 +107,7 @@ The basic flow is:
 1. The Steampipe Foreign Data Wrapper (Steampipe FDW) determines what tables and columns are required.
 1. The FDW calls the appropriate [Hydrate Functions](#hydrate-functions) in the plugin, which fetch the appropriate data from the API, cloud provider, etc.
     - Each table defines two special hydrate functions, `List` and `Get`.  The `List` or `Get` will always be called before any other hydrate function in the table, as the other functions typically depend on the result of the Get or List call.
-    - Whether `List` or `Get` is called depends upon whether the qualifiers (in `where` clauses and `join...on`) match the `KeyColumns`.  This allows steampipe to fetch only the "row" data that it needs.
+    - Whether `List` or `Get` is called depends upon whether the qualifiers (in `where` clauses and `join...on`) match the `KeyColumns`.  This allows Steampipe to fetch only the "row" data that it needs. Qualifiers (aka quals) enable  Steampipe to map a Postgres constraint (e.g. `where created_at > date('2023-01-01')`) to the API parameter (e.g. `since=1673992596000`) that the plugin's supporting SDK uses to fetch results matching the Postgres constraint. See [How To enhance a plugin with a new table that supports 'quals'](https://steampipe.io/blog/vercel-table) for a complete example.
     - Multiple columns may (and usually do) get built from the same hydrate function, but steampipe only calls the hydrate functions for the columns requested (specified in the `select`, `join`, or `where`).   This allows steampipe to call only those APIs for the "column" data requested in the query.
 1. The [Transform Functions](#transform-functions) are called for each column.  The transform functions extract and/or reformat data returned by the hydrate functions into the format to be returned in the column.
 1. The plugin returns the transformed data to the Steampipe FDW
@@ -520,3 +520,4 @@ For example, consider a `myplugin` plugin that you have developed.  To install i
     }
     ```
 - Your connection will be loaded the next time Steampipe runs.  If Steampipe is running service mode, you must restart it to load the connection.
+
