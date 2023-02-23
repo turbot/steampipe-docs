@@ -17,6 +17,19 @@ Within the install mods screen, you will be presented with a list of the officia
 
 Installation should typically only take a few seconds. You can then head over to the **Dashboards** tab where you'll see a list of the available dashboards for the mod(s) you installed.
 
+## Installing Custom Mods
+
+Rather than selecting an official mod within the install mods screen, you can choose to install your own [custom mod](https://steampipe.io/docs/mods/writing-dashboards) by clicking on the **install a custom mod** link. Steampipe Cloud supports installation of custom mods subject to the following rules:
+* The repo must be publicly hosted on GitHub.
+* There must be at least [one semver tag](https://devhints.io/semver) (not a pre-release) satisfying the provided semver constraint.
+* The tagged version must contain a mod.sp file at the root of the repo.
+
+Installed mods are updated every day to the latest version satisfied by the semver constraint. The default of * means that the latest tagged version will be installed daily.
+
+Input your custom mod publicly hosted GitHub URL, and a version constraint if applicable (if left empty, will default to "*"). Once inputted, click the **Install Mods** button.
+
+Installation should typically only take a few seconds. You can then head over to the **Dashboards** tab where you'll see a list of the available dashboards for the custom mod you installed.
+
 
 ## Managing Mod Variables
 
