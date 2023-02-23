@@ -24,7 +24,7 @@ Rather than selecting an official mod within the install mods screen, you can ch
 * There must be at least [one semver tag](https://devhints.io/semver) (not a pre-release) satisfying the provided semver constraint.
 * The tagged version must contain a mod.sp file at the root of the repo.
 
-Installed mods are updated every day to the latest version satisfied by the semver constraint. The default of * means that the latest tagged version will be installed daily.
+Installed mods are updated every day to the latest version satisfied by the semver constraint. The default of `*` means that the latest tagged version will be installed daily.
 
 Input your custom mod publicly hosted GitHub URL, and a version constraint if applicable (if left empty, will default to "*"). Once inputted, click the **Install Mods** button.
 
