@@ -61,7 +61,7 @@ First, create a step that configures the credentials Steampipe will use to acces
 ```
 
 Once the cloud provider successfully validates the claims presented in the OIDC JWT ID token, it then provides a short-lived access token that is available only for the duration of the job. The short-lived access token is exported as environment variables AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN.
-Steampipe will load these short-lived [credentials from Environment variables](https://hub.steampipe.io/plugins/turbot/aws#credentials-from-environment-variables) to run the benchmark.
+Steampipe will load these short-lived [credentials from environment variables](https://hub.steampipe.io/plugins/turbot/aws#credentials-from-environment-variables) to run the benchmark.
 
 Next, you'll need to create a step that installs the Steampipe CLI and AWS plugin.
 
@@ -80,7 +80,7 @@ Next, you'll need to create a step that installs the Steampipe CLI and AWS plugi
 
 Before running the compliance benchmark, create a new folder on the branch specified in your GitHub repository to save the benchmark output. In our example, we will save the outputs to the folder `steampipe/benchmarks/aws`. The default environment variable [GITHUB_WORKSPACE]((https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables)) refers to the default working directory on the runner for steps, and the default location of your repository when using the [checkout](https://github.com/actions/checkout) action.
 
-Next, create a step that runs the [AWS Compliance](https://hub.steampipe.io/mods/turbot/aws_compliance) mod.
+Next, create a step that installs the [AWS Compliance](https://hub.steampipe.io/mods/turbot/aws_compliance) mod and runs the AWS CIS v1.5.0 Benchmark.
 
 ```yaml
 - name: "Run Steampipe benchmark"
