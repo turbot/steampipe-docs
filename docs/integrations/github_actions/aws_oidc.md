@@ -5,7 +5,7 @@ sidebar_label: AWS + OIDC
 
 # Authenticate to AWS with OIDC
 
-If you run Steampipe in a [GitHub Action](https://steampipe.io/docs/integrations/github_action) you can use GitHub Actions Secrets to store the credentials that Steampipe uses to access AWS, Azure, GCP, or another cloud API. But what if you don't want to persist credentials there? An alternative is to use OpenID Connect (OIDC) to enable an Actions workflow that acquires temporary credentials on demand.
+If you run Steampipe in a [GitHub Action](https://steampipe.io/docs/integrations/github_actions/installing_steampipe) you can use GitHub Actions Secrets to store the credentials that Steampipe uses to access AWS, Azure, GCP, or another cloud API. But what if you don't want to persist credentials there? An alternative is to use OpenID Connect (OIDC) to enable an Actions workflow that acquires temporary credentials on demand.
 
 The example shown in this post uses the OIDC method in a workflow that:
 
@@ -78,7 +78,7 @@ Next, you'll need to create a step that installs the Steampipe CLI and AWS plugi
     steampipe plugin install aws
 ```
 
-Before running the compliance benchmark, create a new folder on the branch specified in your GitHub repository to save the benchmark output. In our example, we will save the outputs to the folder `steampipe/benchmarks/aws`. The default environment variable [GITHUB_WORKSPACE]((https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables)) refers to the default working directory on the runner for steps, and the default location of your repository when using the [checkout](https://github.com/actions/checkout) action.
+Before running the compliance benchmark, create a new folder on the branch specified in your GitHub repository to save the benchmark output. In our example, we will save the outputs to the folder `steampipe/benchmarks/aws`. The default environment variable [GITHUB_WORKSPACE](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables) refers to the default working directory on the runner for steps, and the default location of your repository when using the [checkout](https://github.com/actions/checkout) action.
 
 Next, create a step that installs the [AWS Compliance](https://hub.steampipe.io/mods/turbot/aws_compliance) mod and runs the AWS CIS v1.5.0 Benchmark.
 
