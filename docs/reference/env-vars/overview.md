@@ -21,6 +21,7 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [STEAMPIPE_CLOUD_HOST](reference/env-vars/steampipe_cloud_host)  | `cloud.steampipe.io` | Set the Steampipe Cloud host, for connecting to Steampipe Cloud workspace
 | [STEAMPIPE_CLOUD_TOKEN](reference/env-vars/steampipe_cloud_token)  |  | Set the Steampipe Cloud authentication token for connecting to Steampipe Cloud workspace
 | [STEAMPIPE_DATABASE_PASSWORD](reference/env-vars/steampipe_database_password)| randomly generated | Set the steampipe database password for this session.  This variable must be set when the steampipe service starts
+| [STEAMPIPE_DATABASE_START_TIMEOUT](reference/env-vars/steampipe_database_start_timeout)| `30` | Set the maximum time (in seconds) to wait for the Postgres process to start accepting queries after it has been started
 | [STEAMPIPE_INSTALL_DIR](reference/env-vars/steampipe_install_dir)| `~/.steampipe` | The directory in which the Steampipe database, plugins, and supporting files can be found
 | [STEAMPIPE_INTROSPECTION](reference/env-vars/steampipe_introspection)  | `none` | Enable introspection tables that allow you to query the mod resources in the workspace
 | [STEAMPIPE_LOG](reference/env-vars/steampipe_log)  | `warn` | Set the logging output level [DEPRECATED - use STEAMPIPE_LOG_LEVEL]
