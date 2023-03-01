@@ -17,7 +17,7 @@ If you navigate to your workspace, then the **Query** tab, you'll see the intera
 From here you can either explore your schemas on the left, or dive right in and test out your own queries in the editor. The schema list supports flexible searching across all the tables in your schemas. For example, if you search for `hack new`, 
 that will find a match for the `hackernews_show_hn` table in our `hackernews` schema.
 
-<img src="/images/docs/cloud/cloud-query-schema-search.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-schema-search.png" width="200pt"/>
 <br />
 
 Clicking the search result will automatically generate a query to select all the columns from that schema table, and run it for you. Please note that we limit queries to 5,000 rows in the interactive query console.
@@ -36,7 +36,7 @@ Steampipe Cloud allows you to save and share query **snapshots** that are dashbo
 
 To take a snapshot, click the **Snap** button at the top of the query editor after you have run the query you wish to snap.  
 
-<img src="/images/docs/cloud/cloud-query-toolbar.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-toolbar.png" width="200pt"/>
 <br />
 
 This will then take you to the dashboard snapshot view.
@@ -49,7 +49,7 @@ This will then take you to the dashboard snapshot view.
 From any query snapshot, you can browse and navigate its snapshot history. We generate a hash of the query used in the snapshot, allowing us to find other snapshots relating to this query. 
 Click the **View** button at the top of the dashboard to display the menu.  You can select a date from the calendar and the snapshots from that date are listed beneath. Click any snapshot to open it.
 
-<img src="/images/docs/cloud/cloud-query-related-snapshots.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-related-snapshots.png" width="200pt"/>
 <br />
 
 Clicking **All matching snapshots** at the bottom of the menu will take you to the snapshots page (you can also navigate to this page by clicking the **Snapshots** button at the top of the **Dashboards** pane).
