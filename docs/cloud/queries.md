@@ -1,48 +1,55 @@
 ---
-title:  Dashboards
-sidebar_label: Dashboards
+title:  Queries
+sidebar_label: Queries
 ---
 
-# Viewing Dashboards
+# Running Queries
 
-Once you've added a connection and installed one or more mods into your workspace, the [Dashboards](dashboard/overview) (including [Benchmarks](check/overview)) will become available for you to run in the **Dashboards** tab. You can browse the list, or use the powerful search to filter by name / tag etc.
+Once you've added a connection you will be able to run [SQL queries](sql/steampipe-sql) to explore your data, either interactively in the console, or via any PostgreSQL-compatible client - see our [integrations pages](cloud/integrations/overview) for some examples.
 
+## Exploring Schemas
 
-<img src="/images/docs/cloud/gs_dashboard_list.png" width="400pt"/>
+If you navigate to your workspace, then the **Query** tab, you'll see the interactive query console.
+
+<img src="/images/docs/cloud/cloud-query-editor.png" width="400pt"/>
 <br />
 
-Click on a dashboard to run it.
+From here you can either explore your schemas on the left, or dive right in and test out your own queries in the editor. The schema list supports flexible searching across all the tables in your schemas. For example, if you search for `hack new`, 
+that will find a match for the `hackernews_show_hn` table in our `hackernews` schema.
 
-<img src="/images/docs/cloud/dash_example_1.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-schema-search.png" width="400pt"/>
 <br />
 
+Clicking the search result will automatically generate a query to select all the columns from that schema table, and run it for you. Please note that we limit queries to 5,000 rows in the interactive query console.
 
+<img src="/images/docs/cloud/cloud-query-table-results.png" width="400pt"/>
+<br />
+
+If you click the `Edit` button you can amend the query, perhaps by selecting just the columns you're interested in, or adding a `where` clause to filter the results.  
+
+<img src="/images/docs/cloud/cloud-query-custom-query.png" width="400pt"/>
+<br />
 
 ## Saving & Sharing Snapshots
 
-Steampipe Cloud allows you to save and share dashboard **snapshots**.
-A snapshot is a saved view of a dashboard at a point in time with a given set of inputs and variables.
+Steampipe Cloud allows you to save and share query **snapshots** that are dashboards containing a table generated from your query results.
 
+To take a snapshot, click the **Snap** button at the top of the query editor after you have run the query you wish to snap.  
 
-To take a snapshot, click the **Snap** button at the top of the dashboard after the dashboard is fully loaded (the button will be disabled until the dashboard has finished loading).  
-
-<img src="/images/docs/cloud/dash_snapshot_header.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-toolbar.png" width="400pt"/>
 <br />
 
+This will then take you to the dashboard snapshot view.
 
-Alternately, you can click the **Share** button to take a snapshot and share a link with others.  You can set the visibility of the snapshot to
-restrict access to only those with access to your workspace, or share it such that anyone on the internet with the link can view it.
-
-<img src="/images/docs/cloud/dash_snapshot_share.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-snapshot.png" width="400pt"/>
 <br />
-
-
 
 ## Browsing Snapshots
 
-From any dashboard, you can browse and navigate its snapshot history.  Click the **View** button at the top of the dashboard to display the menu.  You can select a date from the calendar and the snapshots from that date are listed beneath.  Click any snapshot to open it.
+From any query snapshot, you can browse and navigate its snapshot history. We generate a hash of the query used in the snapshot, allowing us to find other snapshots relating to this query. 
+Click the **View** button at the top of the dashboard to display the menu.  You can select a date from the calendar and the snapshots from that date are listed beneath. Click any snapshot to open it.
 
-<img src="/images/docs/cloud/dash_snapshot_dropdown.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-related-snapshots.png" width="400pt"/>
 <br />
 
 Clicking **All matching snapshots** at the bottom of the menu will take you to the snapshots page (you can also navigate to this page by clicking the **Snapshots** button at the top of the **Dashboards** pane).
@@ -68,20 +75,20 @@ To delete a snapshot, click the trash can icon for the snapshot you wish to dele
 <br />
 
 
-## Scheduling Snapshots
+## Scheduling Query Snapshots
 
-Rather than manually capture dashboard snapshots, Steampipe Cloud allows you to schedule them and be notified when complete.
+Rather than manually capture query snapshots, Steampipe Cloud allows you to schedule them and be notified when complete.
 
-Scheduling a snapshot is as simple as navigating to the dashboard you wish to schedule, optionally setting it up with any required inputs and choosing the **Schedule** dropdown from the dashboard toolbar.
+Scheduling a snapshot is as simple as navigating to the query editor, selecting a table or writing a query and choosing the **Schedule** dropdown from the query toolbar.
 
-<img src="/images/docs/cloud/dash-snapshot-schedule-dropdown.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-snapshot-schedule-dropdown.png" width="400pt"/>
 <br />
 
-From here you can either choose to create a new schedule, or see any existing schedules that are configured for this dashboard.
+From here you can either choose to create a new schedule, or see any existing schedules that are configured for this query.
 
 If you select **New Schedule** you'll be presented with the following screen.
 
-<img src="/images/docs/cloud/dash-snapshot-schedule-new.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-snapshot-schedule-new.png" width="400pt"/>
 <br />
 
 <table>
@@ -113,7 +120,7 @@ If you select **New Schedule** you'll be presented with the following screen.
 
   <tr>
     <td nowrap="true">Notifications</td>
-    <td>Optionally send a summary notification to a Slack and/or Microsoft Teams webhook. We will send a summary of all the card values in the dashboard with a link back to the Snapshot.
+    <td>Optionally send a summary notification to a Slack and/or Microsoft Teams webhook. This will contain a link back to the Snapshot.
     </td>
   </tr>
 
