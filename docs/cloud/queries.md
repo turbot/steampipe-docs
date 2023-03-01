@@ -30,6 +30,10 @@ If you click the `Edit` button you can amend the query, perhaps by selecting jus
 <img src="/images/docs/cloud/cloud-query-custom-query.png" width="400pt"/>
 <br />
 
+## Downloading Results
+
+After you've run a query, you can download the results to a CSV file by clicking the **Download** button at the bottom of the query editor.
+
 ## Saving & Sharing Snapshots
 
 Steampipe Cloud allows you to save and share query **snapshots** that are dashboards containing a table generated from your query results.
