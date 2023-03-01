@@ -20,12 +20,12 @@ that will find a match for the `hackernews_show_hn` table in our `hackernews` sc
 <img src="/images/docs/cloud/cloud-query-schema-search.png" width="200pt"/>
 <br />
 
-Clicking the search result will automatically generate a query to select all the columns from that schema table, and run it for you. Please note that we limit queries to 5,000 rows in the interactive query console.
+Clicking the search result will automatically generate a query to select all the columns from that schema table, limited to 100 rows and will automatically run it for you.
 
 <img src="/images/docs/cloud/cloud-query-table-results.png" width="400pt"/>
 <br />
 
-If you click the `Edit` button you can amend the query, perhaps by selecting just the columns you're interested in, or adding a `where` clause to filter the results.  
+If you click the `Edit` button you can amend the query, perhaps by selecting just the columns you're interested in, or adding a `where` clause to filter the results. Please note that we limit queries to 5,000 rows in the interactive query console.  
 
 <img src="/images/docs/cloud/cloud-query-custom-query.png" width="400pt"/>
 <br />
@@ -85,14 +85,14 @@ Rather than manually capture query snapshots, Steampipe Cloud allows you to sche
 
 Scheduling a snapshot is as simple as navigating to the query editor, selecting a table or writing a query and choosing the **Schedule** dropdown from the query toolbar.
 
-<img src="/images/docs/cloud/cloud-query-snapshot-schedule-dropdown.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-snapshot-schedule-dropdown.png" width="300pt"/>
 <br />
 
 From here you can either choose to create a new schedule, or see any existing schedules that are configured for this query.
 
 If you select **New Schedule** you'll be presented with the following screen.
 
-<img src="/images/docs/cloud/cloud-query-snapshot-schedule-new.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-query-snapshot-schedule-new.png" width="300pt"/>
 <br />
 
 <table>
