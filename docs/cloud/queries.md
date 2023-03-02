@@ -48,7 +48,7 @@ This will then take you to the dashboard snapshot view.
 <img src="/images/docs/cloud/cloud-query-snapshot.png" width="400pt"/>
 <br />
 
-You can [manage](/docs/cloud/dashboards#managing-snapshots) this and [browse](/docs/cloud/dashboards#browsing-snapshots) other snapshots from the **Dashboards** page.
+You can [manage](/docs/cloud/dashboards#managing-snapshots) this snapshot and [browse](/docs/cloud/dashboards#browsing-snapshots) others from the **Dashboards** page.
 
 ## Scheduling Query Snapshots
 
