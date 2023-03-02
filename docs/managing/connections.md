@@ -155,7 +155,7 @@ Aggregators are powerful, but they are not infinitely scalable.  Like any other 
 
 Most tables in Steampipe plugins are statically defined - The column names and types are defined at compile time.  As a result, all connections for a given table from a given plugin have the same structure and they can be aggregated by simply appending data.
 
-Some plugins define tables dynamically, and their structure is only know at runtime.  The kubernetes plugin, for example, creates some tables dynamically by reading the CRD data.  Furthermore, the structure may not be identical across multiple connections.  When steampipe aggregates this data, it performs a merge, where the table in the aggregator contains the union of all columns from all connections.  Where a connection does not contain a given column, it will be null in the aggregated result.
+Some plugins define tables dynamically, and their structure is only know at runtime.  The kubernetes plugin, for example, creates some tables dynamically by reading the CRD data.  Furthermore, the structure may not be identical across multiple connections.  When steampipe aggregates this data, it performs a merge, where the table in the aggregator contains the union of all columns from all connections.  Where a connection does not contain a given column, it will be null in the aggregated result.  Where a column has the same name but different data type, the column will be returns as JSONB.
 
 Aggregation of dynamic tables was added in Steampipe v0.19.  Plugins must be compiled with Steampipe plugin SDK version v5.2.0 or later to support dynamic table aggregation.
 
