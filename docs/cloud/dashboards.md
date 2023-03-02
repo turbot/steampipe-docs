@@ -36,7 +36,35 @@ restrict access to only those with access to your workspace, or share it such th
 <img src="/images/docs/cloud/dash_snapshot_share.png" width="400pt"/>
 <br />
 
-You can [manage](/docs/cloud/dashboards#managing-snapshots) this and [browse](/docs/cloud/dashboards#browsing-snapshots) other snapshots from the **Dashboards** page.
+## Browsing Snapshots
+
+From any dashboard, you can browse and navigate its snapshot history.  Click the **View** button at the top of the dashboard to display the menu.  You can select a date from the calendar and the snapshots from that date are listed beneath.  Click any snapshot to open it.
+
+<img src="/images/docs/cloud/dash_snapshot_dropdown.png" width="400pt"/>
+<br />
+
+Clicking **All matching snapshots** at the bottom of the menu will take you to the snapshots page (you can also navigate to this page by clicking the **Snapshots** button at the top of the **Dashboards** pane).
+
+
+## Managing Snapshots
+
+You can browse and search all snapshots in your workspace. From the main dashboard page, click the **Snapshots** button at the top of the page.  
+
+<img src="/images/docs/cloud/dash_header_snap.png" width="400pt"/>
+<br />
+
+The Snapshots page allows you to manage all snapshots in your workspace.  The **Query** box allows you to enter a [query filter](cloud/reference/query-api) to search and filter the snapshot list.
+
+<img src="/images/docs/cloud/dash_snap_list.png" width="400pt"/>
+<br />
+
+Click any snapshot to view it.  
+
+To delete a snapshot, click the trash can icon for the snapshot you wish to delete.  You will be prompted to confirm deletion.
+
+<img src="/images/docs/cloud/dash_snap_delete_confirm.png" width="400pt"/>
+<br />
+
 
 ## Scheduling Snapshots
 
