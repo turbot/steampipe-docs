@@ -5,7 +5,7 @@ sidebar_label: Dashboards
 
 # Viewing Dashboards
 
-Once you've add a connection and installed one or more mods into your workspace, the [Dashboards](dashboard/overview) (including [Benchmarks](check/overview)) will become available for you to run in the **Dashboards** tab. You can browse the list, or use the powerful search to filter by name / tag etc.
+Once you've added a connection and installed one or more mods into your workspace, the [Dashboards](dashboard/overview) (including [Benchmarks](check/overview)) will become available for you to run in the **Dashboards** tab. You can browse the list, or use the powerful search to filter by name / tag etc.
 
 
 <img src="/images/docs/cloud/gs_dashboard_list.png" width="400pt"/>
@@ -36,8 +36,6 @@ restrict access to only those with access to your workspace, or share it such th
 <img src="/images/docs/cloud/dash_snapshot_share.png" width="400pt"/>
 <br />
 
-
-
 ## Browsing Snapshots
 
 From any dashboard, you can browse and navigate its snapshot history.  Click the **View** button at the top of the dashboard to display the menu.  You can select a date from the calendar and the snapshots from that date are listed beneath.  Click any snapshot to open it.
@@ -45,7 +43,7 @@ From any dashboard, you can browse and navigate its snapshot history.  Click the
 <img src="/images/docs/cloud/dash_snapshot_dropdown.png" width="400pt"/>
 <br />
 
-Clicking **All matching snapshots** at the bottom of the menu will take you to the snapshot page (you can also navigate to this page by clicking the **snapshots** button at the top of the **dashboards** pane).
+Clicking **All matching snapshots** at the bottom of the menu will take you to the snapshots page (you can also navigate to this page by clicking the **Snapshots** button at the top of the **Dashboards** pane).
 
 
 ## Managing Snapshots

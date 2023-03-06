@@ -252,6 +252,7 @@
     "items": [
       "cloud/getting-started",
       "cloud/dashboards",
+      "cloud/queries",
       "cloud/workspaces",
       "cloud/connections",
       "cloud/mods",

@@ -82,8 +82,8 @@ You can browse the catalog of existing dashboards, including compliance framewor
 <br />
 
 ## Query
-You can also run queries from the query tab.  You can browse or search the schemas and tables and run ad-hoc queries right from the web console!
 
+You can also run [queries](cloud/queries) from the query tab. You can browse or search the schemas and tables and run ad-hoc queries right from the web console!
 
 <img src="/images/docs/cloud/gs_query.png" width="400pt"/>
 <br />
