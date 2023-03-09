@@ -111,10 +111,11 @@ connection "aws_account1" {
 
 ```hcl
 options "database" {
-  port   = 9193                     # any valid, open port number
-  listen = "local"                  # local, network
-  search_path = "aws,aws2,gcp,gcp2" # comma-separated string; an exact search_path
-}   
+  port          = 9193                  # any valid, open port number
+  listen        = "local"               # local, network
+  search_path   = "aws,aws2,gcp,gcp2"   # comma-separated string; an exact search_path
+  start_timeout = 30                    # maximum time (in seconds) to wait for the database to start up
+}
 ```
 
 ---

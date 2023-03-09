@@ -146,9 +146,20 @@ connection "aws_all" {
 }
 ```
 
+
 Aggregators are powerful, but they are not infinitely scalable.  Like any other steampipe connection, they query APIs and are subject to API limits and throttling.  Consider as an example and aggregator that includes 3 AWS connections, where each connection queries 16 regions.  This means you essentially run the same list API calls 48 times!  When using aggregators, it is especially important to:
 - Query only what you need!  `select * from aws_s3_bucket` must make a list API call in each connection, and then 11 API calls *for each bucket*, where `select name, versioning_enabled from aws_s3_bucket` would only require a single API call per bucket.
 - Consider extending the [cache TTL](reference/config-files/connection).  The default is currently 300 seconds (5 minutes).  Obviously, anytime steampipe can pull from the cache, it is faster and less impactful to the APIs.  If you don't need the most up-to-date results, increase the cache TTL!
+
+### Aggregating Dynamic Tables
+
+Most tables in Steampipe plugins are statically defined -- the column names and types are defined at compile time.  As a result, all connections for a given table from a given plugin have the same structure and they can be aggregated by simply appending data.
+
+Some plugins define tables dynamically, and their structure is only known at runtime.  The [`kubernetes` plugin](), for example, creates some tables dynamically by reading the CRD data.  Furthermore, the structure may not be identical across multiple connections.  When Steampipe aggregates this data:
+- Steampipe performs a merge, where the table in the aggregator contains the union of all columns from all connections.
+- If a connection does not contain a given column, it will be null in the aggregated result for all rows from that connection.
+- If a column has the same name but different data type across connections, the column will be returned as JSONB.
+
 
 ## Setting the Search Path
 
