@@ -33,9 +33,9 @@ Database:
 
 ## Getting started
 
-[DBT](https://docs.getdbt.com/docs/get-started/getting-started/overview) is available to use on the desktop and the cloud; It requires an account creation and selection of a DBT cloud plan, here we use the free [developer plan](https://www.getdbt.com/pricing/). In this example we will create a Steampipe Cloud connection from DBT and query the top stories by score from hackernews_top.
+[[DBT](https://docs.getdbt.com/docs/get-started/getting-started/overview) is available to use on the desktop and the cloud. To use it, create an account and select a DBT cloud plan -- here we use the free [developer plan](https://www.getdbt.com/pricing/). In this example we will create a Steampipe Cloud connection from DBT and query the top stories by score from hackernews_top.
 
-To get started, first link your git repository with write access enabled through `linked accounts` under `account settings`. Next, Select PostgreSQL under `Credentials` to create a new connection and enter the Steampipe Cloud connection details, click `Test Connection` to `Verify`.
+Since DBT projects include [version control](https://docs.getdbt.com/docs/collaborate/git-version-control), it requires linking your git repository with write access enabled through `linked accounts` under `account settings`. Next, Select PostgreSQL under `Credentials` to create a new connection and enter the Steampipe Cloud connection details, click `Test Connection` to `Verify`.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/dbt-pg-connect.png" />
