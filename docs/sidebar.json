@@ -272,6 +272,7 @@
           "cloud/integrations/cli",
           "cloud/integrations/datagrip",
           "cloud/integrations/dbeaver",
+          "cloud/integrations/dbt",
           "cloud/integrations/deepnote",
           "cloud/integrations/golang",
           "cloud/integrations/grafana",
