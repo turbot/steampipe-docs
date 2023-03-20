@@ -9,9 +9,9 @@ Turbot provides a container image with Steampipe installed.  This image is
 based on debian-slim, and is a minimal install of Steampipe, including the
 `steampipe` binary and the embedded database.
 
-The image is published to DockerHub:
+The image is published to Github Container Registry:
 ```bash
-docker pull turbot/steampipe
+docker pull ghcr.io/turbot/steampipe:latest
 ```
 
 
@@ -19,7 +19,7 @@ docker pull turbot/steampipe
 
 To run steampipe, you can simply run the container:
 ```bash
-docker run -it --rm --name steampipe turbot/steampipe
+docker run -it --rm --name steampipe ghcr.io/turbot/steampipe:latest
 ```
 
 The base docker image has no plugins installed however.  Since you likely need to install plugins and configure them for your environment, you will *minimally* want to mount the config and plugins directories to persistent storage.  You'll probably want to alias the command:
@@ -35,7 +35,7 @@ alias sp="docker run \
   --name steampipe \
   --mount type=bind,source=$HOME/sp/config,target=/home/steampipe/.steampipe/config  \
   --mount type=volume,source=steampipe_plugins,target=/home/steampipe/.steampipe/plugins   \
-  turbot/steampipe"
+  ghcr.io/turbot/steampipe"
 ```
 
 The container entrypoint is the `steampipe` command, so once you've set up an alias, you can effectively run the same commands.  You can install plugins:
@@ -94,7 +94,7 @@ alias sp="docker run \
   --mount type=volume,source=steampipe_data,target=/home/steampipe/.steampipe/db/14.2.0/data \
   --mount type=volume,source=steampipe_internal,target=/home/steampipe/.steampipe/internal \
   --mount type=volume,source=steampipe_plugins,target=/home/steampipe/.steampipe/plugins   \
-  turbot/steampipe"
+  ghcr.io/turbot/steampipe"
 ```
 
 
@@ -104,7 +104,7 @@ You may want to run steampipe in a batch job, either from a scheduler such as cr
 
 For example:
 ```dockerfile
-FROM turbot/steampipe
+FROM ghcr.io/turbot/steampipe
 
 # Setup prerequisites (as root)
 USER root:0
@@ -140,11 +140,11 @@ docker run \
 
 
 ## Running a Steampipe dashboard using a derived image
-It is possible to serve your own dashboard server using `turbot/steampipe` as a base image for your container images. 
+It is possible to serve your own dashboard server using `ghcr.io/turbot/steampipe` as a base image for your container images. 
 
 For example:
 ```dockerfile
-FROM turbot/steampipe
+FROM ghcr.io/turbot/steampipe
 # Setup prerequisites (as root)
 USER root:0
 RUN apt-get update -y \
@@ -191,7 +191,7 @@ docker run \
   --mount type=volume,source=steampipe_internal,target=/home/steampipe/.steampipe/internal \
   --mount type=volume,source=steampipe_logs,target=/home/steampipe/.steampipe/logs   \
   --mount type=volume,source=steampipe_plugins,target=/home/steampipe/.steampipe/plugins   \
-  turbot/steampipe service start --foreground
+  ghcr.io/turbot/steampipe service start --foreground
 
 ```
 
@@ -298,7 +298,7 @@ docker run \
   --mount type=volume,source=steampipe_logs,target=/home/steampipe/.steampipe/logs   \
   --mount type=volume,source=steampipe_plugins,target=/home/steampipe/.steampipe/plugins   \
   --mount type=tmpfs,destination=/tmp \
-  turbot/steampipe service start --foreground
+  ghcr.io/turbot/steampipe service start --foreground
 ```
 
 ## Password management
