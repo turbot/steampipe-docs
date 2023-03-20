@@ -26,7 +26,7 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [STEAMPIPE_INTROSPECTION](reference/env-vars/steampipe_introspection)  | `none` | Enable introspection tables that allow you to query the mod resources in the workspace
 | [STEAMPIPE_LOG](reference/env-vars/steampipe_log)  | `warn` | Set the logging output level [DEPRECATED - use STEAMPIPE_LOG_LEVEL]
 | [STEAMPIPE_LOG_LEVEL](reference/env-vars/steampipe_log)  | `warn` | Set the logging output level
-| [STEAMPIPE_MAX_PARALLEL](reference/env-vars/steampipe_max_parallel)  | `5` | Set the maximum number of parallel executions
+| [STEAMPIPE_MAX_PARALLEL](reference/env-vars/steampipe_max_parallel)  | `10` | Set the maximum number of parallel executions
 | [STEAMPIPE_MOD_LOCATION](reference/env-vars/steampipe_mod_location)  | current working directory | Set the workspace working directory
 | [STEAMPIPE_OTEL_LEVEL](reference/env-vars/steampipe_otel_level)  | `NONE` | Specify which [OpenTelemetry](https://opentelemetry.io/) data to send via OTLP
 | [STEAMPIPE_QUERY_TIMEOUT](reference/env-vars/steampipe_query_timeout)  |  `240` for controls, unlimited in all other cases. | Set the amount of time to wait for a query to complete before timing out, in seconds.
