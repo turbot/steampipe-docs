@@ -274,6 +274,7 @@
           "cloud/integrations/dbeaver",
           "cloud/integrations/dbt",
           "cloud/integrations/deepnote",
+          "cloud/integrations/gitpod",
           "cloud/integrations/golang",
           "cloud/integrations/grafana",
           "cloud/integrations/heidisql",
