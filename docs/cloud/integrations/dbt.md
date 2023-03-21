@@ -14,7 +14,7 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 <img src="/images/docs/cloud/steampipe-cloud-connect-details.jpg" />
 </div>
 
-Once the connection to Steampipe cloud is established and tested, you can explore the Steampipe plugins, run queries and build reports.
+Once the connection to Steampipe Cloud is established and tested, you can explore the Steampipe plugins, run queries and build reports.
 
 You can also connect DBT to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details.
 
