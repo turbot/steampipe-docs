@@ -66,4 +66,4 @@ ports:
 <img alt="gitlab-query-output" src="/images/docs/ci-cd-pipelines/gitpod-config-data-preview.png" />
 </div>
 
-That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) and [mods](https://hub.steampipe.io/mods) with your Gitpod workspace.
+That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) and [mods](https://hub.steampipe.io/mods) in your Gitpod workspace.

@@ -94,6 +94,7 @@
       "integrations/azure_cloudshell",
       "integrations/circleci",
       "integrations/gcp_cloudshell",
+      "integrations/gitpod",
       {
         "type": "category",
         "id": "integrations-github-actions",

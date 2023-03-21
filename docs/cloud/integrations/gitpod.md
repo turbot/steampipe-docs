@@ -16,7 +16,9 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 
 Once Steampipe Cloud is successfully connected, you can explore the tables provided by the Steampipe plugins, run queries and build reports.
 
-Similarly, you can also connect Gitpod to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details.
+##  Connect to Steampipe CLI from Gitpod
+
+You can also connect Gitpod to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details.
 
 ```
 Steampipe service is running:
