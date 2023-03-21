@@ -80,7 +80,8 @@
     "link": "guides/overview",
     "items": [
       "guides/search-path",
-      "guides/aws-orgs"
+      "guides/aws-orgs",
+      "guides/tshoot-startup"
     ]
   },
   {
