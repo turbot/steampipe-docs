@@ -94,6 +94,7 @@
       "integrations/azure_cloudshell",
       "integrations/circleci",
       "integrations/gcp_cloudshell",
+      "integrations/gitpod",
       {
         "type": "category",
         "id": "integrations-github-actions",
@@ -274,6 +275,7 @@
           "cloud/integrations/dbeaver",
           "cloud/integrations/dbt",
           "cloud/integrations/deepnote",
+          "cloud/integrations/gitpod",
           "cloud/integrations/golang",
           "cloud/integrations/grafana",
           "cloud/integrations/heidisql",
