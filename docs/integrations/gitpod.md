@@ -8,7 +8,7 @@ sidebar_label: Gitpod
 
 ## Installing Steampipe in Gitpod
 
-To run scripts, first connect your GitHub repository to Gitpod workspace and create a `.gitpod.yml` file that contains the definitions. Here's an example that installs Steampipe.
+To run scripts, first connect your GitHub repository to your Gitpod workspace and create a `.gitpod.yml` file that contains the definitions. Here's an example that installs Steampipe.
 
 ```yaml
 tasks:
@@ -42,7 +42,7 @@ ports:
 <img alt="gitlab-plugin-installed" src="/images/docs/ci-cd-pipelines/gitpod-config-install.png" />
 </div>
 
-Next, we'll update the file with a query to list items from a channel from `rss_item`.
+Next, we'll update the file with a query to list items from an RSS feed.
 
 ```yaml
 tasks:

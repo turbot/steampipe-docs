@@ -4,7 +4,7 @@ sidebar_label: Gitpod
 ---
 ## Connect to Steampipe Cloud from Gitpod
 
-[Gitpod](https://www.gitpod.io/) is an open source platform provisioning ready-to-code developer environments with a rich catalog of extensions, some of which can connect to databases.
+[Gitpod](https://www.gitpod.io/) is an open source platform that provisions ready-to-code developer environments with a rich catalog of extensions, some of which can connect to databases.
 
 Steampipe provides a single interface to all your cloud, code, logs and more. Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including Gitpod database extensions -- can connect to.
 
@@ -43,7 +43,7 @@ To create a connection via the command palette, choose `Add New Connection`, sel
 <img src="/images/docs/cloud/gitpod-connect-details.png" />
 </div>
 
-Once you're connected to Steampipe Cloud, the SQLTools Explorer can access the tables available in your workspace. Here we'll use the RSS connection and use this query to list items from a channel. Gitpod previews the data which can be exported into a JSON or CSV format.
+Once you're connected to Steampipe Cloud, the SQLTools Explorer can access the tables available in your workspace. Here we'll use the RSS connection and use this query to list items from a feed. Gitpod previews the data which can be exported into a JSON or CSV format.
 
 ```
 select
