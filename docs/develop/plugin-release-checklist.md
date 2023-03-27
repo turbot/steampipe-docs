@@ -138,6 +138,24 @@ Each table's list hydrate function checks for remaining rows from the API SDK, a
 
 Money is represented as a string, not a double which is never exact.
 
+### Dynamic Tables
+
+<input type="checkbox"/> <b>Specifying tables to generate</b>
+
+If the plugin can generate [dynamic tables](https://steampipe.io/docs/develop/writing-plugins#dynamic-tables), a configuration argument should allow users to specify which tables the plugin will generate. This configuration argument typically accepts a list of strings and should support filesystem glob patterns like in the [CSV plugin](https://hub.steampipe.io/plugins/turbot/csv#configuration).
+
+If this configuration argument is not set or is explicitly empty, e.g., `paths = []`, then no dynamic tables should be generated.
+
+<input type="checkbox"/> <b>Default tables</b>
+
+The plugin should determine if it will generate dynamic tables by default after plugin installation based on if the configuration argument mentioned above is commented by default. For instance, in the [Prometheus plugin](https://github.com/turbot/steampipe-plugin-prometheus/blob/f6dbe388d729526a1a5a5b4c06d414dcc01c1548/config/prometheus.spc#L7-L14), the `metrics` configuration argument is commented. After plugin installation, the plugin will not generate dynamic tables unless the user adds a non-commented value for `metrics`.
+
+You may not want to load dynamic tables by default if it drastically increases the plugin initialization time due to the number of tables.
+
+<input type="checkbox"/> <b>Table name prefixes</b>
+
+When naming dynamic tables, the plugin name prefix, e.g., `kubernetes_`, should be added if it helps avoid namespace collisions or if it helps group them with static tables that share the same prefix.
+
 ## Documentation
 
 ### Index Documentation
