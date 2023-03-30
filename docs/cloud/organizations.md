@@ -35,6 +35,13 @@ You can update your organization handle at any time.  Note, however, that your w
 
 On the **Settings** page for your user, click **Advanced** from the left hand menu.  Enter your new handle and click **Save**.
 
+## Revoking Access
+Once users have been added to your organization, they will be able to authenticate against it according to the permissions they were granted. This can be using either temporary tokens issued via console or [CLI login](/docs/reference/cli/login#steampipe-login), or with [tokens](/docs/cloud/profile#tokens) managed via their user profile settings.
+
+If you wish to revoke access to your organization for any currently issued token, you can do so by going to  the **Settings** page for your organization, then clicking **Advanced** from the left hand menu. From here you'll find a `Revoke Tokens` section. Clicking the `Reset to now` button will revoke access to all existing temporary and user tokens.
+
+<img src="/images/docs/cloud/cloud-organization-revoke-tokens.png" width="400pt"/>
+<br />
 
 ## Deleting Organizations
 To delete an organization, select the double arrow button from the navigation at the top of the page and select the organization.  Go to the **Settings** tab and click **Advanced**.  Click **Delete Organization**.  You will be prompted to confirm deletion.  Enter the organization handle and click **Delete**.

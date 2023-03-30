@@ -35,6 +35,14 @@ Click **New Token** to create a new API token.  The token will be masked, but yo
 
 You can deactivate or delete a token from the list by clicking the options menu button (hamburger) and selecting **Deactivate** or **Delete** from the menu.
 
+## Revoking Access
+You will be able to authenticate against your account using either temporary tokens issued via console or [CLI login](/docs/reference/cli/login#steampipe-login), or with [tokens](/docs/cloud/profile#tokens) managed via your profile settings.
+
+If you wish to revoke access to your user for any currently issued token, you can do so by going to  the **Settings** page for your user, then clicking **Advanced** from the left hand menu. From here you'll find a `Revoke Tokens` section. Clicking the `Reset to now` button will revoke access to all existing temporary and user tokens.
+
+<img src="/images/docs/cloud/cloud-user-revoke-tokens.png" width="400pt"/>
+<br />
+
 ## Audit Log
 On the **Settings** page for your user account, click **Audit Log** from the left hand menu to view a log of API activity associated to your account.
 
