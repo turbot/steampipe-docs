@@ -35,6 +35,16 @@ Click **New Token** to create a new API token.  The token will be masked, but yo
 
 You can deactivate or delete a token from the list by clicking the options menu button (hamburger) and selecting **Deactivate** or **Delete** from the menu.
 
+## Reset Authentication
+You will be able to authenticate against your account using either temporary tokens issued via console or [CLI login](/docs/reference/cli/login#steampipe-login), or with [tokens](/docs/cloud/profile#tokens) managed via your profile settings.
+
+If you wish to reset authentication to your user for all issued tokens, you can do so by going to  the **Settings** page for your user, then clicking **Advanced** from the left hand menu. From here you'll find a `Reset authentication` section. Clicking the `Reset authentication` button will reset authentication for all existing temporary and user tokens.
+
+This will also log you out of the current session and any other you have open at that stage. You will also need to re-generate any [tokens](/docs/cloud/profile#tokens) you use for API access.
+
+<img src="/images/docs/cloud/cloud-user-reset-authentication.png" width="400pt"/>
+<br />
+
 ## Audit Log
 On the **Settings** page for your user account, click **Audit Log** from the left hand menu to view a log of API activity associated to your account.
 
