@@ -101,7 +101,8 @@
         "link": "integrations/github_actions/overview",
         "items": [
           "integrations/github_actions/installing_steampipe",
-          "integrations/github_actions/aws_oidc"
+          "integrations/github_actions/aws_oidc",
+          "integrations/github_actions/azure_oidc"
         ]
       },
       "integrations/gitlab_ci_cd",
