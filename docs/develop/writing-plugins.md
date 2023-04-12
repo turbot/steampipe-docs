@@ -31,7 +31,7 @@ The `main` function in then `main.go` is the entry point for your plugin.  This 
 package main
 
 import (
-	"github.com/turbot/steampipe-plugin-sdk/plugin"
+	"github.com/turbot/steampipe-plugin-sdk/v5/plugin"
 	"github.com/turbot/steampipe-plugin-zendesk/zendesk"
 )
 
