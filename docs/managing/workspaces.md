@@ -162,7 +162,7 @@ Workspaces may be defined in any `.spc` file in the `~/.steampipe/config` direct
 
 The workspace named `default` is special; if a workspace named `default` exists,
 `--workspace` is not  specified in the command, and `STEAMPIPE_WORKSPACE` is not set, 
-then Steampipe uses th `default` workspace:
+then Steampipe uses the `default` workspace:
 
 ```bash
 steampipe query --snapshot "select * from aws_account"
