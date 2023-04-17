@@ -124,7 +124,7 @@ aws_tags.mandatory_tags = ["Owner","Application","Environment"]
 azure_tags.mandatory_tags = ["Owner","Application","Environment"]
 ```
 
-Or pass them to the command with the `--var` argument `
+Or pass them to the command with the `--var` argument
 ```bash
  steampipe dashboard --var 'aws_tags.mandatory_tags=["Owner","Application","Environment"]'  --var 'azure_tags.mandatory_tags=["Owner","Application","Environment"]' --var 'gcp_labels.mandatory_labels=["Owner","Application","Environment"]'
  ```
