@@ -38,7 +38,7 @@ ports:
 
 ```
 
-<div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
+<div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"100%"}}>
 <img alt="gitpod-plugin-installed" src="/images/docs/ci-cd-pipelines/gitpod-config-install.png" />
 </div>
 
