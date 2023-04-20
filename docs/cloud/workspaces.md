@@ -45,11 +45,28 @@ Click **Add**.  The user will receive an email invitation to join the organizati
 
 To remove a user from the organization, select the options menu button (hamburger) to the right of the user and click **Remove**.
 
+## Rebooting and Disabling Workspaces
+
+Issues with workspaces are uncommon, but if you ever need to reboot your workspace, you can do so from the **Settings** > **Advanced** tab.
+
+Under the **Workspace Status** section choose the `Reboot` option. This will cycle the workspace, which will cause a brief interruption in service. This typically takes no longer than 30 seconds.
+
+You'll also find a **Disable** option there, which will effectively shut down the workspace. This means that all connections to the workspace will be terminated, and you will not be able to query the workspace via any means until you `Enable` it again. All pipelines will also be disabled as part of this change.
+
+<img src="/images/docs/cloud/cloud-workspace-state-management.png" width="400pt"/>
+<br />
+
+Any disabled workspaces will show a persistent banner at the top of the workspace page as a reminder that the workspace is not enabled.
+
+<img src="/images/docs/cloud/cloud-workspace-disabled-banner.png" width="400pt"/>
+<br />
+
 ## Deleting Workspaces
+
 You can delete a workspace from its **Settings** tab.  From the **Workspaces** tab for your user account or organization, click on the workspace you wish to delete.  On the workspace page, go to the **Settings** tab, select **Advanced** from the menu on the left, and click **Delete workspace**.  You will be prompted to confirm deletion; enter the workspace name and click **Delete**.
 
-
 ## Workspace Maintenance
+
 Your workspace may be updated and rebooted during the weekly maintenance window, Sundays 2:00am - 5:00am EST/EDT.  This window is not currently configurable.  
 
 During maintenance, your workspaces will be updated to the latest Steampipe version and the latest plugin versions.  At this time, you cannot opt out of the weekly update.
