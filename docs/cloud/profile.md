@@ -22,7 +22,7 @@ When you create your user account, Steampipe Cloud will attempt to locate your p
 
 If you want to change your identity-provider or random avatar, you can upload a custom one. Simply click the avatar image and choose a JPEG or PNG file from your computer. You can also crop the image to your requirements. Once happy, click the `Save` option.
 
-<img src="/images/docs/cloud/cloud-profile-custom-avatar-crop.png" width="400pt"/>
+<img src="/images/docs/cloud/cloud-profile-custom-avatar-crop.png" width="300pt"/>
 <br />
 
 If you ever need to revert to the default avatar, click the `Reset` option.
