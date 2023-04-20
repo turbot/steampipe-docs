@@ -9,10 +9,23 @@ You can manage your user profile and credentials from the **Settings** page for 
 
 ## Profile Settings
 
-On the **Settings** page for your user account, click **Profile** from the left hand menu to manage your profile data.  You can modify your **Display Name** or **Avatar URL**.
+On the **Settings** page for your user account, click **Profile** from the left hand menu to manage your profile data.  You can modify your **Display Name** or upload a custom **Avatar**.
 
 You can also rotate your **Database Password**.  Every Steampipe user has a single password they can use to log in to the workspaces to which they have access. (This is the password that appears in the connection string.)  You can rotate your password at any time by clicking **Rotate Password** on the profile page. This may take a couple of minutes to propagate to all of your workspaces.  Note that existing connections will not be terminated when you rotate your password.
 
+### Custom Avatar
+
+When you create your user account, Steampipe Cloud will attempt to locate your public avatar for your email address. In the event that we can't find one, we'll generate a random one.
+
+<img src="/images/docs/cloud/cloud-profile-custom-avatar.png" width="400pt"/>
+<br />
+
+If you want to change your identity-provider or random avatar, you can upload a custom one. Simply click the avatar image and choose a JPEG or PNG file from your computer. You can also crop the image to your requirements. Once happy, click the `Save` option.
+
+<img src="/images/docs/cloud/cloud-profile-custom-avatar-crop.png" width="300pt"/>
+<br />
+
+If you ever need to revert to the default avatar, click the `Reset` option.
 
 ## Notifications
 On the **Settings** page for your user, click **Notifications** from the left hand menu to manage your Steampipe Cloud notification preferences.  Choose what type of emails you wish to receive from Steampipe Cloud:
