@@ -58,3 +58,12 @@ curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
   -X POST -d sql='select name,arn from aws_s3_bucket' \
   https://cloud.steampipe.io/api/latest/user/foo/workspace/bar/query
 ```
+
+You can also save the output locally:
+```bash
+curl -H "Authorization: Bearer ${STEAMPIPE_CLOUD_TOKEN}" \
+  -H "Accept: text/csv" \
+  -X POST -d sql='select name,arn from aws_s3_bucket' \
+  https://cloud.steampipe.io/api/latest/user/foo/workspace/bar/query \
+  > ~/output.csv
+```
