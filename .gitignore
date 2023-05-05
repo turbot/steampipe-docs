@@ -48,3 +48,6 @@ yarn-error.log*
 /public/images/docs
 /public/images/reference_examples
 /steampipe-docs-local
+
+# vscode 
+.vscode/
