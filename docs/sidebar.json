@@ -93,6 +93,7 @@
       "integrations/aws_codebuild",
       "integrations/azure_cloudshell",
       "integrations/circleci",
+      "integrations/cloud9",
       "integrations/gcp_cloudshell",
       "integrations/gitpod",
       {
