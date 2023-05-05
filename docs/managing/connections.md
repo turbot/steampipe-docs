@@ -32,7 +32,9 @@ For example, the `aws` plugin will install the `~/.steampipe/config/aws.spc` con
 
 
 ### Syntax
-Steampipe config files use HCL Syntax, with connections defined in a `connection` block.  The `connection` name will be used as the Postgres schema name in the Steampipe database.  Each `connection` must contain a single `plugin` argument that specifies which plugin to use in this connection.  Additional arguments are plugin-specific, and are used to determine the scope, credentials, and other configuration items. 
+Steampipe config files use HCL Syntax, with connections defined in a `connection` block.  The `connection` name will be used as the Postgres schema name in the Steampipe database.  Each `connection` must contain a single `plugin` argument that specifies which plugin to use in this connection.  Additional arguments are plugin-specific, and are used to determine the scope, credentials, and other configuration items.
+
+Note: Connection names typically use lowercase characters and underscores. It's possible to use other characters, but be aware that the schema names derived from such connection names will need to be quoted in SQL. A statement like `select * from aws_profile_1.aws_account requires no quotation`. But a statement like `select * from "Aws:01(profile2)".aws_account` does require quotation.
 
 The `plugin` argument should contain the path to the plugin relative to the plugin directory.  Note that for standard Steampipe plugins that are installed from the Steampipe Hub, the short name may be used, and will use `latest` if the tag is omitted, thus the following are equivalent:
 
