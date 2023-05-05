@@ -45,7 +45,7 @@ from
 <img alt="s3-public-access-preview" src="/images/docs/ci-cd-pipelines/cloud9-s3-public-access-preview.png" />
 </div>
 
-## Create a Steampipe Dashboard with AWS Cloud9
+## Visualize Steampipe Dashboards with AWS Cloud9
 
 [Steampipe dashboards](https://steampipe.io/docs/dashboard/overview) provide rich visualizations of Steampipe data. Here, we will leverage the [AWS Well-Architected Mod](https://hub.steampipe.io/mods/turbot/aws_well_architected) to develop a dashboard for verifying adherence to the best practices of the AWS Well-Architected Framework in the account. To get started, paste this command to install the mod.
 
