@@ -181,6 +181,7 @@
         "items": [
           "reference/env-vars/steampipe_cache",
           "reference/env-vars/steampipe_cache_max_size_mb",
+          "reference/env-vars/steampipe_cache_max_ttl",
           "reference/env-vars/steampipe_cache_ttl",
           "reference/env-vars/steampipe_cloud_host",
           "reference/env-vars/steampipe_cloud_token",
