@@ -14,7 +14,7 @@ cd my-mod
 steampipe mod install github.com/turbot/steampipe-mod-aws-compliance
 ```
 
-This will install the mod into the `.steampipe` sub-directory, and will add the dependency to your `mod.sp` file:
+This will install the mod into the `.steampipe` sub-directory, and will add the dependency to the [require block](/docs/reference/mod-resources/mod#require) of your `mod.sp` file:
 ```hcl
 mod "local" {
   title = "my-mod"
@@ -25,6 +25,7 @@ mod "local" {
   }
 }
 ```
+
 
 You can then create new `.sp` files in your mod that reference the resources in the dependency mods.  You can create your own controls that use `query` resources from the dependency mod: 
 

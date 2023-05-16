@@ -62,7 +62,7 @@ mod "aws_cis" {
 | `documentation` | String (Markdown)| Optional | A markdown string containing a long form description, used as documentation for the mod on hub.steampipe.io. 
 | `icon` |  String | Optional | The url of an icon to use for the mod on hub.steampipe.io.
 | `opengraph` |  Block | Optional | Block of metadata for use in social media applications that support [Opengraph](#opengraph) metadata.
-| `require` | Block | Optional | A block that specifies one or more [mod dependencies](#mod-dependencies).
+| `require` | Block | Optional | A block that specifies one or more [mod dependencies](#require).
 | `tags` | Map | Optional | A map of key:value metadata for the mod, used to categorize, search, and filter.   
 | `title` | String | Optional | The display title of the mod.
 
@@ -77,7 +77,7 @@ The `opengraph` block is an optional block of metadata for use in social media a
 
  
 
-#### Mod Dependencies
+#### require
 A mod may contain a `require` block to specify version dependencies for the Steampipe CLI, plugins, and mods.  While it is possible to edit this section manually, Steampipe will also modify it (including reordering and removing comments) when you run a `steampipe mod` command to install, update, or uninstall a mod.
 
 A mod may specify a dependency on the Steampipe CLI.  Steampipe will evaluate the dependency when the mod is loaded, and will error if the constraint is not met, but it will not install or upgrade the CLI.  A `steampipe` constraint specifies a *minimum version*, and does not support semver syntax:

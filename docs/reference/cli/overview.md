@@ -111,6 +111,3 @@ sidebar_label: Steampipe CLI
 | **253** | `ExitCodeFileSystemAccessFailure`     | File system access failed
 | **254** | `ExitCodeInsufficientOrWrongInputs`   | Runtime error - insufficient or incorrect input
 | **255** | `ExitCodeUnknownErrorPanic`           | Runtime error - an unknown panic occurred
-
----
-

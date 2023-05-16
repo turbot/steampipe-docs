@@ -30,7 +30,6 @@ Deprecated...
 | [terminal](#terminal-options)     | Terminal options, which generally map to .meta-commands
 | [connection](#connection-options) | Options that apply to connections.
 -->
----
 
 
 ---
@@ -124,9 +123,9 @@ options "general" {
 
 ## Connection Options
 
-***The `options "connection"` block has been deprecated in steampipe 0.20.***
-- You can set server query cache options in the [database options.  →](#database-options)
-- You can set client query cache options for each [workspaces.  →](/docs/reference/config-files/workspace)
+***The `options "connection"` block was deprecated in Steampipe v0.20.0.***
+- Set server query cache options in the [database options →](#database-options)
+- Set client query cache options for each [workspaces →](/docs/reference/config-files/workspace)
 
 
 <!--
@@ -168,8 +167,8 @@ connection "aws_account1" {
 -->
 
 ## Terminal Options
-***The `options "terminal"` block has been deprecated in steampipe 0.20.***
-- you can set these options for each [workspace.  →](/docs/reference/config-files/workspace)
+***The `options "terminal"` block was deprecated in Steampipe v0.20.0.***
+- Set these options for each [workspace →](/docs/reference/config-files/workspace)
 
 
 <!--
