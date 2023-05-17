@@ -8,7 +8,7 @@ sidebar_label: Understanding Caching
 
 Caching is an essential part of the Steampipe experience and is enabled by default. While caching is important in any database, it is especially critical to Steampipe where data is retrieved from external APIs "on-demand".  Caching not only significantly improves query performance, it also reduces API calls to external systems which helps avoid throttling and sometimes even reduces costs.
 
-Steampipe introduced caching options in one of the earliest releases (v0.2.0). Back then, Steampipe was really just a CLI tool - we didn't really differentiate between server and client. The caching options and behavior were designed when the plugin execution model was different as well -- at the time, each Steampipe connection had its own OS process and its own cache, and the options reflected that design.
+Steampipe introduced caching options in one of the earliest releases (v0.2.0). Back then, Steampipe was really just a CLI tool - we didn't really differentiate between server and client. The caching options and behavior were designed when the plugin execution model was different as well; at the time, each Steampipe connection had its own OS process and its own cache and the options reflected that design.
 
 In Steampipe v0.20.0, the caching options and behavior have changed.  This guide will describe how caching works in Steampipe, as well as the options and settings that you can set to modify caching behavior.
 
@@ -26,11 +26,12 @@ The **Query Cache** is the focus of this guide - The Steampipe caching [environm
 ## How it (basically) works 
 
 When you issue a query, Steampipe will add the results to the query cache.  If you make a subsequent query, it will be served from the cache if:
-  - It selects the same columns or a subset of the columns; AND
+  - It selects the same columns or a subset of the columns that were hydrated previously; AND
   - The qualifiers are the same or more restrictive
 
 Some examples:
--  If you `select * from aws_s3_bucket` and then do `select title,arn from aws_s3_bucket`, the second query will be returned from the cache.  
+- If you `select * from aws_s3_bucket` and then do `select title,arn from aws_s3_bucket`, the second query will be returned from the cache.  
+- Similarly, if you `select instance_id from aws_ec2_instance` and then do `select instance_id, vpc_id from aws_ec2_instance` the second query will be returned from the cache.  This is true in this case because the `vpc_id` column is returned by the same [hydrate function](/docs/develop/writing-plugins#hydrate-functions) as `instance_id` so even though the first query did not specifically request it, Steampipe fetched it from the API and stored it in the cache.
 -  If you `select * from aws_s3_bucket` and then do `select * from aws_s3_bucket where title like '%vandelay%'`, the second query will be returned from the cache.  
 
 
@@ -61,9 +62,9 @@ The implementation has a few important implications:
 - The cache is shared by ALL connected clients - If multiple different users connect to the same steampipe database, they all share the same cache
   
 
-## Cache settings / options
+## Query Cache Options
 
-Steampipe provides options for enable/disabling the cache, changing the TTL, and controlling the cache size.  These options can be set via config file option, environment variables, or via commands in an interactive query shell session.
+Steampipe provides options for enabling/disabling the cache, changing the TTL, and controlling the cache size.  These options can be set via config file option, environment variables, or via commands in an interactive query shell session.
 
 Broadly speaking, there are two groups of settings:
 1. [Server-level settings](#server-level-cache-settings) that apply to ALL connections
@@ -72,8 +73,8 @@ Broadly speaking, there are two groups of settings:
 ### Server-level Cache Settings
 
 The server settings dictate the actual operation of the cache on the server:
-- If the server has the `cache` disabled, then caching is off -- Data is not even written to the cache.  Any client connecting will NOT be able to use the cache, regardless of their settings.
-- The `cache_max_ttl` is the actual maximum cache lifetime - items are invalidated/ejected from the cache after this TTL.  A client can request a specific ttl, however if it exceeds the max ttl on the server, then the effective ttl will be the max ttl.
+- If the server has the `cache` disabled, then caching is off and data is not even written to the cache.  Any client connecting will NOT be able to use the cache, regardless of their settings.
+- The `cache_max_ttl` is the actual maximum cache lifetime - items are invalidated/ejected from the cache after this TTL.  A client can request a specific TTL, however if it exceeds the max TTL on the server, then the effective TTL will be the max TTL.
 - The `cache_max_size_mb` is the maximum physical size of the cache.  There is no equivalent client setting.
 
 The server level settings can set in the [database options](/docs/reference/config-files/options#database-options) or by setting environment variables on the host where the database is running.
@@ -97,10 +98,10 @@ options "database" {
 ### Client-level Cache Settings
 The client settings allow you to choose how your specific client session will use the cache.  Because these are client settings, they only apply when connecting with `steampipe`.
 
-Remember that the cache actually lives on the server -- The client level settings allow you to specify how your client session interacts with the cache but it is subject to the server level settings:
+Remember that the cache actually lives on the server; the client level settings allow you to specify how your client session interacts with the cache but it is subject to the server level settings:
 - If caching is enabled on the server, you can specify that it be disabled for your connection.  This is commonly used for testing or troubleshooting.
 - If caching is disabled on the server, then the client option to enable is ignored - caching is disabled for *all* clients.
-- You can specify the `cache_ttl` for your client session.  Note the client is always subject to the `max_cache_ttl` set on the server though - if the `cache_ttl` is greater than the server's `max_cache_ttl`, then the `max_cache_ttl` is the effective ttl.
+- You can specify the `cache_ttl` for your client session.  Note the client is always subject to the `max_cache_ttl` set on the server though - if the `cache_ttl` is greater than the server's `max_cache_ttl`, then the `max_cache_ttl` is the effective TTL.
 
 
 The client level settings can set for each [workspace](/docs/reference/config-files/workspace) or by setting environment variables on the host from which you are connecting.
@@ -116,11 +117,11 @@ workspace "my_workspace" {
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `cache`   | `true` | `true`, `false`  | Enable/disable caching.  Note that is a **client**  setting -  if the database (`options "database"`) has the cache disabled, then the cache is disabled regardless of the workspace setting. This can also be set via the  [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache) environment variable.
-| `cache_ttl` | `300`| an integer     | Set the client query cache expiration (TTL) in seconds.  Note that is a **client**  setting - if the database (`options "database"`) `cache_max_ttl` is lower than the cache_ttl in the workspace, then the effective ttl for this workspace is the cache_max_ttl. This can also be set via the [STEAMPIPE_CACHE_TTL](/docs/reference/env-vars/steampipe_cache_ttl) environment variable.
+| `cache_ttl` | `300`| an integer     | Set the client query cache expiration (TTL) in seconds.  Note that is a **client**  setting - if the database (`options "database"`) `cache_max_ttl` is lower than the cache_ttl in the workspace, then the effective TTL for this workspace is the cache_max_ttl. This can also be set via the [STEAMPIPE_CACHE_TTL](/docs/reference/env-vars/steampipe_cache_ttl) environment variable.
 
 
 
-### Client Cache Commands
+## Client Cache Commands
 
 When running an interactive `steampipe query` session, you can use the [.cache meta-command](/docs/reference/dot-commands/cache) commands to enable, disable, or clear the cache for the session.  This command affects the caching behavior for this session only - it does not change the server caching options, and changes will not persist after the session ends.  
 
