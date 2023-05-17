@@ -1,6 +1,6 @@
 ---
 title: Best Practices with AWS Organizations
-sidebar_label: AWS Organizations
+sidebar_label: Integrating AWS Organizations
 ---
 
 # Using Steampipe CLI with AWS Organizations
