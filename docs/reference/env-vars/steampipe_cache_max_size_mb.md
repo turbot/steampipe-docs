@@ -36,7 +36,7 @@ In this example, there are 25 total connections, so each connection's share is 4
 By default, Steampipe does not limit the size of the query cache.  
 
 
-This is a server setting --  when connecting to a remote database, setting `STEAMPIPE_CACHE_MAX_SIZE_MB` on the client will have no effect.
+This is a server setting. When connecting to a remote database, setting `STEAMPIPE_CACHE_MAX_SIZE_MB` on the client will have no effect.
 
 `STEAMPIPE_CACHE_MAX_SIZE_MB` only works with plugins compiled with [Steampipe Plugin SDK](https://github.com/turbot/steampipe-plugin-sdk) version 4.0.0 and later.
 
