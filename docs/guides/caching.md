@@ -16,11 +16,11 @@ In Steampipe v0.20.0, the caching options and behavior have changed.  This guide
 ## Types of Caches
 
 There are 2 caches in Steampipe:
-- The **Query Cache** is used to cache query results.  Plugins automatically support query caching just by using the Steampipe Plugin SDK -  It requires no plugin-specific code (that's not *entirely* true, as there are instances where the plugin author nay need to dictate the caching behavior for a given table).  The query cache resides in the plugin process.  
+The **Query Cache** is used to cache query results. Plugins automatically support query caching just by using the Steampipe Plugin SDK. In general this requires no plugin-specific code, though there are cases where the plugin author may need to dictate the caching behavior for a given table. The query cache resides in the plugin process.
 
-- The **Plugin Cache** (sometimes called the **Connection Cache**) can be used by plugin authors to cache arbitrary data.  The plugin cache resides in the plugin process.
+- The **Plugin Cache** (sometimes called the **Connection Cache**) can be used by plugin authors to cache arbitrary data.  The plugin cache also resides in the plugin process.
 
-The **Query Cache** is the focus of this guide - The Steampipe caching [environment variables](/docs/reference/env-vars/overview) and [configuration file options](/docs/reference/config-files/overview) are used to modify the behavior of the **query cache**, and do not affect the plugin cache.
+The **Query Cache** is the focus of this guide.  The Steampipe caching [environment variables](/docs/reference/env-vars/overview) and [configuration file options](/docs/reference/config-files/overview) are used to modify the behavior of the **query cache**, and do not affect the plugin cache.
 
 
 ## How it (basically) works 
@@ -35,7 +35,7 @@ Some examples:
 -  If you `select * from aws_s3_bucket` and then do `select * from aws_s3_bucket where title like '%vandelay%'`, the second query will be returned from the cache.  
 
 
-In fact, the caching is actually done by the SDK on a per-table, per-connection basis so in many cases its clever enough to use the cache even in subsequent queries  that join the data.  For example:
+In fact, the caching is actually done by the SDK on a per-table, per-connection basis so in many cases it's clever enough to use the cache even in subsequent queries that join the data.  For example:
 
 1. Run `select * from aws_lambda_function`. Steampipe fetches the data from the API and it is added to the cache
 1. Run `select * from aws_vpc_subnet`. Steampipe fetches the data from the API and it is added to the cache
@@ -57,9 +57,9 @@ In fact, the caching is actually done by the SDK on a per-table, per-connection 
   ```
 
 The implementation has a few important implications:
-- The cache resides in the plugin's process space which implies it is on the server where the database runs, not on the client.  This means that the caching is used by any client, not just the `steampipe` cli - `psql`, `pgcli`, etc will also get the benefit of the query cache.
+- The cache resides in the plugin's process space which implies it is on the server where the database runs, not on the client.  This means that the caching is used by any client, not just the `steampipe` CLI. Command-line tools like `psql` and `pgcli` benefit from the query cache, as do BI tools like Metabase and Tableau.
 - The caching is done per-connection.  This means that if you query an aggregator, an equivalent query to the individual connection would be able to use the cached results, and vice-versa.
-- The cache is shared by ALL connected clients - If multiple different users connect to the same steampipe database, they all share the same cache
+- The cache is shared by ALL connected clients. If multiple users connect to the same Steampipe database, they all share the same cache.
   
 
 ## Query Cache Options
@@ -96,15 +96,15 @@ options "database" {
 
 
 ### Client-level Cache Settings
-The client settings allow you to choose how your specific client session will use the cache.  Because these are client settings, they only apply when connecting with `steampipe`.
+The client settings enable you to choose how your specific client session will use the cache.  Because these are client settings, they only apply when connecting with `steampipe`.
 
 Remember that the cache actually lives on the server; the client level settings allow you to specify how your client session interacts with the cache but it is subject to the server level settings:
 - If caching is enabled on the server, you can specify that it be disabled for your connection.  This is commonly used for testing or troubleshooting.
-- If caching is disabled on the server, then the client option to enable is ignored - caching is disabled for *all* clients.
-- You can specify the `cache_ttl` for your client session.  Note the client is always subject to the `max_cache_ttl` set on the server though - if the `cache_ttl` is greater than the server's `max_cache_ttl`, then the `max_cache_ttl` is the effective TTL.
+- If caching is disabled on the server, then the client option to enable is ignored and caching is disabled for *all* clients.
+- You can specify the `cache_ttl` for your client session.  Note, however, that the client is always subject to the `max_cache_ttl` set on the server. If the `cache_ttl` is greater than the server's `max_cache_ttl`, then the `max_cache_ttl` is the effective TTL.
 
 
-The client level settings can set for each [workspace](/docs/reference/config-files/workspace) or by setting environment variables on the host from which you are connecting.
+The client-level settings can be set for each [workspace](/docs/reference/config-files/workspace) or by setting environment variables on the host from which you are connecting.
 
 
 ```hcl
@@ -133,14 +133,14 @@ Subsequent queries for this session will neither be added to nor fetched from th
 ```sql
 .cache on
 ```
-Note that if the *server* has caching disabled, you cannot enable it, however.
+Note, however, that if the *server* has caching disabled, you cannot enable it.
 
 You can also clear the cache for this session:
 ```sql
 .cache clear
 ```
 
-Clearing the cache does not actually remove anything from the cache, it just removes items from *your view* of the cache.  This is implemented using timestamps on the cache entries.  Every time data is added to the cache, it is added with a timestamp when it was added.  When you do `.cache clear`, Steampipe changes the minimum timestamp for your session to the current time.  When looking for items in the cache, it ignores any item with a timestamp greater (older) than the minimum for this session.
+Clearing the cache does not actually remove anything from the cache, it just removes items from *your view* of the cache.  This is implemented using timestamps on the cache entries.  Data added to the cache is timestamped.  When you do `.cache clear`, Steampipe changes the minimum timestamp for your session to the current time.  When looking for items in the cache, it ignores any item with a timestamp greater (older) than the minimum for this session.
 
 You can also change the cache TTL for your session with the [.cache_ttl meta-command](/docs/reference/dot-commands/cache_ttl):
 
