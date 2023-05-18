@@ -95,6 +95,7 @@ sidebar_label: Steampipe CLI
 |  **11** | `ExitCodePluginLoadingError`          | Plugin loading error
 |  **12** | `ExitCodePluginListFailure`           | Plugin listing failed
 |  **13** | `ExitCodePluginNotFound`              | Plugin not found
+|  **14** | `ExitCodePluginInstallFailure`        | Plugin install failed
 |  **21** | `ExitCodeSnapshotCreationFailed`      | Snapshot creation failed
 |  **22** | `ExitCodeSnapshotUploadFailed`        | Snapshot upload failed
 |  **31** | `ExitCodeServiceSetupFailure`         | Service setup failed
