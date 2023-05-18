@@ -159,6 +159,7 @@
         "items": [
           "reference/dot-commands/autocomplete",
           "reference/dot-commands/cache",
+          "reference/dot-commands/cache_ttl",
           "reference/dot-commands/clear",
           "reference/dot-commands/connections",
           "reference/dot-commands/exit",
