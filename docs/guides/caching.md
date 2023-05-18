@@ -35,7 +35,7 @@ Some examples:
 -  If you `select * from aws_s3_bucket` and then do `select * from aws_s3_bucket where title like '%vandelay%'`, the second query will be returned from the cache.  
 
 
-In fact, the caching is actually done by the SDK on a per-table, per connection basis so in many cases its clever enough to use the cache even in subsequent queries  that join the data.  For example:
+In fact, the caching is actually done by the SDK on a per-table, per-connection basis so in many cases its clever enough to use the cache even in subsequent queries  that join the data.  For example:
 
 1. Run `select * from aws_lambda_function`. Steampipe fetches the data from the API and it is added to the cache
 1. Run `select * from aws_vpc_subnet`. Steampipe fetches the data from the API and it is added to the cache
@@ -64,7 +64,7 @@ The implementation has a few important implications:
 
 ## Query Cache Options
 
-Steampipe provides options for enabling/disabling the cache, changing the TTL, and controlling the cache size.  These options can be set via config file option, environment variables, or via commands in an interactive query shell session.
+Steampipe provides options for enabling/disabling the cache, changing the TTL, and controlling the cache size.  These options can be set via config file options, environment variables, or commands in an interactive query shell session.
 
 Broadly speaking, there are two groups of settings:
 1. [Server-level settings](#server-level-cache-settings) that apply to ALL connections
@@ -117,13 +117,13 @@ workspace "my_workspace" {
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `cache`   | `true` | `true`, `false`  | Enable/disable caching.  Note that is a **client**  setting -  if the database (`options "database"`) has the cache disabled, then the cache is disabled regardless of the workspace setting. This can also be set via the  [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache) environment variable.
-| `cache_ttl` | `300`| an integer     | Set the client query cache expiration (TTL) in seconds.  Note that is a **client**  setting - if the database (`options "database"`) `cache_max_ttl` is lower than the cache_ttl in the workspace, then the effective TTL for this workspace is the cache_max_ttl. This can also be set via the [STEAMPIPE_CACHE_TTL](/docs/reference/env-vars/steampipe_cache_ttl) environment variable.
+| `cache_ttl` | `300`| an integer     | Set the client query cache expiration (TTL) in seconds.  Note that is a **client**  setting - if the database `cache_max_ttl` is lower than the `cache_ttl` in the workspace, then the effective TTL for this workspace is the `cache_max_ttl`. This can also be set via the [STEAMPIPE_CACHE_TTL](/docs/reference/env-vars/steampipe_cache_ttl) environment variable.
 
 
 
 ## Client Cache Commands
 
-When running an interactive `steampipe query` session, you can use the [.cache meta-command](/docs/reference/dot-commands/cache) commands to enable, disable, or clear the cache for the session.  This command affects the caching behavior for this session only - it does not change the server caching options, and changes will not persist after the session ends.  
+When running an interactive `steampipe query` session, you can use the [.cache meta-command](/docs/reference/dot-commands/cache) command to enable, disable, or clear the cache for the session.  This command affects the caching behavior for this session only - it does not change the server caching options, and changes will not persist after the session ends.  
 
 If caching is enabled on the server, you can disable it for your query session:
 ```sql
@@ -142,25 +142,34 @@ You can also clear the cache for this session:
 
 Clearing the cache does not actually remove anything from the cache, it just removes items from *your view* of the cache.  This is implemented using timestamps on the cache entries.  Every time data is added to the cache, it is added with a timestamp when it was added.  When you do `.cache clear`, Steampipe changes the minimum timestamp for your session to the current time.  When looking for items in the cache, it ignores any item with a timestamp greater (older) than the minimum for this session.
 
-The `.cache` meta-command is simple, but only exists in the Steampipe client (`steampipe query`).  It is possible to perform equivalent operations from other clients (`psql`, `pgcli`, etc), though the interface is not as pleasant:
+You can also change the cache TTL for your session with the [.cache_ttl meta-command](/docs/reference/dot-commands/cache_ttl):
+
+```sql
+.cache_ttl 60
+```
+
+The meta-commands provide a simple interface for modifying the client query cache settings, but they only work in the Steampipe client (`steampipe query`).  To allow you to perform equivalent operations from other clients (`psql`, `pgcli`, etc), we have added the `meta_cache` and `meta_cache_ttl` functions to the `steampipe_internal` schema:
 
 
 Clear the cache:
 ```sql
-insert into steampipe_command.cache (operation) values ('cache_clear')
+select from steampipe_internal.meta_cache('clear')
 ```
 
 Enable the cache:
 ```sql
-....
+select from steampipe_internal.meta_cache('on')
 ```
 
-Clear the cache:
+Disable the cache:
 ```sql
-...
-
+select from steampipe_internal.meta_cache('off')
 ```
 
+Set the cache_ttl:
+```sql
+select from steampipe_internal.meta_cache_ttl(60)
+```
 
 
 
