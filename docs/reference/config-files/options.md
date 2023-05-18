@@ -18,45 +18,117 @@ The following `options` are currently supported:
 
 | Option Type                       | Description
 |-|-
-| [connection](#connection-options) | Options that apply to connections.
 | [database](#database-options)     | Database options.
+| [dashboard](#database-options)    | Dashboard options.
 | [general](#general-options)       | General CLI options, such as auto-update options.
-| [terminal](#terminal-options)     | Terminal options, which generally map to .meta-commands
+
+
 
 
 <!--
-| [check](#check-options)           | Options that apply to `steampipe check`.
-| [query](#query-options)           | Options that apply to `steampipe query`.
+Deprecated...
+| [terminal](#terminal-options)     | Terminal options, which generally map to .meta-commands
+| [connection](#connection-options) | Options that apply to connections.
 -->
+
+
 ---
 
+## Database Options
 
-<!--
-## Check Options
-
-**Check** options can be used to change query output formats and other `steampipe check` options.  The options and values correspond to the [command line arguments](docs/reference/cli/check) of the same name.
-
+**Database** options are used to control database options, such as the IP address and port on which the database listens.
 
 ### Supported options  
 | Argument | Default | Values | Description 
 |-|-|-|-
-| `header` |  `true` |  `true`, `false` | Enable or disable column headers.
-| `output` | `table` | `brief`,`csv`,`html`,`json`,`md`,`text`,`none` | Set output format.
-| `separator` | `,` | Any single character | Set csv output separator.
+| `cache` | `true` | `true`, `false`  | Enable or disable query caching. This can also be set via the  [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache) environment variable.
+| `cache_max_size_mb` | unlimited | an integer    | The maximum total size of the query cache across all plugins.   This can also be set via the  [STEAMPIPE_CACHE_MAX_SIZE_MB](/docs/reference/env-vars/steampipe_cache_max_size_mb) environment variable.
+| `cache_max_ttl` | `300` | an integer    | The maximum length of time to cache query results, in seconds. This can also be set via the  [STEAMPIPE_CACHE_MAX_TTL](/docs/reference/env-vars/steampipe_cache_max_ttl) environment variable.
+| `listen` | `network` | `local`, `network`| The network listen mode when Steampipe is started in [service mode](/docs/managing/service#starting-the-database-in-service-mode). Use `network` to listen on all IP addresses, or `local` to restrict to localhost.
+| `port` | `9193` | any valid, open port number | The TCP port that Postgres will listen on.
+| `search_path` | All connections, alphabetically | Comma separated string | Set an exact [search path](managing/connections#setting-the-search-path).  Note that setting the search path in the database options sets it in the database; this setting will also be in effect when connecting to Steampipe from 3rd-party tools. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).
+| `search_path_prefix` | none | Comma separated string | Move one or more connections or aggregators to the front of the  [search path](managing/connections#setting-the-search-path).  Note that setting the search path prefix in the database options sets in the database; this setting will also be in effect when connecting to Steampipe from 3rd-party tools. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).
+| `start_timeout` | `30` | an integer | The maximum time (in seconds) to wait for the Postgres process to start accepting queries after it has been started. This can also be set via the  [STEAMPIPE_DATABASE_START_TIMEOUT](/docs/reference/env-vars/steampipe_database_start_timeout) environment variable.
 
-### Example: Check Options
+
+### Example: Database Options
 
 ```hcl
-  options "query" { 
-    output              = "csv"
-    header              = true
-    separator           = ","
-  }
+options "database" {
+  cache               = true                  # true, false
+  cache_max_ttl       = 900                   # max expiration (TTL) in seconds
+  cache_max_size_mb   = 1024                  # max total size of cache across all plugins
+  port                = 9193                  # any valid, open port number
+  listen              = "local"               # local, network
+  search_path_prefix  = "aws,aws2,gcp,gcp2"   # comma-separated string; an exact search_path
+  start_timeout       = 30                    # maximum time (in seconds) to wait for the database to start up
+}
+```
+
+
+
+---
+## Dashboard Options
+
+**Dashboard** options are used to set dashboard service options, such as the IP address and port on which the dashboard web server listens.
+
+### Supported options  
+| Argument | Default | Values | Description 
+|-|-|-|-
+| `listen` | `network` | `local`, `network`| The network listen mode when steampipe is started in [service mode](/docs/managing/service#starting-the-database-in-service-mode). Use `network` to listen on all IP addresses, or `local` to restrict to localhost. 
+| `port` | `9193` | any valid, open port number | The TCP port that Postgres will listen on
+
+
+### Example: Dashboard Options
+
+```hcl
+options "dashboard" {
+  port          = 9194                  # any valid, open port number
+  listen        = "local"               # local, network
+}
+```
+
+
+----
+## General options
+**General** options apply generally to the Steampipe CLI.
+
+### Supported options  
+| Argument | Default | Values | Description
+|-|-|-|-
+| `log_level` | `warn` | `trace`, `debug`, `info`, `warn`, `error` | Sets the output logging level. Standard log levels are supported. This can also be set via the  [STEAMPIPE_LOG_LEVEL](reference/env-vars/steampipe_log) environment variable.
+| `telemetry` | `none` | `none`, `info` | Set the telemetry level in Steampipe. This can also be set via the  [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry) environment variable. See also: [Telemetry](https://steampipe.io/blog/release-0-15-0#telemetry).
+| `update_check` | `true` | `true`, `false` | Enable or disable automatic update checking. This can also be set via the  [STEAMPIPE_UPDATE_CHECK](reference/env-vars/steampipe_update_check) environment variable.
+
+
+<!-- Deprecated
+
+| `max_parallel` | `10` | an integer| Set the maximum number of parallel executions. When running `steampipe check`, Steampipe will attempt to run up to this many controls in parallel. This can also be set via the  `STEAMPIPE_MAX_PARALLEL` environment variable.
+
+
+-->
+### Example: General Options  
+
+```hcl
+options "general" {
+  log_level     = "warn"  # trace, debug, info, warn, error
+  telemetry     = "info"  # info, none
+  update_check  = true    # true, false
+}
 ```
 
 ---
--->
 
+
+
+## Connection Options
+
+***The `options "connection"` block was deprecated in Steampipe v0.20.0.***
+- Set server query cache options in the [database options →](#database-options)
+- Set client query cache options for each [workspaces →](/docs/reference/config-files/workspace)
+
+
+<!--
 ## Connection Options
 **Connection** options are options that can be set on a per-connection basis.  Connection options may be set at 2 scopes:
 - Defined in a top-level `options "connection"`, these apply to ALL connections that do not explicitly override them.
@@ -82,9 +154,9 @@ options "connection" {
 ### Example: Per-Connection Options
 ```hcl
 connection "aws_account1" {
-    plugin    = "aws"  
+    plugin    = "aws"
     profile   = "account1"
-    regions   =  ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "eu-west-1", "eu-west-2"]          
+    regions   =  ["us-east-1", "us-east-2", "us-west-1", "us-west-2", "eu-west-1", "eu-west-2"]
 
     options "connection" {
         cache     = true # true, false
@@ -92,97 +164,16 @@ connection "aws_account1" {
     }
 }
 ```
-
----
-
-## Database Options
-
-**Database** options are used to control database options, such as the IP address and port on which the database listens.
-
-### Supported options  
-| Argument | Default | Values | Description 
-|-|-|-|-
-| `port` | `9193` | any valid, open port number | The TCP port that Postgres will listen on
-| `listen` | `network` | `local`, `network`| The network listen mode when steampipe is started in [service mode](/docs/managing/service#starting-the-database-in-service-mode). Use `network` to listen on all IP addresses, or `local` to restrict to localhost. 
-| `search_path` | All connections, alphabetically | Comma separated string | Set an exact [search path](managing/connections#setting-the-search-path).  Note that setting the search path in the database options sets it in the database; this setting will also be in effect when connecting to Steampipe from 3rd party tools. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).
-
-
-### Example: Database Options
-
-```hcl
-options "database" {
-  port          = 9193                  # any valid, open port number
-  listen        = "local"               # local, network
-  search_path   = "aws,aws2,gcp,gcp2"   # comma-separated string; an exact search_path
-  start_timeout = 30                    # maximum time (in seconds) to wait for the database to start up
-}
-```
-
----
-
-
-
-## General options
-**General** options apply generally to the Steampipe CLI. 
-
-### Supported options  
-| Argument | Default | Values | Description 
-|-|-|-|-
-| `max_parallel` | `10` | an integer| Set the maximum number of parallel executions. When running `steampipe check`, Steampipe will attempt to run up to this many controls in parallel. This can also be set via the  `STEAMPIPE_MAX_PARALLEL` environment variable.
-| `telemetry` | `none` | `none`, `info` | Set the telemetry level in Steampipe. This can also be set via the  [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry) environment variable. See also: [Telemetry](https://steampipe.io/blog/release-0-15-0#telemetry). 
-| `update_check` | `true` | `true`, `false` | Enable or disable automatic update checking. This can also be set via the  [STEAMPIPE_UPDATE_CHECK](reference/env-vars/steampipe_update_check) environment variable.
-### Example: General Options  
-
-```hcl
-options "general" {
-  update_check = true    # true, false
-  max_parallel = 3
-  telemetry    = "info"  # info, none
-}   
-```
-
----
-
-
-<!--
-
-## Query Options
-
-**Query** options can be used to change query output formats and other `steampipe query` options.  Typically, these can also be set via [meta-commands](/docs/reference/dot-commands/overview) or [command line arguments](/docs/reference/cli/query) of the same name.
-
-
-### Supported options  
-| Argument | Default | Values | Description 
-|-|-|-|-
-| `header` |  `true` |  `true`, `false` | Enable or disable column headers.
-| `multi` | `false` |  `true`, `false` | Enable or disable multiline mode.
-| `output` | `table` | `json`, `csv`, `table`, `line` | Set output format.
-| `separator` | `,` | Any single character | Set csv output separator.
-| `timing` | `false` |  `true`, `false` | Enable or disable query execution timing.
-| `autocomplete` |  `true` |  `true`, `false` |  Enable or disable autocomplete in interactive mode.
-
-### Example: Query Options
-
-```hcl
-  options "query" { 
-    multi               = false   # true, false
-    output              = "table" # json, csv, table, line
-    header              = true    # true, false
-    separator           = ","     # any single char
-    timing              = true    # true, false
-    autocomplete        = true
-  }
-```
-
----
 -->
 
-
 ## Terminal Options
+***The `options "terminal"` block was deprecated in Steampipe v0.20.0.***
+- Set these options for each [workspace →](/docs/reference/config-files/workspace)
+
 
 <!--
 ***`terminal` options have been deprecated - please use `query` and `check` options instead***
--->
+
 
 **Terminal** options can be used to change query output formats and other terminal options.  Typically, these can also be set via [meta-commands](/docs/reference/dot-commands/overview) or [command line arguments](/docs/reference/cli/overview) of the same name.
 
@@ -215,7 +206,7 @@ options "terminal" {
   watch              =  true               # true, false
 }
 ```
-
+-->
 
 
 

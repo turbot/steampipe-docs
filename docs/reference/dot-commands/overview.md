@@ -13,6 +13,7 @@ sidebar_label: Meta-Commands
 |-|-
 | [.autocomplete](reference/dot-commands/autocomplete) | Enable or disable autocomplete
 | [.cache](reference/dot-commands/cache)               | Enable, disable or clear the query cache
+| [.cache_ttl](reference/dot-commands/cache_ttl)        | Set the query cache TTL (time-to-live) for this session.
 | [.clear](reference/dot-commands/clear)               | Clear the console screen
 | [.connections](reference/dot-commands/connections)   | List active connections
 | [.exit](reference/dot-commands/exit)                 | Exit from steampipe terminal    

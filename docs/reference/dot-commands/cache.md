@@ -5,7 +5,7 @@ sidebar_label: .cache
 
 
 # .cache
-Enable, disable or clear the query cache.
+Enable, disable or clear the query cache for this session.
 
 ## Usage
 ```
