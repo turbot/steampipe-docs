@@ -19,7 +19,7 @@ The following `options` are currently supported:
 | Option Type                       | Description
 |-|-
 | [database](#database-options)     | Database options.
-| [dashboard](#database-options)    | Dashboard options.
+| [dashboard](#dashboard-options)   | Dashboard options.
 | [general](#general-options)       | General CLI options, such as auto-update options.
 
 
