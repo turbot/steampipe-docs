@@ -38,7 +38,7 @@ Paste the code into the cli and hit enter to complete the login process:
 
 ```bash
 $ steampipe login
-Verify login at https://latestpipe.turbot.io/login/token?r=spttr_cdckfake6ap10t9dak0g_3u2k9hfake46g4o4wym7h8hw
+Verify login at https://cloud.steampipe.io/login/token?r=spttr_cdckfake6ap10t9dak0g_3u2k9hfake46g4o4wym7h8hw
 Enter verification code: 745278
 Login successful for user johnsmyth
 ```
