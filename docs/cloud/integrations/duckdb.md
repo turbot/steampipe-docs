@@ -4,7 +4,7 @@ sidebar_label: DuckDB
 ---
 ## Connect to Steampipe Cloud from DuckDB
 
-[DuckDB](https://duckdb.org/) is a free open-source, high-performance analytical SQL database system designed to handle large data sets efficiently.
+[DuckDB](https://duckdb.org/) is a free open-source, analytical SQL database system.
 
 Steampipe provides a single interface to all your cloud, code, logs and more. Because it's built on Postgres, Steampipe provides an endpoint that any Postgres-compatible client -- including DuckDB -- can connect to.
 
@@ -35,39 +35,26 @@ Database:
 
 ## Getting started
 
-To get started, first install [DuckDB](https://duckdb.org/docs/installation/index) and [postgreSQL](https://www.postgresql.org/download/). Now install [duckdb_fdw](https://github.com/alitrack/duckdb_fdw) which is a foreign data wrapper that is used to connect to external databases. Create the duckdb_fdw extension using this command.
+To get started, install [DuckDB](https://duckdb.org/docs/installation/index). DuckDB provides the capability to execute queries directly on a running PostgreSQL database by utilizing the `postgres` extension that can be installed by running this in the DuckDB CLI.
 
 ```
-CREATE EXTENSION duckdb_fdw;
+INSTALL postgres;
 ```
 
-Run this command to create a server definition that connects to your DuckDB instance.
+Paste this to Load the postgres extension
 
 ```
-CREATE SERVER duckdb_steampipe
-FOREIGN DATA WRAPPER duckdb_fdw
-OPTIONS (database 'dea4px');
+LOAD postgres;
 ```
 
-Run this command command to create a user mapping for the current PostgreSQL user
+Once the Postgres extension is installed and loaded, tables can be queried using the `postgres_scan` function. The first parameter to the function is the `postgres connection string` followed by `schema` and `table name`. Here we will execute a query with this command to list the top news using the [hackernews plugin](https://hub.steampipe.io/plugins/turbot/hackernews).
 
 ```
-CREATE USER MAPPING FOR current_user
-SERVER duckdb_steampipe;
+SELECT * FROM postgres_scan('postgresql://rahulsrivastav14:76**_****_**9c@rahulsrivastav14-rahulsworkspace.usea1.db.steampipe.io:9193/dea4px', 'hackernews', 'hackernews_top');
 ```
 
-with DuckDB now installed and running, paste this query to retrive the AWS S3 Buckets with versioning disabled.
+<div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
+<img src="/images/docs/cloud/duckdb-data-preview.png" />
+</div>
 
-```sql
-select
-  name,
-  region,
-  account_id,
-  versioning_enabled
-from
-  aws_s3_bucket
-where
-  not versioning_enabled;
-```
-
-That's it! Now you use DuckDB to query Steampipe's [plugins](https://hub.steampipe.io/plugins) and [mods](https://hub.steampipe.io/mods).
+That's it! Now you can use DuckDB to query Steampipe's [plugins](https://hub.steampipe.io/plugins) and [mods](https://hub.steampipe.io/mods).
