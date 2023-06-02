@@ -290,6 +290,7 @@
           "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
           "cloud/integrations/pgadmin",
+          "cloud/integrations/navicat",
           "cloud/integrations/pgcli",
           "cloud/integrations/powerbi",
           "cloud/integrations/psql",
