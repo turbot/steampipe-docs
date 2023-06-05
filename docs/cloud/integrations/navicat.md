@@ -36,19 +36,19 @@ Database:
 
 [Navicat](https://navicat.com/en/download/navicat-for-postgresql) is available to use on your desktop through a free trial or by making a paid purchase.
 
-To create a new connection, first click on `Connection` and select `PostgreSQL`. Enter the connection details, enable SSL then Click `Test Connection` to verify and Save.
+To create a new connection, first click on `Connection` and select `PostgreSQL`. Enter the connection details, enable SSL,click `Test Connection` to verify, then click `Save`.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/navicat-connection-success.png" />
 </div>
 
-Once you're connected to Steampipe Cloud, the PostgreSQL Explorer can access the plugins and it's tables available in your workspace.
+Once you're connected to Steampipe Cloud, the PostgreSQL Explorer can access the connection's tables in your workspace.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"40%"}}>
 <img src="/images/docs/cloud/navicat-navigation-bar.png" />
 </div>
 
-We use the AWS plugin and select the `aws_ec2_instance_availability` table. Navicat displays the table's schema and previews the data. You can drag the columns to organize the data and choose to export the data to a [variety of formats](https://steampipe.io/docs/reference/cli/check#output-formats).
+We use the AWS plugin and select the `aws_ec2_instance_availability` table. Navicat displays the table's schema and previews the data. You can drag the columns to organize the data, and export the data to a [variety of formats](https://steampipe.io/docs/reference/cli/check#output-formats).
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"40%"}}>
 <img src="/images/docs/cloud/navicat-instance-data-preview.png" />
@@ -56,7 +56,7 @@ We use the AWS plugin and select the `aws_ec2_instance_availability` table. Navi
 
 ## Create a chart with custom query
 
-Here we will focus on creating a chart to analyze versioning status of S3 Buckets in the AWS account. To begin, click the `New Query` block and paste this query in the command palette and click `Run`.
+Here we will focus on creating a chart to analyze the versioning status of S3 Buckets in the AWS account. To begin, click the `New Query` block, paste this query in the command palette, then click `Run`.
 
 ```
 select
