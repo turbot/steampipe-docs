@@ -23,9 +23,24 @@ steampipe plugin [command]
 | `uninstall`   | Uninstall a plugin
 | `update `     | Update one or more plugins
 
-| Flag | Description
-|-|-
-|` --all` | Applies only to `plugin update`, updates ALL installed plugins
+<table>
+  <thead>
+    <tr>
+      <th nowrap="true">Flag</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td nowrap="true"><inlineCode>--all</inlineCode></td>
+      <td>Applies only to <inlineCode>plugin update</inlineCode>, updates ALL installed plugins.</td>
+    </tr>
+    <tr>
+      <td nowrap="true"><inlineCode>--progress</inlineCode></td>
+      <td>Enable or disable progress information. By default, progress information is shown - set <inlineCode>--progress=false</inlineCode> to hide the progress bar. Applies only to <inlineCode>plugin install</inlineCode> and <inlineCode>plugin update</inlineCode>.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## Examples
 
@@ -52,4 +67,9 @@ steampipe plugin update --all
 Update the aws plugin to the latest in the 0.1 minor stream:
 ```bash
 steampipe plugin update aws@0.1
+```
+
+Update all plugins to the latest and hide the progress bar:
+```bash
+steampipe plugin update --all --progress=false
 ```
