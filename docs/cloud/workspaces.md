@@ -45,21 +45,32 @@ Click **Add**.  The user will receive an email invitation to join the organizati
 
 To remove a user from the organization, select the options menu button (hamburger) to the right of the user and click **Remove**.
 
-## Rebooting and Disabling Workspaces
+## Workspace Sleeping
+
+Steampipe Cloud will put workspaces into sleep mode if they have been inactive for 7 days.  When a workspace is sleeping the database is effectively shut down.  You will not be able to query the workspace via any means until you wake it again, and all pipelines will be disabled.
+
+Any sleeping workspaces will show a banner at the top of the workspace page as a reminder that the workspace is sleeping.  This banner can be dismissed for the duration of the active session.
+
+<img src="/images/docs/cloud/cloud-workspace-disabled-banner.png" width="400pt"/>
+<br />
+
+To wake up your workspace, click the **Wake Up** button on the banner.  Your workspace will be started and available within a short period.
+
+You can also manage your Workspace state from the the **Workspace Status** section in the **Settings** > **Advanced** tab.  If your workspace is awake, you can put it to sleep or reboot it:
+
+<img src="/images/docs/cloud/cloud-workspace-state-management-enabled.png" width="400pt"/>
+<br />
+
+If your workspace is sleeping, you can wake it:
+<img src="/images/docs/cloud/cloud-workspace-state-management-disabled.png" width="400pt"/>
+<br />
+
+## Rebooting Workspaces
 
 Issues with workspaces are uncommon, but if you ever need to reboot your workspace, you can do so from the **Settings** > **Advanced** tab.
 
 Under the **Workspace Status** section choose the `Reboot` option. This will cycle the workspace, which will cause a brief interruption in service. This typically takes no longer than 30 seconds.
 
-You'll also find a **Disable** option there, which will effectively shut down the workspace. This means that all connections to the workspace will be terminated, and you will not be able to query the workspace via any means until you `Enable` it again. All pipelines will also be disabled as part of this change.
-
-<img src="/images/docs/cloud/cloud-workspace-state-management.png" width="400pt"/>
-<br />
-
-Any disabled workspaces will show a persistent banner at the top of the workspace page as a reminder that the workspace is not enabled.
-
-<img src="/images/docs/cloud/cloud-workspace-disabled-banner.png" width="400pt"/>
-<br />
 
 ## Deleting Workspaces
 
