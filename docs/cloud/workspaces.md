@@ -47,14 +47,14 @@ To remove a user from the organization, select the options menu button (hamburge
 
 ## Workspace Sleeping
 
-Steampipe Cloud will put workspaces to sleep if they have been inactive for 7 days.  When a workspace is sleeping the database is effectively shut down.  You will not be able to query the workspace via any means until you wake it again, and all pipelines will be disabled.
+Steampipe Cloud will put workspaces into sleep mode if they have been inactive for 7 days.  When a workspace is sleeping the database is effectively shut down.  You will not be able to query the workspace via any means until you wake it again, and all pipelines will be disabled.
 
-Any sleeping workspaces will show a persistent banner at the top of the workspace page as a reminder that the workspace is sleeping.  
+Any sleeping workspaces will show a banner at the top of the workspace page as a reminder that the workspace is sleeping.  This banner can be dismissed for the duration of the active session.
 
 <img src="/images/docs/cloud/cloud-workspace-disabled-banner.png" width="400pt"/>
 <br />
 
-To wake up your workspace, click the **Wake Up** button on the banner.  Your workspace will be started and available within a few seconds.
+To wake up your workspace, click the **Wake Up** button on the banner.  Your workspace will be started and available within a short period.
 
 You can also manage your Workspace state from the the **Workspace Status** section in the **Settings** > **Advanced** tab.  If your workspace is awake, you can put it to sleep or reboot it:
 
