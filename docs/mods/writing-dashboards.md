@@ -103,7 +103,7 @@ dashboard "dashboard_tutorial" {
 
 Notice that we didn't need to tell Steampipe where to get the card `label` and `value` from. The above query uses a *simple* data format. It returns one row with one column. The column name is the `label`, its value is the card `value`.
 
-You can also a *formal* data structure which tells Steampipe where to get things by passing named columns.
+You can also define a *formal* data structure which tells Steampipe where to get things by passing named columns.
 
 ```hcl
 query "rss_steampipe_io_blog_post_totals" {
