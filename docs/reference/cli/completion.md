@@ -115,5 +115,5 @@ steampipe completion zsh
 
 Enable auto-complete for every new session (execute once).  You will need to start a new shell for this setup to take effect:
 ```bash
-$ steampipe completion zsh > "${fpath[1]}/_steampipe" && compinit
+steampipe completion zsh > "${fpath[1]}/_steampipe" && compinit
 ```
