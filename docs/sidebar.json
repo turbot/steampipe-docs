@@ -287,6 +287,7 @@
           "cloud/integrations/grafana",
           "cloud/integrations/heidisql",
           "cloud/integrations/javascript",
+          "cloud/integrations/looker",
           "cloud/integrations/jupyter",
           "cloud/integrations/metabase",
           "cloud/integrations/pgadmin",
