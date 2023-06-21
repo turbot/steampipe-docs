@@ -3,7 +3,7 @@ title: Connect to Steampipe Cloud from Looker
 sidebar_label: Looker
 ---
 
-##  Connect to Steampipe Cloud from Looker
+## Connect to Steampipe Cloud from Looker
 
 [Looker](https://cloud.google.com/looker) is an enterprise platform for BI, data applications, and embedded analytics that helps you explore and share insights in real time. It connects to many databases, including Postgres, and enables users to explore, query, and visualize data.
 
@@ -15,7 +15,7 @@ The [Connect](/docs/cloud/integrations/overview) tab for your workspace provides
 <img src="/images/docs/cloud/steampipe-cloud-connect-details.jpg" />
 </div>
 
-##  Connect to Steampipe CLI from Looker
+## Connect to Steampipe CLI from Looker
 
 You can also connect Looker to [Steampipe CLI](https://steampipe.io/downloads). To do that, run `steampipe service start --show-password` and use the displayed connection details.
 
@@ -36,7 +36,7 @@ Database:
 
 Looker is accessible through the GCP console. Here we will create a Steampipe Cloud connection from Looker.
 
-To create a new connection, click on `Database` then `Connections` from the admin page. Then click `Add Connection` and select `PostgreSQL 9.5+` from the `Dialect` dropdown list, enter the Steampipe Cloud connection details. Set the SSL Mode to on form advanced settings and click `Test` to `Verify` then click `Save`.
+To create a new connection, click on `Database` then `Connections` from the admin page. Then click `Add Connection`, select `PostgreSQL 9.5+` from the `Dialect` dropdown list, and enter the Steampipe Cloud connection details. In `Additional Settings`, set the SSL Mode to `On`. Click `Test` to `Verify`, then click `Save`.
 
 <div style={{"marginTop":"1em", "marginBottom":"1em", "width":"90%"}}>
 <img src="/images/docs/cloud/looker-connection-success.png" />
@@ -56,7 +56,7 @@ Here we use the GCP schema and query the `gcp_compute_region` table. Looker disp
 
 ## Create a report dashboard to analyze resources
 
-We'll focus here on creating a dashboard to monitor and analyze GCP Storage resources. To begin, create a new project and select `Create a New Model`, then select the steampipe cloud database and schema from the `Allowed Connections` and save. The new model can be accessed through the `Explore` tab.
+We'll focus here on creating a dashboard to monitor and analyze GCP Storage resources. To begin, create a new project and select `Create a New Model`, then select the Steampipe Cloud database and schema from the `Allowed Connections` and save. The new model can be accessed through the `Explore` tab.
 
 Select the `Gcp Compute Disk Metric Read Ops Hourly` table, add the values `Name` and `Average` from `Dimensions` and click `Run`. Looker then previews the data in the table form. Click on the `Visualization` tab and select the `Column` icon to visualize the hourly usage of disks used by instance-1 and instance-2. This can be saved as a new dashboard or added to an existing dashboard from the settings menu. Here we save it as a new dashboard named `GCP Storage Analysis`.
 
