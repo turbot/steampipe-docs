@@ -49,6 +49,11 @@ Install or update a plugin:
 steampipe plugin install aws
 ```
 
+Install a specific version of a plugin:
+```bash
+steampipe plugin install aws@0.107.0
+```
+
 List installed plugins:
 ```bash
 steampipe plugin list
