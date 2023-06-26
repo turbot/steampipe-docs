@@ -108,7 +108,27 @@ cd steampipe-samples/all/aws-organizations-scripts
 ```bash
 ./generate_config_for_cross_account_roles.sh IMDS security-audit ~/.aws/fooli-config
 ```
-  * In the above example `SSO` is the method of authentication.
+  * In the above example `IMDS` is the method of authentication.
+  * `security-audit` is the name of the Cross Account Role you have access to
+  * `~/.aws/fooli-config` is the location of the AWS config file
+4. Verify the contents of the `~/.aws/fooli-config` and copy or append it to `~/.aws/config`. Unlike the above example, you do not need to ensure there is a source_profile defined. Running the script in IMDS mode can be made idempotent.
+
+### ECS Task
+
+With an ECS task running Steampipe, we can leverage the [ECS task role](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html) to leverage the required permissions and assume the cross account role.
+
+1. You need to dedicate one account in your AWS Organization for the purposes of auditing all the other accounts (the "audit account"). You then need to deploy an IAM Role (the "security-audit role") in all AWS accounts that trusts the audit account.
+2. Deploy an ECS task in the audit account, and attach a Task IAM role with permission to `iam:AssumeRole` the security-audit role.
+2. Clone the [steampipe-samples](https://github.com/turbot/steampipe-samples) repo.
+```bash
+git clone https://github.com/turbot/steampipe-samples.git
+cd steampipe-samples/all/aws-organizations-scripts
+```
+3. Run the `generate_config_for_cross_account_roles.sh` script.
+```bash
+./generate_config_for_cross_account_roles.sh ECS security-audit ~/.aws/fooli-config
+```
+  * In the above example `ECS` is the method of authentication.
   * `security-audit` is the name of the Cross Account Role you have access to
   * `~/.aws/fooli-config` is the location of the AWS config file
 4. Verify the contents of the `~/.aws/fooli-config` and copy or append it to `~/.aws/config`. Unlike the above example, you do not need to ensure there is a source_profile defined. Running the script in IMDS mode can be made idempotent.
