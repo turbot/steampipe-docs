@@ -66,16 +66,15 @@ Steampipe will load these short-lived [credentials from environment variables](h
 Next, you'll need to create a step that installs the Steampipe CLI and AWS plugin.
 
 ```yaml
-- name: "Install Steampipe cli and plugin"
+- name: "Install Steampipe CLI and AWS plugin"
   id: steampipe-installation
-  run: |
-
-    # Install Steampipe CLI
-    sudo /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/turbot/steampipe/main/install.sh)"
-    # Check steampipe version
-    steampipe -v
-    # Install AWS plugin
-    steampipe plugin install aws
+  uses: turbot/steampipe-action-setup@v1
+  with:
+      steampipe-version: 'latest'
+      plugin-connections: |
+        connection "aws" {
+          plugin = "aws"
+        }
 ```
 
 Before running the compliance benchmark, create a new folder on the branch specified in your GitHub repository to save the benchmark output. In our example, we will save the outputs to the folder `steampipe/benchmarks/aws`. The default environment variable [GITHUB_WORKSPACE](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables) refers to the default working directory on the runner for steps, and the default location of your repository when using the [checkout](https://github.com/actions/checkout) action.
@@ -87,9 +86,8 @@ Next, create a step that installs the [AWS Compliance](https://hub.steampipe.io/
   id: steampipe-benchmark
   continue-on-error: true
   run: |
-
     # Install the Steampipe AWS Compliance mod
-    steampipe mod install github.com/turbot/steampipe-mod-aws-compliance 
+    steampipe mod install github.com/turbot/steampipe-mod-aws-compliance
     cd .steampipe/mods/github.com/turbot/steampipe-mod-aws-compliance*
     # Run the AWS CIS v1.5.0 benchmark
     steampipe check benchmark.cis_v150 --export=$GITHUB_WORKSPACE/steampipe/benchmarks/aws/cis_v150_"$(date +"%d_%B_%Y")".html --output=none
@@ -98,14 +96,13 @@ Next, create a step that installs the [AWS Compliance](https://hub.steampipe.io/
 Finally, add a step that pushes the output of the benchmark to your repository. Update the `working-directory` to the folder created in the above step. This should be the same location used in the above `--export` argument.
 
 ```yaml
-- name: "Commit the file to github"
+- name: "Commit the file to GitHub"
   id: push-to-gh
   working-directory: steampipe/benchmarks/aws
   run: |
-
     git config user.name github-actions
     git config user.email github-actions@github.com
-    git add cis_v150_"$(date +"%d_%B_%Y")".html 
+    git add cis_v150_"$(date +"%d_%B_%Y")".html
     git commit -m "Add Steampipe Benchmark Results"
     git push
 ```
