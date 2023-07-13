@@ -205,6 +205,12 @@ Credentials are the most important piece of documentation. The plugin:
 - Links to provider documentation
 - Explains how to use existing CLI creds when that's possible
 
+<input type="checkbox"/> <b>Aggregator examples</b>
+
+For plugins that benefit from using multiple connections and aggregators, like the AWS plugin, one or more H2 sections with examples should be added to the index document so users can easily reference it. For instance, the AWS plugin has examples in [AWS Multi-Account Connections](https://hub.steampipe.io/plugins/turbot/aws#multi-account-connections).
+
+If a plugin doesn't strongly benefit from aggregator connections, an H2 section called `Multiple Connections` should be added that briefly talks about aggregators and has a link to [Using Aggregators](https://steampipe.io/docs/managing/connections#using-aggregators).
+
 ### Table Documentation
 
 <input type="checkbox"/> <b>Useful examples</b>
