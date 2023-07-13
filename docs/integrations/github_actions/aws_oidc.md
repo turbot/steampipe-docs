@@ -79,7 +79,7 @@ Next, you'll need to create a step that installs the Steampipe CLI and AWS plugi
 
 Before running the compliance benchmark, create a new folder on the branch specified in your GitHub repository to save the benchmark output. In our example, we will save the outputs to the folder `steampipe/benchmarks/aws`. The default environment variable [GITHUB_WORKSPACE](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables) refers to the default working directory on the runner for steps, and the default location of your repository when using the [checkout](https://github.com/actions/checkout) action.
 
-Next, create a step that installs the [AWS Compliance](https://hub.steampipe.io/mods/turbot/aws_compliance) mod and runs the AWS CIS v1.5.0 Benchmark.
+Next, create a step that installs the [AWS Compliance](https://hub.steampipe.io/mods/turbot/aws_compliance) mod and runs the AWS CIS v2.0.0 Benchmark.
 
 ```yaml
 - name: "Run Steampipe benchmark"
@@ -89,8 +89,8 @@ Next, create a step that installs the [AWS Compliance](https://hub.steampipe.io/
     # Install the Steampipe AWS Compliance mod
     steampipe mod install github.com/turbot/steampipe-mod-aws-compliance
     cd .steampipe/mods/github.com/turbot/steampipe-mod-aws-compliance*
-    # Run the AWS CIS v1.5.0 benchmark
-    steampipe check benchmark.cis_v150 --export=$GITHUB_WORKSPACE/steampipe/benchmarks/aws/cis_v150_"$(date +"%d_%B_%Y")".html --output=none
+    # Run the AWS CIS v2.0.0 benchmark
+    steampipe check benchmark.cis_v200 --export=$GITHUB_WORKSPACE/steampipe/benchmarks/aws/cis_v200_"$(date +"%d_%B_%Y")".html --output=none
 ```
 
 Finally, add a step that pushes the output of the benchmark to your repository. Update the `working-directory` to the folder created in the above step. This should be the same location used in the above `--export` argument.
@@ -102,7 +102,7 @@ Finally, add a step that pushes the output of the benchmark to your repository. 
   run: |
     git config user.name github-actions
     git config user.email github-actions@github.com
-    git add cis_v150_"$(date +"%d_%B_%Y")".html
+    git add cis_v200_"$(date +"%d_%B_%Y")".html
     git commit -m "Add Steampipe Benchmark Results"
     git push
 ```
