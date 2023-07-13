@@ -5,7 +5,7 @@ sidebar_label: Plugin Release Checklist
 
 # Plugin Release Checklist
 
-As of May 2022, we've absorbed 80+ plugins into the hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
+As of July 2023, we've absorbed 120+ plugins into the Hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
 
 - [Basic Configuration](#basic-configuration)
 - [Configuration File](#configuration-file)
@@ -204,6 +204,12 @@ Credentials are the most important piece of documentation. The plugin:
 - Explains scopes and required permissions
 - Links to provider documentation
 - Explains how to use existing CLI creds when that's possible
+
+<input type="checkbox"/> <b>Aggregator examples</b>
+
+For plugins that benefit from using multiple connections and aggregators, like the AWS plugin, one or more H2 sections with examples should be added to the index document so users can easily reference it. For instance, the AWS plugin has examples in [AWS Multi-Account Connections](https://hub.steampipe.io/plugins/turbot/aws#multi-account-connections).
+
+If a plugin doesn't strongly benefit from aggregator connections, an H2 section called `Multiple Connections` should be added that briefly talks about aggregators and has a link to [Using Aggregators](https://steampipe.io/docs/managing/connections#using-aggregators).
 
 ### Table Documentation
 
