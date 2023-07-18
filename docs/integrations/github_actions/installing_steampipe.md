@@ -22,58 +22,35 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: francois2metz/setup-steampipe@v1
+      - uses: turbot/steampipe-action-setup@v1
 ```
 
 ## Installing and configuring plugin(s)
 
-The [francois2metz/setup-steampipe](https://github.com/francois2metz/setup-steampipe) action can also install and configure plugins.
-
+The [turbot/steampipe-action-setup](https://github.com/turbot/steampipe-action-setup) action can also install and configure plugins.
 
 ```
-- uses: francois2metz/setup-steampipe@v1
+- uses: turbot/steampipe-action-setup@v1
   with:
       steampipe-version: 'latest'
-      steampipe-plugins: |
-        {
-          "hackernews": {}
+      plugin-connections: |
+        connection "hackernews" {
+          plugin = "hackernews"
         }
 ```
 
-<div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="github-plugin-installed" src="/images/docs/ci-cd-pipelines/github-plugin-installed.png" />
-</div>
-
-Next, we'll add a file called `hn.sql` file to the repo.
-
-```sql
-select
-  id,
-  title
-from
-  hackernews_item
-where
-  type = 'story'
-  and title is not null
- order by
-   id desc
-limit 5
-```
-
-Finally run the query with Steampipe:
+Next, add a step to run a query:
 
 ```
-- uses: francois2metz/setup-steampipe@v1
+- uses: turbot/steampipe-action-setup@v1
   with:
       steampipe-version: 'latest'
-      steampipe-plugins: |
-        {
-          "hackernews": {}
+      plugin-connections: |
+        connection "hackernews" {
+          plugin = "hackernews"
         }
 - name: Query HN
-  run: steampipe query hn.sql
+  run: steampipe query "select id, title from hackernews_item where type = 'story' and title is not null order by id desc limit 5"
 ```
 
-<div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="github-query-output" src="/images/docs/ci-cd-pipelines/github-query-output.png" />
-</div>
+For more examples, please see [turbot/steampipe-action-setup examples](https://github.com/turbot/steampipe-action-setup#examples).
