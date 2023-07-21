@@ -51,8 +51,8 @@ Any unset arguments will assume the default values.
 | `base`              |                                               | A reference to a named workspace resource that this workspace should source its definition from. Any argument can be overridden after sourcing via base.
 | `cache`             | `true`                                        | Enable/disable caching.  Note that is a **client**  setting -  if the database (`options "database"`) has the cache disabled, then the cache is disabled regardless of the workspace setting. <br /> <br /> Env: [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache)
 | `cache_ttl`         | `300`                                         | Set the client query cache expiration (TTL) in seconds.  Note that is a **client**  setting - if the database `cache_max_ttl` is lower than the `cache_ttl` in the workspace, then the effective ttl for this workspace is the `cache_max_ttl`. <br /> <br /> Env: [STEAMPIPE_CACHE_TTL](/docs/reference/env-vars/steampipe_cache_ttl)
-| `cloud_host`        | `cloud.steampipe.io`                          | Set the Steampipe Cloud host for connecting to Steampipe Cloud workspace. <br /> <br /> Env: [STEAMPIPE_CLOUD_HOST](/docs/reference/env-vars/steampipe_cloud_host)  <br /> CLI: `--cloud-host`
-| `cloud_token`       | The token obtained by `steampipe login`       | Set the Steampipe Cloud authentication token for connecting to a Steampipe Cloud workspace.  This may be a token obtained by `steampipe login` or a user-generated [token](/docs/cloud/profile#tokens). <br /> <br /> Env: [STEAMPIPE_CLOUD_TOKEN](/docs/reference/env-vars/steampipe_cloud_token)   <br /> CLI: `--cloud-token`
+| `cloud_host`        | `pipes.turbot.com`                          | Set the Turbot Pipes host for connecting to Turbot Pipes workspace. <br /> <br /> Env: [STEAMPIPE_CLOUD_HOST](/docs/reference/env-vars/steampipe_cloud_host)  <br /> CLI: `--cloud-host`
+| `cloud_token`       | The token obtained by `steampipe login`       | Set the Turbot Pipes authentication token for connecting to a Turbot Pipes workspace.  This may be a token obtained by `steampipe login` or a user-generated [token](https://turbot.com/pipes/docs/profile#tokens). <br /> <br /> Env: [STEAMPIPE_CLOUD_TOKEN](/docs/reference/env-vars/steampipe_cloud_token)   <br /> CLI: `--cloud-token`
 | `input`             | `true`                                        | Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, set to `false`. This is useful when running from scripts.   <br /> <br /> CLI: `--input`
 | `install_dir`       | `~/.steampipe`                                | The directory in which the Steampipe database, plugins, and supporting files can be found. <br /> <br /> Env: [STEAMPIPE_INSTALL_DIR](/docs/reference/env-vars/steampipe_install_dir)  <br /> CLI: `--install-dir`
 | `introspection`     | `none`                                        | Enable introspection tables that allow you to query the mod resources in the workspace.  Supported values are `none` and `info`. <br /> <br /> Env:  [STEAMPIPE_INTROSPECTION](/docs/reference/env-vars/steampipe_introspection)
@@ -63,10 +63,10 @@ Any unset arguments will assume the default values.
 | `query_timeout`     | `240` for controls, unlimited otherwise       | The maximum time (in seconds) a query is allowed to run before it times out. <br /> <br /> Env: [STEAMPIPE_QUERY_TIMEOUT](/docs/reference/env-vars/steampipe_query_timeout)  <br /> CLI: `--query_timeout`
 | `search_path`       | `public`, then alphabetical                   | A comma-separated list of connections to use as a custom search path for the control run. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).   <br /> <br />CLI: `--search-path`   
 | `search_path_prefix`|                                               | A comma-separated list of connections to use as a prefix to the current search path for the control run.  See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).  <br /> <br />CLI: `--search-path-prefix`   
-| `snapshot_location` | The Steampipe Cloud user's personal workspace | Set the Steampipe Cloud workspace or filesystem path for writing snapshots. <br /> <br /> Env: [STEAMPIPE_SNAPSHOT_LOCATION](/docs/reference/env-vars/steampipe_snapshot_location)  <br /> CLI: `--snapshot-location`
+| `snapshot_location` | The Turbot Pipes user's personal workspace | Set the Turbot Pipes workspace or filesystem path for writing snapshots. <br /> <br /> Env: [STEAMPIPE_SNAPSHOT_LOCATION](/docs/reference/env-vars/steampipe_snapshot_location)  <br /> CLI: `--snapshot-location`
 | `theme`             | `dark`                                        | Select output theme (color scheme, etc) when running `steampipe check`.  Possible values are `light`,`dark`, and `plain`  <br /> <br />CLI: `--theme` 
 | `watch`             | `true`                                        | Watch .sql and .sp files in the current workspace (works only in interactive mode).  <br /> <br />CLI: `--watch` 
-| `workspace_database`| `local`                                       | Workspace database. This can be local or a remote Steampipe Cloud database. <br /> <br /> Env: [STEAMPIPE_WORKSPACE_DATABASE](/docs/reference/env-vars/steampipe_workspace_database)  <br /> CLI: `--workspace-database`
+| `workspace_database`| `local`                                       | Workspace database. This can be local or a remote Turbot Pipes database. <br /> <br /> Env: [STEAMPIPE_WORKSPACE_DATABASE](/docs/reference/env-vars/steampipe_workspace_database)  <br /> CLI: `--workspace-database`
 
 
 
@@ -200,7 +200,7 @@ workspace "dev" {
 }
 
 workspace "all_options" {
-  cloud_host          = "cloud.steampipe.io"
+  cloud_host          = "pipes.turbot.com"
   cloud_token         = "spt_999faketoken99999999_111faketoken1111111111111"
   install_dir         = "~/steampipe2"
   mod_location        = "~/src/steampipe-mod-aws-insights"  

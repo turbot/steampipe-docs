@@ -37,7 +37,7 @@ steampipe query --workspace acme_prod "select * from aws_account"
 steampipe dashboard --workspace dev_insights
 ```
 
-Steampipe Cloud workspaces are [automatically supported](#implicit-workspaces):
+Turbot Pipes workspaces are [automatically supported](#implicit-workspaces):
 ```bash
 steampipe query --workspace acme/dev "select * from aws_account"
 ```
@@ -71,14 +71,14 @@ workspace "local_db" {
 }
 ```
 
-or a Steampipe Cloud workspace, in the form of `{identity_handle}/{workspace_handle}`:
+or a Turbot Pipes workspace, in the form of `{identity_handle}/{workspace_handle}`:
 ```hcl
 workspace "acme_prod" {
   workspace_database = "acme/prod"
 }
 ```
 
-The `snapshot_location` can also be a Steampipe Cloud workspace, in the form 
+The `snapshot_location` can also be a Turbot Pipes workspace, in the form 
 of `{identity_handle}/{workspace_handle}`: 
 ```hcl
 workspace "acme_prod" {
@@ -116,7 +116,7 @@ workspace "local_dev" {
   query_timeout       = 300 
   max_parallel        = 5   
   cloud_token         = "spt_999faketoken99999999_111faketoken1111111111111"
-  cloud_host          = "cloud.steampipe.io"
+  cloud_host          = "pipes.turbot.com"
   snapshot_location   = "acme/dev"
   mod_location        = "~/mods/steampipe-mod-aws-insights"
   workspace_database  = "local" 
@@ -228,7 +228,7 @@ the slash (`/`) character.  If you pass a value to `--workspace` or `STEAMPIPE_W
 in the form of `{identity_handle}/{workspace_handle}`, it will be interpreted as
 an **implicit workspace**.  Implicit workspaces, as the name suggests, do not
 need to be specified in the `workspaces.spc` file.  Instead they will be assumed
-to refer to a Steampipe Cloud workspace, which will be used as both the database (`workspace_database`)
+to refer to a Turbot Pipes workspace, which will be used as both the database (`workspace_database`)
 and snapshot location (`snapshot_location`).
 
 Essentially, `--workspace acme/dev` is equivalent to:

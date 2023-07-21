@@ -100,17 +100,17 @@ steampipe check list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--share</inlineCode>  </td> 
-    <td> Create snapshot in Steampipe Cloud with <inlineCode>anyone_with_link</inlineCode> visibility.  </td>
+    <td> Create snapshot in Turbot Pipes with <inlineCode>anyone_with_link</inlineCode> visibility.  </td>
   </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--snapshot</inlineCode>  </td> 
-    <td> Create snapshot in Steampipe Cloud with the default (<inlineCode>workspace</inlineCode>) visibility.  </td>
+    <td> Create snapshot in Turbot Pipes with the default (<inlineCode>workspace</inlineCode>) visibility.  </td>
   </tr>
     
   <tr> 
     <td nowrap="true"> <inlineCode>--snapshot-location string</inlineCode>  </td> 
-    <td> The location to write snapshots - either a local file path or a Steampipe Cloud workspace  </td>
+    <td> The location to write snapshots - either a local file path or a Turbot Pipes workspace  </td>
   </tr>
 
   <tr> 
@@ -120,7 +120,7 @@ steampipe check list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--snapshot-title string=string  </inlineCode>  </td> 
-    <td> The title to give a snapshot when uploading to Steampipe Cloud.  </td>
+    <td> The title to give a snapshot when uploading to Turbot Pipes.  </td>
   </tr>
 
   <tr> 

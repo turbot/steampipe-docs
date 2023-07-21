@@ -5,7 +5,7 @@ sidebar_label: STEAMPIPE_WORKSPACE_DATABASE
 
 
 # STEAMPIPE_WORKSPACE_DATABASE
-Sets the database that Steampipe will connect to. By default, Steampipe will use the locally installed database (`local`).  Alternately, you can use a remote database such as a Steampipe Cloud workspace database.
+Sets the database that Steampipe will connect to. By default, Steampipe will use the locally installed database (`local`).  Alternately, you can use a remote database such as a Turbot Pipes workspace database.
 
 ## Usage 
 Use a Steampipe cloud remote database:
