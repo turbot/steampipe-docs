@@ -183,6 +183,8 @@
         "label": "Environment Variables",
         "link": "reference/env-vars/overview",
         "items": [
+          "reference/env-vars/pipes_host",
+          "reference/env-vars/pipes_token",
           "reference/env-vars/steampipe_cache",
           "reference/env-vars/steampipe_cache_max_size_mb",
           "reference/env-vars/steampipe_cache_max_ttl",

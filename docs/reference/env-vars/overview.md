@@ -15,6 +15,8 @@ Note that plugins may also support environment variables, but these are plugin-s
 
 | Command | Default | Description
 |-|-|-
+| [PIPES_HOST](reference/env-vars/pipes_host)  | `pipes.turbot.com` | Set the Turbot Pipes host, for connecting to Turbot Pipes workspace.
+| [PIPES_TOKEN](reference/env-vars/pipes_token)  |  | Set the Turbot Pipes authentication token for connecting to Turbot Pipes workspace.
 | [STEAMPIPE_CACHE](reference/env-vars/steampipe_cache)| `true` | Enable/disable caching.
 | [STEAMPIPE_CACHE_MAX_SIZE_MB](reference/env-vars/steampipe_cache_max_size_mb)| unlimited | Set the maximum size of the query cache across all plugins.
 | [STEAMPIPE_CACHE_MAX_TTL](reference/env-vars/steampipe_cache_max_ttl)| `300` | The maximum amount of time to cache results, in seconds.
