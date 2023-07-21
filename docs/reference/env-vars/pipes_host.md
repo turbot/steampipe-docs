@@ -13,5 +13,5 @@ Default to use workspaces in `test.steampipe.io`:
 
 ```bash
 export PIPES_HOST=test.turbot.com
-export PIPES_TOKEN=spt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
+export PIPES_TOKEN=tpt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
 ```

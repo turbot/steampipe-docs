@@ -15,5 +15,5 @@ Alternatively, you can set the cloud host in the [`PIPES_TOKEN` environment vari
 ## Usage 
 Set your api token:
 ```bash
-export STEAMPIPE_CLOUD_TOKEN=spt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
+export STEAMPIPE_CLOUD_TOKEN=tpt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
 ```

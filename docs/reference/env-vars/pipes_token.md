@@ -17,5 +17,5 @@ Note that `PIPES_TOKEN` has lower precedence than `STEAMPIPE_CLOUD_TOKEN` - if b
 ## Usage 
 Set your api token:
 ```bash
-export PIPES_TOKEN=spt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
+export PIPES_TOKEN=tpt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
 ```

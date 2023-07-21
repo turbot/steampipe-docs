@@ -115,7 +115,7 @@ workspace "local_dev" {
   watch  			        = false
   query_timeout       = 300 
   max_parallel        = 5   
-  cloud_token         = "spt_999faketoken99999999_111faketoken1111111111111"
+  cloud_token         = "tpt_999faketoken99999999_111faketoken1111111111111"
   cloud_host          = "pipes.turbot.com"
   snapshot_location   = "acme/dev"
   mod_location        = "~/mods/steampipe-mod-aws-insights"

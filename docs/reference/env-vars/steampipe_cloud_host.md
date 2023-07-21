@@ -13,5 +13,5 @@ Default to use workspaces in `test.steampipe.io`:
 
 ```bash
 export STEAMPIPE_CLOUD_HOST=test.steampipe.io
-export STEAMPIPE_CLOUD_TOKEN=spt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
+export STEAMPIPE_CLOUD_TOKEN=tpt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
 ```

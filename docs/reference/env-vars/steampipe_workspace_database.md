@@ -10,7 +10,7 @@ Sets the database that Steampipe will connect to. By default, Steampipe will use
 ## Usage 
 Use a Steampipe cloud remote database:
 ```bash
-export STEAMPIPE_CLOUD_TOKEN=spt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
+export STEAMPIPE_CLOUD_TOKEN=tpt_c6f5tmpe4mv9appio5rg_3jz0a8fakekeyf8ng72qr646
 export STEAMPIPE_WORKSPACE_DATABASE=acme/prod
 ```
 

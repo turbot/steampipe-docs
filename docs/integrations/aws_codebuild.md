@@ -69,10 +69,10 @@ Next, replace the last line of the build with a call to Turbot Pipes:
 ```
 This command will run steampipe and save the output of the check as "Terraform Report" in the specified Workspace. By default, the CLI looks for your Turbot Pipes token in the `STEAMPIPE_CLOUD_TOKEN` [environment variable](https://steampipe.io/docs/reference/env-vars/overview).
 
-You can create your [Turbot Pipes token](https://turbot.com/pipes/docs/profile#tokens) via the Settings page (click on your avatar in the upper right). Once you have your token (which begins with `spt_`), you need to create the secret in [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/):
+You can create your [Turbot Pipes token](https://turbot.com/pipes/docs/profile#tokens) via the Settings page (click on your avatar in the upper right). Once you have your token (which begins with `tpt_`), you need to create the secret in [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/):
 ```bash
 aws secretsmanager create-secret --name steampipe-cloud --secret-string \
-  '{"STEAMPIPE_CLOUD_TOKEN":"spt_PUTYOURTOKENHERE","WORKSPACE":"fooli"}'
+  '{"STEAMPIPE_CLOUD_TOKEN":"tpt_PUTYOURTOKENHERE","WORKSPACE":"fooli"}'
 ```
 
 You can find the entire buildspec file [here in our samples repository](https://github.com/turbot/steampipe-samples/blob/main/all/aws-codebuild/steampipe-cloud-buildspec.yaml).
