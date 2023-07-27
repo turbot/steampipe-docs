@@ -20,7 +20,7 @@ Use the `my_workspace` workspace:
 export STEAMPIPE_WORKSPACE=my_workspace
 ```
 
-Use the `acme/prod` Steampipe Cloud workspace:
+Use the `acme/prod` Turbot Pipes workspace:
 ```bash
 export STEAMPIPE_WORKSPACE=acme/prod
 ```

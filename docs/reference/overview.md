@@ -1,9 +1,9 @@
 ---
-title:  Steampipe Cloud Reference
+title:  Steampipe Reference
 sidebar_label: Reference
 ---
 
-# Steampipe Cloud Reference
+# Steampipe Reference
 
 When all else fails, read the manual...
 

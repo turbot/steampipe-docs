@@ -32,12 +32,12 @@ sidebar_label: Steampipe CLI
 
   <tr> 
     <td nowrap="true"> <inlineCode>--cloud-host</inlineCode>  </td> 
-    <td>  Sets the Steampipe Cloud host used when connecting to Steampipe Cloud workspaces.  See <a href="/docs/reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details. </td>
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces.  See <a href="/docs/reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details. </td>
   </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--cloud-token</inlineCode>  </td> 
-    <td>  Sets the Steampipe Cloud authentication token used when connecting to Steampipe Cloud workspaces.  See <a href="/docs/reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details. </td>
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces.  See <a href="/docs/reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details. </td>
   </tr>
 
   <tr> 
@@ -79,7 +79,7 @@ sidebar_label: Steampipe CLI
 
   <tr> 
     <td nowrap="true"> <inlineCode>--workspace-database</inlineCode>  </td> 
-    <td>  Sets the database that Steampipe will connect to. This can be <inlineCode>local</inlineCode> (the default) or a remote Steampipe Cloud database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
+    <td>  Sets the database that Steampipe will connect to. This can be <inlineCode>local</inlineCode> (the default) or a remote Turbot Pipes database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
   </tr>
 
 
