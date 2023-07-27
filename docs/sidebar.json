@@ -251,5 +251,7 @@
         ]
       }
     ]
-  }
+  },
+
+  "steampipe-cloud"
 ]
