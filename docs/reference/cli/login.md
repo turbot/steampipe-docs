@@ -14,6 +14,34 @@ The Steampipe CLI can interact with Turbot Pipes to run queries, benchmarks, and
 steampipe login
 ```
 
+## Flags:
+
+<table>
+  <tr> 
+    <th> Argument </th> 
+    <th> Description </th> 
+  </tr>
+  <tr> 
+    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--workspace</inlineCode>  </td> 
+    <td>  Sets the Steampipe <a href="/docs/managing/workspaces"> workspace profile</a>.  If not specified, the <inlineCode>default</inlineCode> workspace will be used if it exists.  See <a href="/docs/reference/env-vars/steampipe_workspace">STEAMPIPE_WORKSPACE</a> for details.</td>
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--workspace-database</inlineCode>  </td> 
+    <td>  Sets the database that Steampipe will connect to. This can be <inlineCode>local</inlineCode> (the default) or a remote Turbot Pipes database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
+  </tr>
+</table>
+
 ## Examples
 
 Login to `pipes.turbot.com`:
