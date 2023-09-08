@@ -29,6 +29,7 @@ steampipe mod [command]
 | Flag | Description
 |-|-
 |` --dry-run` | Show which mods would be installed/updated/uninstalled without modifying them (default `false`).
+|` --mod-location` | Sets the Steampipe workspace working directory. If not specified, the workspace directory will be set to the current working directory. See <a href="reference/env-vars/steampipe_mod_location">STEAMPIPE_MOD_LOCATION</a> for details.
 |` --prune` | Remove unused mods and dependencies when doing `mod update` and `mod install` (default `true`).
 
 
