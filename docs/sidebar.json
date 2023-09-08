@@ -81,7 +81,8 @@
     "items": [
       "guides/search-path",
       "guides/aws-orgs",
-      "guides/caching"
+      "guides/caching",
+      "guides/limiter"
 
     ]
   },
