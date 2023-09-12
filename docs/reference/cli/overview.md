@@ -40,6 +40,11 @@ sidebar_label: Steampipe CLI
     <td>  Sets the directory for the Steampipe installation, in which the Steampipe database, plugins, and supporting files can be found.  See <a href="/docs/reference/env-vars/steampipe_install_dir">STEAMPIPE_INSTALL_DIR</a> for details. </td>
   </tr>
 
+  <tr> 
+    <td nowrap="true"> <inlineCode>--workspace</inlineCode>  </td> 
+    <td>  Sets the Steampipe <a href="/docs/managing/workspaces"> workspace profile</a>.  If not specified, the <inlineCode>default</inlineCode> workspace will be used if it exists.  See <a href="/docs/reference/env-vars/steampipe_workspace">STEAMPIPE_WORKSPACE</a> for details.</td>
+  </tr>
+
 <!--
   <tr> 
     <td nowrap="true"> <inlineCode>--schema-comments</inlineCode></td> 

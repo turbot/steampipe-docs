@@ -30,11 +30,6 @@ steampipe login
     <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
     <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
   </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--workspace</inlineCode>  </td> 
-    <td>  Sets the Steampipe <a href="/docs/managing/workspaces"> workspace profile</a>.  If not specified, the <inlineCode>default</inlineCode> workspace will be used if it exists.  See <a href="/docs/reference/env-vars/steampipe_workspace">STEAMPIPE_WORKSPACE</a> for details.</td>
-  </tr>
 </table>
 
 ## Examples
