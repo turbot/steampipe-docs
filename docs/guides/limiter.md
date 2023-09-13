@@ -208,90 +208,99 @@ STEAMPIPE_DIAGNOSTICS_LEVEL=ALL  steampipe service start
 With diagnostics enabled, the `_ctx` column will contain information about what functions were called to fetch the row, the scope values (including any [tags](#defining-tags)) for the function, the limiters that were in effect and the amount of time the request was delayed by the `limiters`.  This diagnostic information can help you discover what scopes are available to use in limiters as well as to see the effect and impact of limiters that you have defined. 
 
 ```sql
-> select jsonb_pretty(_ctx),topic_arn,display_name from aws_sns_topic 
+> select jsonb_pretty(_ctx),display_name from aws_sns_topic
 
 
-+---------------------------------------------------------+----------------------
-| jsonb_pretty                                            | topic_arn           
-+---------------------------------------------------------+----------------------
-| {                                                       | arn:aws:sns:us-east-2
-|     "connection": "aws_dev_01"         ,                |                     
-|     "diagnostics": {                                    |                     
-|         "calls": [                                      |                     
-|             {                                           |                     
-|                 "type": "list",                         |                     
-|                 "scope_values": {                       |                     
-|                     "table": "aws_sns_topic",           |                     
-|                     "action": "ListTopics",             |                     
-|                     "region": "us-east-2",              |                     
-|                     "service": "sns",                   |                     
-|                     "connection": "aws_dev_01"          |                     
-|                 },                                      |                     
-|                 "function_name": "listAwsSnsTopics",    |                     
-|                 "rate_limiters": [                      |                     
-|                     "aws_global_concurrency",           |                     
-|                     "sns_read_150"                      |                     
-|                 ]                                       |                     
-|             },                                          |                     
-|             {                                           |                     
-|                 "type": "hydrate",                      |                     
-|                 "scope_values": {                       |                     
-|                     "table": "aws_sns_topic",           |                     
-|                     "action": "GetTopicAttributes",     |                     
-|                     "region": "us-east-2",              |                     
-|                     "service": "sns",                   |                     
-|                     "connection": "aws_dev_01"          |                     
-|                 },                                      |                     
-|                 "function_name": "getTopicAttributes",  |                     
-|                 "rate_limiters": [                      |                     
-|                     "aws_global_concurrency",           |                     
-|                     "sns_read_150"                      |                     
-|                 ]                                       |                     
-|             }                                           |                     
-|         ]                                               |                     
-|     }                                                   |                     
-| }                                                       |                     
-| {                                                       | arn:aws:sns:us-east-1
-|     "connection": "aws_dev_01"         ,                |                     
-|     "diagnostics": {                                    |                     
-|         "calls": [                                      |                     
-|             {                                           |                     
-|                 "type": "list",                         |                     
-|                 "scope_values": {                       |                     
-|                     "table": "aws_sns_topic",           |                     
-|                     "action": "ListTopics",             |                     
-|                     "region": "us-east-1",              |                     
-|                     "service": "sns",                   |                     
-|                     "connection": "aws_dev_01"          |                     
-|                 },                                      |                     
-|                 "function_name": "listAwsSnsTopics",    |                     
-|                 "rate_limiters": [                      |                     
-|                     "sns_read_us_east_1",               |                     
-|                     "aws_global_concurrency"            |                     
-|                 ]                                       |                     
-|             },                                          |                     
-|             {                                           |                     
-|                 "type": "hydrate",                      |                     
-|                 "scope_values": {                       |                     
-|                     "table": "aws_sns_topic",           |                     
-|                     "action": "GetTopicAttributes",     |                     
-|                     "region": "us-east-1",              |                     
-|                     "service": "sns",                   |                     
-|                     "connection": "aws_dev_01"          |                     
-|                 },                                      |                     
-|                 "function_name": "getTopicAttributes",  |                     
-|                 "rate_limiters": [                      |                     
-|                     "aws_global_concurrency",           |                     
-|                     "sns_read_us_east_1"                |                     
-|                 ],                                      |                     
-|                 "rate_limiter_delay_ms": 169            |                     
-|             }                                           |                     
-|         ]                                               |                     
-|     }                                                   |                     
-| }                                                       |                     
++-----------------------------------------------------------+--------------+
+| jsonb_pretty                                              | display_name |
++-----------------------------------------------------------+--------------+
+| {                                                         |              |
+|     "connection": "aws_dev_01",                           |              |
+|     "diagnostics": {                                      |              |
+|         "calls": [                                        |              |
+|             {                                             |              |
+|                 "type": "list",                           |              |
+|                 "scope_values": {                         |              |
+|                     "table": "aws_sns_topic",             |              |
+|                     "action": "ListTopics",               |              |
+|                     "region": "us-east-1",                |              |
+|                     "service": "sns",                     |              |
+|                     "connection": "aws_dev_01"            |              |
+|                 },                                        |              |
+|                 "function_name": "listAwsSnsTopics",      |              |
+|                 "rate_limiters": [                        |              |
+|                     "sns_list_topics",                    |              |
+|                     "aws_global_concurrency"              |              |
+|                 ]                                         |              |
+|             },                                            |              |
+|             {                                             |              |
+|                 "type": "hydrate",                        |              |
+|                 "scope_values": {                         |              |
+|                     "table": "aws_sns_topic",             |              |
+|                     "action": "GetTopicAttributes",       |              |
+|                     "region": "us-east-1",                |              |
+|                     "service": "sns",                     |              |
+|                     "connection": "aws_dev_01"            |              |
+|                 },                                        |              |
+|                 "function_name": "getTopicAttributes",    |              |
+|                 "rate_limiters": [                        |              |
+|                     "sns_get_topic_attributes_us_east_1", |              |
+|                     "aws_global_concurrency"              |              |
+|                 ],                                        |              |
+|                 "rate_limiter_delay_ms": 107              |              |
+|             }                                             |              |
+|         ]                                                 |              |
+|     }                                                     |              |
+| }                                                         |              |
+| {                                                         |              |
+|     "connection": "aws_dev_01",                           |              |
+|     "diagnostics": {                                      |              |
+|         "calls": [                                        |              |
+|             {                                             |              |
+|                 "type": "list",                           |              |
+|                 "scope_values": {                         |              |
+|                     "table": "aws_sns_topic",             |              |
+|                     "action": "ListTopics",               |              |
+|                     "region": "us-east-1",                |              |
+|                     "service": "sns",                     |              |
+|                     "connection": "aws_dev_01"            |              |
+|                 },                                        |              |
+|                 "function_name": "listAwsSnsTopics",      |              |
+|                 "rate_limiters": [                        |              |
+|                     "sns_list_topics",                    |              |
+|                     "aws_global_concurrency"              |              |
+|                 ]                                         |              |
+|             },                                            |              |
+|             {                                             |              |
+|                 "type": "hydrate",                        |              |
+|                 "scope_values": {                         |              |
+|                     "table": "aws_sns_topic",             |              |
+|                     "action": "GetTopicAttributes",       |              |
+|                     "region": "us-east-1",                |              |
+|                     "service": "sns",                     |              |
+|                     "connection": "aws_dev_01"            |              |
+|                 },                                        |              |
+|                 "function_name": "getTopicAttributes",    |              |
+|                 "rate_limiters": [                        |              |
+|                     "sns_get_topic_attributes_us_east_1", |              |
+|                     "aws_global_concurrency"              |              |
+|                 ],                                        |              |
+|                 "rate_limiter_delay_ms": 119              |              |
+|             }                                             |              |
+|         ]                                                 |              |
+|     }                                                     |              |
+| }                                                    |                     
 ```
 
-Note that fields with null values will not appear in the diagnostics - If there are no rate limiters that are in scope for a function then `rate_limiters` will not appear for the function, if there is no delay due to a limiter then `rate_limiter_delay_ms` will not appear, etc.
+The diagnostics information includes information about each Get, List, and Hydrate function that was called to fetch the row, including:
+
+| Key                     | Description
+|-------------------------|---------------------- 
+| `type`                  | The type of function (`list`, `get`, or `hydrate`).
+| `function_name`         | The name of the function.
+| `scope_values`          | A map of scope names to values.  This includes the built-in scopes as well as any matrix qualifier scopes and function tags.
+| `rate_limiters`         | A list of the rate limiters that are scoped to the function.
+| `rate_limiter_delay_ms` | The amount of time (in milliseconds) that Steampipe waited before calling this function due to client-side (`limiter`) rate limiting.
 
 
 ## Hints, Tips, & Best practices
