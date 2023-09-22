@@ -21,6 +21,7 @@ The following `options` are currently supported:
 | [database](#database-options)     | Database options.
 | [dashboard](#dashboard-options)   | Dashboard options.
 | [general](#general-options)       | General CLI options, such as auto-update options.
+| [plugin](#plugin-options)         | Plugin options.
 
 
 
@@ -97,6 +98,7 @@ options "dashboard" {
 | Argument | Default | Values | Description
 |-|-|-|-
 | `log_level` | `warn` | `trace`, `debug`, `info`, `warn`, `error` | Sets the output logging level. Standard log levels are supported. This can also be set via the  [STEAMPIPE_LOG_LEVEL](reference/env-vars/steampipe_log) environment variable.
+| `memory_max_mb` | `1024` | Set a memory soft limit for the `steampipe` process.  Set to `0` to disable the memory limit.  This can also be set via the [STEAMPIPE_MEMORY_MAX_MB](/docs/reference/env-vars/steampipe_memory_max_mb) environment variable.
 | `telemetry` | `none` | `none`, `info` | Set the telemetry level in Steampipe. This can also be set via the  [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry) environment variable. See also: [Telemetry](https://steampipe.io/blog/release-0-15-0#telemetry).
 | `update_check` | `true` | `true`, `false` | Enable or disable automatic update checking. This can also be set via the  [STEAMPIPE_UPDATE_CHECK](reference/env-vars/steampipe_update_check) environment variable.
 
@@ -112,12 +114,31 @@ options "dashboard" {
 ```hcl
 options "general" {
   log_level     = "warn"  # trace, debug, info, warn, error
+  memory_max_mb = 512     # megabytes
   telemetry     = "info"  # info, none
   update_check  = true    # true, false
 }
 ```
 
 ---
+## Plugin Options
+
+**Plugin** options are used to set plugin default options, such as memory soft limits.
+
+### Supported options
+| Argument | Default | Values | Description
+|-|-|-|-
+| `memory_max_mb` | `1024` | Set a default memory soft limit for each plugin process. Note that each plugin can have its own `memory_max_mb` set in [a `plugin` definition](/docs/reference/config-files/plugin), and that value would override this default setting. Set to `0` to disable the memory limit.  This can also be set via the [STEAMPIPE_PLUGIN_MEMORY_MAX_MB](/docs/reference/env-vars/steampipe_plugin_memory_max_mb) environment variable.
+
+
+### Example: Plugin Options
+
+```hcl
+options "plugin" {
+  memory_max_mb = 2048  # megabytes
+}
+```
+
 
 
 

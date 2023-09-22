@@ -200,9 +200,9 @@ Querying the `steampipe_rate_limiter` table again, we can see that there are now
 
 ## Exploring & Troubleshooting with Diagnostics Mode
 
-To assist in troubleshooting your rate limiter setup, Steampipe has introduced Diagnostics Mode.  To enable Diagnostics Mode, set the `STEAMPIPE_DIAGNOSTICS_LEVEL` environment variable to `ALL` when you start the Steampipe DB:
+To assist in troubleshooting your rate limiter setup, Steampipe has introduced Diagnostics Mode.  To enable Diagnostics Mode, set the `STEAMPIPE_DIAGNOSTIC_LEVEL` environment variable to `ALL` when you start the Steampipe DB:
 ```bash
-STEAMPIPE_DIAGNOSTICS_LEVEL=ALL  steampipe service start
+STEAMPIPE_DIAGNOSTIC_LEVEL=ALL  steampipe service start
 ```
 
 With diagnostics enabled, the `_ctx` column will contain information about what functions were called to fetch the row, the scope values (including any [tags](#defining-tags)) for the function, the limiters that were in effect and the amount of time the request was delayed by the `limiters`.  This diagnostic information can help you discover what scopes are available to use in limiters as well as to see the effect and impact of limiters that you have defined. 
@@ -344,6 +344,6 @@ The diagnostics information includes information about each Get, List, and Hydra
 
 - Use the plugin logs (`~/.steampipe/logs/plugin*.log`) to verify that the rate limiters are reducing the throttling and other errors from the API as you would expect.
 
-- Use the `steampipe_rate_limiter` table to see what rate limiters are in effect from both the plugins and the config files, as well as which are active.  Use `STEAMPIPE_DIAGNOSTICS_LEVEL=ALL` to enable extra diagnostic info in the `_ctx` to discover what scopes are available and to verify that limiters are being applied as you expect.  Note that the `STEAMPIPE_DIAGNOSTICS_LEVEL` variable must be set in the database service process - if you run steampipe as a service, it must be set when you run `steampipe service start`
+- Use the `steampipe_rate_limiter` table to see what rate limiters are in effect from both the plugins and the config files, as well as which are active.  Use `STEAMPIPE_DIAGNOSTIC_LEVEL=ALL` to enable extra diagnostic info in the `_ctx` to discover what scopes are available and to verify that limiters are being applied as you expect.  Note that the `STEAMPIPE_DIAGNOSTIC_LEVEL` variable must be set in the database service process - if you run steampipe as a service, it must be set when you run `steampipe service start`
 
 - Throttling errors from the server, such as `429 Too Many Requests` are not *inherently* bad.  Most cloud SDKs actually account for retrying such errors and expect that it will sometimes occur.  Steampipe plugins generally implement an exponential back-off & retry to account for such cases.  You can use client side limiters to help avoid resource contention and to reduce throttling from the server, but completely avoiding server-side throttling is probably not necessary in most cases.
