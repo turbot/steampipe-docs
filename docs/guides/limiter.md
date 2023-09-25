@@ -1,9 +1,9 @@
 ---
-title: Users Guide to Client-Side Rate Limiting with `limiter`
-sidebar_label: Client-Side Rate Limiting 
+title: Users Guide to Concurrency & Rate Limiting with `limiter`
+sidebar_label: Concurrency & Rate Limiting
 ---
 
-# Client-side rate limiting with `limiter`
+# Concurrency & Rate Limiting with `limiter`
 
 Steampipe is designed to be fast - it provides parallel execution at multiple layers:
 - It runs controls in parallel
@@ -35,8 +35,8 @@ plugin "aws" {
 A limiter may also specify a `bucket_size` and `fill_rate` to limit the rate at which List, Get, and Hydrate functions may run.  The rate limiter uses a token-bucket algorithm, where the `bucket_size` specifies the maximum number of tokens that may accrue (the burst size) and the `fill_rate` specifies how many tokens are refilled each second.
 
 ```hcl
-# run up to 1000 hydrate/list/get functions per second 
 plugin "aws" {
+  # run up to 1000 hydrate/list/get functions per second
   limiter "aws_global_rate_limit" {
     bucket_size = 1000
     fill_rate   = 1000
@@ -46,11 +46,24 @@ plugin "aws" {
 
 Every limiter has a **scope**.  The scope defines the context for the limit - which resources are subject to / counted against the limit. There are built-in scopes for `connection`, `table`, and any matrix qualifiers that the plugin may include.  A plugin author may also add [hydrate function tags](#defining-tags) that can also be used as scopes.
 
-If no scope is specified, then the limiter applies to all functions in the plugin.  If you specify a list of scopes, then *a limiter instance is created for each unique combination of scope values* - it acts much like `group by` in a sql statement.  
-
+If no scope is specified, then the limiter applies to all functions in the plugin.  For instance, this limiter will allow 1000 hydrate/list/get functions per second *across all connections*:
 ```hcl
-# run up to 1000 hydrate/list/get functions per second in each region of each connection
 plugin "aws" {
+  # run up to 1000 hydrate/list/get functions per second across all aws connections
+  limiter "aws_regional_rate_limit" {
+    bucket_size = 1000
+    fill_rate   = 1000
+  }
+}
+```
+
+If you specify a list of scopes, then *a limiter instance is created for each unique combination of scope values* - it acts much like `group by` in a sql statement.
+
+For example, to limit to 1000 hydrate/list/get functions per second in *each region of each connection*:
+```hcl
+plugin "aws" {
+
+  # run up to 1000 hydrate/list/get functions per second in each region of each connection
   limiter "aws_regional_rate_limit" {
     bucket_size = 1000
     fill_rate   = 1000
@@ -59,11 +72,12 @@ plugin "aws" {
 }
 ```
 
-You can use a `where` clause to further filter the scopes to specific values.  
+You can use a `where` clause to further filter the scopes to specific values. For example, we can restrict the limiter so that it only applies to a specific region:
 
 ```hcl
-# run up to 1000 hydrate/list/get functions per second in us-east-1 for each connection
+
 plugin "aws" {
+  # run up to 1000 hydrate/list/get functions per second in us-east-1 for each connection
   limiter "aws_rate_limit_us_east_1" {
     bucket_size = 1000
     fill_rate   = 1000
@@ -75,6 +89,35 @@ plugin "aws" {
 
 
 You can define multiple limiters.  If a function is included in the scope of multiple rate limiters, they will all apply - the function will wait until every rate limiter that applies to it has available bucket tokens and is below its max concurrency.
+
+
+```hcl
+plugin "aws" {
+
+  # run up to 250 functions concurrently across all connections
+  limiter "aws_global_concurrency" {
+    max_concurrency = 250
+  }
+
+  # run up to 1000 functions per second in us-east-1 for each connection
+  limiter "aws_rate_limit_us_east_1" {
+    bucket_size = 1000
+    fill_rate   = 1000
+    scope       = ["connection", "region"]
+    where       = "region = 'us-east-1'"
+  }
+
+  # run up to 200 functions per second in regions OTHER than us-east-1
+  # for each connection
+  limiter "aws_rate_limit_non_us_east_1" {
+    bucket_size = 200
+    fill_rate   = 200
+    scope       = ["connection", "region"]
+    where       = "region <> 'us-east-1'"
+  }
+}
+```
+
 
 ## Defining Tags
 

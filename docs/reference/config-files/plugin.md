@@ -49,7 +49,7 @@ plugin "my_aws" {
 In a `connection` you may continue to use the current syntax for `plugin` argument - Steampipe will resolve the `connection` to the `plugin` as long as they resolve to the same plugin version:
 
 ```hcl
-connection {
+connection "aws" {
   plugin = "aws"
 }
 
@@ -61,7 +61,7 @@ plugin "aws" {
 Note that if a `connection` specifies a plugin version string that resolves to more than 1 plugin instance, `steampipe` will not be able to load the connection, as it cannot assume which plugin instance to resolve to.  For example, this configuration will cause a warning and the connection will be in error:
 
 ```hcl
-connection {
+connection "aws" {
   plugin = "aws"
 }
 
@@ -69,7 +69,7 @@ plugin "aws" {
   memory_max_mb = 2048
 }
 
-plugin "aws2" {
+plugin "aws_low_mem" {
   source        = "aws"
   memory_max_mb = 512
 }
@@ -78,7 +78,7 @@ plugin "aws2" {
 
 You may instead specify a reference to a `plugin` block in your `connection` to disambiguate:
 ```hcl
-connection {
+connection "aws" {
   plugin = plugin.aws
 }
 
@@ -86,21 +86,22 @@ plugin "aws" {
   memory_max_mb = 2048
 }
 
-plugin "aws2" {
+plugin "aws_low_mem" {
   source        = "aws"
   memory_max_mb = 512
 }
 ```
 
-Steampipe will create a separate plugin process for each `plugin` defined that has connections associated to it.  This allows you to run multiple versions side by side, but also to create multiple processes with the SAME version to allow you to create QOS groups. In this example, steampipe will create 2 plugins process.  
-  - one process as a 2000 MB memory soft limit and no limiters, and will contain the `prod_1`, `prod_2`, and `prod_3` connections
-  - one process as a 500 MB memory soft limit and the `all_requests` limiter, and will contain the `dev_1` and `dev_2` connections
+<br />
+
+Steampipe will create a separate plugin process for each `plugin` defined that has connections associated to it.  This allows you to run multiple versions side by side, but also to create multiple processes with the SAME version to allow you to create QOS groups. In the following example, Steampipe will create 2 plugin processes:
+- One process has a 2000 MB memory soft limit and no limiters, and contains the `aws_prod_1`, `aws_prod_2`, and `aws_prod_3` connections.
+- One process has a 500 MB memory soft limit and the `all_requests` limiter, and contains the `aws_dev_1` and `aws_dev_2` connections.
   
 
 ```hcl
 plugin "aws_high" {
   memory_max_mb = 2000
-
 }
 
 plugin "aws_low" {
@@ -115,28 +116,81 @@ plugin "aws_low" {
 }
 
 
-connection "prod_1" {
+connection "aws_prod_1" {
   plugin  = plugin.aws_high
   profile = "prod1"
+  regions = ["*"]
 }
 
-connection "prod_2" {
+connection "aws_prod_2" {
   plugin  = plugin.aws_high
   profile = "prod2"
+  regions = ["*"]
 }
 
-connection "prod_3" {
+connection "aws_prod_3" {
   plugin  = plugin.aws_high
   profile = "prod3"
+  regions = ["*"]
 }
 
-connection "dev_1" {
+connection "aws_dev_1" {
   plugin  = plugin.aws_low
   profile = "dev1"
+  regions = ["*"]
 }
-connection "dev_2" {
+
+connection "aws_dev_2" {
   plugin  = plugin.aws_low
   profile = "dev2"
+  regions = ["*"]
+}
+
+```
+
+
+Note that the aggregators can only aggregate connections from the single plugin instance for which they are configured.  Extending the previous example:
+
+```hcl
+
+connection "aws_prod" {
+  plugin      = plugin.aws_high
+  type        = "aggregator"
+  connections = ["*"]
+}
+
+connection "aws_dev" {
+  plugin      = plugin.aws_low
+  type        = "aggregator"
+  connections = ["*"]}
+```
+
+- The `aws_prod` aggregator will include the `aws_prod_1`, `aws_prod_2`, and `aws_prod_3` connections
+- The `aws_dev` aggregator will include the `aws_dev_1` and `aws_dev_2` connections
+
+
+This capability also allows you to run multiple plugin versions side-by-side:
+
+```hcl
+plugin "aws_latest" {
+  source = "aws"
+}
+
+plugin "aws_0_117_0" {
+  source = "aws@0.117"
+}
+
+
+connection "aws_prod_1" {
+  plugin  = plugin.aws_latest
+  profile = "prod1"
+  regions = ["*"]
+}
+
+connection "aws_prod_2" {
+  plugin  = plugin.aws_0_117_0
+  profile = "prod2"
+  regions = ["*"]
 }
 
 ```
