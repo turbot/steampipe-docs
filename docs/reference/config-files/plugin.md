@@ -22,7 +22,7 @@ plugin "aws" {
 | Argument | Default | Description 
 |-|-|-|-
 | `source`        | none   |  A [plugin version string](#plugin-version-strings) the specifies which plugin this configuration applies to.  If not specified, the plugin block label is assumed to be the plugin source. <!--This must refer to an [installed plugin version](/docs/managing/plugins#installing-plugins). -->
-| `memory_max_mb` | `1024` | The soft memory limit for the plugin, in MB. 
+| `memory_max_mb` | `1024` | The soft memory limit for the plugin, in MB. Steampipe sets `GOMEMLIMIT` for the plugin process to the specified value.  The Go runtime does not guarantee that the memory usage will not exceed the limit, but rather uses it as a target to optimize garbage collection.
 | `limiter`       | none   | Optional [limiter](#limiter) blocks used to set concurrency and/or rate limits
 
 
@@ -211,6 +211,33 @@ Limiters provide a simple, flexible interface to implement client-site rate limi
 | `where`           | none       | A `where` clause to further filter the scopes to specific values.
 
 
+### `where` syntax
+
+The `where` argument supports the following PostgreSQL comparison operators:
+
+| Operator |      Description               
+|----------|--------------------------------
+| `<`      | less than	                    
+| `<=`     | less than or equal             
+| `=`      | equal                          
+| `!=`     | not equal	                    
+| `<>`     | not equal	                    
+| `>=`     | greater than	or equal          
+| `>`      | greater than	                  
+| `like`   | string like (case sensitive)   
+| `ilike`  | string like (case insensitive) 
+| `is null`| null test         
+| `not`    | logical negation
+| `and`    | logical conjunction
+| `or`     | logical disjunction
+| `in`     | set membership (equality)
+
+ 
+You may use parentheses to force explicit lexical precedence, otherwise [standard PostgreSQL operator precedence](https://www.postgresql.org/docs/current/sql-syntax-lexical.html#SQL-PRECEDENCE) applies.  
+
+
+
+
 ## Examples
 
 See the [Concurrency & Rate Limiting](/docs/guides/limiter) for more examples.
@@ -219,12 +246,12 @@ See the [Concurrency & Rate Limiting](/docs/guides/limiter) for more examples.
 ```hcl
 plugin "aws" {
 
-  # run up to 250 functions concurrently across all connections
+  # up to 250 functions concurrently across all connections
   limiter "aws_global_concurrency" {
     max_concurrency = 250
   }
 
-  # run up to 1000 functions per second in us-east-1 for each connection
+  # up to 1000 functions per second in us-east-1 for each connection
   limiter "aws_rate_limit_us_east_1" {
     bucket_size = 1000
     fill_rate   = 1000
@@ -232,7 +259,7 @@ plugin "aws" {
     where       = "region = 'us-east-1'"
   }
 
-  # run up to 200 functions per second in regions OTHER than us-east-1
+  # up to 200 functions per second in regions OTHER than us-east-1
   # for each connection
   limiter "aws_rate_limit_non_us_east_1" {
     bucket_size = 200
@@ -240,5 +267,6 @@ plugin "aws" {
     scope       = ["connection", "region"]
     where       = "region <> 'us-east-1'"
   }
+
 }
 ```

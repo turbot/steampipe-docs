@@ -5,7 +5,7 @@ sidebar_label: STEAMPIPE_PLUGIN_MEMORY_MAX_MB
 
 # STEAMPIPE_PLUGIN_MEMORY_MAX_MB
 
-Set a default memory soft limit for each plugin process. 
+Set a default memory soft limit for each plugin process.   Steampipe sets `GOMEMLIMIT` for each plugin process to the specified value.  The Go runtime does not guarantee that the memory usage will not exceed the limit, but rather uses it as a target to optimize garbage collection.
 
 Note that each plugin can have its own `memory_max_mb` set in [a `plugin` definition](/docs/reference/config-files/plugin), and that value would override this default setting.
 
