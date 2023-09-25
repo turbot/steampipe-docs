@@ -44,7 +44,7 @@ plugin "aws" {
 }
 ```
 
-Every limiter has a **scope**.  The scope defines the context for the limit - which resources are subject to / counted against the limit. There are built-in scopes for `connection`, `table`, and any matrix qualifiers that the plugin may include.  A plugin author may also add [hydrate function tags](#defining-tags) that can also be used as scopes.
+Every limiter has a **scope**.  The scope defines the context for the limit - which resources are subject to / counted against the limit. There are built-in scopes for `connection`, `table`, `function_name`, and any matrix qualifiers that the plugin may include.  A plugin author may also add [function tags](#function-tags) that can also be used as scopes.
 
 If no scope is specified, then the limiter applies to all functions in the plugin.  For instance, this limiter will allow 1000 hydrate/list/get functions per second *across all connections*:
 ```hcl
@@ -119,45 +119,12 @@ plugin "aws" {
 ```
 
 
-## Defining Tags
 
-Hydrate function tags provide useful diagnostic metadata, and they can also be used as scopes in rate limiters.  Rate limiting requirements vary by plugin because the underlying APIs that they access implement rate limiting differently.  Tags provide a way for a plugin author to scope rate limiters in a way that aligns with the API implementation. 
+## Function Tags
 
-Tags can be added to a ListConfig, GetConfig, or HydrateConfig.
+Hydrate function tags provide useful diagnostic metadata, and they can also be used as scopes in rate limiters.  Rate limiting requirements vary by plugin because the underlying APIs that they access implement rate limiting differently.  Tags provide a way for a plugin author to scope rate limiters in a way that aligns with the API implementation.
 
-```go
-//// TABLE DEFINITION
-func tableAwsSnsTopic(_ context.Context) *plugin.Table {
-	return &plugin.Table{
-		Name:        "aws_sns_topic",
-		Description: "AWS SNS Topic",
-		Get: &plugin.GetConfig{
-			KeyColumns: plugin.SingleColumn("topic_arn"),
-			IgnoreConfig: &plugin.IgnoreConfig{
-				ShouldIgnoreErrorFunc: shouldIgnoreErrors([]string{"NotFound", "InvalidParameter"}),
-			},
-			Hydrate: getTopicAttributes,
-			Tags:    map[string]string{"service": "sns", "action": "GetTopicAttributes"},
-		},
-		List: &plugin.ListConfig{
-			Hydrate: listAwsSnsTopics,
-			Tags:    map[string]string{"service": "sns", "action": "ListTopics"},
-		},
-
-		HydrateConfig: []plugin.HydrateConfig{
-			{
-				Func: listTagsForSnsTopic,
-				Tags: map[string]string{"service": "sns", "action": "ListTagsForResource"},
-			},
-			{
-				Func: getTopicAttributes,
-				Tags: map[string]string{"service": "sns", "action": "GetTopicAttributes"},
-			},
-		},
-    ...
-```
-
-Once the tags are added to the plugin, you can use them in the `scope` and `where` arguments for your rate limiter.
+Function tags must be [added in the plugin code by the plugin author](/docs/develop/writing-plugins#function-tags).  Once the tags are added to the plugin, you can use them in the `scope` and `where` arguments for your rate limiter.
 
 ```hcl
 plugin "aws" {
@@ -171,37 +138,176 @@ plugin "aws" {
 }
 ```
 
-## Accounting for Paged List calls
-The Steampipe plugin SDK transparently handles the most of the details around waiting for limiters.  List calls, however, usually iterate through pages of results, and each call to fetch a page must wait for any limiters that are defined.  The SDK provides a hook, `WaitForListRateLimit`, which should be called before paging to apply rate limiting to the list call:
+You can view the available tags in the `scope_values` when in [diagnostic mode](#exploring--troubleshooting-with-diagnostic-mode).  For example, to see the tags in the `aws_sns_topic` table:
 
-```go
-// List call
-for paginator.HasMorePages() {
-  
-  // apply rate limiting
-  d.WaitForListRateLimit(ctx)
-  
-  output, err := paginator.NextPage(ctx)
-  if err != nil {
-    plugin.Logger(ctx).Error("List error", "api_error", err)
-    return nil, err
-  }
-  for _, items := range output.Items {
-    d.StreamListItem(ctx, items)
-
-    // Context can be cancelled due to manual cancellation or the limit has been hit
-    if d.RowsRemaining(ctx) == 0 {
-      return nil, nil
-    }
-  }
-}
+```sql
+with one_row as materialized (
+  select * from aws_sns_topic limit 1
+)
+select 
+  c ->> 'function_name' as function_name,
+  jsonb_pretty(c -> 'scope_values') as scope_values
+from 
+  one_row,
+  jsonb_array_elements(_ctx -> 'diagnostics' -> 'calls') as c
 ```
+
+```sql
++-------------------------------+--------------------------------------------+
+| function_name                 | scope_values                               |
++-------------------------------+--------------------------------------------+
+| listAwsSnsTopics              | {                                          |
+|                               |     "table": "aws_sns_topic",              |
+|                               |     "action": "ListTopics",                |
+|                               |     "region": "us-east-1",                 |
+|                               |     "service": "sns",                      |
+|                               |     "connection": "aws_dmi",               |
+|                               |     "function_name": "listAwsSnsTopics"    |
+|                               | }                                          |
+| listTagsForSnsTopic           | {                                          |
+|                               |     "table": "aws_sns_topic",              |
+|                               |     "action": "ListTagsForResource",       |
+|                               |     "region": "us-east-1",                 |
+|                               |     "service": "sns",                      |
+|                               |     "connection": "aws_dmi",               |
+|                               |     "function_name": "listTagsForSnsTopic" |
+|                               | }                                          |
+| listRegionsForServiceUncached | {                                          |
+|                               |     "table": "aws_sns_topic",              |
+|                               |     "region": "us-east-1",                 |
+|                               |     "connection": "aws_dmi"                |
+|                               | }                                          |
+| getTopicAttributes            | {                                          |
+|                               |     "table": "aws_sns_topic",              |
+|                               |     "action": "GetTopicAttributes",        |
+|                               |     "region": "us-east-1",                 |
+|                               |     "service": "sns",                      |
+|                               |     "connection": "aws_dmi",               |
+|                               |     "function_name": ""                    |
+|                               | }                                          |
++-------------------------------+--------------------------------------------+
+```
+
+## Exploring & Troubleshooting with Diagnostic Mode
+
+To assist in troubleshooting your rate limiter setup, Steampipe has introduced Diagnostic Mode.  To enable Diagnostic Mode, set the `STEAMPIPE_DIAGNOSTIC_LEVEL` environment variable to `ALL` when you start the Steampipe DB:
+```bash
+STEAMPIPE_DIAGNOSTIC_LEVEL=ALL  steampipe service start
+```
+
+With diagnostics enabled, the `_ctx` column will contain information about what functions were called to fetch the row, the scope values (including any [tags](#defining-tags)) for the function, the limiters that were in effect and the amount of time the request was delayed by the `limiters`.  This diagnostic information can help you discover what scopes are available to use in limiters as well as to see the effect and impact of limiters that you have defined. 
+
+```sql
+select jsonb_pretty(_ctx) as _ctx ,display_name from aws_sns_topic limit 2
+```
+```sql
++-----------------------------------------------------------+--------------+
+| _ctx                                                      | display_name |
++-----------------------------------------------------------+--------------+
+| {                                                         |              |
+|     "diagnostics": {                                      |              |
+|         "calls": [                                        |              |
+|             {                                             |              |
+|                 "type": "list",                           |              |
+|                 "scope_values": {                         |              |
+|                     "table": "aws_sns_topic",             |              |
+|                     "action": "ListTopics",               |              |
+|                     "region": "us-east-2",                |              |
+|                     "service": "sns",                     |              |
+|                     "connection": "aws_dmi",              |              |
+|                     "function_name": "listAwsSnsTopics"   |              |
+|                 },                                        |              |
+|                 "function_name": "listAwsSnsTopics",      |              |
+|                 "rate_limiters": [                        |              |
+|                     "aws_global",                         |              |
+|                     "sns_list_topics"                     |              |
+|                 ],                                        |              |
+|                 "rate_limiter_delay_ms": 0                |              |
+|             },                                            |              |
+|             {                                             |              |
+|                 "type": "hydrate",                        |              |
+|                 "scope_values": {                         |              |
+|                     "table": "aws_sns_topic",             |              |
+|                     "action": "GetTopicAttributes",       |              |
+|                     "region": "us-east-2",                |              |
+|                     "service": "sns",                     |              |
+|                     "connection": "aws_dmi",              |              |
+|                     "function_name": ""                   |              |
+|                 },                                        |              |
+|                 "function_name": "getTopicAttributes",    |              |
+|                 "rate_limiters": [                        |              |
+|                     "sns_get_topic_attributes_150",       |              |
+|                     "aws_global"                          |              |
+|                 ],                                        |              |
+|                 "rate_limiter_delay_ms": 808              |              |
+|             }                                             |              |
+|         ]                                                 |              |
+|     },                                                    |              |
+|     "connection_name": "aws_dmi"                          |              |
+| }                                                         |              |
+| {                                                         |              |
+|     "diagnostics": {                                      |              |
+|         "calls": [                                        |              |
+|             {                                             |              |
+|                 "type": "list",                           |              |
+|                 "scope_values": {                         |              |
+|                     "table": "aws_sns_topic",             |              |
+|                     "action": "ListTopics",               |              |
+|                     "region": "us-east-1",                |              |
+|                     "service": "sns",                     |              |
+|                     "connection": "aws_dmi",              |              |
+|                     "function_name": "listAwsSnsTopics"   |              |
+|                 },                                        |              |
+|                 "function_name": "listAwsSnsTopics",      |              |
+|                 "rate_limiters": [                        |              |
+|                     "aws_global",                         |              |
+|                     "sns_list_topics"                     |              |
+|                 ],                                        |              |
+|                 "rate_limiter_delay_ms": 597              |              |
+|             },                                            |              |
+|             {                                             |              |
+|                 "type": "hydrate",                        |              |
+|                 "scope_values": {                         |              |
+|                     "table": "aws_sns_topic",             |              |
+|                     "action": "GetTopicAttributes",       |              |
+|                     "region": "us-east-1",                |              |
+|                     "service": "sns",                     |              |
+|                     "connection": "aws_dmi",              |              |
+|                     "function_name": ""                   |              |
+|                 },                                        |              |
+|                 "function_name": "getTopicAttributes",    |              |
+|                 "rate_limiters": [                        |              |
+|                     "sns_get_topic_attributes_us_east_1", |              |
+|                     "aws_global"                          |              |
+|                 ],                                        |              |
+|                 "rate_limiter_delay_ms": 0                |              |
+|             }                                             |              |
+|         ]                                                 |              |
+|     },                                                    |              |
+|     "connection_name": "aws_dmi"                          |              |
+| }                                                         |              |
++-----------------------------------------------------------+--------------+
+```
+
+
+The diagnostics information includes information about each Get, List, and Hydrate function that was called to fetch the row, including:
+
+| Key                     | Description
+|-------------------------|---------------------- 
+| `type`                  | The type of function (`list`, `get`, or `hydrate`).
+| `function_name`         | The name of the function.
+| `scope_values`          | A map of scope names to values.  This includes the built-in scopes as well as any matrix qualifier scopes and function tags.
+| `rate_limiters`         | A list of the rate limiters that are scoped to the function.
+| `rate_limiter_delay_ms` | The amount of time (in milliseconds) that Steampipe waited before calling this function due to client-side (`limiter`) rate limiting.
+
 
 ## Viewing and Overriding Limiters
 Steampipe includes the `steampipe_rate_limiter` table to provide visibility into all the limiters that are defined in your installation, including those defined in plugin code as well as limiters defined in HCL.
 
 ```sql
-> select name,plugin,source,status,bucket_size,fill_rate,max_concurrency from steampipe_rate_limiter
+select name,plugin,source,status,bucket_size,fill_rate,max_concurrency from steampipe_rate_limiter
+```
+```sql
 +------------------------------+--------+--------+--------+-------------+-----------+-----------------+
 | name                         | plugin | source | status | bucket_size | fill_rate | max_concurrency |
 +------------------------------+--------+--------+--------+-------------+-----------+-----------------+
@@ -239,111 +345,6 @@ Querying the `steampipe_rate_limiter` table again, we can see that there are now
 | sns_read_30                  | aws    | config | active     | 27          | 27        | <null>          |
 +------------------------------+--------+--------+------------+-------------+-----------+-----------------+
 ```
-
-
-## Exploring & Troubleshooting with Diagnostics Mode
-
-To assist in troubleshooting your rate limiter setup, Steampipe has introduced Diagnostics Mode.  To enable Diagnostics Mode, set the `STEAMPIPE_DIAGNOSTIC_LEVEL` environment variable to `ALL` when you start the Steampipe DB:
-```bash
-STEAMPIPE_DIAGNOSTIC_LEVEL=ALL  steampipe service start
-```
-
-With diagnostics enabled, the `_ctx` column will contain information about what functions were called to fetch the row, the scope values (including any [tags](#defining-tags)) for the function, the limiters that were in effect and the amount of time the request was delayed by the `limiters`.  This diagnostic information can help you discover what scopes are available to use in limiters as well as to see the effect and impact of limiters that you have defined. 
-
-```sql
-> select jsonb_pretty(_ctx),display_name from aws_sns_topic
-
-
-+-----------------------------------------------------------+--------------+
-| jsonb_pretty                                              | display_name |
-+-----------------------------------------------------------+--------------+
-| {                                                         |              |
-|     "connection": "aws_dev_01",                           |              |
-|     "diagnostics": {                                      |              |
-|         "calls": [                                        |              |
-|             {                                             |              |
-|                 "type": "list",                           |              |
-|                 "scope_values": {                         |              |
-|                     "table": "aws_sns_topic",             |              |
-|                     "action": "ListTopics",               |              |
-|                     "region": "us-east-1",                |              |
-|                     "service": "sns",                     |              |
-|                     "connection": "aws_dev_01"            |              |
-|                 },                                        |              |
-|                 "function_name": "listAwsSnsTopics",      |              |
-|                 "rate_limiters": [                        |              |
-|                     "sns_list_topics",                    |              |
-|                     "aws_global_concurrency"              |              |
-|                 ]                                         |              |
-|             },                                            |              |
-|             {                                             |              |
-|                 "type": "hydrate",                        |              |
-|                 "scope_values": {                         |              |
-|                     "table": "aws_sns_topic",             |              |
-|                     "action": "GetTopicAttributes",       |              |
-|                     "region": "us-east-1",                |              |
-|                     "service": "sns",                     |              |
-|                     "connection": "aws_dev_01"            |              |
-|                 },                                        |              |
-|                 "function_name": "getTopicAttributes",    |              |
-|                 "rate_limiters": [                        |              |
-|                     "sns_get_topic_attributes_us_east_1", |              |
-|                     "aws_global_concurrency"              |              |
-|                 ],                                        |              |
-|                 "rate_limiter_delay_ms": 107              |              |
-|             }                                             |              |
-|         ]                                                 |              |
-|     }                                                     |              |
-| }                                                         |              |
-| {                                                         |              |
-|     "connection": "aws_dev_01",                           |              |
-|     "diagnostics": {                                      |              |
-|         "calls": [                                        |              |
-|             {                                             |              |
-|                 "type": "list",                           |              |
-|                 "scope_values": {                         |              |
-|                     "table": "aws_sns_topic",             |              |
-|                     "action": "ListTopics",               |              |
-|                     "region": "us-east-1",                |              |
-|                     "service": "sns",                     |              |
-|                     "connection": "aws_dev_01"            |              |
-|                 },                                        |              |
-|                 "function_name": "listAwsSnsTopics",      |              |
-|                 "rate_limiters": [                        |              |
-|                     "sns_list_topics",                    |              |
-|                     "aws_global_concurrency"              |              |
-|                 ]                                         |              |
-|             },                                            |              |
-|             {                                             |              |
-|                 "type": "hydrate",                        |              |
-|                 "scope_values": {                         |              |
-|                     "table": "aws_sns_topic",             |              |
-|                     "action": "GetTopicAttributes",       |              |
-|                     "region": "us-east-1",                |              |
-|                     "service": "sns",                     |              |
-|                     "connection": "aws_dev_01"            |              |
-|                 },                                        |              |
-|                 "function_name": "getTopicAttributes",    |              |
-|                 "rate_limiters": [                        |              |
-|                     "sns_get_topic_attributes_us_east_1", |              |
-|                     "aws_global_concurrency"              |              |
-|                 ],                                        |              |
-|                 "rate_limiter_delay_ms": 119              |              |
-|             }                                             |              |
-|         ]                                                 |              |
-|     }                                                     |              |
-| }                                                    |                     
-```
-
-The diagnostics information includes information about each Get, List, and Hydrate function that was called to fetch the row, including:
-
-| Key                     | Description
-|-------------------------|---------------------- 
-| `type`                  | The type of function (`list`, `get`, or `hydrate`).
-| `function_name`         | The name of the function.
-| `scope_values`          | A map of scope names to values.  This includes the built-in scopes as well as any matrix qualifier scopes and function tags.
-| `rate_limiters`         | A list of the rate limiters that are scoped to the function.
-| `rate_limiter_delay_ms` | The amount of time (in milliseconds) that Steampipe waited before calling this function due to client-side (`limiter`) rate limiting.
 
 
 ## Hints, Tips, & Best practices

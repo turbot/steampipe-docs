@@ -115,7 +115,6 @@ plugin "aws_low" {
   }
 }
 
-
 connection "aws_prod_1" {
   plugin  = plugin.aws_high
   profile = "prod1"
@@ -169,7 +168,7 @@ connection "aws_dev" {
 - The `aws_dev` aggregator will include the `aws_dev_1` and `aws_dev_2` connections
 
 
-This capability also allows you to run multiple plugin versions side-by-side:
+You can also run multiple plugin versions side-by-side:
 
 ```hcl
 plugin "aws_latest" {
@@ -192,7 +191,6 @@ connection "aws_prod_2" {
   profile = "prod2"
   regions = ["*"]
 }
-
 ```
 
 
@@ -202,8 +200,6 @@ Limiters provide a simple, flexible interface to implement client-site rate limi
 - Smooth the request rate from steampipe to reduce load on the remote API or service
 - Limit the number of parallel request to reduce  contention for client and network resources
 - Avoid hitting server limits and throttling
-
-[link to guide here]
 
 ### Supported options  
 | Argument          | Default   | Description 
@@ -216,9 +212,33 @@ Limiters provide a simple, flexible interface to implement client-site rate limi
 
 
 ## Examples
+
+See the [Concurrency & Rate Limiting](/docs/guides/limiter) for more examples.
+
+
 ```hcl
+plugin "aws" {
 
+  # run up to 250 functions concurrently across all connections
+  limiter "aws_global_concurrency" {
+    max_concurrency = 250
+  }
+
+  # run up to 1000 functions per second in us-east-1 for each connection
+  limiter "aws_rate_limit_us_east_1" {
+    bucket_size = 1000
+    fill_rate   = 1000
+    scope       = ["connection", "region"]
+    where       = "region = 'us-east-1'"
+  }
+
+  # run up to 200 functions per second in regions OTHER than us-east-1
+  # for each connection
+  limiter "aws_rate_limit_non_us_east_1" {
+    bucket_size = 200
+    fill_rate   = 200
+    scope       = ["connection", "region"]
+    where       = "region <> 'us-east-1'"
+  }
+}
 ```
-
-
-
