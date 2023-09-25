@@ -302,22 +302,24 @@ The diagnostics information includes information about each Get, List, and Hydra
 
 
 ## Viewing and Overriding Limiters
-Steampipe includes the `steampipe_rate_limiter` table to provide visibility into all the limiters that are defined in your installation, including those defined in plugin code as well as limiters defined in HCL.
+Steampipe includes the `steampipe_plugin_limiter` table to provide visibility into all the limiters that are defined in your installation, including those defined in plugin code as well as limiters defined in HCL.
 
 ```sql
-select name,plugin,source,status,bucket_size,fill_rate,max_concurrency from steampipe_rate_limiter
+select name,plugin,source_type,status,bucket_size,fill_rate,max_concurrency from steampipe_plugin_limiter
 ```
 ```sql
-+------------------------------+--------+--------+--------+-------------+-----------+-----------------+
-| name                         | plugin | source | status | bucket_size | fill_rate | max_concurrency |
-+------------------------------+--------+--------+--------+-------------+-----------+-----------------+
-| exec_max_concurrency_limiter | exec   | plugin | active | <null>      | <null>    | 15              |
-| aws_global_concurrency       | aws    | config | active | <null>      | <null>    | 200             |
-| sns_read_us_east_1           | aws    | config | active | 2700        | 2700      | <null>          |
-| sns_read_900                 | aws    | config | active | 810         | 810       | <null>          |
-| sns_read_150                 | aws    | config | active | 135         | 135       | <null>          |
-| sns_read_30                  | aws    | config | active | 27          | 27        | <null>          |
-+------------------------------+--------+--------+--------+-------------+-----------+-----------------+
++------------------------------------+---------------------------------------------+-------------+--------+-------------+-----------+-----------------+
+| name                               | plugin                                      | source_type | status | bucket_size | fill_rate | max_concurrency |
++------------------------------------+---------------------------------------------+-------------+--------+-------------+-----------+-----------------+
+| exec_max_concurrency_limiter       | hub.steampipe.io/plugins/turbot/exec@latest | plugin      | active | <null>      | <null>    | 15              |
+| sns_get_topic_attributes_150       | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 150         | 150       | <null>          |
+| sns_get_topic_attributes_30        | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 30          | 30        | <null>          |
+| aws_global                         | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 10          | 10        | <null>          |
+| sns_list_topics                    | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 30          | 30        | <null>          |
+| sns_list_tags_for_resource         | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 10          | 10        | <null>          |
+| sns_get_topic_attributes_us_east_1 | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 3000        | 3000      | <null>          |
+| sns_get_topic_attributes_900       | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 900         | 900       | <null>          |
++------------------------------------+---------------------------------------------+-------------+--------+-------------+-----------+-----------------+
 ```
 
 You can override a limiter that is compiled into a plugin by creating an HCL limiter with the same name.  In the previous example, we can see that the `exec` plugin includes a default limiter named `exec_max_concurrency_limiter` that sets the max_concurrency to 15.  We can override this value at run time by creating an HCL `limiter` for this plugin with the same name. The `limiter` block must be contained in a `plugin` block. Like `connection`, Steampipe will load all `plugin` blocks that it finds in any `.spc` file in the `~/.steampipe/config` directory.  For example, we can add the following snippet to the `~/.steampipe/config/exec.spc` file:
@@ -330,20 +332,25 @@ plugin "exec" {
 }
 ```
 
-Querying the `steampipe_rate_limiter` table again, we can see that there are now 2 rate limiters for the `exec` plugin named `exec_max_concurrency_limiter`, but the one from the plugin is overridden by the one in the config file. 
+Querying the `steampipe_plugin_limiter` table again, we can see that there are now 2 rate limiters for the `exec` plugin named `exec_max_concurrency_limiter`, but the one from the plugin is overridden by the one in the config file. 
 
 ```sql
-+------------------------------+--------+--------+------------+-------------+-----------+-----------------+
-| name                         | plugin | source | status     | bucket_size | fill_rate | max_concurrency |
-+------------------------------+--------+--------+------------+-------------+-----------+-----------------+
-| exec_max_concurrency_limiter | exec   | plugin | overridden | <null>      | <null>    | 15              |
-| exec_max_concurrency_limiter | exec   | config | active     | <null>      | <null>    | 20              |
-| aws_global_concurrency       | aws    | config | active     | <null>      | <null>    | 200             |
-| sns_read_us_east_1           | aws    | config | active     | 2700        | 2700      | <null>          |
-| sns_read_900                 | aws    | config | active     | 810         | 810       | <null>          |
-| sns_read_150                 | aws    | config | active     | 135         | 135       | <null>          |
-| sns_read_30                  | aws    | config | active     | 27          | 27        | <null>          |
-+------------------------------+--------+--------+------------+-------------+-----------+-----------------+
+select name,plugin,source_type,status,bucket_size,fill_rate,max_concurrency from steampipe_plugin_limiter
+```
+```sql
++------------------------------------+---------------------------------------------+-------------+--------+-------------+-----------+-----------------+
+| name                               | plugin                                      | source_type | status | bucket_size | fill_rate | max_concurrency |
++------------------------------------+---------------------------------------------+-------------+--------+-------------+-----------+-----------------+
+| exec_max_concurrency_limiter       | hub.steampipe.io/plugins/turbot/exec@latest | plugin      | active | <null>      | <null>    | 15              |
+| exec_max_concurrency_limiter       | hub.steampipe.io/plugins/turbot/exec@latest | config      | active | <null>      | <null>    | 20              |
+| aws_global                         | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 10          | 10        | <null>          |
+| sns_list_topics                    | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 30          | 30        | <null>          |
+| sns_list_tags_for_resource         | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 10          | 10        | <null>          |
+| sns_get_topic_attributes_us_east_1 | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 3000        | 3000      | <null>          |
+| sns_get_topic_attributes_900       | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 900         | 900       | <null>          |
+| sns_get_topic_attributes_150       | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 150         | 150       | <null>          |
+| sns_get_topic_attributes_30        | hub.steampipe.io/plugins/turbot/aws@latest  | config      | active | 30          | 30        | <null>          |
++------------------------------------+---------------------------------------------+-------------+--------+-------------+-----------+-----------------+
 ```
 
 
@@ -388,6 +395,6 @@ Querying the `steampipe_rate_limiter` table again, we can see that there are now
 
 - Use the plugin logs (`~/.steampipe/logs/plugin*.log`) to verify that the rate limiters are reducing the throttling and other errors from the API as you would expect.
 
-- Use the `steampipe_rate_limiter` table to see what rate limiters are in effect from both the plugins and the config files, as well as which are active.  Use `STEAMPIPE_DIAGNOSTIC_LEVEL=ALL` to enable extra diagnostic info in the `_ctx` to discover what scopes are available and to verify that limiters are being applied as you expect.  Note that the `STEAMPIPE_DIAGNOSTIC_LEVEL` variable must be set in the database service process - if you run steampipe as a service, it must be set when you run `steampipe service start`
+- Use the `steampipe_plugin_limiter` table to see what rate limiters are in effect from both the plugins and the config files, as well as which are active.  Use `STEAMPIPE_DIAGNOSTIC_LEVEL=ALL` to enable extra diagnostic info in the `_ctx` to discover what scopes are available and to verify that limiters are being applied as you expect.  Note that the `STEAMPIPE_DIAGNOSTIC_LEVEL` variable must be set in the database service process - if you run steampipe as a service, it must be set when you run `steampipe service start`
 
 - Throttling errors from the server, such as `429 Too Many Requests` are not *inherently* bad.  Most cloud SDKs actually account for retrying such errors and expect that it will sometimes occur.  Steampipe plugins generally implement an exponential back-off & retry to account for such cases.  You can use client side limiters to help avoid resource contention and to reduce throttling from the server, but completely avoiding server-side throttling is probably not necessary in most cases.
