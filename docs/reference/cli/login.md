@@ -14,24 +14,6 @@ The Steampipe CLI can interact with Turbot Pipes to run queries, benchmarks, and
 steampipe login
 ```
 
-## Flags:
-
-<table>
-  <tr> 
-    <th> Argument </th> 
-    <th> Description </th> 
-  </tr>
-  <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
-  </tr>
-</table>
-
 ## Examples
 
 Login to `pipes.turbot.com`:
