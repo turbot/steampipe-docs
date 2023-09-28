@@ -31,12 +31,12 @@ steampipe service [command]
 | `--dashboard` |  `start` | Start the `dashboard` web server with the database service
 | `--dashboard-listen string` | `start` | Accept dashboard connections from: `local` (localhost only) or `network` (open)
 | `--dashboard-port int` |  `start` | Dashboard web server port (default `9194`)
-| `--database-listen string` |  `start` | Accept database connections from: `local` (localhost only) or `network` (open)
+| `--database-listen string` |  `start` | Accept connections from: local (alias for `localhost` only), `network` (alias for `*`), or a comma separated list of hosts and/or IP addresses (default `network`)
 | `--database-password string`  |  `start` |  Set the steampipe database password for this session.  See [STEAMPIPE_DATABASE_PASSWORD](reference/env-vars/steampipe_database_password) for additional information
-| `--database-port int` | `start` |  Database service port (default 9193)
+| `--database-port int` | `start` |  Database service port (default `9193`)
 | `--force` |  `stop`, `restart` | Forces the service to shutdown, releasing all open connections and ports
 | `--foreground` |  `start` | Run the service in the foreground
-| `--show-password` |  `start`, `status` | View database password for connecting from another machine (default false)
+| `--show-password` |  `start`, `status` | View database password for connecting from another machine (default `false`)
 | `--var stringArray` |  `start` | Specify the value of a variable (only applies if '--dashboard' flag is also set)
 | `--var-file strings` |  `start` | Specify an .spvar file containing variable values (only applies if '--dashboard' flag is also set)
 | `--all` |  `status` | Bypass the `--install-dir` and print status of all running services
