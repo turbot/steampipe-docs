@@ -31,16 +31,6 @@ sidebar_label: Steampipe CLI
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
-  </tr>
-
-  <tr> 
     <td nowrap="true"> <inlineCode>-h</inlineCode>, <inlineCode>--help</inlineCode> </td> 
     <td>  Help for Steampipe. </td> 
   </tr>

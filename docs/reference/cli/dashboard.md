@@ -39,6 +39,16 @@ steampipe dashboard list
   </tr>
 
   <tr> 
+    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
+  </tr>
+
+  <tr> 
     <td nowrap="true"> <inlineCode>--dashboard-input string=string </inlineCode>  </td> 
     <td>  Specify the value of a dashboard input.  Multiple <inlineCode>--dashboard-input</inlineCode> arguments may be passed.
     </td>
