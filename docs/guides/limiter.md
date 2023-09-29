@@ -1,18 +1,18 @@
 ---
-title: Users Guide to Concurrency & Rate Limiting with `limiter`
+title: Users Guide to Concurrency & Rate Limiting
 sidebar_label: Concurrency & Rate Limiting
 ---
 
-# Concurrency & Rate Limiting with `limiter`
+# Concurrency & Rate Limiting
 
-Steampipe is designed to be fast - it provides parallel execution at multiple layers:
-- It runs controls in parallel
-- It runs queries in parallel
-- For a given query it runs [List, Get, and Hydrate functions](/docs/develop/writing-plugins#hydrate-functions) in parallel
+Steampipe is designed to be fast.  It provides parallel execution at multiple layers:
+- It runs controls in parallel.
+- It runs queries in parallel.
+- For a given query it runs [List, Get, and Hydrate functions](/docs/develop/writing-plugins#hydrate-functions) in parallel.
 
 This high degree of concurrency results in low latency and high throughput, but may at times overwhelm the underlying service or API.  Features like exponential back-off & retry and [caching](/docs/guides/caching) markedly improve the situation, but at large scale you may still run out of local or remote resources.  The steampipe `limiter` was created to help solve these types of problems.  Limiters provide a simple, flexible interface to implement client-site rate limiting and concurrency thresholds at compile time or run time.  You can use limiters to:
 - Smooth the request rate from steampipe to reduce load on the remote API or service
-- Limit the number of parallel request to reduce  contention for client and network resources
+- Limit the number of parallel requests to reduce  contention for client and network resources
 - Avoid hitting server limits and throttling
 
 ## Defining limiters
@@ -44,7 +44,7 @@ plugin "aws" {
 }
 ```
 
-Every limiter has a **scope**.  The scope defines the context for the limit - which resources are subject to / counted against the limit. There are built-in scopes for `connection`, `table`, `function_name`, and any matrix qualifiers that the plugin may include.  A plugin author may also add [function tags](#function-tags) that can also be used as scopes.
+Every limiter has a **scope**.  The scope defines the context for the limit: which resources are subject to / counted against the limit. There are built-in scopes for `connection`, `table`, `function_name`, and any matrix qualifiers that the plugin may include.  A plugin author may also add [function tags](#function-tags) that can also be used as scopes.
 
 If no scope is specified, then the limiter applies to all functions in the plugin.  For instance, this limiter will allow 1000 hydrate/list/get functions per second *across all connections*:
 ```hcl
@@ -57,7 +57,7 @@ plugin "aws" {
 }
 ```
 
-If you specify a list of scopes, then *a limiter instance is created for each unique combination of scope values* - it acts much like `group by` in a sql statement.
+If you specify a list of scopes, then *a limiter instance is created for each unique combination of scope values*.  It acts much like `group by` in a SQL statement.
 
 For example, to limit to 1000 hydrate/list/get functions per second in *each region of each connection*:
 ```hcl
@@ -88,7 +88,7 @@ plugin "aws" {
 ```
 
 
-You can define multiple limiters.  If a function is included in the scope of multiple rate limiters, they will all apply - the function will wait until every rate limiter that applies to it has available bucket tokens and is below its max concurrency.
+You can define multiple limiters.  If a function is included in the scope of multiple rate limiters, they will all apply. The function will wait until every rate limiter that applies to it has available bucket tokens and is below its max concurrency.
 
 
 ```hcl
@@ -192,10 +192,10 @@ from
 
 To assist in troubleshooting your rate limiter setup, Steampipe has introduced Diagnostic Mode.  To enable Diagnostic Mode, set the `STEAMPIPE_DIAGNOSTIC_LEVEL` environment variable to `ALL` when you start the Steampipe DB:
 ```bash
-STEAMPIPE_DIAGNOSTIC_LEVEL=ALL  steampipe service start
+STEAMPIPE_DIAGNOSTIC_LEVEL=all  steampipe service start
 ```
 
-With diagnostics enabled, the `_ctx` column will contain information about what functions were called to fetch the row, the scope values (including any [tags](#defining-tags)) for the function, the limiters that were in effect and the amount of time the request was delayed by the `limiters`.  This diagnostic information can help you discover what scopes are available to use in limiters as well as to see the effect and impact of limiters that you have defined. 
+With diagnostics enabled, the `_ctx` column will contain information about what functions were called to fetch the row, the scope values (including any [tags](#defining-tags)) for the function, the limiters that were in effect, and the amount of time the request was delayed by the `limiters`.  This diagnostic information can help you discover what scopes are available to use in limiters as well as to see the effect and impact of limiters that you have defined. 
 
 ```sql
 select jsonb_pretty(_ctx) as _ctx ,display_name from aws_sns_topic limit 2
@@ -391,10 +391,10 @@ select name,plugin,source_type,status,bucket_size,fill_rate,max_concurrency from
   }
   ```
 
-- Optimizing rate limiters requires knowledge of how the API is implemented.  If the API publishes information about what the rate limits are, and how they are applied it provides a good starting place for setting your `bucket_size` and `fill_rate` values.  Getting the `limiter` values right usually involves some trial & error though, and simply setting `max_concurrency` is often good enough to get past a problem. 
+- Optimizing rate limiters requires knowledge of how the API is implemented.  If the API publishes information about what the rate limits are, and how they are applied, that's a good starting point for setting your `bucket_size` and `fill_rate` values.  Getting the `limiter` values right usually involves some trial and error though, and simply setting `max_concurrency` is often good enough to get past a problem. 
 
 - Use the plugin logs (`~/.steampipe/logs/plugin*.log`) to verify that the rate limiters are reducing the throttling and other errors from the API as you would expect.
 
 - Use the `steampipe_plugin_limiter` table to see what rate limiters are in effect from both the plugins and the config files, as well as which are active.  Use `STEAMPIPE_DIAGNOSTIC_LEVEL=ALL` to enable extra diagnostic info in the `_ctx` to discover what scopes are available and to verify that limiters are being applied as you expect.  Note that the `STEAMPIPE_DIAGNOSTIC_LEVEL` variable must be set in the database service process - if you run steampipe as a service, it must be set when you run `steampipe service start`
 
-- Throttling errors from the server, such as `429 Too Many Requests` are not *inherently* bad.  Most cloud SDKs actually account for retrying such errors and expect that it will sometimes occur.  Steampipe plugins generally implement an exponential back-off & retry to account for such cases.  You can use client side limiters to help avoid resource contention and to reduce throttling from the server, but completely avoiding server-side throttling is probably not necessary in most cases.
+- Throttling errors from the server, such as `429 Too Many Requests`, are not *inherently* bad.  Most cloud SDKs actually account for retrying such errors and expect that it will sometimes occur.  Steampipe plugins generally implement an exponential back-off & retry to account for such cases.  You can use client side limiters to help avoid resource contention and to reduce throttling from the server, but completely avoiding server-side throttling is probably not necessary in most cases.

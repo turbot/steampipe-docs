@@ -5,7 +5,7 @@ sidebar_label: plugin
 
 # plugin 
 
-The `plugin` block allows you to set plugin-level options like soft memory limits and rate limiters. You can then associate connections with the the plugin.
+The `plugin` block enables you to set plugin-level options like soft memory limits and rate limiters. You can then associate connections with the the plugin.
 
 ```hcl
 plugin "aws" {
@@ -46,7 +46,7 @@ plugin "my_aws" {
 }
 ```
 
-In a `connection` you may continue to use the current syntax for `plugin` argument - Steampipe will resolve the `connection` to the `plugin` as long as they resolve to the same plugin version:
+In a `connection` you may continue to use the current syntax for the `plugin` argument. Steampipe will resolve the `connection` to the `plugin` as long as they resolve to the same plugin version:
 
 ```hcl
 connection "aws" {
@@ -58,7 +58,7 @@ plugin "aws" {
 }
 ```
 
-Note that if a `connection` specifies a plugin version string that resolves to more than 1 plugin instance, `steampipe` will not be able to load the connection, as it cannot assume which plugin instance to resolve to.  For example, this configuration will cause a warning and the connection will be in error:
+Note that if a `connection` specifies a plugin version string that resolves to more than 1 plugin instance, Steampipe will not be able to load the connection, as it cannot assume which plugin instance to resolve to.  For example, this configuration will cause a warning and the connection will be in error:
 
 ```hcl
 connection "aws" {
