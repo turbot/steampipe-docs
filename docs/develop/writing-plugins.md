@@ -486,6 +486,89 @@ Currently supported data types are:
 
 ---
 
+
+## Client-Side Rate Limiting
+
+The Steampipe Plugin SDK supports a [client-side rate limiting implementation](/docs/guides/limiter) to allow users to define [plugin `limiter` blocks](/docs/reference/config-files/plugin#limiter) to control concurrency and rate limiting.  Support for limiters is built in to the SDK and basic functionality requires no changes to the plugin code;  Just including the SDK will enable users to create limiters for your plugin using the built in `connection`, `table`, and `function_name` scopes.  You can add additional flexibility by adding [function tags](#function-tags) and by [accounting for paging in List calls](#accounting-for-paged-list-calls).
+## Function Tags
+
+Hydrate function tags provide useful diagnostic metadata, and they can also be used as scopes in rate limiters.  Rate limiting requirements vary by plugin because the underlying APIs that they access implement rate limiting differently.  Tags provide a way for a plugin author to scope rate limiters in a way that aligns with the API implementation.
+
+Tags can be added to a ListConfig, GetConfig, or HydrateConfig.
+
+```go
+//// TABLE DEFINITION
+func tableAwsSnsTopic(_ context.Context) *plugin.Table {
+	return &plugin.Table{
+		Name:        "aws_sns_topic",
+		Description: "AWS SNS Topic",
+		Get: &plugin.GetConfig{
+			KeyColumns: plugin.SingleColumn("topic_arn"),
+			IgnoreConfig: &plugin.IgnoreConfig{
+				ShouldIgnoreErrorFunc: shouldIgnoreErrors([]string{"NotFound", "InvalidParameter"}),
+			},
+			Hydrate: getTopicAttributes,
+			Tags:    map[string]string{"service": "sns", "action": "GetTopicAttributes"},
+		},
+		List: &plugin.ListConfig{
+			Hydrate: listAwsSnsTopics,
+			Tags:    map[string]string{"service": "sns", "action": "ListTopics"},
+		},
+
+		HydrateConfig: []plugin.HydrateConfig{
+			{
+				Func: listTagsForSnsTopic,
+				Tags: map[string]string{"service": "sns", "action": "ListTagsForResource"},
+			},
+			{
+				Func: getTopicAttributes,
+				Tags: map[string]string{"service": "sns", "action": "GetTopicAttributes"},
+			},
+		},
+    ...
+```
+
+Once the tags are added to the plugin, you can use them in the `scope` and `where` arguments for your rate limiter.
+
+```hcl
+plugin "aws" {
+  limiter "sns_get_topic_attributes_us_east_1" {
+    bucket_size  = 3000
+    fill_rate    = 3000
+
+    scope  = ["connection", "region", "service", "action"]
+    where  = "action = 'GetTopicAttributes' and service = 'sns' and region = 'us-east-1' "
+  }
+}
+```
+
+## Accounting for Paged List calls
+The Steampipe plugin SDK transparently handles most of the details around waiting for limiters.  List calls, however, usually iterate through pages of results, and each call to fetch a page must wait for any limiters that are defined.  The SDK provides a hook, `WaitForListRateLimit`, which should be called before paging to apply rate limiting to the list call:
+
+```go
+// List call
+for paginator.HasMorePages() {
+
+  // apply rate limiting
+  d.WaitForListRateLimit(ctx)
+
+  output, err := paginator.NextPage(ctx)
+  if err != nil {
+    plugin.Logger(ctx).Error("List error", "api_error", err)
+    return nil, err
+  }
+  for _, items := range output.Items {
+    d.StreamListItem(ctx, items)
+
+    // Context can be cancelled due to manual cancellation or the limit has been hit
+    if d.RowsRemaining(ctx) == 0 {
+      return nil, nil
+    }
+  }
+}
+```
+
+---
 ## Logging
 
 A logger is passed to the plugin via the context.  You can use the logger to write messages to the log at standard log levels:
@@ -507,7 +590,7 @@ export STEAMPIPE_LOG_LEVEL=TRACE
 
 A plugin binary can be installed manually, and this is often convenient when developing the plugin. Steampipe will attempt to load any plugin that is referred to in a `connection` configuration:
 - The plugin binary file must have a `.plugin` extension
-- The plugin binary must reside in a subdirectory of the `~/.steampipe/plugins/` directory and must be the ONLY `.plugin` file in that subdirectory
+- The plugin binary must reside in a subdirectory of the `~/.steampipe/plugins/local/` directory and must be the ONLY `.plugin` file in that subdirectory
 - The `connection` must specify the path (relative to `~/.steampipe/plugins/`) to the plugin in the `plugin` argument
 
 For example, consider a `myplugin` plugin that you have developed.  To install it:
@@ -521,3 +604,4 @@ For example, consider a `myplugin` plugin that you have developed.  To install i
     ```
 - Your connection will be loaded the next time Steampipe runs.  If Steampipe is running service mode, you must restart it to load the connection.
 
+---

@@ -60,7 +60,7 @@ Steampipe plugins are packaged in OCI format and can be hosted and installed fro
 $ steampipe plugin install us-docker.pkg.dev/myproject/myrepo/myplugin@mytag
 ```
 
-### Installing from a file
+### Installing from a File
 A plugin binary can be installed manually, and this is often convenient when developing the plugin. Steampipe will attempt to load any plugin that is referred to in a `connection` configuration:
 - The plugin binary file must have a `.plugin` extension
 - The plugin binary must reside in a subdirectory of the `~/.steampipe/plugins/` directory and must be the ONLY `.plugin` file in that subdirectory
@@ -75,6 +75,21 @@ For example, consider a `myplugin` plugin that you have developed.  To install i
         plugin    = "local/myplugin"                 
     }
     ```
+
+### Installing Missing Plugins
+
+You can install all missing plugins that are referenced in your configuration files:
+
+```bash
+$ steampipe plugin install
+```
+
+Running `steampipe plugin install` with no arguments will cause Steampipe to read all `connection` and `plugin` blocks in all `.spc` files in the `~/.steampipe/config` directory and install any that are referenced but are not installed.  Note that when doing so, any default `.spc` file that does not exist in the configuration will also be copied.  You may pass the `--skip-config` flag if you don't want to copy these files:
+
+```bash
+$ steampipe plugin install --skip-config
+```
+
 
 ## Viewing Installed Plugins
 You can list the installed plugins with the `steampipe plugin list` command:
