@@ -40,6 +40,15 @@ steampipe query list
     <th> Argument </th> 
     <th> Description </th> 
   </tr>
+  <tr> 
+    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
+  </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--export string</inlineCode>  </td> 
@@ -62,6 +71,11 @@ steampipe query list
   <tr> 
     <td nowrap="true"> <inlineCode>--input</inlineCode> </td> 
     <td>  Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, use <inlineCode>--input=false</inlineCode>.  This is useful when running from scripts. (default true)</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--mod-location </inlineCode> </td> 
+    <td>  Sets the Steampipe workspace working directory. If not specified, the workspace directory will be set to the current working directory. See <a href="reference/env-vars/steampipe_mod_location">STEAMPIPE_MOD_LOCATION</a> for details. </td> 
   </tr>
 
   <tr> 
@@ -144,6 +158,11 @@ steampipe query list
     <td nowrap="true"> <inlineCode>--watch</inlineCode>  </td> 
     <td> Watch SQL files in the current workspace (works only in interactive mode) (default true)
     </td>
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--workspace-database</inlineCode>  </td> 
+    <td>  Sets the database that Steampipe will connect to. This can be <inlineCode>local</inlineCode> (the default) or a remote Turbot Pipes database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
   </tr>
 </table>
 

@@ -23,6 +23,7 @@ steampipe variable [command] [flags]
 
 | Flag | Applies to | Description
 |-|-|-
+| `--mod-location string` | `list` | 
 | `--output string` | `list` |  Select a console output format: `table` or `json` (default `table`)
 
 ## Examples

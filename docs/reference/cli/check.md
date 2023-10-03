@@ -30,6 +30,16 @@ steampipe check list
     <th> Description </th> 
   </tr>
   <tr> 
+    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
+  </tr>
+
+  <tr> 
     <td nowrap="true"> <inlineCode>--dry-run</inlineCode> </td> 
     <td>  If specified, prints the controls that would be run by the command, but does not execute them.</td> 
   </tr>
@@ -66,6 +76,12 @@ steampipe check list
   <tr> 
     <td nowrap="true"> <inlineCode>--mod-install </inlineCode> </td> 
     <td>  Specify whether to install mod dependencies before running the check (default true) </td> 
+  </tr>
+
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--mod-location </inlineCode> </td> 
+    <td>  Sets the Steampipe workspace working directory. If not specified, the workspace directory will be set to the current working directory. See <a href="reference/env-vars/steampipe_mod_location">STEAMPIPE_MOD_LOCATION</a> for details. </td> 
   </tr>
                        
 
@@ -154,6 +170,11 @@ steampipe check list
     <td nowrap="true"> <inlineCode>--where</inlineCode>  </td> 
     <td>  Filter the list of controls to run, using a sql <inlineCode>where</inlineCode> clause against the <inlineCode>steampipe_control</inlineCode> reflection table. 
     </td>
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--workspace-database</inlineCode>  </td> 
+    <td>  Sets the database that Steampipe will connect to. This can be <inlineCode>local</inlineCode> (the default) or a remote Turbot Pipes database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
   </tr>
 </table>
 
