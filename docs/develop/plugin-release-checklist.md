@@ -24,7 +24,7 @@ The repository name should use the format `steampipe-plugin-<pluginName>`, e.g.,
 
 <input type="checkbox"/> <b>Go version</b>
 
-The Go version in `go.mod` and any workflows is 1.19.
+The Go version in `go.mod` and any workflows is 1.21.
 
 <input type="checkbox"/> <b>.goreleaser.yml</b>
 
