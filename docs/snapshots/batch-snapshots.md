@@ -5,9 +5,9 @@ sidebar_label: Batch Snapshots
 
 # Taking Snapshots from the Command Line
 
-*To upload snapshots to Steampipe Cloud, you must either [log in via the `steampipe login` command](/docs/reference/cli/login) or create an [API token](/docs/cloud/profile#tokens) and pass it via the [`--cloud-token`](/docs/reference/cli/overview#global-flags) flag or [`STEAMPIPE_CLOUD_TOKEN`](/docs/reference/env-vars/steampipe_cloud_token) environment variable.*
+*To upload snapshots to Turbot Pipes, you must either [log in via the `steampipe login` command](/docs/reference/cli/login) or create an [API token](https://turbot.com/pipes/docs/profile#tokens) and pass it via the [`--cloud-token`](/docs/reference/cli/overview#global-flags) flag or [`STEAMPIPE_CLOUD_TOKEN`](/docs/reference/env-vars/steampipe_cloud_token) environment variable.*
 
-To take a snapshot and save it to [Steampipe Cloud](/docs/cloud/overview), simply add the `--snapshot` flag to your command.  
+To take a snapshot and save it to [Turbot Pipes](https://turbot.com/pipes/docs), simply add the `--snapshot` flag to your command.  
 
 You can take a snapshot of a dashboard:
 ```bash
@@ -35,7 +35,7 @@ steampipe query --snapshot aws_compliance.query.vpc_network_acl_unused
 
 ## Sharing Snapshots
 
-The `--snapshot` flag will create a snapshot with `workspace` visibility in your user workspace. A snapshot with `workspace` visibility is visible only to users that have access to the workspace in which the snapshot resides -- A user must be authenticated to Steampipe Cloud with permissions on the workspace.
+The `--snapshot` flag will create a snapshot with `workspace` visibility in your user workspace. A snapshot with `workspace` visibility is visible only to users that have access to the workspace in which the snapshot resides -- A user must be authenticated to Turbot Pipes with permissions on the workspace.
 
 If you want to create a snapshot that can be shared with *anyone*, use the `--share` flag instead. This will create the snapshot with `anyone_with_link` visibility:
 
@@ -44,7 +44,7 @@ steampipe dashboard --share aws_insights.dashboard.aws_account_report
 ```
 
 
-You can set a snapshot title in Steampipe Cloud with the `--snapshot-title` argument.  This is especially useful for ad hoc queries:
+You can set a snapshot title in Turbot Pipes with the `--snapshot-title` argument.  This is especially useful for ad hoc queries:
 
 ```bash
 steampipe query --share --snapshot-title "Public Buckets" "select name from aws_s3_bucket where bucket_policy_is_public" 
@@ -69,7 +69,7 @@ Steampipe provides a shortcut for this though.  The `--workspace` flag supports 
 steampipe check --snapshot --workspace vandelay-industries/latex benchmark.cis_v140 
 ```
 
-While not a common case, you can even run a benchmark against a Steampipe Cloud workspace database, but store the snapshot in an entirely different Steampipe Cloud workspace:
+While not a common case, you can even run a benchmark against a Turbot Pipes workspace database, but store the snapshot in an entirely different Turbot Pipes workspace:
 ```bash
 steampipe check --snapshot vandelay-industries/latex-dev \
   --workspace vandelay-industries/latex-prod benchmark.cis_v140 
@@ -104,7 +104,7 @@ steampipe dashboard --snapshot-tag env=local --snapshot-tag owner=george  \
 
 ## Saving Snapshots to Local Files
 
-Steampipe Cloud makes it easy to save and share your snapshots, however it is not strictly required;  You can save and view snapshots using only the CLI.  
+Turbot Pipes makes it easy to save and share your snapshots, however it is not strictly required;  You can save and view snapshots using only the CLI.  
 
 You can specify a local path in the `--snapshot-location` argument or `STEAMPIPE_SNAPSHOT_LOCATION` environment variable to save your snapshots to a directory in your filesystem:
 
@@ -147,7 +147,7 @@ steampipe query --output snapshot  "select * from aws_account" > mysnap.sps
 ## Controlling Output
 When using `--share` or `--snapshot`, the output will include the URL to view the snapshot that you created in addition to the usual output:
 ```bash
-Snapshot uploaded to https://cloud.steampipe.io/user/costanza/workspace/vandelay/snapshot/snap_abcdefghij0123456789_asdfghjklqwertyuiopzxcvbn
+Snapshot uploaded to https://pipes.turbot.com/user/costanza/workspace/vandelay/snapshot/snap_abcdefghij0123456789_asdfghjklqwertyuiopzxcvbn
 ```
 
 You can use the `--progress=false` argument to suppress displaying the URL and other progress data.  This may be desirable when you are using an alternate output format, especially when piping the output to another command:
@@ -157,7 +157,7 @@ steampipe query --snapshot --output json  \
   --progress=false  "select * from aws_account" | jq
 ```
 
-You can use all the usual `--export` or `--output` formats with `--snapshot` and `--share`.  Neither the `--output` nor the `--export` flag affect the snapshot format though; the snapshot itself is always a json file that is saved to Steampipe Cloud and viewable as html:
+You can use all the usual `--export` or `--output` formats with `--snapshot` and `--share`.  Neither the `--output` nor the `--export` flag affect the snapshot format though; the snapshot itself is always a json file that is saved to Turbot Pipes and viewable as html:
 
 ```bash
 steampipe check --snapshot --export cis.csv --export cis.json  benchmark.cis_v140

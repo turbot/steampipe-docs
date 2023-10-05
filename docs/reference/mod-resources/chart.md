@@ -137,7 +137,7 @@ Alternative values are `none`, which applies no data transforms, or `crosstab` w
 
 | Property   | Type   | Default | Values                              | Description                                                                                                                                        |
 | ---------- | ------ | ------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `display`  | string | `auto`  | `auto`, `always` or `none`.         | `auto` will display a legend if there are multiple data series. `show` will ensure a legend is `always` shown, or `hide` will never show a legend. |
+| `display`  | string | `auto`  | `auto`, `all` or `none`.            | `auto` will display a legend if there are multiple data series. `all` will ensure a legend is always shown, or `none` will never show a legend. |
 | `position` | string | `top`   | `top`, `right`, `bottom` or `left`. | By default the chart will display a legend at the `top` of the chart, but this can be overridden to `right`, `bottom` or `left` if required.       |
 
 ### series

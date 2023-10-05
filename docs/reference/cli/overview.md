@@ -31,16 +31,6 @@ sidebar_label: Steampipe CLI
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode>  </td> 
-    <td>  Sets the Steampipe Cloud host used when connecting to Steampipe Cloud workspaces.  See <a href="/docs/reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details. </td>
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-token</inlineCode>  </td> 
-    <td>  Sets the Steampipe Cloud authentication token used when connecting to Steampipe Cloud workspaces.  See <a href="/docs/reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details. </td>
-  </tr>
-
-  <tr> 
     <td nowrap="true"> <inlineCode>-h</inlineCode>, <inlineCode>--help</inlineCode> </td> 
     <td>  Help for Steampipe. </td> 
   </tr>
@@ -51,8 +41,8 @@ sidebar_label: Steampipe CLI
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--mod-location</inlineCode>  </td> 
-    <td> Sets the Steampipe workspace working directory.  If not specified, the workspace directory will be set to the current working directory.  See <a href="/docs/reference/env-vars/steampipe_mod_location">STEAMPIPE_MOD_LOCATION</a> for details. </td>
+    <td nowrap="true"> <inlineCode>--workspace</inlineCode>  </td> 
+    <td>  Sets the Steampipe <a href="/docs/managing/workspaces"> workspace profile</a>.  If not specified, the <inlineCode>default</inlineCode> workspace will be used if it exists.  See <a href="/docs/reference/env-vars/steampipe_workspace">STEAMPIPE_WORKSPACE</a> for details.</td>
   </tr>
 
 <!--
@@ -66,22 +56,6 @@ sidebar_label: Steampipe CLI
     <td nowrap="true"> <inlineCode>-v</inlineCode>, <inlineCode>--version</inlineCode>  </td> 
     <td>  Display Steampipe version. </td> 
   </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--workspace</inlineCode>  </td> 
-    <td>  Sets the Steampipe <a href="/docs/managing/workspaces"> workspace profile</a>.  If not specified, the <inlineCode>default</inlineCode> workspace will be used if it exists.  See <a href="/docs/reference/env-vars/steampipe_workspace">STEAMPIPE_WORKSPACE</a> for details.</td>
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--workspace-chdir</inlineCode>  </td> 
-    <td>  <b>(DEPRECATED: please use <inlineCode>--mod-location</inlineCode>)</b> Sets the Steampipe workspace directory.  If not specified, the workspace directory will be set to the current working directory.  See <a href="/docs/reference/env-vars/steampipe_workspace_chdir">STEAMPIPE_WORKSPACE_CHDIR</a> for details. </td>
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--workspace-database</inlineCode>  </td> 
-    <td>  Sets the database that Steampipe will connect to. This can be <inlineCode>local</inlineCode> (the default) or a remote Steampipe Cloud database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
-  </tr>
-
 
 </table>
 

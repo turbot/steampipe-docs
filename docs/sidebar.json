@@ -81,7 +81,8 @@
     "items": [
       "guides/search-path",
       "guides/aws-orgs",
-      "guides/caching"
+      "guides/caching",
+      "guides/limiter"
 
     ]
   },
@@ -183,6 +184,8 @@
         "label": "Environment Variables",
         "link": "reference/env-vars/overview",
         "items": [
+          "reference/env-vars/pipes_host",
+          "reference/env-vars/pipes_token",
           "reference/env-vars/steampipe_cache",
           "reference/env-vars/steampipe_cache_max_size_mb",
           "reference/env-vars/steampipe_cache_max_ttl",
@@ -191,12 +194,15 @@
           "reference/env-vars/steampipe_cloud_token",
           "reference/env-vars/steampipe_database_password",
           "reference/env-vars/steampipe_database_start_timeout",
+          "reference/env-vars/steampipe_diagnostic_level",
           "reference/env-vars/steampipe_install_dir",
           "reference/env-vars/steampipe_introspection",
           "reference/env-vars/steampipe_log",
           "reference/env-vars/steampipe_max_parallel",
+          "reference/env-vars/steampipe_memory_max_mb",
           "reference/env-vars/steampipe_mod_location",
           "reference/env-vars/steampipe_otel_level",
+          "reference/env-vars/steampipe_plugin_memory_max_mb",
           "reference/env-vars/steampipe_query_timeout",
           "reference/env-vars/steampipe_snapshot_location",
           "reference/env-vars/steampipe_telemetry",
@@ -215,6 +221,7 @@
         "items": [
           "reference/config-files/connection",
           "reference/config-files/options",
+          "reference/config-files/plugin",
           "reference/config-files/workspace"
         ]
       },
@@ -251,85 +258,5 @@
     ]
   },
 
-
-  {
-    "type": "category",
-    "id": "cloud",
-    "label": "Steampipe Cloud",
-    "link": "cloud/overview",
-    "items": [
-      "cloud/getting-started",
-      "cloud/dashboards",
-      "cloud/queries",
-      "cloud/workspaces",
-      "cloud/connections",
-      "cloud/mods",
-      "cloud/pipelines",
-      "cloud/activity",
-      "cloud/organizations",
-      "cloud/profile",
-      {
-        "type": "category",
-        "id": "cloud-integrations",
-        "label": "Integrations",
-        "link": "cloud/integrations/overview",
-        "items": [
-          "cloud/integrations/apachesuperset",
-          "cloud/integrations/azuredatastudio",
-          "cloud/integrations/cli",
-          "cloud/integrations/datagrip",
-          "cloud/integrations/dbeaver",
-          "cloud/integrations/dbt",
-          "cloud/integrations/deepnote",
-          "cloud/integrations/duckdb",
-          "cloud/integrations/gitpod",
-          "cloud/integrations/golang",
-          "cloud/integrations/grafana",
-          "cloud/integrations/heidisql",
-          "cloud/integrations/javascript",
-          "cloud/integrations/looker",
-          "cloud/integrations/jupyter",
-          "cloud/integrations/metabase",
-          "cloud/integrations/pgadmin",
-          "cloud/integrations/navicat",
-          "cloud/integrations/pgadmin",
-          "cloud/integrations/pgcli",
-          "cloud/integrations/powerbi",
-          "cloud/integrations/psql",
-          "cloud/integrations/python",
-          "cloud/integrations/r",
-          "cloud/integrations/razorsql",
-          "cloud/integrations/rstudio",
-          "cloud/integrations/tableau",
-          "cloud/integrations/tableplus",
-          "cloud/integrations/vscode"
-        ]
-      },
-      {
-        "type": "category",
-        "id": "cloud-developers",
-        "label": "Developers",
-        "link": "cloud/develop/overview",
-        "items": [
-          "cloud/develop/query-api"
-        ]
-      },
-
-      {
-        "type": "category",
-        "id": "cloud-reference",
-        "label": "Reference",
-        "link": "cloud/reference/overview",
-        "items": [
-          "cloud/reference/api",
-          "cloud/reference/gosdk",
-          "cloud/reference/plugin",
-          "cloud/reference/query-filter",
-          "cloud/reference/terraform"
-        ]
-      }
-
-
-    ]
-  }
+  "steampipe-cloud"
 ]

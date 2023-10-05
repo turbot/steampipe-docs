@@ -17,7 +17,7 @@ git clone https://github.com/turbot/steampipe-mod-aws-compliance.git
 Unlike plugins which are installed to the `~/.steampipe` directory, mods are installed into (and loaded from) the current working directory.  Alternatively, you may specify a path with the `--workspace--chdir` argument:
 
 ```bash
-steampipe query --workspace-chdir steampipe-mod-aws-compliance
+steampipe query --mod-location  steampipe-mod-aws-compliance
 ```
 
 Notice that when running `steampipe query` from the workspace directory, the mod's queries and controls appear in the auto-complete, and you can run them by name:

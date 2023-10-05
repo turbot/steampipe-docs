@@ -36,6 +36,7 @@ steampipe service [command]
 | `--database-port int` | `start` |  Database service port (default 9193)
 | `--force` |  `stop`, `restart` | Forces the service to shutdown, releasing all open connections and ports
 | `--foreground` |  `start` | Run the service in the foreground
+| `--mod-location string` | `start` | Sets the Steampipe workspace working directory. If not specified, the workspace directory will be set to the current working directory. See <a href="reference/env-vars/steampipe_mod_location">STEAMPIPE_MOD_LOCATION</a> for details (only applies if '--dashboard' flag is also set)
 | `--show-password` |  `start`, `status` | View database password for connecting from another machine (default false)
 | `--var stringArray` |  `start` | Specify the value of a variable (only applies if '--dashboard' flag is also set)
 | `--var-file strings` |  `start` | Specify an .spvar file containing variable values (only applies if '--dashboard' flag is also set)
