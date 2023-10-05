@@ -34,8 +34,8 @@ To help with discoverability in GitHub, the repository topics should include:
 <input type="checkbox"/> <b>Repository website</b>
 
 The repository website/homepage should link to the Hub site. The URL is composed of the GitHub organization and plugin name, for instance:
-- https://github.com/turbot/steampipe-plugin-aws: https://hub.steampipe.io/plugins/turbot/aws
-- https://github.com/francois2metz/steampipe-plugin-airtable: https://hub.steampipe.io/plugins/francois2metz/airtable
+- https://github.com/turbot/steampipe-plugin-aws results in https://hub.steampipe.io/plugins/turbot/aws
+- https://github.com/francois2metz/steampipe-plugin-airtable results in https://hub.steampipe.io/plugins/francois2metz/airtable
 
 <input type="checkbox"/> <b>Go version</b>
 
