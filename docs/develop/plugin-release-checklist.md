@@ -5,7 +5,7 @@ sidebar_label: Plugin Release Checklist
 
 # Plugin Release Checklist
 
-As of May 2022, we've absorbed 80+ plugins into the hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
+As of October 2023, we've absorbed 135+ plugins into the hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
 
 - [Basic Configuration](#basic-configuration)
 - [Configuration File](#configuration-file)
@@ -22,9 +22,24 @@ As of May 2022, we've absorbed 80+ plugins into the hub. If you want to contribu
 
 The repository name should use the format `steampipe-plugin-<pluginName>`, e.g., `steampipe-plugin-aws`, `steampipe-plugin-googledirectory`, `steampipe-plugin-microsoft365`. The plugin name should be one word, so there are always 3 parts in the repository name.
 
+<input type="checkbox"/> <b>Repository topics</b>
+
+To help with discoverability in GitHub, the repository topics should include:
+- postgresql
+- postgresql-fdw
+- sql
+- steampipe
+- steampipe-plugin
+
+<input type="checkbox"/> <b>Repository website</b>
+
+The repository website/homepage should link to the Hub site. The URL is composed of the GitHub organization and plugin name, for instance:
+- https://github.com/turbot/steampipe-plugin-aws: https://hub.steampipe.io/plugins/turbot/aws
+- https://github.com/francois2metz/steampipe-plugin-airtable: https://hub.steampipe.io/plugins/francois2metz/airtable
+
 <input type="checkbox"/> <b>Go version</b>
 
-The Go version in `go.mod` and any workflows is 1.19.
+The Go version in `go.mod` and any workflows is 1.21.
 
 <input type="checkbox"/> <b>.goreleaser.yml</b>
 
@@ -183,7 +198,7 @@ The category is an appropriate choice from the list at [hub.steampipe.io/plugins
 
 <input type="checkbox"/> <b>Front matter: icon_url</b>
 
-The icon URL is a link to an `.svg` file hosted on hub.steampipe.io. Please request an icon through the [Steampipe Slack](https://steampipe.io/community/join) and a URL will be provided to use in this variable.
+The icon URL is a link to an `.svg` file hosted on hub.steampipe.io. Please request an icon through the [Turbot Community Slack](https://turbot.com/community/join) and a URL will be provided to use in this variable.
 
 <input type="checkbox"/> <b>Front matter: brand color</b>
 
