@@ -128,7 +128,7 @@ steampipe plugin update --all
 You can uninstall a plugin with the `steampipe plugin remove` command:
 
 ```
-steampipe plugin remove [plugin]
+steampipe plugin uninstall [plugin]
 ```  
 
 Note that you cannot remove a plugin if there are active connections using it.  You must remove any connections that use the plugin first:
