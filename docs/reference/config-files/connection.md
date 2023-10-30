@@ -13,7 +13,7 @@ Most `connection` arguments are plugin-specific, and they are used to specify cr
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `import_schema` | `enabled` | `enabled`, `disabled` |  Enable or disable the creation of a Postgres schema for this connection. When `import_schema` is disabled, Steampipe will not create a schema for the connection (and will delete it if it exists), but the connection will still be queryable from any aggregator that includes it.  For installations with a large number of connections, setting `import_schema` to `disabled` can decrease startup time and increase performance.
-| `plugin` | none     | [plugin version string](#plugin-version-strings) or [plugin reference](/docs/reference/config-files/plugin) |  The plugin version / instance that this connection uses.  This must refer to an [installed plugin version](/docs/managing/plugins#installing-plugins).
+| `plugin` | none     | [plugin version string](#plugin-version-strings) or [plugin reference](/docs/reference/config-files/plugin) |  The plugin version / instance that this connection uses.  This must refer to an [installed plugin version](/docs/managing/plugins#installing-plugins). Example with version string: `plugin = "aws"`. Example with plugin reference: `plugin = plugin.aws_high`.
 | `type`   | `plugin` | `plugin`, `aggregator` | The type of connection  - [plugin connection](/docs/managing/plugins#installing-plugins) or [aggregator](/docs/managing/connections#using-aggregators).
 | `{plugin argument}`| varies |  varies|  Additional options are defined in each plugin - refer to the documentation for your plugin on the [Steampipe Hub](https://hub.steampipe.io/plugins).
 
