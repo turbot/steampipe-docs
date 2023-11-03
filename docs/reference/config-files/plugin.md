@@ -102,13 +102,14 @@ Steampipe will create a separate plugin process for each `plugin` defined that h
 ```hcl
 plugin "aws_high" {
   memory_max_mb = 2000
+  source        = "aws"
 }
 
 plugin "aws_low" {
   memory_max_mb = 500
+  source        = "aws"
 
   limiter "all_requests" {
-    plugin       = "aws"  
     bucket_size  = 100
     fill_rate    = 100
     max_concurrency = 50
