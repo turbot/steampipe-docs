@@ -206,7 +206,7 @@ Limiters provide a simple, flexible interface to implement client-site rate limi
 | Argument          | Default   | Description 
 |-------------------|-----------|--------------------
 | `bucket_size`     | unlimited | The maximum number of requests that may be made per second (the burst size).  Used in combination with `fill_rate` to implement a token-bucket rate limit.
-| `fill_rate`       | unlimited | The number of requests that are added back to refill the bucket each second.  Used in combination with `fill_rate` to implement a token-bucket rate limit.
+| `fill_rate`       | unlimited | The number of requests that are added back to refill the bucket each second.  Used in combination with `bucket_size` to implement a token-bucket rate limit.
 | `max_concurrency` | The maximum number of [List, Get, and Hydrate functions](/docs/develop/writing-plugins#hydrate-functions) that can run in parallel.
 | `scope`           | `[]`       | The context for the limit - which resources are subject to / counted against the limit. If no scope is specified, then the limiter applies to all functions in the plugin.  If you specify a list of scopes, then *a limiter instance is created for each unique combination of scope values* - it acts much like `group by` in a sql statement. 
 | `where`           | none       | A `where` clause to further filter the scopes to specific values.
