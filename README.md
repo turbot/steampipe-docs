@@ -62,3 +62,11 @@ For contributions that will take a significant amount of time, [open a new issue
 ## Finding contributions to work on
 
 If you'd like to contribute, but don't have a project in mind, look at the [open issues](https://github.com/turbot/steampipe-docs/issues/news) in this repository for some ideas.
+
+## Contributor license agreement
+
+To safeguard the legal integrity of our projects and facilitate their sustainable growth, we require all contributors to sign our [Contributor License Agreement (CLA)](https://turbot.com/legal/cla-faq). 
+
+# License
+
+Steampipe documentation is distributed under [CC BY-NC-ND](https://github.com/turbot/steampipe-docs/blob/main/LICENSE).
