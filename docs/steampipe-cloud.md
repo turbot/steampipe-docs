@@ -1,6 +1,6 @@
 ---
-title: Steampipe Cloud
-sidebar_label: Steampipe Cloud
+title: Turbot Pipes
+sidebar_label: Turbot Pipes
 ---
 
 # Steampipe Cloud is now Turbot Pipes!

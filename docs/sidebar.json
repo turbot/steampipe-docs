@@ -257,6 +257,39 @@
       }
     ]
   },
-
-  "steampipe-cloud"
+  {
+    "type": "category",
+    "id": "turbot-pipes",
+    "link": "steampipe-cloud",
+    "items": []
+  },
+  {
+    "type": "category",
+    "id": "steampipe_postgres",
+    "link": "steampipe_postgres/index",
+    "items": [
+      "steampipe_postgres/install",
+      "steampipe_postgres/configure",
+      "steampipe_postgres/query"
+    ]
+  },
+  {
+    "type": "category",
+    "id": "steampipe_sqlite",
+    "link": "steampipe_sqlite/index",
+    "items": [
+      "steampipe_sqlite/install",
+      "steampipe_sqlite/configure",
+      "steampipe_sqlite/query"
+    ]
+  },
+  {
+    "type": "category",
+    "id": "steampipe_export",
+    "link": "steampipe_export/index",
+    "items": [
+      "steampipe_export/install",
+      "steampipe_export/run"
+    ]
+  }
 ]
