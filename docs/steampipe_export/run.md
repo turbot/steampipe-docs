@@ -103,3 +103,12 @@ Or JSON lines (JSONL):
 ```bash
 steampipe_export_aws aws_ec2_instance  --select instance_id,account_id,region --output jsonl  
 ```
+
+
+## Logging
+You can enable logging with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env-vars/steampipe_log) environment variable.  Logs are written to STDERR.
+
+
+```bash
+export STEAMPIPE_LOG_LEVEL=DEBUG
+```

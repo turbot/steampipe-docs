@@ -92,3 +92,25 @@ If you try to run the `.load` command but you get an error like `Error: unknown 
 ```bash
 $ sqlite3 :memory: 'select * from pragma_compile_options()' | grep OMIT_LOAD_EXTENSION
 ```
+
+
+## Caching
+By default, query results are cached for 5 minutes. You can change the duration with the [STEAMPIPE_CACHE_MAX_TTL](docs/reference/env-vars/steampipe_cache_max_ttl):
+
+```bash
+export STEAMPIPE_CACHE_MAX_TTL=600  # 10 minutes
+```
+
+or disable caching with the [STEAMPIPE_CACHE](docs/reference/env-vars/steampipe_cache):
+```bash
+export STEAMPIPE_CACHE=false
+```
+
+
+## Logging
+You can enable logging with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env-vars/steampipe_log) environment variable.  Logs are written to STDERR.
+
+
+```bash
+export STEAMPIPE_LOG_LEVEL=DEBUG
+```

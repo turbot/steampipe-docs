@@ -26,6 +26,7 @@ DROP SERVER IF EXISTS steampipe_aws_01;
 CREATE SERVER steampipe_aws_01 FOREIGN DATA WRAPPER steampipe_postgres_aws OPTIONS (config 'profile = "my_aws_profile"');
 ```
 
+> ***Note: Many plugins use environment variables or configuration files from the user's $HOME directory for some configuration options.  Be aware that the user context is whichever user Postgres is running as!***
 
 The `config` option takes an HCL string with the plugin [connection](https://steampipe.io/docs/managing/connections) arguments.  These arguments vary per plugin. You can view the available options and syntax for the plugin in the [Steampipe hub](https://hub.steampipe.io/plugins).
 
@@ -137,4 +138,24 @@ You can remove the FDW configuration by dropping the relevant objects:
 DROP SCHEMA IF EXISTS aws01 CASCADE;
 DROP SERVER IF EXISTS steampipe_aws_01;
 DROP EXTENSION IF EXISTS steampipe_postgres_aws CASCADE;
+```
+
+## Caching
+By default, query results are cached for 5 minutes. You can change the duration with the [STEAMPIPE_CACHE_MAX_TTL](docs/reference/env-vars/steampipe_cache_max_ttl):
+
+```bash
+export STEAMPIPE_CACHE_MAX_TTL=600  # 10 minutes
+```
+
+or disable caching with the [STEAMPIPE_CACHE](docs/reference/env-vars/steampipe_cache):
+```bash
+export STEAMPIPE_CACHE=false
+```
+
+
+## Logging
+You can enable logging with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env-vars/steampipe_log) environment variable.  Logs are written to the Postgres database logs.
+
+```bash
+export STEAMPIPE_LOG_LEVEL=DEBUG
 ```
