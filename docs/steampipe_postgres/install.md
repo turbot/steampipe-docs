@@ -5,10 +5,10 @@ sidebar_label: Install
 
 # Installing Steampipe Postgres FDW
 
-Each Steampipe plugin is distributed as a distinct Steampipe Postgres FDW.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [steampipe_postgres_installer.sh](https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw-anywhere/main/scripts/steampipe_postgres_installer.sh) script:
+Each Steampipe plugin is distributed as a distinct Steampipe Postgres FDW.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [steampipe_postgres_installer.sh](https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw/main/scripts/steampipe_postgres_installer.sh) script:
 
 ```bash
-/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw-anywhere/main/scripts/steampipe_postgres_installer.sh)"
+/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw/main/scripts/steampipe_postgres_installer.sh)"
 ```
 
 The installer will prompt you for the plugin name and version, determine the OS, system architecture, and Postgres version, and download the appropriate package.  It will use `pg_config` determine where to install the files, prompt for confirmation, and then copy them:

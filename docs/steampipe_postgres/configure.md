@@ -154,7 +154,7 @@ export STEAMPIPE_CACHE=false
 
 
 ## Logging
-You can enable logging with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env-vars/steampipe_log) environment variable.  Logs are written to the Postgres database logs.
+You can set the logging level with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env-vars/steampipe_log) environment variable.  By default, the log level is set to `warn`.  Logs are written to the Postgres database logs.
 
 ```bash
 export STEAMPIPE_LOG_LEVEL=DEBUG

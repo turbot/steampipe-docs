@@ -108,9 +108,14 @@ export STEAMPIPE_CACHE=false
 
 
 ## Logging
-You can enable logging with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env-vars/steampipe_log) environment variable.  Logs are written to STDERR.
-
+You can set the logging level with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env-vars/steampipe_log) environment variable.  By default, the log level is set to `warn`.
 
 ```bash
 export STEAMPIPE_LOG_LEVEL=DEBUG
+```
+
+SQLite logs are written to STDERR, so by default they will be printed to the console.  You can redirect them to a file instead with the standard file redirection mechanism:
+
+```bash
+sqlite3 2> errors.log
 ```
