@@ -5,15 +5,16 @@ sidebar_label: Install
 
 # Installing Steampipe Postgres FDW
 
-Each Steampipe plugin is distributed as a distinct Steampipe Postgres FDW.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [steampipe_postgres_installer.sh](https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw/main/scripts/steampipe_postgres_installer.sh) script:
+Each Steampipe plugin is distributed as a distinct Steampipe Postgres FDW.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [Steampipe Postgres FDW install script](https://steampipe.io/install/postgres.sh) script:
 
 ```bash
-/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw/main/scripts/steampipe_postgres_installer.sh)"
+/bin/sh -c "$(curl -fsSL https://steampipe.io/install/postgres.sh)"
 ```
 
 The installer will prompt you for the plugin name and version, determine the OS, system architecture, and Postgres version, and download the appropriate package.  It will use `pg_config` determine where to install the files, prompt for confirmation, and then copy them:
 
 ```bash
+$ /bin/sh -c "$(curl -fsSL https://steampipe.io/install/postgres.sh)"
 Enter the plugin name: aws
 Enter the version (latest): 
 
@@ -25,9 +26,9 @@ Discovered:
 
 Based on the above, steampipe_postgres_aws.pg15.darwin_arm64.tar.gz will be downloaded, extracted and installed at: /Applications/Postgres.app/Contents/Versions/15
 
-Proceed with installing Steampipe PostgreSQL FDW for version 15 ?
+Proceed with installing Steampipe PostgreSQL FDW for version 15 at /Applications/Postgres.app/Contents/Versions/15?
 - Press 'y' to continue with the current version.
-- Press 'n' to customize your PostgreSQL installation directory and select a different version. (y/n): y
+- Press 'n' to customize your PostgreSQL installation directory and select a different version. (Y/n): 
 
 Downloading https://api.github.com/repos/turbot/steampipe-plugin-aws/releases/latest/releases/assets/139269139...
 ###################################################################################################################################################################### 100.0%

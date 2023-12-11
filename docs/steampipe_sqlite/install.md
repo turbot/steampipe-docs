@@ -6,13 +6,12 @@ sidebar_label: Install
 
 # Installing Steampipe SQLite Extensions
 
-Each Steampipe plugin is distributed as a distinct Steampipe SQLite Extension.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [steampipe_sqlite_installer.sh](https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw-anywhere/blob/main/scripts/steampipe_sqlite_installer.sh) script:  
+Each Steampipe plugin is distributed as a distinct Steampipe SQLite Extension.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [Steampipe SQLite install script](https://steampipe.io/install/sqlite.sh):  
 
 
 ```bash
-/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw-anywhere/blob/main/scripts/steampipe_sqlite_installer.s)"
+/bin/sh -c "$(curl -fsSL https://steampipe.io/install/sqlite.sh)"
 ```
-
 <!--
 ```bash
 Usage: global_installer.sh <plugin> [version] [location]

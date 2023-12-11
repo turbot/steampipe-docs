@@ -3,9 +3,9 @@ title: Install
 sidebar_label: Install
 ---
 
-# Installing Steampipe Plugin Exporters
+# Installing Steampipe Steampipe Export CLIs
 
-Each Steampipe plugin is distributed as a distinct Steampipe Plugin Exporter.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [steampipe_export_installer.sh](https://raw.githubusercontent.com/turbot/steampipe-postgres-fdw-anywhere/blob/main/scripts/steampipe_export_installer.sh) script:  
+Each Steampipe plugin is distributed as a distinct Steampipe Export CLI.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [Steampipe Export CLI install script](https://steampipe.io/install/export.sh):  
 
 <!--
 ```bash
@@ -13,8 +13,9 @@ Usage: global_installer.sh <plugin> [version] [location]
 ```
 -->
 ```bash
-/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/turbot/steampipe-table-dump/main/scripts/steampipe_export_installer.sh)"
+/bin/sh -c "$(curl -fsSL https://steampipe.io/install/export.sh)"
 ```
+
 
 The installer will prompt you for the plugin name, version, and destination directory.  It will then determine the OS and system architecture, and it will download and install the appropriate package.  
 

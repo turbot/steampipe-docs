@@ -6,7 +6,7 @@ sidebar_label: Run
 
 # Running Steampipe Plugin Exporters
 
-Each plugin exporter is distributed as a separate binary, but the command line options are the same:
+Each Steampipe Export CLI is distributed as a separate binary, but the command line options are the same:
 
 ```bash
 Usage:
@@ -72,7 +72,7 @@ The `--where` argument allows you to filter the rows based on key columns:
 steampipe_export_aws aws_ec2_instance  --where "instance_type = 't2.micro'"
 ```
 
-You can **only specify key columns** in `--where` because the exporter does the filtering server-side, via the API or service that it is calling. Refer to the table documentation in the [Steampipe hub](https://hub.steampipe.io/plugins) for a list of key columns (e.g. https://hub.steampipe.io/plugins/turbot/aws/tables/aws_ec2_instance#inspect).  
+You can **only specify key columns** in `--where` because the Export CLI does the filtering server-side, via the API or service that it is calling. Refer to the table documentation in the [Steampipe hub](https://hub.steampipe.io/plugins) for a list of key columns (e.g. https://hub.steampipe.io/plugins/turbot/aws/tables/aws_ec2_instance#inspect).  
 
 Note that you do not have to select the column in order to filter by it:
 ```bash

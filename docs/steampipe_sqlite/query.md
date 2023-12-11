@@ -10,18 +10,18 @@ Your Steampipe extension adds virtual tables to your SQLite installation.  Typic
 
 You can use standard SQLite syntax to query the tables:
 ```sql
-SELECT
+select
   name,
   is_private,
   owner_login
-FROM
+from
   github_my_repository
 ```
 
 
 It is often useful to use `limit` to discover what columns are available for a table without fetching too much data:
 ```sql
-SELECT * FROM aws_iam_access_key LIMIT 1
+select * from aws_iam_access_key limit 1
 ```
 
 The normal [Steampipe guidance](/docs/sql/tips) applies:
@@ -38,35 +38,35 @@ Unlike Postgres, SQLite does not have [native data types](https://www.sqlite.org
 Boolean values are stored as integers: `0` (false) and `1` (true):
 
 ```sql
-SELECT
+select
   name,
   bucket_policy_is_public
-FROM
+from
   aws_s3_bucket
-WHERE
+where
   bucket_policy_is_public = 1;
 ```
 
 As a result, implicit boolean comparisons work as you would expect: 
 
 ```sql
-SELECT
+select
   name,
   bucket_policy_is_public
-FROM
+from
   aws_s3_bucket
-WHERE
+where
   bucket_policy_is_public;
 ```
 
 SQLite version 3.23.0 also recognize the keywords `TRUE` and `FALSE`.  They are essentially just aliases for `1` and `0`:
 ```sql
-SELECT
+select
   name,
   bucket_policy_is_public
-FROM
+from
   aws_s3_bucket
-WHERE
+where
   bucket_policy_is_public = TRUE;
 ```
 
@@ -80,9 +80,9 @@ select
   status,
   create_date,
   julianday('now') - julianday(create_date) as age_in_days
-FROM
+from
   aws_iam_access_key
-WHERE
+where
   age_in_days > 30;
 ```
 
@@ -92,10 +92,10 @@ Steampipe SQLite extensions store JSON fields as jsonb-formatted text. You can u
 
 You can extract data with `json_extract`:
 ```sql
-SELECT
+select
   name,
-  json_extract(acl, '$.Owner') AS owner
-FROM
+  json_extract(acl, '$.Owner') as owner
+from
   aws_s3_bucket;
 ```
 
@@ -103,10 +103,10 @@ FROM
 But SQLite version 3.38.0 and later support the `->` and `->>` operators, which is usually simpler:  
 
 ```sql
-SELECT
+select
   name,
-  acl -> 'Owner' ->> 'ID'  AS owner
-FROM
+  acl -> 'Owner' ->> 'ID'  as owner
+from
   aws_s3_bucket;
 ```
 
@@ -114,15 +114,15 @@ FROM
 You can use the [json_each table-valued function](https://www.sqlite.org/json1.html#jeach) to treat json arrays as rows and use them to join tables:
 
 ```sql
-SELECT
+select
   i.instance_id,
   vol.volume_id,
   vol.size
-FROM
-  aws_ebs_volume AS vol,
-  json_each(vol.attachments) AS att
-  JOIN aws_ec2_instance AS i ON i.instance_id = att.value ->> 'InstanceId'
-ORDER BY
+from
+  aws_ebs_volume as vol,
+  json_each(vol.attachments) as att
+  join aws_ec2_instance as i on i.instance_id = att.value ->> 'InstanceId'
+order by
   i.instance_id;
 ```
 
