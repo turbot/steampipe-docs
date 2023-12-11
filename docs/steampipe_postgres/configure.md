@@ -7,7 +7,7 @@ sidebar_label: Configure
 
 To use the Steampipe Postgres FDW, you first have to create the foreign server and import the foreign schema. 
 
-Login to postgres as a superuser and create the extension:
+Login to Postgres as a superuser and create the extension:
 
 ```sql
 DROP EXTENSION IF EXISTS steampipe_postgres_aws CASCADE;
@@ -53,7 +53,7 @@ COMMENT ON SCHEMA aws_01 IS 'steampipe aws fdw';
 IMPORT FOREIGN SCHEMA aws_01 FROM SERVER steampipe_aws_01 INTO aws_01;
 ```
 
-You can query the information schema to see that foreign tables that have been added to your schema:
+You can query the information schema to see the foreign tables that have been added to your schema:
 
 ```sql
 select

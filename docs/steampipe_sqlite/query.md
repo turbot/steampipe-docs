@@ -6,7 +6,7 @@ sidebar_label: Query
 
 # Querying Steampipe SQLite Extensions
 
-Your Steampipe extension adds virtual tables to your SQLite installation.  Typically, these table are prefixed with the plugin name.   You can run `pragma module_list;` to get a list of virtual tables, or refer to the documentation for the plugin in the [Steampipe Hub](https://hub.steampipe.io/plugins).  The Hub also contains sample queries for each table.
+Your Steampipe extension adds virtual tables to your SQLite installation.  Typically, these tables are prefixed with the plugin name.   You can run `pragma module_list;` to get a list of virtual tables, or refer to the documentation for the plugin in the [Steampipe Hub](https://hub.steampipe.io/plugins).  The Hub also contains sample queries for each table.
 
 You can use standard SQLite syntax to query the tables:
 ```sql
@@ -32,7 +32,7 @@ The normal [Steampipe guidance](/docs/sql/tips) applies:
 
 
 ## SQLite Data Types
-Unlike Postgres, SQLite does not have [native data types](https://www.sqlite.org/datatype3.html) for date/time, boolean, json, or ip addresses, so these columns are represented as `TEXT` or `NUMBER`.  While the data types are not supported as native storage types, SQLite does provide functions to manipulate these types of data.
+Unlike Postgres, SQLite does not have [native data types](https://www.sqlite.org/datatype3.html) for Date/Time, Boolean, JSON, or IP addresses, so these columns are represented as `TEXT` or `NUMBER`.  While the data types are not supported as native storage types, SQLite does provide functions to manipulate these types of data.
 
 ### Boolean
 Boolean values are stored as integers: `0` (false) and `1` (true):
@@ -59,7 +59,7 @@ where
   bucket_policy_is_public;
 ```
 
-SQLite version 3.23.0 also recognize the keywords `TRUE` and `FALSE`.  They are essentially just aliases for `1` and `0`:
+SQLite version 3.23.0 also recognizes the keywords `TRUE` and `FALSE`.  They are essentially just aliases for `1` and `0`:
 ```sql
 select
   name,
@@ -87,7 +87,7 @@ where
 ```
 
 ### JSON
-Steampipe SQLite extensions store JSON fields as jsonb-formatted text. You can use [SQLite JSON functions and operators](https://www.sqlite.org/json1.html) to work with this data.
+Steampipe SQLite extensions store JSON fields as JSONB-formatted text. You can use [SQLite JSON functions and operators](https://www.sqlite.org/json1.html) to work with this data.
 
 
 You can extract data with `json_extract`:
@@ -100,7 +100,7 @@ from
 ```
 
 
-But SQLite version 3.38.0 and later support the `->` and `->>` operators, which is usually simpler:  
+But SQLite version 3.38.0 and later support the `->` and `->>` operators, which are usually simpler:  
 
 ```sql
 select
@@ -111,7 +111,7 @@ from
 ```
 
 
-You can use the [json_each table-valued function](https://www.sqlite.org/json1.html#jeach) to treat json arrays as rows and use them to join tables:
+You can use the [json_each table-valued function](https://www.sqlite.org/json1.html#jeach) to treat JSON arrays as rows and use them to join tables:
 
 ```sql
 select
@@ -127,4 +127,4 @@ order by
 ```
 
 ### INET/CIDR
-Currently, SQLite does not include any functions for IP address or CIDR data.  There are multiple 3rd party extensions you can install that provide functions for working with IP address data.
+Currently, SQLite does not include any functions for IP addresses or CIDR data.  There are multiple 3rd party extensions you can install that provide functions for working with IP address data.

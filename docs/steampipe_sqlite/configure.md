@@ -44,7 +44,7 @@ sqlite> select steampipe_configure_aws('
 
 
 ## Persisting Your Configuration
-SQLite does not persist your module configuration; you need to load and configure the module(s) each time you start SQLite.  Fortunately, SQLite provides a options for loading these options from a file.
+SQLite does not persist your module configuration; you need to load and configure the module(s) each time you start SQLite.  Fortunately, SQLite provides options for loading these commands from a file.
 
 Create a file with the commands you wish to run when SQLite starts:  
 
@@ -85,7 +85,7 @@ sqlite> .read ./init.sql
 
 ## Enabling SQLite extension loading
 
-The Steampipe SQLite extensions are packaged as loadable modules.  You must use a version of SQLite that has extension loading enabled. Some SQLite distributions (including the version that ships with MacOS) disable module loading as a compilation option, and you can't enable it.  In this case, you have to install a version that supports extensions.  You can download a precompiled SQLite binary for you platform [from the SQLite downloads page](https://www.sqlite.org/download.html) or use a package manager such as `brew`, `yum`, or `apt`.
+The Steampipe SQLite extensions are packaged as loadable modules.  You must use a version of SQLite that has extension loading enabled. Some SQLite distributions (including the version that ships with MacOS) disable module loading as a compilation option, and you can't enable it.  In this case, you have to install a version that supports extensions.  You can download a precompiled SQLite binary for your platform [from the SQLite downloads page](https://www.sqlite.org/download.html) or use a package manager such as `brew`, `yum`, or `apt` to install it.
 
 
 If you try to run the `.load` command but you get an error like `Error: unknown command or invalid arguments:  "load". Enter ".help" for help` you may not have extension loading enabled.  If your installation has the `OMIT_LOAD_EXTENSION` compile option, then it does not support loadable modules:
@@ -114,7 +114,7 @@ You can set the logging level with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env
 export STEAMPIPE_LOG_LEVEL=DEBUG
 ```
 
-SQLite logs are written to STDERR, so by default they will be printed to the console.  You can redirect them to a file instead with the standard file redirection mechanism:
+SQLite logs are written to STDERR, and they will be printed to the console by default.  You can redirect them to a file instead with the standard file redirection mechanism:
 
 ```bash
 sqlite3 2> errors.log

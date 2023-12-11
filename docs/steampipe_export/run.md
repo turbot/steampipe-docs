@@ -24,13 +24,13 @@ Flags:
 
 ## Configuration
 
-Many plugins have a *default* configuration that will use environment variables or other "native" configuration files to set your credentials if don't provide a `--config`.  The behavior varies by plugin, but should be documented in the [Steampipe hub](https://hub.steampipe.io/plugins).  The AWS plugin, for example, will resolve the region and credentials using the same mechanism as the AWS CLI (AWS environment variables, default profile, etc).  If you have AWS CLI default credentials set up, Steampipe will use them if you don't specify `--config`:
+Many plugins have a *default* configuration that will use environment variables or other "native" configuration files to set your credentials if don't provide a `--config`.  The behavior varies by plugin but should be documented in the [Steampipe hub](https://hub.steampipe.io/plugins).  The AWS plugin, for example, will resolve the region and credentials using the same mechanism as the AWS CLI (AWS environment variables, default profile, etc).  If you have AWS CLI default credentials set up, Steampipe will use them if you don't specify `--config`:
 
 ```bash
 steampipe_export_aws aws_account
 ```
 
-Alternatively, you can specify the configuration with the `--config` argument. The `--config` argument take a string containing the HCL configuration options for the plugin.  The options vary per plugin, and match the [connection](https://steampipe.io/docs/managing/connections) options for the corresponding plugin.  You can view the available options and syntax for the plugin in the [Steampipe hub](https://hub.steampipe.io/plugins).  
+Alternatively, you can specify the configuration with the `--config` argument. The `--config` argument takes a string containing the HCL configuration options for the plugin.  The options vary per plugin, and match the [connection](https://steampipe.io/docs/managing/connections) options for the corresponding plugin.  You can view the available options and syntax for the plugin in the [Steampipe hub](https://hub.steampipe.io/plugins).  
 
 ```bash
 steampipe_export_aws --config 'profile = "my_profile"' aws_account
@@ -74,7 +74,7 @@ steampipe_export_aws aws_ec2_instance  --where "instance_type = 't2.micro'"
 
 You can **only specify key columns** in `--where` because the Export CLI does the filtering server-side, via the API or service that it is calling. Refer to the table documentation in the [Steampipe hub](https://hub.steampipe.io/plugins) for a list of key columns (e.g. https://hub.steampipe.io/plugins/turbot/aws/tables/aws_ec2_instance#inspect).  
 
-Note that you do not have to select the column in order to filter by it:
+Note that you do not have to select the column to filter by it:
 ```bash
 steampipe_export_aws aws_ec2_instance  --select instance_id,account_id,region,_ctx --where "instance_type = 't2.micro'"
 ```
@@ -112,7 +112,7 @@ You can set the logging level with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env
 export STEAMPIPE_LOG_LEVEL=DEBUG
 ```
 
-Logs are written to STDERR, so by default they will be printed to the console.  You can redirect them to a file instead with the standard file redirection mechanism:
+Logs are written to STDERR so by default they will be printed to the console.  You can redirect them to a file instead with the standard file redirection mechanism:
 
 ```bash
 steampipe_export_aws aws_iam_policy 2> errors.log

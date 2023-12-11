@@ -16,7 +16,7 @@ But unlike a conventional database table, Steampipe does not simply read data th
 
 ## Discovering Key Columns
 
-Key columns are table-specific; they work with the capabilities of the underlying API.  Its up to the plugin author to define and implement them in the plugin source code.  As a user of the plugin, how do you know which columns are key columns?  And how do you know which operators are supported?
+Key columns are table-specific; they work with the capabilities of the underlying API.  It's up to the plugin author to define and implement them in the plugin source code.  As a user of the plugin, how do you know which columns are key columns?  And how do you know which operators are supported?
 
 The easiest way is to look in the table documentation on the [Steampipe Hub](https://hub.steampipe.io/plugins).  Every table will have a page in the hub that includes a table of `schema` information, including which key column operators are supported.  
 
