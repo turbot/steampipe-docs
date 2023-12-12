@@ -266,7 +266,7 @@
   {
     "type": "category",
     "id": "steampipe_postgres",
-    "link": "steampipe_postgres/index",
+    "link": "steampipe_postgres/overview",
     "items": [
       "steampipe_postgres/install",
       "steampipe_postgres/configure",
@@ -276,7 +276,7 @@
   {
     "type": "category",
     "id": "steampipe_sqlite",
-    "link": "steampipe_sqlite/index",
+    "link": "steampipe_sqlite/overview",
     "items": [
       "steampipe_sqlite/install",
       "steampipe_sqlite/configure",
@@ -286,7 +286,7 @@
   {
     "type": "category",
     "id": "steampipe_export",
-    "link": "steampipe_export/index",
+    "link": "steampipe_export/overview",
     "items": [
       "steampipe_export/install",
       "steampipe_export/run"

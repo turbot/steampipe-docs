@@ -90,7 +90,7 @@ Error: rpc error: code = Internal desc = 'List' call for table 'github_user' is 
 
 **Not all key columns support all operators** and the [Hub documentation](https://hub.steampipe.io/plugins) will tell you which are supported for a given column.  
 
-When using the Steampipe CLI, [Postgres FDWs](/docs/steampipe_postgres/index) or [SQLite Extensions](/docs/steampipe_sqlite/index) you can use operators in your SQL query that are not supported by the key column, but the data will be filtered on the client side after all the data has been retrieved (like any other non-key column).  When using the [Export CLIs](/docs/steampipe_export/index), however, you may only use the operators that are supported for the key column.
+When using the Steampipe CLI, [Postgres FDWs](/docs/steampipe_postgres/overview) or [SQLite Extensions](/docs/steampipe_sqlite/overview) you can use operators in your SQL query that are not supported by the key column, but the data will be filtered on the client side after all the data has been retrieved (like any other non-key column).  When using the [Export CLIs](/docs/steampipe_export/overview), however, you may only use the operators that are supported for the key column.
 
 #### Key Column Operators
 
