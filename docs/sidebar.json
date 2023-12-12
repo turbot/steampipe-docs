@@ -82,8 +82,8 @@
       "guides/search-path",
       "guides/aws-orgs",
       "guides/caching",
-      "guides/limiter"
-
+      "guides/limiter",
+      "guides/key-columns"
     ]
   },
   {
@@ -257,6 +257,39 @@
       }
     ]
   },
-
-  "steampipe-cloud"
+  {
+    "type": "category",
+    "id": "turbot-pipes",
+    "link": "steampipe-cloud",
+    "items": []
+  },
+  {
+    "type": "category",
+    "id": "steampipe_postgres",
+    "link": "steampipe_postgres/overview",
+    "items": [
+      "steampipe_postgres/install",
+      "steampipe_postgres/configure",
+      "steampipe_postgres/query"
+    ]
+  },
+  {
+    "type": "category",
+    "id": "steampipe_sqlite",
+    "link": "steampipe_sqlite/overview",
+    "items": [
+      "steampipe_sqlite/install",
+      "steampipe_sqlite/configure",
+      "steampipe_sqlite/query"
+    ]
+  },
+  {
+    "type": "category",
+    "id": "steampipe_export",
+    "link": "steampipe_export/overview",
+    "items": [
+      "steampipe_export/install",
+      "steampipe_export/run"
+    ]
+  }
 ]
