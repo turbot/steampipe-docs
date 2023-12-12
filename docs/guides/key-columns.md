@@ -18,16 +18,19 @@ But unlike a conventional database table, Steampipe does not simply read data th
 
 Key columns are table-specific; they work with the capabilities of the underlying API.  It's up to the plugin author to define and implement them in the plugin source code.  As a user of the plugin, how do you know which columns are key columns?  And how do you know which operators are supported?
 
-The easiest way is to look in the table documentation on the [Steampipe Hub](https://hub.steampipe.io/plugins).  Every table will have a page in the hub that includes a table of `schema` information, including which key column operators are supported.  
+The easiest way is to look in the table documentation on the [Steampipe Hub](https://hub.steampipe.io/plugins).  Every table will have a page in the Hub that includes a table of `schema` information.  The `Operators` column indicates which key column operators are supported for the column.  
 
+<!--
 For example: 
-https://hub.steampipe.io/plugins/turbot/aws/tables/aws_ec2_instance#inspect 
+https://hub.steampipe.io/plugins/turbot/aws/tables/aws_vpc#inspect 
+-->
 
+<img src="/images/docs/steampipe_key_column_inspect.png" width="100%" />
+
+<br />
 
 Alternatively, if you are running the Steampipe CLI, you can get the key column information from the [`steampipe_plugin_column` table](#introspecting-key-columns).
-<!--
-[ screen shot here?]
--->
+
 
 
 ### Required Key Columns
@@ -94,24 +97,24 @@ When using the Steampipe CLI, [Postgres FDWs](/docs/steampipe_postgres/overview)
 
 #### Key Column Operators
 
-| Abbreviation | Description        | Operator
-|--------|--------------------------|-------
-| `eq`   | Equals                   | `=`
-| `ne`   | Not equal to             | `<>`, `!=`
-| `lt`   | Less than                | `<`
-| `le`   | Less than or equal to    | `<=`
-| `gt`   | Greater than             | `>`
-| `ge`   | Greater than or equal to | `>=`
-| `~~`   | Like                     | `~~`
-| `!~~`  | Not Like                 | `!~~`
-| `~~*`  | ILIke                    | `~~*`
-| `!~~*` | Not ILike                | `!~~*`
-| `~`    | Matches regex            | `~`
-| `!~`   | Does not match regex     | `!~`
-| `~*`   | Matches iregex           | `~*`
-| `!~*`  | Does not match iregex    | `!~*`
-| `is null`| is null                | `is null`
-| `is not null` | is not null       | `is not null`
+| Operator        | Description          | Abbreviation
+|-----------------|----------------------|-------
+| `=`             | Equals               | `=`
+| `<>`, `!=`      | Not equal to         | `ne`
+| `<`             | Less than            | `lt`
+| `<=`            | Less than or equal to| `le`
+| `>`             | Greater than         | `gt`
+| `>=`            | Greater than or equal to | `ge`
+| `~~`            | Like                 | `~~`
+| `!~~`           | Not Like             | `!~~`
+| `~~*`           | ILike                | `~~*`
+| `!~~*`          | Not ILike            | `!~~*`
+| `~`             | Matches regex        | `~`
+| `!~`            | Does not match regex | `!~`
+| `~*`            | Matches iregex       | `~*`
+| `!~*`           | Does not match iregex| `!~*`
+| `is null`       | is null              | `is null`
+| `is not null`   | is not null          | `is not null`
 
 
 ## How it (basically) works
@@ -141,31 +144,18 @@ from
   steampipe_plugin_column
 where
   (get_config || list_config) -> 'operators' is not null
-  and table_name = 'aws_ec2_instance' ;
+  and table_name = 'aws_vpc' ;
 ```
 
 ```sql
-+-----------------------------+--------+-----------+----------+
-| name                        | type   | operators | required |
-+-----------------------------+--------+-----------+----------+
-| instance_id                 | STRING | ["="]     | optional |
-| instance_type               | STRING | ["="]     | optional |
-| instance_state              | STRING | ["="]     | optional |
-| monitoring_state            | STRING | ["="]     | optional |
-| hypervisor                  | STRING | ["="]     | optional |
-| iam_instance_profile_arn    | STRING | ["="]     | optional |
-| image_id                    | STRING | ["="]     | optional |
-| instance_lifecycle          | STRING | ["="]     | optional |
-| outpost_arn                 | STRING | ["="]     | optional |
-| placement_availability_zone | STRING | ["="]     | optional |
-| placement_group_name        | STRING | ["="]     | optional |
-| placement_tenancy           | STRING | ["="]     | optional |
-| public_dns_name             | STRING | ["="]     | optional |
-| ram_disk_id                 | STRING | ["="]     | optional |
-| root_device_name            | STRING | ["="]     | optional |
-| root_device_type            | STRING | ["="]     | optional |
-| subnet_id                   | STRING | ["="]     | optional |
-| virtualization_type         | STRING | ["="]     | optional |
-| vpc_id                      | STRING | ["="]     | optional |
-+-----------------------------+--------+-----------+----------+
++-----------------+--------+------------+----------+
+| name            | type   | operators  | required |
++-----------------+--------+------------+----------+
+| vpc_id          | STRING | ["="]      | optional |
+| cidr_block      | CIDR   | ["="]      | optional |
+| state           | STRING | ["="]      | optional |
+| is_default      | BOOL   | ["=","!="] | optional |
+| dhcp_options_id | STRING | ["="]      | optional |
+| owner_id        | STRING | ["="]      | optional |
++-----------------+--------+------------+----------+
 ```
