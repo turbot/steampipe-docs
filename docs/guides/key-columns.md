@@ -21,52 +21,13 @@ Key columns are table-specific; they work with the capabilities of the underlyin
 The easiest way is to look in the table documentation on the [Steampipe Hub](https://hub.steampipe.io/plugins).  Every table will have a page in the hub that includes a table of `schema` information, including which key column operators are supported.  
 
 For example: 
-https://hub.steampipe.io/plugins/turbot/aws/tables/aws_ec2_instance#inspect  
+https://hub.steampipe.io/plugins/turbot/aws/tables/aws_ec2_instance#inspect 
 
+
+Alternatively, if you are running the Steampipe CLI, you can get the key column information from the [`steampipe_plugin_column` table](#introspecting-key-columns).
 <!--
 [ screen shot here?]
 -->
-
-If you are running the Steampipe CLI, you can also get the information from the `steampipe_plugin_column` table, though this is a bit more involved:
-
-```sql
-select
-  name,
-  type,
-  (get_config || list_config) -> 'operators' as operators,
-  coalesce((get_config || list_config) ->> 'required', 'optional') as required
-from 
-  steampipe_plugin_column
-where
-  (get_config || list_config) -> 'operators' is not null
-  and table_name = 'aws_ec2_instance' ;
-```
-
-```sql
-+-----------------------------+--------+-----------+----------+
-| name                        | type   | operators | required |
-+-----------------------------+--------+-----------+----------+
-| instance_id                 | STRING | ["="]     | optional |
-| instance_type               | STRING | ["="]     | optional |
-| instance_state              | STRING | ["="]     | optional |
-| monitoring_state            | STRING | ["="]     | optional |
-| hypervisor                  | STRING | ["="]     | optional |
-| iam_instance_profile_arn    | STRING | ["="]     | optional |
-| image_id                    | STRING | ["="]     | optional |
-| instance_lifecycle          | STRING | ["="]     | optional |
-| outpost_arn                 | STRING | ["="]     | optional |
-| placement_availability_zone | STRING | ["="]     | optional |
-| placement_group_name        | STRING | ["="]     | optional |
-| placement_tenancy           | STRING | ["="]     | optional |
-| public_dns_name             | STRING | ["="]     | optional |
-| ram_disk_id                 | STRING | ["="]     | optional |
-| root_device_name            | STRING | ["="]     | optional |
-| root_device_type            | STRING | ["="]     | optional |
-| subnet_id                   | STRING | ["="]     | optional |
-| virtualization_type         | STRING | ["="]     | optional |
-| vpc_id                      | STRING | ["="]     | optional |
-+-----------------------------+--------+-----------+----------+
-```
 
 
 ### Required Key Columns
@@ -125,7 +86,6 @@ Error: rpc error: code = Internal desc = 'List' call for table 'github_user' is 
 
 ```
 
-
 ### Supported Operators
 
 **Not all key columns support all operators** and the [Hub documentation](https://hub.steampipe.io/plugins) will tell you which are supported for a given column.  
@@ -165,3 +125,47 @@ In the planning phase, Steampipe assigns a lower cost to plans that filter on ke
 In the execution phase, the database will call the appropriate [List, Get, and Hydrate functions](/docs/develop/writing-plugins#hydrate-functions) in the plugin. The plugin will then make API calls using the key columns to fetch data only for the rows it needs. 
 
 After the data is fetched, the database engine will do additional filtering for the qualifiers that are not key columns, as well as any sorting, formatting, or aggregation that is required.
+
+
+## Introspecting Key Columns
+
+If you are running the Steampipe CLI, you can get the key column information from the `steampipe_plugin_column` table:
+
+```sql
+select
+  name,
+  type,
+  (get_config || list_config) -> 'operators' as operators,
+  coalesce((get_config || list_config) ->> 'required', 'optional') as required
+from 
+  steampipe_plugin_column
+where
+  (get_config || list_config) -> 'operators' is not null
+  and table_name = 'aws_ec2_instance' ;
+```
+
+```sql
++-----------------------------+--------+-----------+----------+
+| name                        | type   | operators | required |
++-----------------------------+--------+-----------+----------+
+| instance_id                 | STRING | ["="]     | optional |
+| instance_type               | STRING | ["="]     | optional |
+| instance_state              | STRING | ["="]     | optional |
+| monitoring_state            | STRING | ["="]     | optional |
+| hypervisor                  | STRING | ["="]     | optional |
+| iam_instance_profile_arn    | STRING | ["="]     | optional |
+| image_id                    | STRING | ["="]     | optional |
+| instance_lifecycle          | STRING | ["="]     | optional |
+| outpost_arn                 | STRING | ["="]     | optional |
+| placement_availability_zone | STRING | ["="]     | optional |
+| placement_group_name        | STRING | ["="]     | optional |
+| placement_tenancy           | STRING | ["="]     | optional |
+| public_dns_name             | STRING | ["="]     | optional |
+| ram_disk_id                 | STRING | ["="]     | optional |
+| root_device_name            | STRING | ["="]     | optional |
+| root_device_type            | STRING | ["="]     | optional |
+| subnet_id                   | STRING | ["="]     | optional |
+| virtualization_type         | STRING | ["="]     | optional |
+| vpc_id                      | STRING | ["="]     | optional |
++-----------------------------+--------+-----------+----------+
+```
