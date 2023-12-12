@@ -1,12 +1,8 @@
 ![image](https://steampipe.io/images/steampipe-social-preview-4.png)
 
-# Steampipe Docs
+# Steampipe docs format & structure
 
-The [Steampipe Documentation](https://steampipe.io/docs) is open source! You can give us feedback and request for changes by submitting issues and pull requests in this repository.
-
-## Format & Structure
-
-Docs are written in markdown format and are located in `docs` folder. The entry-point document will contain front-matter with `slug: /`.
+Docs are written in Markdown format and are located in the `docs` folder. The entry-point document will contain front-matter with `slug: /`.
 
 Each document requires the following frontmatter, adjust the values as per your requirement:
 
@@ -62,3 +58,9 @@ For contributions that will take a significant amount of time, [open a new issue
 ## Finding contributions to work on
 
 If you'd like to contribute, but don't have a project in mind, look at the [open issues](https://github.com/turbot/steampipe-docs/issues/news) in this repository for some ideas.
+
+## Open Source & Contributing
+
+This repository is published under the [CC BY-NC-ND](https://creativecommons.org/licenses/by-nc-nd/4.0/) license. Please see our [code of conduct](https://github.com/turbot/.github/blob/main/CODE_OF_CONDUCT.md). Contributors must sign our [Contributor License Agreement](https://turbot.com/open-source#cla) as part of their first pull request. We look forward to collaborating with you!
+
+[Steampipe](https://steampipe.io) is a product produced from this open source software, exclusively by [Turbot HQ, Inc](https://turbot.com). It is distributed under our commercial terms. Others are allowed to make their own distribution of the software, but they cannot use any of the Turbot trademarks, cloud services, etc. You can learn more in our [Open Source FAQ](https://turbot.com/open-source).
