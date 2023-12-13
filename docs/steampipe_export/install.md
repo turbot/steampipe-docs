@@ -27,7 +27,6 @@ Created temporary directory at /var/folders/t4/1lm46wt12sv7yq1gp1swn3jr0000gn/T/
 
 Downloading steampipe_export_aws.darwin_arm64.tar.gz...
 ###################################################################################################################################################################### 100.0%
-Warning: Got more output options than URLs
 Deflating downloaded archive
 x steampipe_export_aws
 Installing
