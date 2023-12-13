@@ -5,7 +5,7 @@ sidebar_label: Install
 
 # Installing Steampipe Postgres FDW
 
-Each Steampipe plugin is distributed as a distinct Steampipe Postgres FDW.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [Steampipe Postgres FDW install script](https://steampipe.io/install/postgres.sh) script:
+Each Steampipe plugin is distributed as a distinct Steampipe Postgres FDW.  They are available for download in the **Releases** for the corresponding plugin repo, however it is simplest to install them with the [Steampipe Postgres FDW install script](https://steampipe.io/install/postgres.sh):
 
 ```bash
 /bin/sh -c "$(curl -fsSL https://steampipe.io/install/postgres.sh)"
