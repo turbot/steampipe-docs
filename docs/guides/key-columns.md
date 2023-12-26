@@ -139,7 +139,7 @@ select
   name,
   type,
   (get_config || list_config) -> 'operators' as operators,
-  coalesce((get_config || list_config) ->> 'required', 'optional') as required
+  coalesce((get_config || list_config) ->> 'require', 'optional') as required
 from 
   steampipe_plugin_column
 where
