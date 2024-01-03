@@ -138,13 +138,13 @@ If you are running the Steampipe CLI, you can get the key column information fro
 select
   name,
   type,
-  (get_config || list_config) -> 'operators' as operators,
+  (coalesce(get_config, '{}') || coalesce(list_config, '{}')) -> 'operators' as operators,
   coalesce((get_config || list_config) ->> 'require', 'optional') as required
 from 
   steampipe_plugin_column
 where
-  (get_config || list_config) -> 'operators' is not null
-  and table_name = 'aws_vpc' ;
+  (coalesce(get_config, '{}') || coalesce(list_config, '{}')) -> 'operators' is not null
+  and table_name = 'aws_vpc';
 ```
 
 ```sql
