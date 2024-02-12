@@ -201,6 +201,7 @@
           "reference/env-vars/steampipe_max_parallel",
           "reference/env-vars/steampipe_memory_max_mb",
           "reference/env-vars/steampipe_mod_location",
+          "reference/env-vars/steampipe_otel_insecure",
           "reference/env-vars/steampipe_otel_level",
           "reference/env-vars/steampipe_plugin_memory_max_mb",
           "reference/env-vars/steampipe_query_timeout",
@@ -208,7 +209,6 @@
           "reference/env-vars/steampipe_telemetry",
           "reference/env-vars/steampipe_update_check",
           "reference/env-vars/steampipe_workspace",
-          "reference/env-vars/steampipe_workspace_chdir",
           "reference/env-vars/steampipe_workspace_database"
         ]
       },
