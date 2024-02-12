@@ -33,6 +33,7 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [STEAMPIPE_MAX_PARALLEL](reference/env-vars/steampipe_max_parallel)  | `10` | Set the maximum number of parallel executions.
 | [STEAMPIPE_MEMORY_MAX_MB](reference/env-vars/steampipe_memory_max_mb)| `1024` | Set a soft memory limit for the `steampipe` process.
 | [STEAMPIPE_MOD_LOCATION](reference/env-vars/steampipe_mod_location)  | current working directory | Set the workspace working directory.
+| [STEAMPIPE_OTEL_INSECURE](reference/env-vars/steampipe_otel_insecure)  | `false` | Bypass the SSL/TLS secure connection requirements when connecting to an OpenTelemetry server.
 | [STEAMPIPE_OTEL_LEVEL](reference/env-vars/steampipe_otel_level)  | `NONE` | Specify which [OpenTelemetry](https://opentelemetry.io/) data to send via OTLP.
 | [STEAMPIPE_PLUGIN_MEMORY_MAX_MB](reference/env-vars/steampipe_plugin_memory_max_mb)| `1024` | Set a default memory soft limit for each plugin process.
 | [STEAMPIPE_QUERY_TIMEOUT](reference/env-vars/steampipe_query_timeout)  |  `240` for controls, unlimited in all other cases. | Set the amount of time to wait for a query to complete before timing out, in seconds.
