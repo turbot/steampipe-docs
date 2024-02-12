@@ -104,7 +104,7 @@ Creating your own named queries is simple.  First, you need to create a mod for 
 mkdir my-queries
 ```
 
-By default, Steampipe looks for mods in the current directory, though you can specify a different directory with the `--workspace-chdir` argument.  Lets change to that directory and initialize the mod:
+By default, Steampipe looks for mods in the current directory, though you can specify a different directory with the `-mod-location` argument.  Lets change to that directory and initialize the mod:
 
 ```bash 
 cd my-queries

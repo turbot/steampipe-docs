@@ -209,7 +209,6 @@
           "reference/env-vars/steampipe_telemetry",
           "reference/env-vars/steampipe_update_check",
           "reference/env-vars/steampipe_workspace",
-          "reference/env-vars/steampipe_workspace_chdir",
           "reference/env-vars/steampipe_workspace_database"
         ]
       },

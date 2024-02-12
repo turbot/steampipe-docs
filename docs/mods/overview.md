@@ -14,7 +14,7 @@ You can install a mod by cloning the repository:
 git clone https://github.com/turbot/steampipe-mod-aws-compliance.git
 ```
 
-Unlike plugins which are installed to the `~/.steampipe` directory, mods are installed into (and loaded from) the current working directory.  Alternatively, you may specify a path with the `--workspace--chdir` argument:
+Unlike plugins which are installed to the `~/.steampipe` directory, mods are installed into (and loaded from) the current working directory.  Alternatively, you may specify a path with the `--mod-location` argument:
 
 ```bash
 steampipe query --mod-location  steampipe-mod-aws-compliance

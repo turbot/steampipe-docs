@@ -6,7 +6,7 @@ sidebar_label: steampipe dashboard
 # steampipe dashboard
 Run the Steampipe Dashboard server.
 
-The Dashboard loads the `mod` in the current working directory or the `--workspace-chdir` and listens for changes to dashboards defined in the `mod`.
+The Dashboard loads the `mod` in the current working directory or the `--mod-location` and listens for changes to dashboards defined in the `mod`.
 
 ## Usage
 Run [Steampipe Dashboard](/docs/dashboard/overview) interactively:
