@@ -10,7 +10,7 @@ sidebar_label: Batch Snapshots
 > - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
 > - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
 
-*To upload snapshots to Turbot Pipes, you must either [log in via the `steampipe login` command](/docs/reference/cli/login) or create an [API token](https://turbot.com/pipes/docs/profile#tokens) and pass it via the [`--cloud-token`](/docs/reference/cli/overview#global-flags) flag or [`STEAMPIPE_CLOUD_TOKEN`](/docs/reference/env-vars/steampipe_cloud_token) environment variable.*
+*To upload snapshots to Turbot Pipes, you must either [log in via the `steampipe login` command](/docs/reference/cli/login) or create an [API token](https://turbot.com/pipes/docs/profile#tokens) and pass it via the [`--pipes-token`](/docs/reference/cli/overview#global-flags) flag or [`PIPES_TOKEN`](/docs/reference/env-vars/pipes_token) environment variable.*
 
 To take a snapshot and save it to [Turbot Pipes](https://turbot.com/pipes/docs), simply add the `--snapshot` flag to your command.  
 

@@ -38,12 +38,12 @@ steampipe check list
   </tr>
   <tr> 
     <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-host</inlineCode>. </td> 
   </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-token</inlineCode>. </td> 
   </tr>
 
   <tr> 
@@ -95,6 +95,16 @@ steampipe check list
   <tr> 
     <td nowrap="true"> <inlineCode>--output string</inlineCode> </td> 
     <td>  Select the console <a href="#output-formats">output format</a>.  Defaults to <inlineCode>text</inlineCode>. Possible values are <inlineCode>brief, csv, html, json, md, sps (snapshot), text, none</inlineCode> </td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--pipes-host</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_host">PIPES_HOST</a> for details.</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--pipes-token</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_token">PIPES_TOKEN</a> for details.</td> 
   </tr>
 
   <tr> 

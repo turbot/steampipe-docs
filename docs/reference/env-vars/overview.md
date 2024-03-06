@@ -9,7 +9,7 @@ sidebar_label:  Environment Variables
 
 Steampipe supports environment variables to allow you to change its default behavior.  These are optional settings - You are not required to set any environment variables.
 
-Note that plugins may also support environment variables, but these are plugin-specific - refer to your plugin's documentation on the hub.steampipe.io for details.
+Note that plugins may also support environment variables, but these are plugin-specific - refer to your plugin's documentation on hub.steampipe.io for details.
 
 ## Steampipe Environment Variables
 
@@ -21,8 +21,8 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [STEAMPIPE_CACHE_MAX_SIZE_MB](reference/env-vars/steampipe_cache_max_size_mb)| unlimited | Set the maximum size of the query cache across all plugins. [DEPRECATED - use `STEAMPIPE_PLUGIN_MEMORY_MAX_MB`].
 | [STEAMPIPE_CACHE_MAX_TTL](reference/env-vars/steampipe_cache_max_ttl)| `300` | The maximum amount of time to cache results, in seconds.
 | [STEAMPIPE_CACHE_TTL](reference/env-vars/steampipe_cache_ttl)| `300` | The amount of time to cache results, in seconds.
-| [STEAMPIPE_CLOUD_HOST](reference/env-vars/steampipe_cloud_host)  | `pipes.turbot.com` | Set the Turbot Pipes host, for connecting to Turbot Pipes workspace.
-| [STEAMPIPE_CLOUD_TOKEN](reference/env-vars/steampipe_cloud_token)  |  | Set the Turbot Pipes authentication token for connecting to Turbot Pipes workspace.
+| [STEAMPIPE_CLOUD_HOST](reference/env-vars/steampipe_cloud_host)  | `pipes.turbot.com` | Set the Turbot Pipes host, for connecting to Turbot Pipes workspace. DEPRECATED - Use [`PIPES_HOST`](/docs/reference/env-vars/pipes_host)
+| [STEAMPIPE_CLOUD_TOKEN](reference/env-vars/steampipe_cloud_token)  |  | Set the Turbot Pipes authentication token for connecting to Turbot Pipes workspace. DEPRECATED - Use [`PIPES_TOKEN`](/docs/reference/env-vars/pipes_token).
 | [STEAMPIPE_DATABASE_PASSWORD](reference/env-vars/steampipe_database_password)| randomly generated | Set the steampipe database password for this session.  This variable must be set when the steampipe service starts.
 | [STEAMPIPE_DATABASE_START_TIMEOUT](reference/env-vars/steampipe_database_start_timeout)| `30` | Set the maximum time (in seconds) to wait for the Postgres process to start accepting queries after it has been started.
 | [STEAMPIPE_DIAGNOSTIC_LEVEL](reference/env-vars/steampipe_diagnostic_level)| `NONE` | Sets the diagnostic level.  Supported levels are `ALL`, `NONE`.

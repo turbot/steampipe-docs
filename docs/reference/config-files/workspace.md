@@ -51,14 +51,16 @@ Any unset arguments will assume the default values.
 | `base`              |                                               | A reference to a named workspace resource that this workspace should source its definition from. Any argument can be overridden after sourcing via base.
 | `cache`             | `true`                                        | Enable/disable caching.  Note that is a **client**  setting -  if the database (`options "database"`) has the cache disabled, then the cache is disabled regardless of the workspace setting. <br /> <br /> Env: [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache)
 | `cache_ttl`         | `300`                                         | Set the client query cache expiration (TTL) in seconds.  Note that is a **client**  setting - if the database `cache_max_ttl` is lower than the `cache_ttl` in the workspace, then the effective ttl for this workspace is the `cache_max_ttl`. <br /> <br /> Env: [STEAMPIPE_CACHE_TTL](/docs/reference/env-vars/steampipe_cache_ttl)
-| `cloud_host`        | `pipes.turbot.com`                          | Set the Turbot Pipes host for connecting to Turbot Pipes workspace. <br /> <br /> Env: [STEAMPIPE_CLOUD_HOST](/docs/reference/env-vars/steampipe_cloud_host), [PIPES_HOST](/docs/reference/env-vars/pipes_host)  <br /> CLI: `--cloud-host`
-| `cloud_token`       | The token obtained by `steampipe login`       | Set the Turbot Pipes authentication token for connecting to a Turbot Pipes workspace.  This may be a token obtained by `steampipe login` or a user-generated [token](https://turbot.com/pipes/docs/profile#tokens). <br /> <br /> Env: [STEAMPIPE_CLOUD_TOKEN](/docs/reference/env-vars/steampipe_cloud_token), [PIPES_TOKEN](/docs/reference/env-vars/pipes_token)   <br /> CLI: `--cloud-token`
+| `cloud_host`        | `pipes.turbot.com`                          | Set the Turbot Pipes host for connecting to Turbot Pipes workspace. DEPRECATED - Use `pipes_host`. <br /> <br /> Env: [STEAMPIPE_CLOUD_HOST](/docs/reference/env-vars/steampipe_cloud_host), [PIPES_HOST](/docs/reference/env-vars/pipes_host)  <br /> CLI: `--cloud-host`
+| `cloud_token`       | The token obtained by `steampipe login`       | Set the Turbot Pipes authentication token for connecting to a Turbot Pipes workspace.  DEPRECATED - Use `pipes_token`, <br /> <br /> Env: [STEAMPIPE_CLOUD_TOKEN](/docs/reference/env-vars/steampipe_cloud_token), [PIPES_TOKEN](/docs/reference/env-vars/pipes_token)   <br /> CLI: `--cloud-token`
 | `input`             | `true`                                        | Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, set to `false`. This is useful when running from scripts.   <br /> <br /> CLI: `--input`
 | `install_dir`       | `~/.steampipe`                                | The directory in which the Steampipe database, plugins, and supporting files can be found. <br /> <br /> Env: [STEAMPIPE_INSTALL_DIR](/docs/reference/env-vars/steampipe_install_dir)  <br /> CLI: `--install-dir`
 | `introspection`     | `none`                                        | Enable introspection tables that allow you to query the mod resources in the workspace.  Supported values are `none` and `info`. <br /> <br /> Env:  [STEAMPIPE_INTROSPECTION](/docs/reference/env-vars/steampipe_introspection)
 | `max_parallel`      | `5`                                           | Set the maximum number of parallel executions. When running steampipe check, Steampipe will attempt to run up to this many controls in parallel. <br /> <br /> Env: [STEAMPIPE_MAX_PARALLEL](/docs/reference/env-vars/steampipe_max_parallel)  <br /> CLI: `--max-parallel`
 | `mod_location`      | The current working directory                 | Set the workspace working directory. <br /> <br /> Env: [STEAMPIPE_MOD_LOCATION](/docs/reference/env-vars/steampipe_mod_location)  <br /> CLI: `--mod-location`
 | `options`           |                                               | An options block to set command-specific options for this workspace.  [Query](#steampipe-query-options), [check](#steampipe-check-options), and [dashboard](#steampipe-dashboard-options) options are supported.
+| `pipes_host`        | `pipes.turbot.com`                          | Set the Turbot Pipes host for connecting to Turbot Pipes workspace. <br /> <br /> Env: [PIPES_HOST](/docs/reference/env-vars/pipes_host)  <br /> CLI: `--pipes-host`
+| `pipes_token`       | The token obtained by `steampipe login`       | Set the Turbot Pipes authentication token for connecting to a Turbot Pipes workspace.  This may be a token obtained by `steampipe login` or a user-generated [token](https://turbot.com/pipes/docs/profile#tokens). <br /> <br /> Env: [PIPES_TOKEN](/docs/reference/env-vars/pipes_TOKEN) <br /> CLI: `--pipes-token`
 | `progress`          | `true`                                        | Enable or disable progress information.  <br /> <br />CLI: `--progress`
 | `query_timeout`     | `240` for controls, unlimited otherwise       | The maximum time (in seconds) a query is allowed to run before it times out. <br /> <br /> Env: [STEAMPIPE_QUERY_TIMEOUT](/docs/reference/env-vars/steampipe_query_timeout)  <br /> CLI: `--query_timeout`
 | `search_path`       | `public`, then alphabetical                   | A comma-separated list of connections to use as a custom search path for the control run. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).   <br /> <br />CLI: `--search-path`   
@@ -78,7 +80,7 @@ Any unset arguments will assume the default values.
 
 A `workspace` may include a `options "query"` block to specify values specific to the `steampipe query` command.  
 
-These option often correspond to CLI flags.
+These options often correspond to CLI flags.
 
 <table>
   <thead>
@@ -200,8 +202,8 @@ workspace "dev" {
 }
 
 workspace "all_options" {
-  cloud_host          = "pipes.turbot.com"
-  cloud_token         = "tpt_999faketoken99999999_111faketoken1111111111111"
+  pipes_host          = "pipes.turbot.com"
+  pipes_token         = "tpt_999faketoken99999999_111faketoken1111111111111"
   install_dir         = "~/steampipe2"
   mod_location        = "~/src/steampipe-mod-aws-insights"  
   query_timeout       = 300

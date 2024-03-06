@@ -4,9 +4,12 @@ sidebar_label: STEAMPIPE_CLOUD_HOST
 ---
 
 # STEAMPIPE_CLOUD_HOST
-Sets a remote cloud host used when connecting to Turbot Pipes workspaces.  The default is `pipes.turbot.com` -- you only need to set this if you are connecting to a remote Turbot Pipes database that is NOT hosted in `pipes.turbot.com`, such as a dev/test instance.  Your `STEAMPIPE_CLOUD_TOKEN` must be valid for the `STEAMPIPE_CLOUD_HOST`.
 
-Alternatively, you can set the cloud host in the [`PIPES_HOST` environment variable](/docs/reference/env-vars/pipes_host). Note that `PIPES_HOST` has lower precedence than `STEAMPIPE_CLOUD_HOST` - if both are set then `STEAMPIPE_CLOUD_HOST` will be used.
+> `STEAMPIPE_CLOUD_HOST` host is deprecated.  Use [`PIPES_HOST`](/docs/reference/env-vars/pipes_host).
+
+Sets a remote cloud host used when connecting to Turbot Pipes workspaces.  The default is `pipes.turbot.com` -- you only need to set this if you are connecting to a remote Turbot Pipes database that is NOT hosted in `pipes.turbot.com`, such as an enterprise tenant instance.  Your `STEAMPIPE_CLOUD_TOKEN` must be valid for the `STEAMPIPE_CLOUD_HOST`.
+
+
 
 ## Usage 
 Default to use workspaces in `test.steampipe.io`:
