@@ -5,6 +5,11 @@ sidebar_label: Using Variables
 
 # Using Variables
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 [Variables](reference/mod-resources/variable) are module level objects that allow you to pass values to your module at runtime.  When running Steampipe, you can pass values on the command line or from a `.spvars` file, and you will be prompted for any variables that have no values.
 
 [Locals](reference/mod-resources/locals) are internal, private variables used only *within* your mod - you cannot pass values in at runtime.

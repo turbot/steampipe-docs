@@ -5,6 +5,11 @@ sidebar_label: dashboard
 
 # dashboard
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 A dashboard is designed to be used by consumers of your mod to answer specific questions, such as "How many public AWS buckets do I have?" or "Show me the number of aging Zendesk tickets by owner".
 
 Dashboards can be declared as named resources at the top-level of a mod, or be nested inside another `dashboard` or `container` by using a named `dashboard` with `base = <mod>.dashboard.<dashboard_resource_name>`.

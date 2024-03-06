@@ -5,6 +5,11 @@ sidebar_label: container
 
 # container
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 A container groups and arranges related items within a dashboard. For example, you may want to group together a number of different charts for a specific AWS service.
 
 Containers can only be declared as anonymous blocks inside a `dashboard` or `container`.

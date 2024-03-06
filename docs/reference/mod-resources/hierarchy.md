@@ -5,6 +5,11 @@ sidebar_label: hierarchy
 
 # hierarchy
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 A hierarchy allows visualization of queries using types such as `tree`.    Hierarchies are [node/edge visualizations](/docs/reference/mod-resources/graph#nodeedge-visualizations).  The data to be displayed is specified using a series of nodes and edges. The nodes define the vertices of the graph, and the edges define the connections between them.
 
 Hierarchy blocks can be declared as named resources at the top level of a mod, or be declared as anonymous blocks inside a `dashboard` or `container`, or be re-used inside a `dashboard` or `container` by using a `hierarchy` with `base = <mod>.hierarchy.<hierarchy_resource_name>`.

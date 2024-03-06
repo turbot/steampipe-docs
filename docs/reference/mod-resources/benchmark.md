@@ -3,8 +3,12 @@ title: benchmark
 sidebar_label: benchmark
 ---
 
-
 # benchmark
+
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
 
 The benchmark block provides a mechanism for grouping controls into control benchmarks, and into sections within a control benchmark.  For instance, the AWS mod has separate top-level benchmarks for CIS, NIST, PCI, etc.  Each of these benchmarks may have sub-level benchmarks to organize controls in a way that reflects that particular control framework - one for each section or subsection in CIS, one for each CSF Core Function and subcategory for NIST, etc.
 

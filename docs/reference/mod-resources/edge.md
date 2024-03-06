@@ -5,6 +5,11 @@ sidebar_label: edge
 
 # edge
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 The `edge` block represents a connection between 2 nodes (vertices) in a `graph`, `hierarchy` or `flow`.  
 
 Anonymous `edge` blocks can be declared inside a `graph`, `hierarchy` or `flow`.  They may also may be declared as named resources at the top level of a mod and referenced via `base` from other edges in a `graph`, `hierarchy` or `flow`.

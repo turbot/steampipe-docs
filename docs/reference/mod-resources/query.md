@@ -4,6 +4,12 @@ sidebar_label: query
 ---
 
 # query
+
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 Queries define common SQL statements that may be used alone, or referenced in other blocks like controls and charts.
 
 Note that a Steampipe `query` is NOT a database resource. It does not create a view, stored procedure, etc.  `query` blocks are interpreted by and executed by Steampipe, and are only available from Steampipe, not from 3rd party tools.

@@ -4,6 +4,13 @@ sidebar_label: steampipe dashboard
 ---
 
 # steampipe dashboard
+
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
+
 Run the Steampipe Dashboard server.
 
 The Dashboard loads the `mod` in the current working directory or the `--mod-location` and listens for changes to dashboards defined in the `mod`.
@@ -40,12 +47,12 @@ steampipe dashboard list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-host</inlineCode>. </td> 
   </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-token</inlineCode>. </td> 
   </tr>
 
   <tr> 
@@ -100,6 +107,16 @@ steampipe dashboard list
   <tr> 
     <td nowrap="true"> <inlineCode>--output string</inlineCode> </td> 
     <td>  Select the console output format.  Possible values are <inlineCode>none, sps (snapshot)</inlineCode> (default <inlineCode>none</inlineCode>).</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--pipes-host</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_host">PIPES_HOST</a> for details.</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--pipes-token</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_token">PIPES_TOKEN</a> for details.</td> 
   </tr>
 
   <tr> 

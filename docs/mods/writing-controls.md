@@ -5,6 +5,11 @@ sidebar_label: Writing Controls
 
 # Custom Controls
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 Steampipe makes it easy to create your own [controls](/docs/reference/mod-resources/control) and [benchmarks](/docs/reference/mod-resources/benchmark).  This allows you to define the controls that are important to *you* and *your organization*, and organize them in a way that reflects your organization's standards and practices.  (Of course there are controls and benchmarks already available in [mods on the Steampipe Hub](https://hub.steampipe.io/mods) as well if you don't want to write your own).
 
 ## Tutorial

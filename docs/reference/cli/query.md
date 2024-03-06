@@ -42,12 +42,12 @@ steampipe query list
   </tr>
   <tr> 
     <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_host">STEAMPIPE_CLOUD_HOST</a> for details.</td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-host</inlineCode>. </td> 
   </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/steampipe_cloud_token">STEAMPIPE_CLOUD_TOKEN</a> for details.</td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-token</inlineCode>. </td> 
   </tr>
 
   <tr> 
@@ -83,6 +83,17 @@ steampipe query list
     <td>  Select the console output format.   Possible values are <inlineCode>line, csv, json, table, snapshot</inlineCode> (default <inlineCode>table) </inlineCode>. </td> 
   </tr>
 
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--pipes-host</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_host">PIPES_HOST</a> for details.</td> 
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--pipes-token</inlineCode> </td> 
+    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_token">PIPES_TOKEN</a> for details.</td> 
+  </tr>
+  
   <tr> 
     <td nowrap="true"> <inlineCode>--progress</inlineCode>  </td> 
     <td> Enable or disable progress information. By default, progress information is shown - set <inlineCode>--progress=false</inlineCode> to hide the progress bar.  </td>

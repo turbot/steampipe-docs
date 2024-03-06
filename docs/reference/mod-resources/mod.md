@@ -5,6 +5,12 @@ sidebar_label: mod
 
 
 # mod
+
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 Every mod must contain a `mod.sp` file with a single `mod` block.
 
 The `mod` block contains metadata for the mod (including metadata used in the hub site and social media), as well as dependency data.  A mod author may edit the mod block directly, but Steampipe will **also** edit the file, adding, removing and modifying dependencies in the file when users add and remove mods via the [`steampipe mod` commands](/docs/reference/cli/mod).  For this reason, it is recommended that the `mod.sp` *only* contain a `mod` block; do not add other mod resources (`query`, `control`, `dashboard`, etc) to this file.

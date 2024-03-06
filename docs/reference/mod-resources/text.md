@@ -5,6 +5,11 @@ sidebar_label: text
 
 # text
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 Display either rendered `markdown` ([GitHub Flavored Markdown](https://github.github.com/gfm/)) or `raw` text with no interpretation of markup.
 
 Text blocks can be declared as named resources at the top level of a mod, or be declared as anonymous blocks inside a `dashboard` or `container`, or be re-used inside a `dashboard` or `container` by using a `text` with `base = <mod>.text.<text_resource_name>`.

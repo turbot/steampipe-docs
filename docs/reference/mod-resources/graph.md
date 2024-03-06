@@ -5,6 +5,11 @@ sidebar_label: graph
 
 # graph
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 A graph is a dashboard component that allows you to visualize the relationships between different resources and understand how they are connected.
 
 Graphs can be declared as a block inside a dashboard or container. The data to be displayed in the graph is specified using a series of nodes and edges. The nodes  define the vertices of the graph, and the edges define the connections between them.

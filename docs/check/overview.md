@@ -5,6 +5,11 @@ sidebar_label: Run Benchmarks
 
 # Running Benchmarks
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 Steampipe **controls** and **benchmarks** provide a generic mechanism for defining and running control frameworks such as CIS, NIST, HIPAA, etc, as well as your own customized groups of controls.
 
 There are many control frameworks in existence today, and though they are all implemented with their own specific syntax and structure, they are generally organized in a defined, hierarchical structure, with a pass/fail type of [status](/docs/reference/mod-resources/control#control-statuses) for each item.  The control and benchmark resources allow Steampipe to provide simplified, consistent mechanisms for defining, running, and returning output from these disparate frameworks.
