@@ -9,7 +9,6 @@ sidebar_label: Viewing Details
 > Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
 > - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
 > - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
-> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
 
 Most Steampipe dashboard elements (chart, card, table, etc) support a **Panel View** that allows you to enlarge the element, inspect its definition, and easily export its data.  
 

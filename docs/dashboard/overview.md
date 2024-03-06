@@ -10,7 +10,6 @@ sidebar_label: View Dashboards
 > Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
 > - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
 > - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
-> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
 
 
 Steampipe **dashboards** provide rich visualizations of Steampipe data.  Dashboards are [written in simple HCL](/docs/reference/mod-resources/dashboard), and packaged in [mods](/docs/mods/overview).  It is simple to [create your own](mods/writing-dashboards), but there are also hundreds of dashboards available on the [Steampipe Mods](https://hub.steampipe.io/mods) section of the [Steampipe Hub](https://hub.steampipe.io).  
