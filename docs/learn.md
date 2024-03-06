@@ -203,7 +203,7 @@ where
 We've merely scratched the surface of what you can do with Steampipe!  
 
 - [Discover more plugins on the Steampipe Hub →](https://hub.steampipe.io/plugins/)
-- [Run dashboards and benchmarks with Powerpipe →](https://powerpipe.io/docs/learn)
-- [Build workflows as code with Flowpipe →](https://flowpipe.io/docs/learn)
+- [Run dashboards and benchmarks with Powerpipe →](https://powerpipe.io)
+- [Build workflows as code with Flowpipe →](https://flowpipe.io)
 - [Join #steampipe on Slack →](https://turbot.com/community/join)
-- Want to share Steampipe with your team? [Try Turbot Pipes →](https://turbot.com/pipes/docs)
+- Want to share Steampipe with your team? [Try Turbot Pipes →](https://turbot.com/pipes)
