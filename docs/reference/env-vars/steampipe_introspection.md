@@ -5,6 +5,11 @@ sidebar_label: STEAMPIPE_INTROSPECTION
 
 # STEAMPIPE_INTROSPECTION
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 Steampipe can create a set of introspection tables that allow you to query the mod resources in the workspace.  For performance reasons, introspection is disabled by default, however you can enable it by setting the `STEAMPIPE_INTROSPECTION` environment variable.
 
 Once enabled, you can query the introspection tables.  For example, you can list all the benchmarks in the workspace:

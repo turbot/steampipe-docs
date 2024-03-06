@@ -6,6 +6,11 @@ sidebar_label: variable
 
 # variable
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 [Variables](mods/mod-variables#input-variables), are module-level objects that essentially act as parameters for the module.  When running `steampipe check`, you can pass values on the command line, from a `.spvars` file, or from environment variables, and you will be prompted for any variables that have no values.
 
 You can reference variable values as `var.<NAME>`

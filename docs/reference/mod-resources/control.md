@@ -5,6 +5,11 @@ sidebar_label: control
 
 # control
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 **Controls** provide a defined structure and interface for queries that draw a specific conclusion (e.g. 'OK', 'Alarm') about each row (typically, each row represents a single evaluated 'block').  This pattern is common across multiple control benchmarks (CIS, etc) and  unit testing benchmarks (JUnit, NUnit, etc).
 
 Controls use **queries** to gather data, but contain specific metadata and return specific columns with specified values in a specific format.  

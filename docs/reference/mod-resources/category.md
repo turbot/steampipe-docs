@@ -5,6 +5,11 @@ sidebar_label: category
 
 # category
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 The `category` block defines a category for a graph node or edge.  Categories are used to define display properties for the item, such as the color, icon, and folding options.
 
 

@@ -4,6 +4,10 @@ sidebar_label: Build Mods
 ---
 # Steampipe Mods
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
 
 A Steampipe **mod** is a portable, versioned collection of related Steampipe resources such as dashboards, benchmarks, queries, and controls. Steampipe mods and mod resources are defined in HCL, and distributed as simple text files.  Modules can be found on the [Steampipe Hub](https://hub.steampipe.io), and may be shared with others from any public git repository. 
 

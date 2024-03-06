@@ -4,6 +4,13 @@ sidebar_label: steampipe dashboard
 ---
 
 # steampipe dashboard
+
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
+
 Run the Steampipe Dashboard server.
 
 The Dashboard loads the `mod` in the current working directory or the `--mod-location` and listens for changes to dashboards defined in the `mod`.

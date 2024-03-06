@@ -5,6 +5,11 @@ sidebar_label: Take Snapshots
 
 # Take Snapshots
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 Steampipe allows you to take **snapshots**.  A snapshot is a saved view of a dashboard, query, or benchmark at a given point in time with a given set of inputs and variables.  All data and metadata for a snapshot is contained in a JSON file which can be saved and viewed locally in the Steampipe Dashboard or uploaded to [Turbot Pipes](https://turbot.com/pipes/docs).  Snapshots in Turbot Pipes may be shared with other Turbot Pipes users or made public (shared with anyone that has the link).
 
 

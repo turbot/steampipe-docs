@@ -5,6 +5,11 @@ sidebar_label: chart
 
 # chart
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 A chart enables visualisation of queries in a variety of charting types such as `bar`, `column`, `donut`, `line` or `pie`.  
 
 The chart types share key properties such as shape of the data and  configuration. So, for example, if you change the type of chart from `bar` to `line` it just works. 

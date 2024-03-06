@@ -5,6 +5,12 @@ sidebar_label: steampipe variable
 
 # steampipe variable
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
+
 Manage steampipe variables in the current mod and its direct dependents.
 
 

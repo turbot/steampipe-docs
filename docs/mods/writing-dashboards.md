@@ -5,6 +5,12 @@ sidebar_label: Writing Dashboards
 
 # Steampipe Dashboards
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
+
 A Steampipe [dashboard](reference/mod-resources/dashboard) uses a combination of HCL and SQL to visualize data in a variety of ways. This *dashboards as code* approach makes it easy to create and combine charts and tables, style them, and make them interactive. Use your favorite text editor, receive immediate feedback as you type, and manage your dashboards on GitHub with all your other code artifacts.
 
 ## Tutorial

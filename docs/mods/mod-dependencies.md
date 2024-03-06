@@ -5,6 +5,11 @@ sidebar_label: Mod Dependencies
 
 # Mod Dependencies
 
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
 Steampipe mods may depend on other mods, allowing you to quickly and easily extend them with additional features and functionality.  
 
 To add a dependency, run `steampipe mod install` from the root directory of your mod, specifying the path to the mod's Github repo:

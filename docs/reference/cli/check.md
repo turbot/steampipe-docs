@@ -4,8 +4,15 @@ sidebar_label: steampipe check
 ---
 
 
-
 # steampipe check
+
+> ***Powerpipe is now the recommended way to run dashboards and benchmarks!***
+> Mods still work as normal in Steampipe for now, but they are deprecated and will be removed in a future release:
+> - [Steampipe Unbundled →](https://steampipe.io/blog/steampipe-unbundled)
+> - [Powerpipe for Steampipe users →](https://powerpipe.io/blog/migrating-from-steampipe)
+
+
+
 Execute one or more Steampipe benchmarks and controls.
 
 You may specify one or more benchmarks or controls to run, or run `steampipe check all` to run all controls in the workspace.
