@@ -8,7 +8,7 @@ slug: /
 # Learn Steampipe
 
 Steampipe provides zero-ETL tools for fetching data directly from APIs and services.  Steampipe is offered in several distributions:
-- The **Steampipe CLI** exposes APIs and services as a high-performance relational database, enabling you to write SQL-based queries to explore dynamic data. Mods extend Steampipe's capabilities with dashboards, reports, and controls built with simple [HCL](https://github.com/hashicorp/hcl). The Steampipe CLI is a turnkey solution that includes its own Postgres database, plugin management, and mod support.
+- The **Steampipe CLI** exposes APIs and services as a high-performance relational database, enabling you to write SQL-based queries to explore dynamic data. The Steampipe CLI is a turnkey solution that includes its own PostgreSQL database including plugin management.
 - **[Steampipe Postgres FDWs](/docs/steampipe_postgres/overview)** are native Postgres Foreign Data Wrappers that translate APIs to foreign tables.  Unlike Steampipe CLI, which ships with its own Postgres server instance, the Steampipe Postgres FDWs can be installed in any supported Postgres database version.
 - **[Steampipe SQLite Extensions](/docs/steampipe_sqlite/overview)** provide SQLite virtual tables that translate your queries into API calls, transparently fetching information from your API or service as you request it.
 - **[Steampipe Export CLIs](/docs/steampipe_export/overview)** provide a flexible mechanism for exporting information from cloud services and APIs.  Each exporter is a stand-alone binary that allows you to extract data using Steampipe plugins *without a database*.
@@ -198,62 +198,12 @@ where
 ```
 
 
+## What's Next?
 
-## View Dashboards
-While Steampipe plugins provide an easy way to query your configuration, Steampipe [mods](/docs/mods/overview) allows you to create and share dashboards, reports, and controls.
+We've merely scratched the surface of what you can do with Steampipe!  
 
-Steampipe **dashboards** allow you to visualize your steampipe data.
-
-Let's download the AWS Insights mod and view the dashboards.  First, let's clone the repo:
-
-```bash
-git clone https://github.com/turbot/steampipe-mod-aws-insights.git
-```
-
-Now, let's change to that directory and run `steampipe dashboard`:
-```bash
-cd steampipe-mod-aws-insights
-steampipe dashboard
-```
-
-<img src="/images/docs/dashboard_home.png" width="100%" />
-
-
-Steampipe will load the embedded web server on port 9194 and open `http://localhost:9194/` in your browser.  The home page lists the available dashboards and is searchable by title or tags.  Click on the title of a report to view it.  For example, click the `AWS CloudTrail Trail Dashboard` to view it.
-
-<img src="/images/docs/cloudtrail_dash_ex.png" width="100%" />
-
-You can type in the search bar at the top of any page to navigate to another dashboard.  Alternatively, you can click the Steampipe logo in the top left to return to the home page.  When you are finished, you can return to the terminal console and type `Ctrl+c` to exit.
-
-There are hundreds of dashboards packaged in [Steampipe Mods](https://hub.steampipe.io/mods) available on the [Steampipe Hub](https://hub.steampipe.io).  You can also [create your own dashboards](/docs/mods/writing-dashboards) - it's simple, fast, and fun!
-
-## Run Controls
-Steampipe mods can also define **benchmarks and controls** to assess your environment against security, compliance, operational, and cost controls.
-
-Let's download the AWS compliance mod and run some benchmarks.  The AWS compliance mod contains benchmarks and controls to evaluate your AWS account against various compliance frameworks, such as the [CIS Amazon Web Services Foundations Benchmark](https://www.cisecurity.org/benchmark/amazon_web_services/).
-
-Lets clone the repo:
-
-```bash
-git clone https://github.com/turbot/steampipe-mod-aws-compliance.git
-```
-
-Steampipe benchmarks automatically appear as [dashboards](/docs/dashboard/overview) when you run `steampipe dashboard` in the mod.  From the dashboard home, you can select any benchmark to run and view it in an interactive HTML format.  You can even export the benchmark results as a CSV from the [panel view](/docs/dashboard/panel).
-
-<img src="/images/reference_examples/benchmark_dashboard_view.png" />
-
-<br />
-
-You can also run controls and benchmarks in batch mode with the [steampipe check](/docs/reference/cli/check) command.  The `steampipe check` command provides options for selecting which controls to run, supports many output formats, and provides capabilities often required when using `steampipe` in your scripts, pipelines, and other automation scenarios.
-
-We can run ALL the benchmarks in the mod with the `steampipe check` command:
-
-```bash
-steampipe check all
-```
-
-The console will show progress as its runs, and will print the results to the screen when it is complete:
-
-<img src="/images/steampipe-check-output-sample-1.png" width="100%" />
-
-`steampipe check` provides a flexible interface for [running controls](docs/check/overview), including options to select which controls to run and [control the output format](docs/check/formatting). You can find many more controls and benchmarks on the [Steampipe Hub](https://hub.steampipe.io/mods). You can even [create your own controls and benchmarks](docs/mods/writing-controls)!
+- [Discover more plugins on the Steampipe Hub →](https://hub.steampipe.io/plugins/)
+- [Run dashboards and benchmarks with Powerpipe →](https://powerpipe.io/docs/learn)
+- [Build workflows as code with Flowpipe →](https://flowpipe.io/docs/learn)
+- [Join #steampipe on Slack →](https://turbot.com/community/join)
+- Want to share Steampipe with your team? [Try Turbot Pipes →](https://turbot.com/pipes/docs)
