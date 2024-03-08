@@ -69,8 +69,7 @@
       "managing/service",
       "managing/plugins",
       "managing/connections",
-      "managing/workspaces",
-      "managing/containers"
+      "managing/workspaces"
     ]
   },
   {
@@ -291,5 +290,12 @@
       "steampipe_export/install",
       "steampipe_export/run"
     ]
+  },
+
+  {
+    "type": "category",
+    "id": "faq",
+    "link": "faq/overview",
+    "items": []
   }
 ]
