@@ -78,10 +78,10 @@ Managing the Steampipe service:
 
 ## Starting database with a private key protected with a passphrase
 
-You can run `steampipe service start` with a private key protected with a passphrase, use the `--database-ssl-password` flag
+You can run `steampipe service start` with a private key protected with a passphrase, use the `STEAMPIPE_DATABASE_SSL_PASSWORD` environement variable
 
 ```bash
-$ steampipe service start --database-ssl-password my-passphrase
+$ STEAMPIPE_DATABASE_SSL_PASSWORD=my-passphrase steampipe service start
 
 Steampipe service is running:
 
