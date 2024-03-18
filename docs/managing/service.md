@@ -12,7 +12,8 @@ Alternatively, you can run Steampipe in service mode.  Running `steampipe servic
 ## Starting the database in service mode
 
 When you run `steampipe service start`, Steampipe will start in service mode.  Steampipe prints connection information to the console that you can use in connection strings for your application or 3rd party tools:
-```
+
+```bash
 $ steampipe service start
 
 Steampipe service is running:
@@ -30,10 +31,10 @@ Managing the Steampipe service:
 
   # Get status of the service
   steampipe service status
-  
+
   # Restart the service
   steampipe service restart
-  
+
   # Stop the service
   steampipe service stop
 
@@ -66,10 +67,10 @@ Managing the Steampipe service:
 
   # Get status of the service
   steampipe service status
-  
+
   # Restart the service
   steampipe service restart
-  
+
   # Stop the service
   steampipe service stop
 
