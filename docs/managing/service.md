@@ -12,7 +12,8 @@ Alternatively, you can run Steampipe in service mode.  Running `steampipe servic
 ## Starting the database in service mode
 
 When you run `steampipe service start`, Steampipe will start in service mode.  Steampipe prints connection information to the console that you can use in connection strings for your application or 3rd party tools:
-```
+
+```bash
 $ steampipe service start
 
 Steampipe service is running:
@@ -30,10 +31,10 @@ Managing the Steampipe service:
 
   # Get status of the service
   steampipe service status
-  
+
   # Restart the service
   steampipe service restart
-  
+
   # Stop the service
   steampipe service stop
 
@@ -66,10 +67,41 @@ Managing the Steampipe service:
 
   # Get status of the service
   steampipe service status
-  
+
   # Restart the service
   steampipe service restart
-  
+
+  # Stop the service
+  steampipe service stop
+
+```
+
+## Starting database with a private key protected with a passphrase
+
+You can run `steampipe service start` with a private key protected with a passphrase, use the `STEAMPIPE_DATABASE_SSL_PASSWORD` environement variable
+
+```bash
+$ STEAMPIPE_DATABASE_SSL_PASSWORD=my-passphrase steampipe service start
+
+Steampipe service is running:
+
+Database:
+
+  Host(s):            localhost, 127.0.0.1, 192.168.10.174
+  Port:               9193
+  Database:           steampipe
+  User:               steampipe
+  Password:           4cbe-4bc2-9c18
+  Connection string:  postgres://steampipe:4cbe-4bc2-9c18@localhost:9193/steampipe
+
+Managing the Steampipe service:
+
+  # Get status of the service
+  steampipe service status
+
+  # Restart the service
+  steampipe service restart
+
   # Stop the service
   steampipe service stop
 
