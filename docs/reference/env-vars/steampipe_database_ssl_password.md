@@ -6,17 +6,16 @@ sidebar_label: STEAMPIPE_DATABASE_SSL_PASSWORD
 
 # STEAMPIPE_DATABASE_SSL_PASSWORD
 
-Sets the `server.key` passphrase.  By default, this value is empty because of steampipe that generates a certificate without passphrase.  To use your own certificate, set the `STEAMPIPE_DATABASE_SSL_PASSWORD` variable and start the steampipe service.
+Sets the `server.key` passphrase.  By default, Steampipe generates a certificate without a passphrase; you only need to set this variable if you use a custom certificate that is protected by a passphrase.
 
-Note the following:
-- If `STEAMPIPE_DATABASE_SSL_PASSWORD` is passed to `steampipe service start`, steampipe will behave as if the key were protected by a passphrase.
-- The `server.key` content **must** contains [Proc-Type](https://datatracker.ietf.org/doc/html/rfc1421#section-4.6.1.1) and [DEK-Info](https://datatracker.ietf.org/doc/html/rfc1421#section-4.6.1.3) headers.
+To use a custom certificate with a passphrase:
+- `STEAMPIPE_DATABASE_SSL_PASSWORD` must be set when you start Steampipe.
+- The `server.key` content **must** contain [Proc-Type](https://datatracker.ietf.org/doc/html/rfc1421#section-4.6.1.1) and [DEK-Info](https://datatracker.ietf.org/doc/html/rfc1421#section-4.6.1.3) headers.
 
 ## Usage 
-Start the steampipe service with a custom password:
+Start the Steampipe service with a custom password:
 
 ```bash
 export STEAMPIPE_DATABASE_SSL_PASSWORD=MyPassPhrase
 steampipe service start
 ```
-

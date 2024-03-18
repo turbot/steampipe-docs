@@ -192,6 +192,7 @@
           "reference/env-vars/steampipe_cloud_host",
           "reference/env-vars/steampipe_cloud_token",
           "reference/env-vars/steampipe_database_password",
+          "reference/env-vars/steampipe_database_ssl_password",
           "reference/env-vars/steampipe_database_start_timeout",
           "reference/env-vars/steampipe_diagnostic_level",
           "reference/env-vars/steampipe_install_dir",

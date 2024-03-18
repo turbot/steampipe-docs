@@ -76,37 +76,6 @@ Managing the Steampipe service:
 
 ```
 
-## Starting database with a private key protected with a passphrase
-
-You can run `steampipe service start` with a private key protected with a passphrase, use the `STEAMPIPE_DATABASE_SSL_PASSWORD` environement variable
-
-```bash
-$ STEAMPIPE_DATABASE_SSL_PASSWORD=my-passphrase steampipe service start
-
-Steampipe service is running:
-
-Database:
-
-  Host(s):            localhost, 127.0.0.1, 192.168.10.174
-  Port:               9193
-  Database:           steampipe
-  User:               steampipe
-  Password:           4cbe-4bc2-9c18
-  Connection string:  postgres://steampipe:4cbe-4bc2-9c18@localhost:9193/steampipe
-
-Managing the Steampipe service:
-
-  # Get status of the service
-  steampipe service status
-
-  # Restart the service
-  steampipe service restart
-
-  # Stop the service
-  steampipe service stop
-
-```
-
 ---
 
 Once the service is started, you can connect to the Steampipe from tools that integrate with Postgres.
