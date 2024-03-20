@@ -187,6 +187,61 @@ Additional functions can be chained after a `From` function to transform the dat
 | `NullIfEqual` | If the input value equals the transform param, return nil.
 | `NullIfZero` | If the input value equals the zero value of its type, return nil.
 
+### Translating SQL Operators to API Calls
+
+When you write SQL that resolves to API calls, you want a SQL operator like `>` to influence an API call in the expected way. 
+
+For example, if your query is:
+
+```
+SELECT * FROM github_issue WHERE updated_at > '2022-01-01'
+```
+
+You would like to [configure the API call](https://github.com/turbot/steampipe-plugin-github/blob/ec932825c781a66c325fdbc5560f96cac272e64f/github/table_github_issue.go#L142) to filter on the date. 
+
+
+```
+if d.Quals["updated_at"] != nil {
+	for _, q := range d.Quals["updated_at"].Quals {
+		givenTime := q.Value.GetTimestampValue().AsTime()  // timestamp from the SQL query
+		afterTime := givenTime.Add(time.Second * 1)  // one second after the given time
+		switch q.Operator {
+		case ">":
+			filters.Since = githubv4.NewDateTime(githubv4.DateTime{Time: afterTime})  // handle WHERE updated_at > '2022-01-01'
+		case ">=":
+			filters.Since = githubv4.NewDateTime(githubv4.DateTime{Time: givenTime})  // handle WHERE updated_at >= '2022-01-01'
+		}
+	}
+}
+
+```
+
+In order to intercept the SQL operator, and implement it in your table code, you [declare it](https://github.com/turbot/steampipe-plugin-github/blob/ec932825c781a66c325fdbc5560f96cac272e64f/github/table_github_issue.go#L91) in the `KeyColumns` property of the table.
+
+
+```
+KeyColumns: []*plugin.KeyColumn{
+  {
+    Name:    "repository_full_name",
+    Require: plugin.Required,
+  },
+  {
+    Name:    "author_login",
+    Require: plugin.Optional,
+  },
+  {
+    Name:    "state",
+    Require: plugin.Optional,
+  },
+  {
+    Name:      "updated_at",
+    Require:   plugin.Optional,
+    Operators: []string{">", ">="},  // declare operators your get/list/hydrate function handles
+  },
+```
+
+
+
 ### Example: Table Definition File
 
 ```go
