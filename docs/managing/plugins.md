@@ -157,3 +157,6 @@ $ steampipe plugin list
 +--------------------------------------------+---------+-------------+
 ```
 
+## Steampipe Plugin Registry Support Lifecycle
+
+The Steampipe Plugin Registry is committed to ensuring accessibility and stability for its users by maintaining versions of plugins for at least one year and preserving at least one version of each plugin. This practice ensures that users can access older versions of plugins if needed, providing a safety net for compatibility issues or preferences.
