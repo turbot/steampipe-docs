@@ -82,7 +82,8 @@
       "guides/aws-orgs",
       "guides/caching",
       "guides/limiter",
-      "guides/key-columns"
+      "guides/key-columns",
+      "guides/list-get-hydrate"
     ]
   },
   {
