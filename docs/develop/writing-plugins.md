@@ -422,7 +422,8 @@ func tableGitHubActionsArtifact() *plugin.Table {
 }
 ```
 
-The SDK's [ListArtifacts](https://pkg.go.dev/github.com/google/go-github/v55@v55.0.0/github#ActionsService.ListArtifacts) returns an array of [Artifact](https://pkg.go.dev/github.com/google/go-github/v55@v55.0.0/github#Artifact) and its [GetArtifact](https://pkg.go.dev/github.com/google/go-github/v55@v55.0.0/github#ActionsService.GetArtifact) returns a single `Artifact`.
+The SDK's [ListArtifacts](https://pkg.go.dev/github.com/google/go-github/v55@v55.0.0/github#ActionsService.ListArtifacts) returns an array of [Artifact](https://pkg.go.dev/github.com/google/go-github/v55@v55.0.0/github#Artifact) and its [GetArtifact](https://pkg.go.dev/github.com/google/go-github/v55@v55.0.0/github#ActionsService.GetArtifact) returns a single `Artifact` object. As with `tableGitHubGitignore`, these are separate APIs — wrapped by the Go SDK — to [list basic info](https://docs.github.com/en/rest/actions/artifacts?apiVersion=2022-11-28#list-artifacts-for-a-repository) and [get details](https://docs.github.com/en/rest/actions/artifacts?apiVersion=2022-11-28#get-an-artifact) artifacts. If the query's `where` or `join...on` specifies an `id`, the plugin will use the optimal `Get` function, otherwise the `List` function, to call the corresponding APIs. Either way, the same API response matches the schema declared in `Columns`.
+
 
 ```go
 type Artifact struct {
@@ -439,6 +440,8 @@ type Artifact struct {
 	WorkflowRun        *ArtifactWorkflowRun `json:"workflow_run,omitempty"`
 }
 ```
+
+
 
 #### When Steampipe calls `List` vs `Get`
 
