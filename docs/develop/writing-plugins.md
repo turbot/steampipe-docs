@@ -1055,7 +1055,7 @@ plugin "aws" {
 }
 ```
 
-## Accounting for Paged List calls
+## Accounting for Paged List Calls
 The Steampipe plugin SDK transparently handles most of the details around waiting for limiters.  List calls, however, usually iterate through pages of results, and each call to fetch a page must wait for any limiters that are defined.  The SDK provides a hook, `WaitForListRateLimit`, which should be called before paging to apply rate limiting to the list call:
 
 ```go
