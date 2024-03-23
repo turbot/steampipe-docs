@@ -626,6 +626,116 @@ type AppsListData struct {
 }
 ```
 
+### HydrateConfig
+
+Use `HydrateConfig` in a table definition to provide granular control over the behavior of a hydrate function. 
+
+Things you can control with a `HydrateConfig`:
+
+  - Errors to ignore.
+
+  - Errors to retry.
+
+  - Max concurrent calls to allow.
+
+  - Hydrate dependencies
+
+  - Rate-limiter tags
+
+
+For a `Get` or `List`, you can specify errors to ignore and/or retry using `DefaultIgnoreConfig` and `DefaultRetryConfig` as seen here in [the Fastly plugin](https://github.com/turbot/steampipe-plugin-fastly/blob/550922bae7bc066e12ddd7634d96c9dd33374eed/fastly/plugin.go#L20-L22).
+
+```go
+func Plugin(ctx context.Context) *plugin.Plugin {
+	p := &plugin.Plugin{
+		Name: "steampipe-plugin-fastly",
+		ConnectionConfigSchema: &plugin.ConnectionConfigSchema{
+			NewInstance: ConfigInstance,
+		},
+		DefaultTransform: transform.FromGo().NullIfZero(),
+		DefaultIgnoreConfig: &plugin.IgnoreConfig{
+			ShouldIgnoreErrorFunc: shouldIgnoreErrors([]string{"404"}),
+		},
+		DefaultRetryConfig: &plugin.RetryConfig{
+			ShouldRetryErrorFunc: shouldRetryError([]string{"429"}),
+		},
+		TableMap: map[string]*plugin.Table{
+			"fastly_acl":             tableFastlyACL(ctx),
+             ...
+     		"fastly_token":           tableFastlyToken(ctx),
+		},
+	}
+	return p
+}
+```
+
+For other hydrate functions, you do this with `HydrateConfig`. Here's how the `oci_identity_tenancy` table [configures error handling](https://github.com/turbot/steampipe-plugin-oci/blob/4403adee869853b3d205e8d93681af0859870701/oci/table_oci_identity_tenancy.go#L23-28) for the `getRetentionPeriod` function. 
+
+```go
+		HydrateConfig: []plugin.HydrateConfig{
+			{
+				Func:              getRetentionPeriod,
+				ShouldIgnoreError: isNotFoundError([]string{"404"}),
+			},
+		},
+```
+
+You can similarly use `ShouldRetryError` along with a corresponding function that returns true if, for example, an API call its a rate limit.
+
+```go
+func shouldRetryError(err error) bool {
+	if cloudflareErr, ok := err.(*cloudflare.APIRequestError); ok {
+		return cloudflareErr.ClientRateLimited()
+	}
+	return false
+}
+```
+
+You can likewise use `MaxConcurrency` to limit the number of calls to a hydrate function.
+
+In practice, the granular controls afforded by `ShouldIgnoreError`, `ShouldRetryError`, and `MaxConcurrency` are not much used at the level of individual hydrate functions. Plugins are likelier to assert such control globally. But the flexibility is threre if you need it.
+
+
+Two features of `HydrateConfig` that are used quite a bit are `Depends` and `Tags`.
+
+Use `Depends` to make a function depend on one or more others. In `aws_s3_bucket`, the function [getBucketLocation](https://github.com/turbot/steampipe-plugin-aws/blob/66bd381dfaccd3d16ccedba660cd05adaa17c7d7/aws/table_aws_s3_bucket.go#L399-L440) returns the client region that's needed by all the other functions, so they all [depend on it](https://github.com/turbot/steampipe-plugin-aws/blob/66bd381dfaccd3d16ccedba660cd05adaa17c7d7/aws/table_aws_s3_bucket.go#L27-L102).
+
+```go
+		HydrateConfig: []plugin.HydrateConfig{
+			{
+				Func: getBucketLocation,
+				Tags: map[string]string{"service": "s3", "action": "GetBucketLocation"},
+			},
+			{
+				Func:    getBucketIsPublic,
+				Depends: []plugin.HydrateFunc{getBucketLocation},
+				Tags:    map[string]string{"service": "s3", "action": "GetBucketPolicyStatus"},
+			},
+			{
+				Func:    getBucketVersioning,
+				Depends: []plugin.HydrateFunc{getBucketLocation},
+				Tags:    map[string]string{"service": "s3", "action": "GetBucketVersioning"},
+			},
+```
+
+
+Use `Tags` to expose a hydrate function to control by a limiter. In AWS plugin's, `aws_config_rule` table, the `HydrateConfig` specifies [additional hydrate functions](https://github.com/turbot/steampipe-plugin-aws/blob/66bd381dfaccd3d16ccedba660cd05adaa17c7d7/aws/table_aws_config_rule.go#L40-L49) that fetch tags and compliance details for each config rule.
+
+```go
+HydrateConfig:plugin.HydrateConfig{
+	{
+		Func: getConfigRuleTags,
+		Tags: map[string]string{"service": "config", "action": "ListTagsForResource"},
+	},
+	{
+		Func: getComplianceByConfigRules,
+		Tags: map[string]string{"service": "config", "action": "DescribeComplianceByConfigRule"},
+	},
+},
+```
+
+In this example the `Func` property names `getConfigRuleTags` and `getComplianceByConfigRules` as additional hydrate functions that fetch tags and compliance details for each config rule, respectively. The `Tags` property enables a rate limiter to [target these functions](https://steampipe.io/docs/guides/limiter#function-tags).
+
 ### Memoize: Caching hydrate results
 
 The [Memoize](https://github.com/judell/steampipe-plugin-sdk/blob/HEAD/plugin/hydrate_cache.go#L61-L139) function can be used to cache the results of a `HydrateFunc`. 
@@ -648,43 +758,6 @@ In this example, `Memoize` caches the results of `listRegionsForServiceUncached`
 
 This is a common pattern when using `Memoize`: you define a `HydrateFunc` and then wrap it with `Memoize` to enable caching. You can also use the `WithCacheKeyFunction` option to specify a custom function that generates the cache key, which is especially useful when you need to include additional context in the cache key.
 
-
-### Hydrate Dependencies
-
-Steampipe attempts to parallelize the hydrate functions as much as possible.  Sometimes, however, one hydrate function requires the output from another.  You can define `HydrateDependencies` for this case:
-
-```go
-return &plugin.Table{
-		Name: "hydrate_columns_dependency",
-		List: &plugin.ListConfig{
-			Hydrate: hydrateList,
-		},
-		HydrateDependencies: []plugin.HydrateDependencies{
-			{
-				Func:    hydrate2,
-				Depends: []plugin.HydrateFunc{hydrate1},
-			},
-		},
-		Columns: []*plugin.Column{
-			{Name: "id", Type: proto.ColumnType_INT},
-			{Name: "hydrate_column_1", Type: proto.ColumnType_STRING, Hydrate: hydrate1},
-			{Name: "hydrate_column_2", Type: proto.ColumnType_STRING, Hydrate: hydrate2},
-		},
-    }
-```
-Here, hydrate function `hydrate2` is dependent on `hydrate1`. This means `hydrate2` will not execute until `hydrate1` has completed and the results are available. `hydrate2` can refer to the results from `hydrate1` as follows:
-```go
-func hydrate2(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (interface{}, error) {
-        // NOTE: in this case we know the output of hydrate1 is map[string]interface{} so we cast it accordingly.
-        // the data should be cast to th appropriate type
-	hydrate1Results := h.HydrateResults["hydrate1"].(map[string]interface{})
-.....
-}
-```
- Note that:
- - Multiple dependencies are supported.
- - Circular dependencies will be detected and cause a validation failure.
- - The `Get` and `List` hydrate functions ***CANNOT*** have dependencies.
 
 ### Transform Functions
 
