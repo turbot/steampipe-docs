@@ -734,7 +734,7 @@ HydrateConfig:plugin.HydrateConfig{
 },
 ```
 
-In this example the `Func` property names `getConfigRuleTags` and `getComplianceByConfigRules` as additional hydrate functions that fetch tags and compliance details for each config rule, respectively. The `Tags` property enables a rate limiter to [target these functions](https://steampipe.io/docs/guides/limiter#function-tags).
+In this example the `Func` property names `getConfigRuleTags` and `getComplianceByConfigRules` as additional hydrate functions that fetch tags and compliance details for each config rule, respectively. The `Tags` property enables a rate limiter to [target these functions](https://steampipe.io/docs/guides/limiter#function-tags). (See also [function-tags](#function-tags) below.)
 
 ### Memoize: Caching hydrate results
 
