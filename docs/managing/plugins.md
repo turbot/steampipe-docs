@@ -16,42 +16,69 @@ For example, to install the latest `aws` plugin:
 $ steampipe plugin install aws
 ```
 
-This will download the latest aws plugin (the one with the `latest` tag) from the hub registry, and will set up a default connection named `aws`. 
-
+This will download the latest aws plugin from the hub registry, and will set up a default connection named `aws`.
 
 ### Installing a Specific Version
 To install a specific version, simply specify the version tag after the plugin name, separated by `@` or `:`
 
-For example, to install the 0.0.1 version of the aws plugin:
+For example, to install the 0.118.0 version of the aws plugin:
 ```
-$ steampipe plugin install aws@0.0.1
-```
-
-This will download the aws plugin version 0.0.1 (the one with the `0.0.1` tag) from the hub registry.  Note that installing a specific version will NOT create a connection for you - you must create/edit a [connection](/docs/managing/connections) configuration file in order to use the plugin. 
-
-
-### Installing from a Release Stream
-
-Plugins should follow semantic versioning guidelines, and they are tagged in the registry with a **version tag** that specifies their *exact version* (e.g. `1.0.1`).  
-
-In addition, **release stream** tags are used to allow you to limit updates to specific *major or minor release families*.  
-
-The intent of the version tag is that is immutable - while it is technically possible to move the version tag to a different image version, this should not be done.  Unlike the version tag, the release stream tags are intentionally moved as new versions are released.  For example `steampipe plugin install aws@1.0` will install the latest version in the `1.0` minor release stream.  If versions `1.0.0` and `1.0.1` both exist, then `aws@1.0` will point to `1.0.1`.  When `1.0.2` is added to the registry, the `1.0` tag will be moved to point to `1.0.2`. 
-
-Installing a release stream tag allows you to "lock" to a specific major or minor release.  If you install `aws@1`, for example, `steampipe plugin update` (and auto-updates) will only update to the latest 1.x version - you will not be updated to version 2.x.
-
-Because these are just tags, the install command uses the same `imagename@tag` syntax:
-- To install the latest version in major release stream:
-```
-$ steampipe plugin install aws@2
+$ steampipe plugin install aws@0.118.0
 ```
 
-- To install the latest version in minor release stream:
-```
-$ steampipe plugin install aws@2.1
+This will download the aws plugin version 0.118.0 (the one with the `0.118.0` tag) from the hub registry.  Note that installing a specific version will NOT create a connection for you - you must create/edit a [connection](/docs/managing/connections) configuration file in order to use the plugin. 
+
+### Installing from a SemVer Constraint
+
+Plugins should follow [semantic versioning](https://semver.org/) guidelines, and they are tagged in the registry with a **version tag** that specifies their *exact version* in the `major.minor.patch` format (e.g. `1.0.1`).
+
+The intent of the version tag is that it is immutable - while it is technically possible to move the version tag to a different image version, this should not be done.
+
+Installing with a semver constraint allows you to "lock" (or pin) to a specific set of releases which match the contraints. 
+
+If you install via `steampipe plugin install aws@^1`, for example, `steampipe plugin update` (and auto-updates) will only update to versions greater than `1.0.0` but less than `2.0.0`.
+
+Supported semver constraint types:
+
+**Wildcard Constraint**: This matches any version for a particular segment (Major, Minor, or Patch).
+- `1.x.x` would match any version with major segment of `1`.
+- `1.2.x` would match any version with the major segment of `1` and a minor segment of `2`.
+
+**Caret Constraint (^)**: This matches versions that do not modify the left-most non-zero digit.
+- `^1.2.3` is the latest version equal or greater than `1.2.3`, but less than `2.0.0`.
+- `^0.1.2` is the latest version equal or greater than `0.1.2`, but less than `0.2.0`.
+
+**Tilde Constraint (~)**: This matches versions based on expression, if minor segment is expressed, locks to it, else locks to major.
+- `~1` is the latest version greater than or equal to `1.0.0`, but less than `2.0.0` (same as `1.x.x`).
+- `~1.2` is the latest version greater than or equal to `1.2.0`, but less than `1.3.0` (same as `1.2.x`).
+- `~1.2.3` is the latest version greater than or equal to `1.2.3`, but less than `1.3.0`.
+
+**Range Constraint**: This specifies a range of versions using a hyphen.
+- `1.2.3-1.2.5` would limit to latest available version of `1.2.3`,`1.2.4` or `1.2.5`.
+
+**Other Constraints**:
+- `>1.1.1` would match any version greater than `1.1.1`.
+- `>=1.2.0` would match any version greater than or equal to `1.2.0`.
+
+You can use the install command in the same way as a specific version with these constraints (`imagename@constraint`) syntax:
+
+> Note: For some constraints using special characters `>`, `<`, `*` you may need to escape the characters `\>` or quote the string `steampipe plugin install "aws@>0.118.0"` depending on your terminal.
+
+- To install the latest version locked to a specific major version:
+```bash
+$ steampipe plugin install aws@^2
+# or
+$ steampipe plugin install aws@2.x.x
 ```
 
-Note that installing a tagged release will NOT create a connection for you - you must create/edit a [connection](managing/connections) configuration file in order to use the plugin. 
+- To install the latest version locked to a specific minor version:
+```bash 
+$ steampipe plugin install aws@~2.1
+# or
+$ steampipe plugin install aws@2.1.x
+```
+
+Note that installing a constrained version will NOT create a connection for you - you must create/edit a [connection](managing/connections) configuration file in order to use the plugin. 
 
 ### Installing from another registry
 Steampipe plugins are packaged in OCI format and can be hosted and installed from any artifact repository or container registry that supports OCI V2 images. To install a plugin from a repository, specify the full path in the install command:

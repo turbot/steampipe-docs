@@ -58,6 +58,16 @@ Install a specific version of a plugin:
 steampipe plugin install aws@0.107.0
 ```
 
+Install the latest version of a plugin matching a semver constraint:
+```bash
+steampipe plugin install aws@^0.107
+```
+
+Note: if your semver constraint contain special characters you may need to quote it:
+```bash
+steampipe plugin install "aws@>=0.100"
+```
+
 Install all missing plugins that specified in configuration files. Do not download their default configuration files:
 
 ```bash
@@ -79,9 +89,9 @@ Update all plugins to the latest in the installed stream:
 steampipe plugin update --all
 ```
 
-Update the aws plugin to the latest in the 0.1 minor stream:
+Update the aws plugin to the latest version meeting the constraint:
 ```bash
-steampipe plugin update aws@0.1
+steampipe plugin update aws@^0.107
 ```
 
 Update all plugins to the latest and hide the progress bar:
