@@ -18,6 +18,8 @@ $ steampipe plugin install aws
 
 This will download the latest aws plugin from the hub registry, and will set up a default connection named `aws`.
 
+> Note: If you install multiple versions of a plugin only the first installation will create a connection automatically for you, you will need to create/edit a [connection](/docs/managing/connections) configuration file in order to use the additional versions of the plugin. 
+
 ### Installing a Specific Version
 To install a specific version, simply specify the version tag after the plugin name, separated by `@` or `:`
 
@@ -26,7 +28,7 @@ For example, to install the 0.118.0 version of the aws plugin:
 $ steampipe plugin install aws@0.118.0
 ```
 
-This will download the aws plugin version 0.118.0 (the one with the `0.118.0` tag) from the hub registry.  Note that installing a specific version will NOT create a connection for you - you must create/edit a [connection](/docs/managing/connections) configuration file in order to use the plugin. 
+This will download the aws plugin version 0.118.0 (the one with the `0.118.0` tag) from the hub registry. 
 
 ### Installing from a SemVer Constraint
 
@@ -77,8 +79,6 @@ $ steampipe plugin install aws@~2.1
 # or
 $ steampipe plugin install aws@2.1.x
 ```
-
-Note that installing a constrained version will NOT create a connection for you - you must create/edit a [connection](managing/connections) configuration file in order to use the plugin. 
 
 ### Installing from another registry
 Steampipe plugins are packaged in OCI format and can be hosted and installed from any artifact repository or container registry that supports OCI V2 images. To install a plugin from a repository, specify the full path in the install command:
