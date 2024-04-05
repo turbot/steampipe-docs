@@ -147,7 +147,8 @@
       "develop/standards",
       "develop/table-docs-standards",
       "develop/writing-example-queries",
-      "develop/coding-standards"
+      "develop/coding-standards",
+      "develop/writing-control-output-templates"
     ]
   },
   {
