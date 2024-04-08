@@ -10,7 +10,11 @@
         "id": "sql",
         "label": "It's Just SQL!",
         "link": "sql/steampipe-sql",
-        "items": ["sql/querying-json", "sql/querying-ips", "sql/tips"]
+        "items": [
+          "sql/querying-json",
+          "sql/querying-ips",
+          "sql/tips"
+        ]
       }
     ]
   },
@@ -19,22 +23,29 @@
     "id": "running-queries",
     "label": "Query Steampipe",
     "link": "query/overview",
-    "items": ["query/query-shell", "query/batch-query", "query/third-party"]
+    "items": [
+      "query/query-shell",
+      "query/batch-query",
+      "query/third-party"
+    ]
   },
-
   {
     "type": "category",
     "id": "dashboard",
     "label": "View Dashboards",
     "link": "dashboard/overview",
-    "items": ["dashboard/panel"]
+    "items": [
+      "dashboard/panel"
+    ]
   },
   {
     "type": "category",
     "id": "check",
     "label": "Running Benchmarks",
     "link": "check/overview",
-    "items": ["check/formatting"]
+    "items": [
+      "check/formatting"
+    ]
   },
   {
     "type": "category",
@@ -46,7 +57,6 @@
       "snapshots/batch-snapshots"
     ]
   },
-
   {
     "type": "category",
     "id": "working-with-mods",
@@ -119,7 +129,20 @@
     "link": "develop/overview",
     "items": [
       "develop/writing-your-first-table",
-      "develop/writing-plugins",
+      {
+        "type": "category",
+        "id": "writing-plugins",
+        "label": "Writing Plugins",
+        "link": "develop/writing_plugins/overview",
+        "items": [
+          "develop/writing_plugins/the-basics",
+          "develop/writing_plugins/implementing-tables",
+          "develop/writing_plugins/hydrate-functions",
+          "develop/writing_plugins/transform-functions",
+          "develop/writing_plugins/dynamic-tables",
+          "develop/writing_plugins/sql-to-api-call"
+        ]
+      },
       "develop/plugin-release-checklist",
       "develop/standards",
       "develop/table-docs-standards",
@@ -212,7 +235,6 @@
           "reference/env-vars/steampipe_workspace_database"
         ]
       },
-
       {
         "type": "category",
         "id": "config-files",
@@ -225,7 +247,6 @@
           "reference/config-files/workspace"
         ]
       },
-
       {
         "type": "category",
         "id": "mod-resources",
@@ -292,7 +313,6 @@
       "steampipe_export/run"
     ]
   },
-
   {
     "type": "category",
     "id": "faq",
