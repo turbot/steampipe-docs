@@ -5,7 +5,7 @@ sidebar_label: Transform functions
 
 # Transform Functions
 
-Transform functions are used to extract and/or reformat data returned by a hydrate function into the desired type/format for a column.  You can call your own transform function with `From`, but you probably don't need to write one. The SDK provides functions to cover the most common cases.  You can chain transforms together, but the transform chain must begin with a `From` function:
+Transform functions are used to extract and/or reformat data returned by a hydrate function into the desired type/format for a column.  You can call your own transform function with `From`, but you probably don't need to write one. The SDK provides functions that cover the most common cases.  You can chain transforms together, but the transform chain must begin with a `From` function:
 
 | Name | Description
 |-|-
