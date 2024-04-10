@@ -30,7 +30,7 @@ from
   zendesk_group
 ```
 
-The function `tableGitHubMyGist` [defines the table](https://github.com/turbot/steampipe-plugin-zendesk/blob/33c9cb30826c41d75c7d07d1947e2fd9fd5735d1/zendesk/table_zendesk_group.go#L10-L30).
+The function `tableZenDeskGroup` [defines the table](https://github.com/turbot/steampipe-plugin-zendesk/blob/33c9cb30826c41d75c7d07d1947e2fd9fd5735d1/zendesk/table_zendesk_group.go#L10-L30).
 
 ```go
 package zendesk
@@ -160,9 +160,9 @@ This query uses `Get`.
 |                 "scope_values": {                |
 |                     "table": "zendesk_group",    |
 |                     "connection": "zendesk",     |
-|                     "function_name": "listGroup" |
+|                     "function_name": "getGroup"  |
 |                 },                               |
-|                 "function_name": "listGroup",    |
+|                 "function_name": "getGroup",     |
 |                 "rate_limiters": [               |
 |                 ],                               |
 |                 "rate_limiter_delay_ms": 0       |
