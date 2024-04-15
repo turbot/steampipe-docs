@@ -177,7 +177,7 @@ plugin "aws_latest" {
 }
 
 plugin "aws_0_117_0" {
-  source = "aws@0.117"
+  source = "aws@0.117.0"
 }
 
 
