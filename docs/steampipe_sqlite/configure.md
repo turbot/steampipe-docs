@@ -95,13 +95,13 @@ $ sqlite3 :memory: 'select * from pragma_compile_options()' | grep OMIT_LOAD_EXT
 
 
 ## Caching
-By default, query results are cached for 5 minutes. You can change the duration with the [STEAMPIPE_CACHE_MAX_TTL](docs/reference/env-vars/steampipe_cache_max_ttl):
+By default, query results are cached for 5 minutes. You can change the duration with the [STEAMPIPE_CACHE_MAX_TTL](/docs/reference/env-vars/steampipe_cache_max_ttl):
 
 ```bash
 export STEAMPIPE_CACHE_MAX_TTL=600  # 10 minutes
 ```
 
-or disable caching with the [STEAMPIPE_CACHE](docs/reference/env-vars/steampipe_cache):
+or disable caching with the [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache):
 ```bash
 export STEAMPIPE_CACHE=false
 ```
