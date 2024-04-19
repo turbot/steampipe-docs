@@ -319,11 +319,10 @@
     "link": "faq/overview",
     "items": []
   },
-
   {
     "type": "category",
     "id": "compare",
-    "link": "compare",
+    "link": "compare/overview",
     "items": [
       "compare/airbyte",
       "compare/awssecurityhub",
@@ -337,5 +336,6 @@
       "compare/wiz"
     ]
   }
+
 
 ]
