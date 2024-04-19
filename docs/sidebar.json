@@ -318,5 +318,24 @@
     "id": "faq",
     "link": "faq/overview",
     "items": []
+  },
+
+  {
+    "type": "category",
+    "id": "compare",
+    "link": "compare",
+    "items": [
+      "compare/airbyte",
+      "compare/awssecurityhub",
+      "compare/cdata",
+      "compare/cloudcustodian",
+      "compare/cloudquery",
+      "compare/fivetran",
+      "compare/osquery",
+      "compare/prismacloud",
+      "compare/prowler",
+      "compare/wiz"
+    ]
   }
+
 ]
