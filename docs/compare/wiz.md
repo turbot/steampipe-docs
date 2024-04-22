@@ -28,7 +28,7 @@ sidebar_label: Wiz
 
 *with Powerpipe
 
-# When to choose Steamipe over Wiz
+# When to choose Steampipe over Wiz
 
 Wiz is a cloud security platform that helps organizations identify and prioritize vulnerabilities and compliance issues
 
