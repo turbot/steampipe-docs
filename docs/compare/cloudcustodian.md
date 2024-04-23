@@ -13,7 +13,7 @@ sidebar_label: Cloud Custodian
 
 
 
- | | **Powerpipe** | **Cloud Custodian** | 
+ | | **Steampipe** | **Cloud Custodian** | 
 | --- | --- | --- |
 | **Audience** | DevOps and security engineers who assess cloud security posture and build composable dashboard and benchmarks | Cloud administrators and security teams |
 | **Deployment** | Single binary runs locally or elsewhere | Python package |

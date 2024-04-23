@@ -24,13 +24,13 @@ sidebar_label: Prowler
 | **Controls*** | <a href="https://hub.powerpipe.io" target="_blank">6,200+</a> | 600+ |
 | **Asset inventory** | Yes | No |
 | **Shift-left scanning** | <a href="https://hub.powerpipe.io/?categories=iac" target="_blank">Yes</a> | No |
-| **Terms** | Open source<a href="http://pipes.turbot.com" target="_blank">SaaS</a> always-free developer tier, <a href="https://turbot.com/pipes/pricing" target="_blank">paid tiers</a> for teams | Open sourceSaaS free tier, pay per resource |
+| **Terms** | Open source, <a href="http://pipes.turbot.com" target="_blank">SaaS</a> always-free developer tier, <a href="https://turbot.com/pipes/pricing" target="_blank">paid tiers</a> for teams | Open source, SaaS free tier, pay per resource |
 
 *with Powerpipe
 
 # When to choose Steampipe over Prowler
 
-Prowler is used by security professionals to conduct in-depth security audits, identify misconfigurations, and generate detailed reports.
+Prowler is used by security professionals to conduct security audits, identify misconfigurations, and generate reports.
 
 Steampipe is the preferred alternative for DevOps engineers who query cloud infrastructure, SaaS services, and local systems. Works with Powerpipe to deliver benchmarks and dashboards. 
 

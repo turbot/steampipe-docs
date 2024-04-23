@@ -1,5 +1,5 @@
 ---
-title: Steampipe versus wiz
+title: Steampipe versus Wiz
 sidebar_label: Wiz
 ---
 
@@ -30,7 +30,7 @@ sidebar_label: Wiz
 
 # When to choose Steampipe over Wiz
 
-Wiz is a cloud security platform that helps organizations identify and prioritize vulnerabilities and compliance issues
+Wiz is a cloud security platform that helps organizations identify and prioritize vulnerabilities and compliance issues.
 
   
 Steampipe is the preferred alternative for DevOps engineers who query cloud infrastructure, SaaS services, and local systems. Works with Powerpipe to deliver benchmarks and dashboards. 
