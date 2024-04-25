@@ -324,16 +324,16 @@
     "id": "compare",
     "link": "compare/overview",
     "items": [
-      "compare/airbyte",
-      "compare/awssecurityhub",
-      "compare/cdata",
-      "compare/cloudcustodian",
-      "compare/cloudquery",
-      "compare/fivetran",
-      "compare/osquery",
-      "compare/prismacloud",
-      "compare/prowler",
-      "compare/wiz"
+      "compare/steampipe-vs-airbyte",
+      "compare/steampipe-vs-aws-security-hub",
+      "compare/steampipe-vs-cdata",
+      "compare/steampipe-vs-cloud-custodian",
+      "compare/steampipe-vs-cloudquery",
+      "compare/steampipe-vs-fivetran",
+      "compare/steampipe-vs-osquery",
+      "compare/steampipe-vs-prisma-cloud",
+      "compare/steampipe-vs-prowler",
+      "compare/steampipe-vs-wiz"
     ]
   }
 
