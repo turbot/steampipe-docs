@@ -1,6 +1,7 @@
 ---
 title: Prisma Cloud alternative for DevOps to assess cloud security posture
 sidebar_label: Prisma Cloud
+description: Compare Steampipe to Prisma Cloud  as an alternative solution to gain insights to cloud configurations, assess security posture, and live query APIs with SQL.
 ---
 
 # Steampipe versus Prisma Cloud

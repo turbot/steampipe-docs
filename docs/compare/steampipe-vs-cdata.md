@@ -1,6 +1,7 @@
 ---
 title: CData alternative for DevOps to live-query APIs with SQL
 sidebar_label: CData
+description: Compare Steampipe to CData as an alternative solution to dynamically query APIs, code and more with zero-ETL.
 ---
 
 # Steampipe versus CData

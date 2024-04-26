@@ -1,6 +1,7 @@
 ---
 title: OSQuery alternative for DevOps to live-query APIs with SQL
 sidebar_label: OSQuery
+description: Compare Steampipe to OSQuery as an alternative solution to dynamically query APIs, code and more with zero-ETL.
 ---
 
 # Steampipe versus OSQuery

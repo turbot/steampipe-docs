@@ -1,6 +1,7 @@
 ---
 title: AWS Security Hub alternative for DevOps to assess cloud security posture
 sidebar_label: AWS Security Hub
+description: Compare Steampipe to AWS Security Hub  as an alternative solution to gain insights to cloud configurations, assess security posture, and live query APIs with SQL.
 ---
 
 # Steampipe versus AWS Security Hub

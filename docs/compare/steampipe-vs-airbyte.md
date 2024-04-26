@@ -1,6 +1,7 @@
 ---
 title: Airbyte alternative for DevOps to live-query APIs with SQL
 sidebar_label: Airbyte
+description: Compare Steampipe to Airbyte as an alternative solution to dynamically query APIs, code and more with zero-ETL.
 ---
 
 # Steampipe versus Airbyte
@@ -46,4 +47,6 @@ Steampipe is the preferred alternative for DevOps engineers who query cloud infr
 # Get Started with Steampipe
 
 First <a href="https://steampipe.io/downloads" target="_blank">download Steampipe</a>, then check out the <a href="https://hub.steampipe.io" target="_blank">plugins</a> and start running queries. For a team experience, try Steampipe in <a href="https://turbot.com/pipes" target="_blank">Turbot Pipes</a>.
+
+
 

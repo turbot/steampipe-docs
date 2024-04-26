@@ -1,6 +1,7 @@
 ---
 title: Fivetran alternative for DevOps to live-query APIs with SQL
 sidebar_label: Fivetran
+description: Compare Steampipe to Fivetran as an alternative solution to dynamically query APIs, code and more with zero-ETL.
 ---
 
 # Steampipe versus Fivetran

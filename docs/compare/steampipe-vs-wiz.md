@@ -1,6 +1,7 @@
 ---
 title: Wiz alternative for DevOps to assess cloud security posture
 sidebar_label: Wiz
+description: Compare Steampipe to Wiz  as an alternative solution to gain insights to cloud configurations, assess security posture, and live query APIs with SQL.
 ---
 
 # Steampipe versus Wiz

@@ -1,6 +1,7 @@
 ---
 title: Cloud Query alternative for DevOps to live-query APIs with SQL
 sidebar_label: CloudQuery
+description: Compare Steampipe to CloudQuery as an alternative solution to dynamically query APIs, code and more with zero-ETL.
 ---
 
 # Steampipe versus CloudQuery

@@ -1,6 +1,7 @@
 ---
 title: Cloud Custodian alternative for DevOps to assess cloud security posture
 sidebar_label: Cloud Custodian
+description: Compare Steampipe to Cloud Custodian  as an alternative solution to gain insights to cloud configurations, assess security posture, and live query APIs with SQL.
 ---
 
 # Steampipe versus Cloud Custodian

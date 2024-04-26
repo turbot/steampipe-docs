@@ -1,6 +1,7 @@
 ---
 title: Prowler alternative for DevOps to assess cloud security posture
 sidebar_label: Prowler
+description: Compare Steampipe to Prowler  as an alternative solution to gain insights to cloud configurations, assess security posture, and live query APIs with SQL.
 ---
 
 # Steampipe versus Prowler
