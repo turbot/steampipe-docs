@@ -48,3 +48,4 @@ Steampipe is the preferred alternative for DevOps engineers who query cloud infr
 
 First <a href="https://steampipe.io/downloads" target="_blank">download Steampipe</a>, then check out the <a href="https://hub.steampipe.io" target="_blank">plugins</a> and start running queries. For a team experience, try Steampipe in <a href="https://turbot.com/pipes" target="_blank">Turbot Pipes</a>.
 
+<img src="/images/docs/steampipe-sql-demo.gif" width="100%" />
