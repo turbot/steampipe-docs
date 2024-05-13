@@ -3,13 +3,21 @@ title: .timing
 sidebar_label: .timing
 ---
 
-
 # .timing
-Turn query execution timing on or off. 
+
+Enable or disable query execution timing:
+
+
+| Level     | Description
+|-----------|-------------------------
+| `off`     | Turn off query timer (default)
+| `on`      | Display time elapsed after every query
+| `verbose` | Display time elapsed and details of each scan
+
 
 ## Usage
 ```
-.timing [on | off]
+.timing [on | off | verbose]
 ```
 
 ## Examples
@@ -22,4 +30,9 @@ Turn off query timing:
 Turn on query timing:
 ```
 .timing on
+```
+
+Turn on verbose query timing:
+```
+.timing verbose
 ```

@@ -8,9 +8,9 @@ Execute SQL queries interactively, or by a query argument.
 
 To open the interactive query shell, run `steampipe query` with no arguments.  The query shell provides a way to explore your data and run multiple queries. 
 
-If a query string is passed on the command line then it will be run immediately and the command will exit.  Alternatively, you may specify one or more files containing SQL statements.  You can run multiple SQL files by passing a glob or a space separated list of file names.
+If a query string is passed on the command line then it will be run immediately and the command will exit.  Alternatively, you may specify one or more files containing SQL statements.  You can run multiple SQL files by passing a glob or a space-separated list of file names.
 
-If the Steampipe service was previously started by `steampipe service start`, steampipe will connect to the service instance - otherwise, the query command will start the `service`. At the end of the query command or session, if other sessions have not connected to the `service` already, the `service` will be shutdown. If other session have already connected to the `service`, then the last session to exit will shutdown the `service`.
+If the Steampipe service was previously started by `steampipe service start`, steampipe will connect to the service instance - otherwise, the query command will start the `service`. At the end of the query command or session, if other sessions have not connected to the `service` already, the `service` will be shutdown. If other sessions have already connected to the `service`, then the last session to exit will shutdown the `service`.
 
 ## Usage
 Run Steampipe [interactive query shell](/docs/query/query-shell):
@@ -148,8 +148,8 @@ steampipe query list
 
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--timing  </inlineCode>  </td> 
-    <td>Turn on the query timer.  </td>
+    <td nowrap="true"> <inlineCode>--timing=string </inlineCode> </td>
+    <td>Enable or disable query execution timing: <inlineCode>off</inlineCode> (default), <inlineCode>on</inlineCode>, or <inlineCode>verbose</inlineCode>  </td>
   </tr>
 
 
@@ -228,6 +228,12 @@ Run a specific query directly and report the query execution time:
 ```bash
 steampipe query "select * from aws_s3_bucket" --timing
 ```
+
+Run a specific query directly and report the query execution time and details for each scan:
+```bash
+steampipe query "select * from aws_s3_bucket" --timing=verbose
+```
+
 
 Run a specific query directly and return output in json format:
 ```bash

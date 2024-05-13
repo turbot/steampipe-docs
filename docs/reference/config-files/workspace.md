@@ -119,7 +119,7 @@ These options often correspond to CLI flags.
     <tr>
       <td><inlineCode>timing</inlineCode></td>
       <td><inlineCode>false</inlineCode></td>
-      <td>Enable or disable query execution timing. <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
+      <td>Enable or disable query execution timing: <inlineCode>off</inlineCode>/<inlineCode>false</inlineCode>, <inlineCode>on</inlineCode>/<inlineCode>true</inlineCode>, or <inlineCode>verbose</inlineCode> <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
     </tr>
   </tbody>
 </table>
@@ -157,7 +157,7 @@ These option often correspond to CLI flags.
     <tr>
       <td><inlineCode>timing</inlineCode></td>
       <td><inlineCode>false</inlineCode></td>
-      <td>Enable or disable query execution timing. <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
+      <td>Enable or disable query execution timing: <inlineCode>off</inlineCode>/<inlineCode>false</inlineCode>, <inlineCode>on</inlineCode>/<inlineCode>true</inlineCode>, or <inlineCode>verbose</inlineCode> <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
     </tr>
   </tbody>
 </table>
@@ -227,14 +227,14 @@ workspace "all_options" {
     multi               = false   # true, false
     output              = "table" # json, csv, table, line
     separator           = ","     # any single char
-    timing              = true   # true, false
+    timing              = true   # true, false, verbose
   }
 
   options "check" {
     header              = true    # true, false
     output              = "text"  # brief, csv, html, json, md, text, snapshot or none (default "text")
     separator           = ","     # any single char
-    timing              = true    # true, false
+    timing              = true    # true, false, verbose
   }
   
   options "dashboard" {
