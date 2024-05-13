@@ -168,7 +168,7 @@ steampipe check list
 
   <tr> 
     <td nowrap="true"> <inlineCode>--timing=string </inlineCode>  </td>
-    <td>Enable or disable query execution timing: <inlineCode>off</inlineCode> (default), <inlineCode>on</inlineCode>, or <inlineCode>verbose</inlineCode> </td>
+    <td>Enable or disable query execution timing: <inlineCode>off</inlineCode> (default) or <inlineCode>on</inlineCode> </td>
   </tr>
 
   <tr> 

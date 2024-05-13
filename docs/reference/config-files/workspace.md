@@ -78,7 +78,7 @@ Any unset arguments will assume the default values.
 
 ### Steampipe Query Options 
 
-A `workspace` may include a `options "query"` block to specify values specific to the `steampipe query` command.  
+A `workspace` may include an `options "query"` block to specify values specific to the `steampipe query` command.  
 
 These options often correspond to CLI flags.
 
@@ -118,17 +118,17 @@ These options often correspond to CLI flags.
     </tr>
     <tr>
       <td><inlineCode>timing</inlineCode></td>
-      <td><inlineCode>false</inlineCode></td>
-      <td>Enable or disable query execution timing: <inlineCode>off</inlineCode>/<inlineCode>false</inlineCode>, <inlineCode>on</inlineCode>/<inlineCode>true</inlineCode>, or <inlineCode>verbose</inlineCode> <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
+      <td><inlineCode>off</inlineCode></td>
+      <td>Enable or disable query execution timing: <inlineCode>off</inlineCode>, <inlineCode>on</inlineCode>, or <inlineCode>verbose</inlineCode> <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
     </tr>
   </tbody>
 </table>
 
 
 ### Steampipe Check Options 
-A `workspace` may include a `options "check"` block to specify values specific to the `steampipe check` command.  
+A `workspace` may include an `options "check"` block to specify values specific to the `steampipe check` command.  
 
-These option often correspond to CLI flags.
+These options often correspond to CLI flags.
 
 <table>
   <thead>
@@ -157,7 +157,7 @@ These option often correspond to CLI flags.
     <tr>
       <td><inlineCode>timing</inlineCode></td>
       <td><inlineCode>false</inlineCode></td>
-      <td>Enable or disable query execution timing: <inlineCode>off</inlineCode>/<inlineCode>false</inlineCode>, <inlineCode>on</inlineCode>/<inlineCode>true</inlineCode>, or <inlineCode>verbose</inlineCode> <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
+      <td>Enable or disable query execution timing: <inlineCode>false</inlineCode> or <inlineCode>true</inlineCode> <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
     </tr>
   </tbody>
 </table>
@@ -167,7 +167,7 @@ These option often correspond to CLI flags.
 ### Steampipe Dashboard Options 
 A `workspace` may include a `options "dashboard"` block to specify values specific to the `steampipe dashboard` command.  
 
-These option often correspond to CLI flags.
+These options often correspond to CLI flags.
 
 <table>
   <thead>
@@ -227,14 +227,14 @@ workspace "all_options" {
     multi               = false   # true, false
     output              = "table" # json, csv, table, line
     separator           = ","     # any single char
-    timing              = true   # true, false, verbose
+    timing              = "on"    # on, off, verbose
   }
 
   options "check" {
     header              = true    # true, false
     output              = "text"  # brief, csv, html, json, md, text, snapshot or none (default "text")
     separator           = ","     # any single char
-    timing              = true    # true, false, verbose
+    timing              = true    # true, false
   }
   
   options "dashboard" {
