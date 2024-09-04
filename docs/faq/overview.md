@@ -120,6 +120,10 @@ Yes. The AWS plugin, for example, is available as a [native Postgres FDW](https:
 
 Yes. Steampipe deploys as a single binary, it's easy to install and use in any CI/CD pipeline or cloud shell.
 
+### Can I self-host Steampipe for my team?
+
+Yes. There's also [Turbot Pipes](https://turbot.com/pipes), which is built for teams and offers a free tier for developers. 
+
 ### Where is the Dockerfile or container example?
 
 Steampipe can be run in a containerized setup. We run it ourselves that way as part of [Turbot Pipes](https://turbot.com/pipes). However, we don't publish or support a container definition because:
