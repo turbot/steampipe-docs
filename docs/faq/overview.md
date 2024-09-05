@@ -27,11 +27,11 @@ Steampipe itself is a single binary. When you launch it, either interactively or
 
 ### Can I use psql, pgadmin, or another client with Steampipe?
 
-Yes. Steampipe exposes a Postgres endpoint that any Postgres client can connect to. Find the connection string by starting Steampipe as a service: `steampipe service start`.
+Yes. Steampipe exposes a [Postgres endpoint](https://steampipe.io/docs/query/third-party) that any Postgres client can connect to. Find the connection string by starting Steampipe as a [service](https://steampipe.io/docs/managing/service): `steampipe service start`.
 
 ### What kinds of data sources can Steampipe query?
 
-Plugins typically query cloud APIs for services like AWS/Azure/GCP/GitHub/etc. But plugins can also query data from structured files like CSV/YML/Terraform/etc. There's also the Net plugin, an HTTP client that can query data from arbitrary URLs, and the Exec plugin which runs arbitrary commands and captures their output. Plugins can be created for any kind of data source.
+[Plugins](https://steampipe.io/docs/managing/plugins) typically query cloud APIs for services like AWS/Azure/GCP/GitHub/etc. But plugins can also query data from structured files like CSV/YML/Terraform/etc. There's also the Net plugin, an HTTP client that can query data from arbitrary URLs, and the Exec plugin which runs arbitrary commands and captures their output. Plugins can be created for any kind of data source. Published plugins are available to view in the [Steampipe Hub](https://hub.steampipe.io/).
 
 ### Can I export query results?
 
@@ -56,13 +56,13 @@ In the Steampipe CLI you can use `.inspect` to list tables by plugin name, e.g. 
 
 ### Can I query more than one AWS account / Azure subscription / GCP project?
 
-Yes. You can create an [aggregator](https://steampipe.io/docs/managing/connections#using-aggregators). This works for multiple connections of the same type, including AWS/Azure/GCP as well as all other plugins.
+Yes. You can create an [aggregator](https://steampipe.io/docs/managing/connections#using-aggregators). This works for multiple connections of the same type, including AWS/Azure/GCP as well as all other plugins. Turbot Pipes provides cloud organization [integrations](https://turbot.com/pipes/docs/integrations) to simplify the setup and will automatically keep the configuration up to date as your organization changes with adding, removing or modifying connections for [AWS organizations](https://turbot.com/pipes/docs/integrations/aws), [Azure tenants](https://turbot.com/pipes/docs/integrations/azure), [GCP organizations](https://turbot.com/pipes/docs/integrations/gcp) and [GitHub organizations](https://turbot.com/pipes/docs/integrations/github)
 
 ## Performance and Scalability
 
 ### How well does Steampipe perform when querying multiple connections?
 
-Multiple connections are queried in parallel, subject to plugin-specific rate-limiting mechanisms. Recent data is served frm cache. Connection-level qualifiers, like AWS `account_id`, can reduce the number of connections queried.
+Multiple connections are queried in parallel, subject to plugin-specific [rate-limiting mechanisms](https://steampipe.io/docs/guides/limiter). Recent data is served from cache. Connection-level qualifiers, like AWS `account_id`, can reduce the number of connections queried.
 
 ### How does Steampipe handle rate-limiting?
 
@@ -84,13 +84,13 @@ Alternatively, you can set a default memory limit for all plugins using the `STE
 
 ### Can I use Steampipe to query and save all my AWS / Azure / GCP resources?
 
-That's possible for many tables (excluding those that don't respond to `select *` because they  require qualifiers). But it's not a recommended use of Steampipe. Other tools are more suitable for building data lakes and warehouses. Steampipe is best for accessing live data in near-real-time.
+That's possible for many tables (excluding those that don't respond to `select *` because they require qualifiers). But it's not a recommended use of Steampipe. Steampipe is best for accessing live data in near-real-time. Turbot Pipes' [Datatank](https://turbot.com/pipes/docs/datatank) feature provides a mechanism to proactively query connections at regular intervals and store the results in a persistent schema. You can then query the stored results instead of the live schemas, resulting in reduced query latency (at the expense of data freshness).
 
 ## Security and Data Handling
 
 ### What are the security implications of using Steampipe?
 
-Steampipe queries cloud APIs and services, which means it requires read-only access to those cloud environments. Plugins can use the same credentials used by other API clients (e.g. the AWS CLI), or use credentials that you specify in `~/.steampipe/config/*.spc`files, in either case observe best practices for guarding those secrets. Plugins communicate locally with the Steampipe instance of Postgres. Steampipe stores no query results by default, they are retained in cache for a default 5-minute TTL.
+Steampipe queries cloud APIs and services, which means it requires read-only access to those cloud environments. Plugins can use the same credentials used by other API clients (e.g. the AWS CLI), or use credentials that you specify in `~/.steampipe/config/*.spc` files, in either case observe best practices for guarding those secrets. Plugins communicate locally with the Steampipe instance of Postgres. Steampipe stores no query results by default, they are retained in cache for a default 5-minute TTL.
 
 ### Does Steampipe store query results locally?
 
@@ -100,7 +100,11 @@ No. Plugins make API calls, results flow into Postgres as ephemeral tables that 
 
 ### Can plugin X have a table for Y?
 
-If the plugin lacks a table you need, please visit `github.com/turbot/steampipe-plugin-x/issues` and file a feature request for a new table.
+If the plugin lacks a table you need, file a feature request (GitHub issue) for a new table in the applicable plugin repo, e.g. `github.com/turbot/steampipe-plugin-{pluginName}/issues`. We welcome direct code contributions as well! The following [guide](https://steampipe.io/docs/develop/writing-your-first-table) is a good starting point to build your write your first table.
+
+### Steampipe does not support X plugin?
+
+If you have an idea for a new plugin, file a [feature request](https://github.com/turbot/steampipe/issues/) (GitHub issue) with the label 'plugin suggestions'. We welcome code contributions as well, writing your first plugin [guide](https://steampipe.io/docs/develop/writing_plugins/overview) will help you get started.
 
 ### How can I dynamically create Steampipe connections?
 
@@ -112,13 +116,13 @@ Yes. Each Steampipe plugin defines its own foreign-table schema, but you can cre
 
 ### Can I use Steampipe plugins with my own database?
 
-Yes. The AWS plugin, for example, is available as a [native Postgres FDW](https://hub.steampipe.io/plugins/turbot/github#postgres-fdw) and a [SQLite extension](https://hub.steampipe.io/plugins/turbot/github#https://hub.steampipe.io/plugins/turbot/github#sqlite-extension).
+Yes. Most plugins support native [Postgres FDWs](https://steampipe.io/docs/steampipe_postgres/overview) and [SQLite Extensions](https://steampipe.io/docs/steampipe_sqlite/overview). Each plugin will have further details in their Steampipe Hub documentation, for example the AWS plugin, a [native Postgres FDW](https://hub.steampipe.io/plugins/turbot/github#postgres-fdw) and a [SQLite extension](https://hub.steampipe.io/plugins/turbot/github#https://hub.steampipe.io/plugins/turbot/github#sqlite-extension).
 
 ## Deployment
 
 ### Can I run Steampipe in a CI/CD pipeline or cloud shell?
 
-Yes. Steampipe deploys as a single binary, it's easy to install and use in any CI/CD pipeline or cloud shell.
+Yes. Steampipe deploys as a single binary, it's easy to install and use in any [CI/CD pipeline or cloud shell](https://steampipe.io/docs/integrations/overview).
 
 ### Can I self-host Steampipe for my team?
 
