@@ -31,11 +31,11 @@ Yes. Steampipe exposes a [Postgres endpoint](https://steampipe.io/docs/query/thi
 
 ### What kinds of data sources can Steampipe query?
 
-[Plugins](https://steampipe.io/docs/managing/plugins) typically query cloud APIs for services like AWS/Azure/GCP/GitHub/etc. But plugins can also query data from structured files like CSV/YML/Terraform/etc. There's also the Net plugin, an HTTP client that can query data from arbitrary URLs, and the Exec plugin which runs arbitrary commands and captures their output. Plugins can be created for any kind of data source. Published plugins are available to view in the [Steampipe Hub](https://hub.steampipe.io/).
+[Plugins](https://steampipe.io/docs/managing/plugins) typically query cloud APIs for services like [AWS](https://hub.steampipe.io/plugins/turbot/aws)/[Azure](https://hub.steampipe.io/plugins/turbot/azure)/[GCP](https://hub.steampipe.io/plugins/turbot/gcp)/[GitHub](https://hub.steampipe.io/plugins/turbot/github)/etc. But plugins can also query data from structured files like [CSV](https://hub.steampipe.io/plugins/turbot/csv)/[YML](https://hub.steampipe.io/plugins/turbot/config)/[Terraform](https://hub.steampipe.io/plugins/turbot/terraform)/etc. There's also the [Net](https://hub.steampipe.io/plugins/turbot/net) plugin, an HTTP client that can query data from arbitrary URLs, and the [Exec](https://hub.steampipe.io/plugins/turbot/exec) plugin which runs arbitrary commands and captures their output. Plugins can be created for any kind of data source. Find published plugins in the [Steampipe Hub](https://hub.steampipe.io/).
 
 ### Can I export query results?
 
-Yes. You can run `steampipe query` with the `--output` argument to capture results in CSV or JSON format. 
+Yes. You can run [steampipe query](https://steampipe.io/docs/reference/cli/query) with the `--output` argument to capture results in CSV or JSON format. 
 
 ### Does Steampipe work with WSL (Windows Subsystem for Linux)?
 
@@ -47,16 +47,15 @@ No. Steampipe is optimized for read-only query. However, it works closely with [
 
 ### What are quals?
 
-Some tables require quals, or qualifiers, in the WHERE or JOIN..ON clause of queries. For example, you can't just do this: `select * from github_issue`. Steampipe can't query all of GitHub, you have to scope (qualify) the query, for example: `select * from github_issue where repository_full_name = 'turbot/steampipe'`. 
-Steampipe uses the qualifier in its call to the underlying API.
+Some tables require quals, or qualifiers, in the WHERE or JOIN..ON clause of queries. For example, you can't just do this: `select * from github_issue`. Steampipe can't query all of GitHub, you have to scope (qualify) the query, for example: `select * from github_issue where repository_full_name = 'turbot/steampipe'`. Steampipe uses the qualifier in its call to the underlying API.
 
 ### How do I know what tables and columns are available to query?
 
-In the Steampipe CLI you can use `.inspect` to list tables by plugin name, e.g. `.inspect aws` to produce a selectable list of tables. When you select one, e.g. `.inspect aws_s3_bucket` you'll see the schema for the table. You can see the same information on the [Steampipe Hub](https://hub.steampipe.io/plugins/turbot/aws/tables/aws_s3_bucket#inspect).
+In the Steampipe CLI you can use [.inspect](https://steampipe.io/docs/reference/dot-commands/inspect) to list tables by plugin name, e.g. `.inspect aws` to produce a selectable list of tables. When you select one, e.g. `.inspect aws_s3_bucket` you'll see the schema for the table. You can see the same information on the [Steampipe Hub](https://hub.steampipe.io/plugins/turbot/aws/tables/aws_s3_bucket#inspect).
 
 ### Can I query more than one AWS account / Azure subscription / GCP project?
 
-Yes. You can create an [aggregator](https://steampipe.io/docs/managing/connections#using-aggregators). This works for multiple connections of the same type, including AWS/Azure/GCP as well as all other plugins. Turbot Pipes provides cloud organization [integrations](https://turbot.com/pipes/docs/integrations) to simplify the setup and will automatically keep the configuration up to date as your organization changes with adding, removing or modifying connections for [AWS organizations](https://turbot.com/pipes/docs/integrations/aws), [Azure tenants](https://turbot.com/pipes/docs/integrations/azure), [GCP organizations](https://turbot.com/pipes/docs/integrations/gcp) and [GitHub organizations](https://turbot.com/pipes/docs/integrations/github)
+Yes. You can create an [aggregator](https://steampipe.io/docs/managing/connections#using-aggregators). This works for multiple connections of the same type, including AWS/Azure/GCP as well as all other plugins. Turbot Pipes provides [integrations](https://turbot.com/pipes/docs/integrations) to simplify the setup and keep configurations up to date by automatically maintaining connections for [AWS organizations](https://turbot.com/pipes/docs/integrations/aws), [Azure tenants](https://turbot.com/pipes/docs/integrations/azure), [GCP organizations](https://turbot.com/pipes/docs/integrations/gcp) and [GitHub organizations](https://turbot.com/pipes/docs/integrations/github)
 
 ## Performance and Scalability
 
@@ -66,13 +65,11 @@ Multiple connections are queried in parallel, subject to plugin-specific [rate-l
 
 ### How does Steampipe handle rate-limiting?
 
-Plugins can use basic rate-limiting provided by the [plugin SDK](https://github.com/turbot/steampipe-plugin-sdk). More advanced [limiters](https://steampipe.io/docs/guides/limiter) can be compiled into plugins, or defined in `.spc` files.
+Plugins can use basic rate-limiting provided by the [plugin SDK](https://github.com/turbot/steampipe-plugin-sdk). More advanced [limiters](https://steampipe.io/docs/guides/limiter) can be compiled into plugins, or defined in [.spc](https://steampipe.io/docs/reference/config-files/overview) files.
 
 ### How can I control the amount of memory used by Steampipe and plugins?
 
-To set a memory limit for the Steampipe process, use the `STEAMPIPE_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_MEMORY_MAX_MB=2048`.
-
-Each plugin can have its own memory limit set in its configuration file using the memory_max_mb attribute. For example:
+To set a memory limit for the Steampipe process, use the `STEAMPIPE_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_MEMORY_MAX_MB=2048`. Each plugin can have its own memory limit set in its configuration file using the memory_max_mb attribute. For example:
 
 ```
 plugin "aws" {
@@ -84,7 +81,7 @@ Alternatively, you can set a default memory limit for all plugins using the `STE
 
 ### Can I use Steampipe to query and save all my AWS / Azure / GCP resources?
 
-That's possible for many tables (excluding those that don't respond to `select *` because they require qualifiers). But it's not a recommended use of Steampipe. Steampipe is best for accessing live data in near-real-time. Turbot Pipes' [Datatank](https://turbot.com/pipes/docs/datatank) feature provides a mechanism to proactively query connections at regular intervals and store the results in a persistent schema. You can then query the stored results instead of the live schemas, resulting in reduced query latency (at the expense of data freshness).
+That's possible for many tables (excluding those that don't respond to `select *` because they require qualifiers). But it's not a recommended use of Steampipe. Steampipe is best for accessing live data in near-real-time. However Turbot Pipes' [Datatank](https://turbot.com/pipes/docs/datatank) can query connections at regular intervals and store the results in a persistent schema. You can then query the stored results instantly. 
 
 ## Security and Data Handling
 
@@ -100,15 +97,15 @@ No. Plugins make API calls, results flow into Postgres as ephemeral tables that 
 
 ### Can plugin X have a table for Y?
 
-If the plugin lacks a table you need, file a feature request (GitHub issue) for a new table in the applicable plugin repo, e.g. `github.com/turbot/steampipe-plugin-{pluginName}/issues`. We welcome direct code contributions as well! The following [guide](https://steampipe.io/docs/develop/writing-your-first-table) is a good starting point to build your write your first table.
+If the plugin lacks a table you need, file a feature request (GitHub issue) for a new table in the applicable plugin repo, e.g. `github.com/turbot/steampipe-plugin-{pluginName}/issues`. Of course we welcome contributions! The following [guide](https://steampipe.io/docs/develop/writing-your-first-table) shows you how to write your first table.
 
-### Steampipe does not support X plugin?
+### Does Steampipe have a plugin for X?
 
-If you have an idea for a new plugin, file a [feature request](https://github.com/turbot/steampipe/issues/) (GitHub issue) with the label 'plugin suggestions'. We welcome code contributions as well, writing your first plugin [guide](https://steampipe.io/docs/develop/writing_plugins/overview) will help you get started.
+If you have an idea for a new plugin, file a [feature request](https://github.com/turbot/steampipe/issues/) (GitHub issue) with the label 'plugin suggestions'. We welcome code contributions as well. If you want to write a plugin, our [guide](https://steampipe.io/docs/develop/writing_plugins/overview) will help you get started.
 
 ### How can I dynamically create Steampipe connections?
 
-All connections are specified in `~/.steampipe/config/*.spc` files. Steampipe watches those files and reacts to changes, so if you build those files dynamically you can create connections dynamically.
+All connections are specified in [~/.steampipe/config/*.spc](https://steampipe.io/docs/reference/config-files/overview) files. Steampipe watches those files and reacts to changes, so if you build those files dynamically you can create connections dynamically.
 
 ### Can I create and use regular Postgres tables?
 
@@ -116,7 +113,7 @@ Yes. Each Steampipe plugin defines its own foreign-table schema, but you can cre
 
 ### Can I use Steampipe plugins with my own database?
 
-Yes. Most plugins support native [Postgres FDWs](https://steampipe.io/docs/steampipe_postgres/overview) and [SQLite Extensions](https://steampipe.io/docs/steampipe_sqlite/overview). Each plugin will have further details in their Steampipe Hub documentation, for example the AWS plugin, a [native Postgres FDW](https://hub.steampipe.io/plugins/turbot/github#postgres-fdw) and a [SQLite extension](https://hub.steampipe.io/plugins/turbot/github#https://hub.steampipe.io/plugins/turbot/github#sqlite-extension).
+Yes. Most plugins support native [Postgres FDWs](https://steampipe.io/docs/steampipe_postgres/overview) and [SQLite Extensions](https://steampipe.io/docs/steampipe_sqlite/overview). Find the details for a plugin in its Steampipe Hub documentation, e.g. the AWS plugin [for Postgres](https://hub.steampipe.io/plugins/turbot/github#postgres-fdw) and for [SQLite](https://hub.steampipe.io/plugins/turbot/github#https://hub.steampipe.io/plugins/turbot/github#sqlite-extension).
 
 ## Deployment
 
@@ -155,17 +152,9 @@ options "database" {
 }
 ```
 
-If you want to disable caching for a client session, you can do this in the CLI:
+If you want to disable caching for a client session, you can do this in the CLI: `.cache off`.
 
-```
-.cache off
-```
-
-Or run Steampipe like so:
-
-```
-export STEAMPIPE_CACHE=false steampipe query
-```
+Or run Steampipe like so: `export STEAMPIPE_CACHE=false steampipe query`.
 
 ### A plugin isn't doing what I expect, how can I debug?
 
