@@ -157,7 +157,7 @@ By default, folding is enabled with a threshold of `3`.  This means that if ther
 
 | Argument | Type | Optional? | Description
 |-|-|-|-
-| `icon` |  String	| Optional | An [icon]((reference/mod-resources/dashboard#icon)) to use when this category is folded.  If not specified, the `category` icon will be used. 
+| `icon` |  String	| Optional | An [icon](reference/mod-resources/dashboard#icon) to use when this category is folded.  If not specified, the `category` icon will be used.
 | `title` |  String	| Optional | A plain text [title](/docs/reference/mod-resources/dashboard#title) to display for this category. If not specified, the `category` title will be used.
 | `threshold` |  Number	| Optional | The number of items that should be displayed before folding.  The default is `3`.
 

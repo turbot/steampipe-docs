@@ -111,7 +111,7 @@ Steampipe will add the aggregator before the other aws connections because `aws`
 +-------------------------------------+
 ```
 
-If you prefer, you can explicitly set the `search_path` in the [database options ](https://steampipe.io/docs/reference/config-files/database) in your `~/.steampipe/config/default.spc` file.  Note that this is somewhat brittle because every time you install or uninstall a plugin, or add or remove a connection, you will need to update the file with the new  `search_path`.
+If you prefer, you can explicitly set the `search_path` in the [database options](/docs/reference/config-files/options#database-options) in your `~/.steampipe/config/default.spc` file.  Note that this is somewhat brittle because every time you install or uninstall a plugin, or add or remove a connection, you will need to update the file with the new  `search_path`.
 
 
 ## Search Path Prefix
@@ -144,7 +144,6 @@ steampipe check benchmark.cis_v140 --search-path-prefix aws_prod
 - [.search_path meta-command](https://steampipe.io/docs/reference/dot-commands/search_path)
 - [PostgreSQL Schema Search Path documentation](https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-PATH)
 - [database options](https://steampipe.io/docs/reference/config-files/database)
-- [terminal options](https://steampipe.io/docs/reference/config-files/terminal)
 - [cli reference - steampipe query](https://steampipe.io/docs/reference/cli/query)
 - [cli reference - steampipe check](https://steampipe.io/docs/reference/cli/check)
 - [cli reference - steampipe dashboard](https://steampipe.io/docs/reference/cli/dashboard)
