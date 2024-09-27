@@ -31,15 +31,6 @@
   },
   {
     "type": "category",
-    "id": "dashboard",
-    "label": "View Dashboards",
-    "link": "dashboard/overview",
-    "items": [
-      "dashboard/panel"
-    ]
-  },
-  {
-    "type": "category",
     "id": "snapshots",
     "label": "Take Snapshots",
     "link": "snapshots/overview",
