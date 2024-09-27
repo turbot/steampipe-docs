@@ -59,19 +59,6 @@
   },
   {
     "type": "category",
-    "id": "working-with-mods",
-    "label": "Build Mods",
-    "link": "mods/overview",
-    "items": [
-      "mods/writing-controls",
-      "mods/writing-dashboards",
-      "mods/mod-variables",
-      "mods/param-query",
-      "mods/mod-dependencies"
-    ]
-  },
-  {
-    "type": "category",
     "id": "managing-steampipe",
     "label": "Manage Steampipe",
     "link": "managing/overview",
@@ -163,16 +150,12 @@
         "label": "Command Line Arguments",
         "link": "reference/cli/overview",
         "items": [
-          "reference/cli/check",
           "reference/cli/completion",
-          "reference/cli/dashboard",
           "reference/cli/help",
           "reference/cli/login",
-          "reference/cli/mod",
           "reference/cli/plugin",
           "reference/cli/query",
-          "reference/cli/service",
-          "reference/cli/variable"
+          "reference/cli/service"
         ]
       },
       {
@@ -219,11 +202,9 @@
           "reference/env-vars/steampipe_database_start_timeout",
           "reference/env-vars/steampipe_diagnostic_level",
           "reference/env-vars/steampipe_install_dir",
-          "reference/env-vars/steampipe_introspection",
           "reference/env-vars/steampipe_log",
           "reference/env-vars/steampipe_max_parallel",
           "reference/env-vars/steampipe_memory_max_mb",
-          "reference/env-vars/steampipe_mod_location",
           "reference/env-vars/steampipe_otel_insecure",
           "reference/env-vars/steampipe_otel_level",
           "reference/env-vars/steampipe_plugin_memory_max_mb",
@@ -245,35 +226,6 @@
           "reference/config-files/options",
           "reference/config-files/plugin",
           "reference/config-files/workspace"
-        ]
-      },
-      {
-        "type": "category",
-        "id": "mod-resources",
-        "label": "Mod Resources",
-        "link": "reference/mod-resources/overview",
-        "items": [
-          "reference/mod-resources/benchmark",
-          "reference/mod-resources/card",
-          "reference/mod-resources/category",
-          "reference/mod-resources/chart",
-          "reference/mod-resources/container",
-          "reference/mod-resources/control",
-          "reference/mod-resources/dashboard",
-          "reference/mod-resources/edge",
-          "reference/mod-resources/flow",
-          "reference/mod-resources/graph",
-          "reference/mod-resources/hierarchy",
-          "reference/mod-resources/image",
-          "reference/mod-resources/input",
-          "reference/mod-resources/locals",
-          "reference/mod-resources/mod",
-          "reference/mod-resources/node",
-          "reference/mod-resources/query",
-          "reference/mod-resources/table",
-          "reference/mod-resources/text",
-          "reference/mod-resources/variable",
-          "reference/mod-resources/with"
         ]
       }
     ]
