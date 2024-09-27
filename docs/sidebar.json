@@ -40,15 +40,6 @@
   },
   {
     "type": "category",
-    "id": "check",
-    "label": "Running Benchmarks",
-    "link": "check/overview",
-    "items": [
-      "check/formatting"
-    ]
-  },
-  {
-    "type": "category",
     "id": "snapshots",
     "label": "Take Snapshots",
     "link": "snapshots/overview",
