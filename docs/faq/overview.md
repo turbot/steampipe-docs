@@ -55,7 +55,11 @@ In the Steampipe CLI you can use [.inspect](https://steampipe.io/docs/reference/
 
 ### Can I query more than one AWS account / Azure subscription / GCP project?
 
-Yes. You can create an [aggregator](https://steampipe.io/docs/managing/connections#using-aggregators). This works for multiple connections of the same type, including AWS/Azure/GCP as well as all other plugins. Turbot Pipes provides [integrations](https://turbot.com/pipes/docs/integrations) to simplify the setup and keep configurations up to date by automatically maintaining connections for [AWS organizations](https://turbot.com/pipes/docs/integrations/aws), [Azure tenants](https://turbot.com/pipes/docs/integrations/azure), [GCP organizations](https://turbot.com/pipes/docs/integrations/gcp) and [GitHub organizations](https://turbot.com/pipes/docs/integrations/github)
+Yes. You can create an [aggregator](https://steampipe.io/docs/managing/connections#using-aggregators). This works for multiple connections of the same type, including AWS/Azure/GCP as well as all other plugins. 
+
+It's common practice to use a script to generate the `.spc` files for an organization. See, for example, [https://github.com/happy240/steampipe-conn-generator-for-aws-organization](https://github.com/happy240/steampipe-conn-generator-for-aws-organization).
+
+Turbot Pipes provides [integrations](https://turbot.com/pipes/docs/integrations) to simplify the setup and keep configurations up to date by automatically maintaining connections for [AWS organizations](https://turbot.com/pipes/docs/integrations/aws), [Azure tenants](https://turbot.com/pipes/docs/integrations/azure), [GCP organizations](https://turbot.com/pipes/docs/integrations/gcp) and [GitHub organizations](https://turbot.com/pipes/docs/integrations/github)
 
 ## Performance and Scalability
 
