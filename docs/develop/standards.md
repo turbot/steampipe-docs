@@ -67,7 +67,7 @@ You may choose to define additional standard columns that are specific to your p
 
 ## Data Types
 Use the appropriate <a href="/docs/develop/writing-plugins#column-data-types" target="_blank" rel="noopener">data type</a> so that you can search and filter intelligently.  Most of this is fairly self-explanatory but there are a couple items worth pointing out:
-- Steampipe does not not support native Postgres arrays - use `ColumnType_JSON` for arrays
+- Steampipe does not support native Postgres arrays - use `ColumnType_JSON` for arrays
 - There are 2 valid IP address formats, `ColumnType_IPADDR` and  `ColumnType_CIDR` which correspond to <a href="https://www.postgresql.org/docs/13/datatype-net-types.html" target="_blank" rel="noopener noreferrer">Postgres inet and cidr</a> data types:
     - Use `ColumnType_IPADDR` for single ip address  - `10.11.12.13`.
     - Use `ColumnType_IPADDR` when a file can either be a single single ip address OR a cidr range - `192.168.0.0/24`, `10.11.12.13`.
