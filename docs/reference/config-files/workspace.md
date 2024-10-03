@@ -5,10 +5,7 @@ sidebar_label: workspace
 # workspace 
 
 A Steampipe `workspace` is a "profile" that allows you to define a unified environment 
-that the Steampipe client can interact with.  Each workspace is composed of:
-- a single Steampipe database instance
-- a single mod directory (which may also contain [dependency mods](/docs/mods/mod-dependencies#mod-dependencies))
-- context-specific settings and options  (snapshot location, query timeout, etc)
+that the Steampipe client can interact with.  Each workspace is composed of a single Steampipe database instance as well as other context-specific settings and options.
 
 Workspace configurations can be defined in any `.spc` file in the `~/.steampipe/config` directory,
 but by convention they are defined in `~/.steampipe/config/workspaces.spc` file. This file may contain
@@ -23,14 +20,10 @@ workspace "local" {
   workspace_database = "local"  
 }
 
-workspace "dev_insights" {
-  workspace_database = "local"  
-  mod_location       = "~/mods/steampipe-mod-aws-insights"
-}
 
 workspace "acme_prod" {
   workspace_database = "acme/prod"
-  snapshot_location  = "acme/prod"
+  query_timeout      = 600
 }
 ```
 
@@ -53,11 +46,7 @@ Any unset arguments will assume the default values.
 | `cache_ttl`         | `300`                                         | Set the client query cache expiration (TTL) in seconds.  Note that is a **client**  setting - if the database `cache_max_ttl` is lower than the `cache_ttl` in the workspace, then the effective ttl for this workspace is the `cache_max_ttl`. <br /> <br /> Env: [STEAMPIPE_CACHE_TTL](/docs/reference/env-vars/steampipe_cache_ttl)
 | `cloud_host`        | `pipes.turbot.com`                          | Set the Turbot Pipes host for connecting to Turbot Pipes workspace. DEPRECATED - Use `pipes_host`. <br /> <br /> Env: [STEAMPIPE_CLOUD_HOST](/docs/reference/env-vars/steampipe_cloud_host), [PIPES_HOST](/docs/reference/env-vars/pipes_host)  <br /> CLI: `--cloud-host`
 | `cloud_token`       | The token obtained by `steampipe login`       | Set the Turbot Pipes authentication token for connecting to a Turbot Pipes workspace.  DEPRECATED - Use `pipes_token`, <br /> <br /> Env: [STEAMPIPE_CLOUD_TOKEN](/docs/reference/env-vars/steampipe_cloud_token), [PIPES_TOKEN](/docs/reference/env-vars/pipes_token)   <br /> CLI: `--cloud-token`
-| `input`             | `true`                                        | Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, set to `false`. This is useful when running from scripts.   <br /> <br /> CLI: `--input`
 | `install_dir`       | `~/.steampipe`                                | The directory in which the Steampipe database, plugins, and supporting files can be found. <br /> <br /> Env: [STEAMPIPE_INSTALL_DIR](/docs/reference/env-vars/steampipe_install_dir)  <br /> CLI: `--install-dir`
-| `introspection`     | `none`                                        | Enable introspection tables that allow you to query the mod resources in the workspace.  Supported values are `none` and `info`. <br /> <br /> Env:  [STEAMPIPE_INTROSPECTION](/docs/reference/env-vars/steampipe_introspection)
-| `max_parallel`      | `5`                                           | Set the maximum number of parallel executions. When running steampipe check, Steampipe will attempt to run up to this many controls in parallel. <br /> <br /> Env: [STEAMPIPE_MAX_PARALLEL](/docs/reference/env-vars/steampipe_max_parallel)  <br /> CLI: `--max-parallel`
-| `mod_location`      | The current working directory                 | Set the workspace working directory. <br /> <br /> Env: [STEAMPIPE_MOD_LOCATION](/docs/reference/env-vars/steampipe_mod_location)  <br /> CLI: `--mod-location`
 | `options`           |                                               | An options block to set command-specific options for this workspace.  [Query](#steampipe-query-options), [check](#steampipe-check-options), and [dashboard](#steampipe-dashboard-options) options are supported.
 | `pipes_host`        | `pipes.turbot.com`                          | Set the Turbot Pipes host for connecting to Turbot Pipes workspace. <br /> <br /> Env: [PIPES_HOST](/docs/reference/env-vars/pipes_host)  <br /> CLI: `--pipes-host`
 | `pipes_token`       | The token obtained by `steampipe login`       | Set the Turbot Pipes authentication token for connecting to a Turbot Pipes workspace.  This may be a token obtained by `steampipe login` or a user-generated [token](https://turbot.com/pipes/docs/profile#tokens). <br /> <br /> Env: [PIPES_TOKEN](/docs/reference/env-vars/pipes_token) <br /> CLI: `--pipes-token`
@@ -65,14 +54,24 @@ Any unset arguments will assume the default values.
 | `query_timeout`     | `240` for controls, unlimited otherwise       | The maximum time (in seconds) a query is allowed to run before it times out. <br /> <br /> Env: [STEAMPIPE_QUERY_TIMEOUT](/docs/reference/env-vars/steampipe_query_timeout)  <br /> CLI: `--query_timeout`
 | `search_path`       | `public`, then alphabetical                   | A comma-separated list of connections to use as a custom search path for the control run. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).   <br /> <br />CLI: `--search-path`   
 | `search_path_prefix`|                                               | A comma-separated list of connections to use as a prefix to the current search path for the control run.  See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).  <br /> <br />CLI: `--search-path-prefix`   
-| `snapshot_location` | The Turbot Pipes user's personal workspace | Set the Turbot Pipes workspace or filesystem path for writing snapshots. <br /> <br /> Env: [STEAMPIPE_SNAPSHOT_LOCATION](/docs/reference/env-vars/steampipe_snapshot_location)  <br /> CLI: `--snapshot-location`
-| `theme`             | `dark`                                        | Select output theme (color scheme, etc) when running `steampipe check`.  Possible values are `light`,`dark`, and `plain`  <br /> <br />CLI: `--theme` 
-| `watch`             | `true`                                        | Watch .sql and .sp files in the current workspace (works only in interactive mode).  <br /> <br />CLI: `--watch` 
 | `workspace_database`| `local`                                       | Workspace database. This can be local or a remote Turbot Pipes database. <br /> <br /> Env: [STEAMPIPE_WORKSPACE_DATABASE](/docs/reference/env-vars/steampipe_workspace_database)  <br /> CLI: `--workspace-database`
 
 
 
+<!--
 
+| `input`             | `true`                                        | Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, set to `false`. This is useful when running from scripts.   <br /> <br /> CLI: `--input`
+| `introspection`     | `none`                                        | Enable introspection tables that allow you to query the mod resources in the workspace.  Supported values are `none` and `info`. <br /> <br /> Env:  [STEAMPIPE_INTROSPECTION](/docs/reference/env-vars/steampipe_introspection)
+
+| `max_parallel`      | `5`                                           | Set the maximum number of parallel executions. When running steampipe check, Steampipe will attempt to run up to this many controls in parallel. <br /> <br /> Env: [STEAMPIPE_MAX_PARALLEL](/docs/reference/env-vars/steampipe_max_parallel)  <br /> CLI: `--max-parallel`
+| `mod_location`      | The current working directory                 | Set the workspace working directory. <br /> <br /> Env: [STEAMPIPE_MOD_LOCATION](/docs/reference/env-vars/steampipe_mod_location)  <br /> CLI: `--mod-location`
+
+| `snapshot_location` | The Turbot Pipes user's personal workspace | Set the Turbot Pipes workspace or filesystem path for writing snapshots. <br /> <br /> Env: [STEAMPIPE_SNAPSHOT_LOCATION](/docs/reference/env-vars/steampipe_snapshot_location)  <br /> CLI: `--snapshot-location`
+| `theme`             | `dark`                                        | Select output theme (color scheme, etc) when running `steampipe check`.  Possible values are `light`,`dark`, and `plain`  <br /> <br />CLI: `--theme` 
+| `watch`             | `true`                                        | Watch .sql and .sp files in the current workspace (works only in interactive mode).  <br /> <br />CLI: `--watch` 
+
+
+-->
 
 
 
@@ -125,6 +124,7 @@ These options often correspond to CLI flags.
 </table>
 
 
+<!--
 ### Steampipe Check Options 
 A `workspace` may include an `options "check"` block to specify values specific to the `steampipe check` command.  
 
@@ -187,6 +187,9 @@ These options often correspond to CLI flags.
 </table>
 
 
+
+
+
 ## Examples
 
 
@@ -239,6 +242,45 @@ workspace "all_options" {
   
   options "dashboard" {
     browser            = true
+  }
+
+}
+
+```
+
+
+-->
+
+## Examples
+
+
+```hcl
+
+workspace "default" {
+  query_timeout       = 300
+}
+
+
+workspace "all_options" {
+  pipes_host          = "pipes.turbot.com"
+  pipes_token         = "tpt_999faketoken99999999_111faketoken1111111111111"
+  install_dir         = "~/steampipe2"
+  query_timeout       = 300
+  workspace_database  = "local" 
+  search_path         = "aws,aws_1,aws_2,gcp,gcp_1,gcp_2,slack,github"
+  search_path_prefix  = "aws_all"
+  progress            = true
+  cache               = true
+  cache_ttl           = 300
+
+
+  options "query" {
+    autocomplete        = true
+    header              = true    # true, false
+    multi               = false   # true, false
+    output              = "table" # json, csv, table, line
+    separator           = ","     # any single char
+    timing              = "on"    # on, off, verbose
   }
 
 }

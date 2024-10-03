@@ -8,7 +8,7 @@ sidebar_label: Using search_path
 
 You are probably here for one of the following reasons:
 - You can't figure out why Steampipe isn't using your [aggregator](https://steampipe.io/docs/managing/connections#querying-multiple-connections)
-- You want to run `steampipe query`, `check`, or `dashboard` against a specific connection
+- You want to run `steampipe query` or [Powerpipe](https://powerpipe.io/) commands against a specific connection
 - You want to change your default connection
 - You've seen references to the search path elsewhere, but you're not sure why it's important
 - You asked what you thought was a simple question on the Steampipe Slack, and instead of an answer they sent you this link (ugh...homework...)
@@ -84,7 +84,7 @@ For example, assume that that search path is set to `gcp_prod, azure_prod, aws_p
 3. Postgres will look in the `aws_prod` schema for a table named `aws_account`. It finds the `aws_account` table, so it runs the query against the `aws_prod.aws_account` table.  
 
 
-Queries in Steampipe [Mods](https://steampipe.io/docs/mods/overview) are written using **unqualified names**.   This allows you to run the exact same queries, dashboards, and benchmarks against any connection, just by changing the search path!  
+Queries in [Powerpipe Mods](https://powerpipe.io/docs/build) for Steampipe are written using **unqualified names**.   This allows you to run the exact same queries, dashboards, and benchmarks against any connection, just by changing the search path!  
 
 
 ## Setting the Search Path
@@ -121,10 +121,10 @@ Setting the `search_path` will replace the current search path.  Usually, howeve
 
 You can change the search path in your interactive terminal session with the [search_path](/docs/reference/dot-commands/search_path) or [search_path_prefix](/docs/reference/dot-commands/search_path_prefix) meta-commands.  This will change the search path only for the current session.
 
-You can also pass a search path or prefix to the `steampipe query`, `steampipe dashboard`, or `steampipe check` commands to change the search path for that command.  For instance, to run the CIS Benchmark against the `aws_prod` connection, you can run.
+You can also pass a search path or prefix to the `steampipe query` command, as well as to [Powerpipe](https://powerpipe.io/) commands (`powerpipe server`, `powerpipe bencmark run`,`powerpipe dashboard run`, `powerpipe control run` `powerpipe query run` ) to change the search path for that command.  For instance, to run the CIS Benchmark against the `aws_prod` connection, you can run.
 
 ```bash
-steampipe check benchmark.cis_v140 --search-path-prefix aws_prod
+powerpipe benchmark run benchmark.cis_v140 --search-path-prefix aws_prod
 ```
 
 ## Tips & Tricks
@@ -145,5 +145,4 @@ steampipe check benchmark.cis_v140 --search-path-prefix aws_prod
 - [PostgreSQL Schema Search Path documentation](https://www.postgresql.org/docs/current/ddl-schemas.html#DDL-SCHEMAS-PATH)
 - [database options](https://steampipe.io/docs/reference/config-files/database)
 - [cli reference - steampipe query](https://steampipe.io/docs/reference/cli/query)
-- [cli reference - steampipe check](https://steampipe.io/docs/reference/cli/check)
-- [cli reference - steampipe dashboard](https://steampipe.io/docs/reference/cli/dashboard)
+- [cli reference - Powerpipe](https://powerpipe.io/docs/reference/cli)
