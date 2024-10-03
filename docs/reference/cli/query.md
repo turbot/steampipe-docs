@@ -23,10 +23,105 @@ Run a [batch query](/docs/query/batch-query):
 steampipe query {query} [flags]
 ```
 
+<!--
 List available [named queries](/docs/query/batch-query#named-queries):
 ```bash
 steampipe query list
 ```
+
+
+
+
+ <tr> 
+    <td nowrap="true"> <inlineCode>--input</inlineCode> </td> 
+    <td>  Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, use <inlineCode>--input=false</inlineCode>.  This is useful when running from scripts. (default true)</td> 
+  </tr>
+
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--mod-location </inlineCode> </td> 
+    <td>  Sets the Steampipe workspace working directory. If not specified, the workspace directory will be set to the current working directory. See <a href="reference/env-vars/steampipe_mod_location">STEAMPIPE_MOD_LOCATION</a> for details. </td> 
+  </tr>
+
+
+
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--share</inlineCode>  </td> 
+    <td> Create snapshot in Turbot Pipes with <inlineCode>anyone_with_link</inlineCode> visibility.  </td>
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--snapshot</inlineCode>  </td> 
+    <td> Create snapshot in Turbot Pipes with the default (<inlineCode>workspace</inlineCode>) visibility.  </td>
+  </tr>
+    
+  <tr> 
+    <td nowrap="true"> <inlineCode>--snapshot-location string</inlineCode>  </td> 
+    <td> The location to write snapshots - either a local file path or a Turbot Pipes workspace  </td>
+  </tr>
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--snapshot-tag string=string  </inlineCode>  </td> 
+    <td> Specify tags to set on the snapshot.  Multiple <inlineCode>--snapshot-tag </inlineCode> arguments may be passed.</td>
+  </tr>
+
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--snapshot-title string=string  </inlineCode>  </td> 
+    <td> The title to give a snapshot when uploading to Turbot Pipes.  </td>
+  </tr>
+
+
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--var string=string </inlineCode>  </td> 
+    <td>  Specify the value of a mod variable.  Multiple <inlineCode>--var </inlineCode> arguments may be passed.
+    </td>
+  </tr>
+  <tr> 
+    <td nowrap="true"> <inlineCode>--var-file string</inlineCode>  </td> 
+    <td>  Specify an .spvars file containing mod variable values. 
+    </td>
+  </tr>
+
+
+  <tr> 
+    <td nowrap="true"> <inlineCode>--watch</inlineCode>  </td> 
+    <td> Watch SQL files in the current workspace (works only in interactive mode) (default true)
+    </td>
+  </tr>
+
+
+
+
+
+
+
+
+Run a query and save a [snapshot](/docs/snapshots/batch-snapshots):
+```bash
+steampipe query --snapshot "select * from aws_s3_bucket"
+```
+
+Run a query and share a [snapshot](/docs/snapshots/batch-snapshots):
+```bash
+steampipe query --share "select * from aws_s3_bucket"
+```
+
+List the named queries available to run in the current mod context:
+
+```bash
+steampipe query list
+```
+
+Run a named query:
+```bash
+steampipe query query.s3_bucket_logging_enabled
+```
+
+-->
+
 
 
 ## Flags
@@ -68,16 +163,7 @@ steampipe query list
     <td>  Help for <inlineCode>steampipe query.</inlineCode></td> 
   </tr>
 
-  <tr> 
-    <td nowrap="true"> <inlineCode>--input</inlineCode> </td> 
-    <td>  Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, use <inlineCode>--input=false</inlineCode>.  This is useful when running from scripts. (default true)</td> 
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--mod-location </inlineCode> </td> 
-    <td>  Sets the Steampipe workspace working directory. If not specified, the workspace directory will be set to the current working directory. See <a href="reference/env-vars/steampipe_mod_location">STEAMPIPE_MOD_LOCATION</a> for details. </td> 
-  </tr>
-
+ 
   <tr> 
     <td nowrap="true"> <inlineCode>--output string</inlineCode> </td> 
     <td>  Select the console output format.   Possible values are <inlineCode>line, csv, json, table, snapshot</inlineCode> (default <inlineCode>table) </inlineCode>. </td> 
@@ -108,67 +194,20 @@ steampipe query list
     <td nowrap="true"> <inlineCode>--search-path strings</inlineCode>  </td> 
     <td>  Set a comma-separated list of connections to use as a custom <a href="managing/connections#setting-the-search-path">search path</a> for the query session. </td>
   </tr>
-      <tr> 
+      
+  <tr> 
     <td nowrap="true"> <inlineCode>--search-path-prefix strings</inlineCode>  </td> 
     <td>  Set a comma-separated list of connections to use as a prefix to the current <a href="managing/connections#setting-the-search-path">search path</a> for the query session. </td>
   </tr>
+
   <tr> 
     <td nowrap="true"> <inlineCode>--separator string</inlineCode>  </td> 
     <td>  A single character to use as a separator string for csv output (defaults to  ",")  </td>
   </tr>
 
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--share</inlineCode>  </td> 
-    <td> Create snapshot in Turbot Pipes with <inlineCode>anyone_with_link</inlineCode> visibility.  </td>
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--snapshot</inlineCode>  </td> 
-    <td> Create snapshot in Turbot Pipes with the default (<inlineCode>workspace</inlineCode>) visibility.  </td>
-  </tr>
-    
-  <tr> 
-    <td nowrap="true"> <inlineCode>--snapshot-location string</inlineCode>  </td> 
-    <td> The location to write snapshots - either a local file path or a Turbot Pipes workspace  </td>
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--snapshot-tag string=string  </inlineCode>  </td> 
-    <td> Specify tags to set on the snapshot.  Multiple <inlineCode>--snapshot-tag </inlineCode> arguments may be passed.</td>
-  </tr>
-
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--snapshot-title string=string  </inlineCode>  </td> 
-    <td> The title to give a snapshot when uploading to Turbot Pipes.  </td>
-  </tr>
-
-
-
-
   <tr> 
     <td nowrap="true"> <inlineCode>--timing=string </inlineCode> </td>
     <td>Enable or disable query execution timing: <inlineCode>off</inlineCode> (default), <inlineCode>on</inlineCode>, or <inlineCode>verbose</inlineCode>  </td>
-  </tr>
-
-
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--var string=string </inlineCode>  </td> 
-    <td>  Specify the value of a mod variable.  Multiple <inlineCode>--var </inlineCode> arguments may be passed.
-    </td>
-  </tr>
-  <tr> 
-    <td nowrap="true"> <inlineCode>--var-file string</inlineCode>  </td> 
-    <td>  Specify an .spvars file containing mod variable values. 
-    </td>
-  </tr>
-
-  <tr> 
-    <td nowrap="true"> <inlineCode>--watch</inlineCode>  </td> 
-    <td> Watch SQL files in the current workspace (works only in interactive mode) (default true)
-    </td>
   </tr>
 
   <tr> 
@@ -192,28 +231,6 @@ Run a specific query directly:
 steampipe query "select * from aws_s3_bucket"
 ```
 
-Run a query and save a [snapshot](/docs/snapshots/batch-snapshots):
-```bash
-steampipe query --snapshot "select * from aws_s3_bucket"
-```
-
-Run a query and share a [snapshot](/docs/snapshots/batch-snapshots):
-```bash
-steampipe query --share "select * from aws_s3_bucket"
-```
-
-List the named queries available to run in the current mod context:
-
-```bash
-steampipe query list
-```
-
-Run a named query:
-```bash
-steampipe query query.s3_bucket_logging_enabled
-```
-
-
 Run the SQL command in the `my_queries/my_query.sql` file:
 ```bash
 steampipe query my_queries/my_query.sql
@@ -224,28 +241,27 @@ Run the SQL commands in all `.sql` files in the `my_queries` directory and conca
 steampipe query my_queries/*.sql
 ```
 
-Run a specific query directly and report the query execution time:
+Run a query and report the query execution time:
 ```bash
 steampipe query "select * from aws_s3_bucket" --timing
 ```
 
-Run a specific query directly and report the query execution time and details for each scan:
+Run a query and report the query execution time and details for each scan:
 ```bash
 steampipe query "select * from aws_s3_bucket" --timing=verbose
 ```
 
-
-Run a specific query directly and return output in json format:
+Run a query and return output in json format:
 ```bash
 steampipe query "select * from aws_s3_bucket" --output json
 ```
 
-Run a specific query directly and return output in CSV format:
+Run a query and return output in CSV format:
 ```bash
 steampipe query "select * from aws_s3_bucket" --output csv
 ```
 
-Run a specific query directly and return output in pipe-separated format:
+Run a query and return output in pipe-separated format:
 ```bash
 steampipe query "select * from aws_s3_bucket" --output csv --separator '|'
 ```
