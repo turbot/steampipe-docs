@@ -45,6 +45,7 @@ from
 <img alt="s3-public-access-preview" src="/images/docs/ci-cd-pipelines/cloud9-s3-public-access-preview.png" />
 </div>
 
+<!---
 ## Visualize Steampipe Dashboards with AWS Cloud9
 
 [Steampipe dashboards](https://steampipe.io/docs/dashboard/overview) provide rich visualizations of Steampipe data. Here, we will use the [AWS Well-Architected Mod](https://hub.steampipe.io/mods/turbot/aws_well_architected) to develop a dashboard to check adherence to the best practices defined by the AWS Well-Architected Framework. To get started, install the mod by pasting this command.
@@ -77,3 +78,5 @@ Now click on `Preview`, select `Preview Running Application` to view the dashboa
 Alternatively, you can run the benchmark in the AWS Cloud9 terminal: `steampipe check benchmark.reliability`.
 
 That's it! Now you use Cloud9 to query and create dashboards using Steampipe's [plugins](https://hub.steampipe.io/plugins) and [mods](https://hub.steampipe.io/mods).
+
+-->
