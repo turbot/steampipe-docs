@@ -88,13 +88,16 @@ To set a set soft memory limit for the Steampipe process, use the `STEAMPIPE_MEM
 
 Each plugin runs as its own process, and can have its own memory limit set in its configuration file using the memory_max_mb attribute. For example:
 
-```
+```hcl
 plugin "aws" {
   memory_max_mb = 2048
 }
 ```
 
-Alternatively, you can set a default memory limit for all plugin processes using the `STEAMPIPE_PLUGIN_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_PLUGIN_MEMORY_MAX_MB=2048`.
+Alternatively, you can set a default memory limit for all plugin processes using the `STEAMPIPE_PLUGIN_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: 
+```bash
+export STEAMPIPE_PLUGIN_MEMORY_MAX_MB=2048
+```
 
 
 
@@ -158,7 +161,7 @@ Yes. [Caching](/docs/guides/caching) significantly improves query performance an
 
 To disable caching at the server level, you can set the cache option to false in `~/.steampipe/config/default.spc`:
 
-```
+```hcl
 options "database" {
   cache = false
 }
@@ -175,9 +178,8 @@ Within an interactive query session, you can disable caching for the client sess
 Steampipe writes plugin logs to `~/steampipe/logs/plugin-YYYY-MM-DD.log`.  By default, these logs are written at `warn` level.
 You can change the log level with the [STEAMPIPE_LOG_LEVEL](/docs/reference/env-vars/steampipe_log) environment variable:
 
-```
+```bash
 export STEAMPIPE_LOG_LEVEL=TRACE
 ```
 
 If Steampipe is running, the plugins must be restarted for it to take effect: `steampipe service stop --force  && steampipe service start`.
-
