@@ -11,8 +11,6 @@ sidebar_label: FAQ
 
 [Performance and Scalability](#performance-and-scalability)
 
-[Security and Data Handling](#security-and-data-handling)
-
 [Plugins and Customization](#plugins-and-customization)
 
 [Deployment](#deployment)
@@ -21,33 +19,43 @@ sidebar_label: FAQ
 
 ## Basics and Functionality
 
-### How does Steampipe launch and run?
-
-Steampipe itself is a single binary. When you launch it, either interactively or as a service, it launches its own instance of Postgres, loads the Steampipe foreign data wrapper extension into Postgres, and then prepares all configured plugins to make them ready for queries.
-
-### Can I use psql, pgadmin, or another client with Steampipe?
-
-Yes. Steampipe exposes a [Postgres endpoint](https://steampipe.io/docs/query/third-party) that any Postgres client can connect to. Find the connection string by starting Steampipe as a [service](https://steampipe.io/docs/managing/service): `steampipe service start`.
-
 ### What kinds of data sources can Steampipe query?
 
-[Plugins](https://steampipe.io/docs/managing/plugins) typically query cloud APIs for services like [AWS](https://hub.steampipe.io/plugins/turbot/aws)/[Azure](https://hub.steampipe.io/plugins/turbot/azure)/[GCP](https://hub.steampipe.io/plugins/turbot/gcp)/[GitHub](https://hub.steampipe.io/plugins/turbot/github)/etc. But plugins can also query data from structured files like [CSV](https://hub.steampipe.io/plugins/turbot/csv)/[YML](https://hub.steampipe.io/plugins/turbot/config)/[Terraform](https://hub.steampipe.io/plugins/turbot/terraform)/etc. There's also the [Net](https://hub.steampipe.io/plugins/turbot/net) plugin, an HTTP client that can query data from arbitrary URLs, and the [Exec](https://hub.steampipe.io/plugins/turbot/exec) plugin which runs arbitrary commands and captures their output. Plugins can be created for any kind of data source. Find published plugins in the [Steampipe Hub](https://hub.steampipe.io/).
+Steampipe's extensible [plugin](https://steampipe.io/docs/managing/plugins) model allows it so support a wide range of source data, including:
+- Cloud providers like [AWS](https://hub.steampipe.io/plugins/turbot/aws), [Azure](https://hub.steampipe.io/plugins/turbot/azure), [GCP](https://hub.steampipe.io/plugins/turbot/gcp), [Cloudflare](https://hub.steampipe.io/plugins/turbot/cloudflare), [Alibaba Cloud](https://hub.steampipe.io/plugins/turbot/alicloud), [IBM CLoud](https://hub.steampipe.io/plugins/turbot/ibm), and [Oracle Cloud](https://hub.steampipe.io/plugins/turbot/oci).
+- Cloud-based services like[GitHub](https://hub.steampipe.io/plugins/turbot/github), [Zoom](https://hub.steampipe.io/plugins/turbot/zoom), [Okta](https://hub.steampipe.io/plugins/turbot/okta), [Slack](https://hub.steampipe.io/plugins/turbot/slack), [Salesforce](https://hub.steampipe.io/plugins/turbot/salesforce), and [ServiceNow](https://hub.steampipe.io/plugins/turbot/servicenow).
+- Structured files like [CSV](https://hub.steampipe.io/plugins/turbot/csv), [YML](https://hub.steampipe.io/plugins/turbot/config) and [Terraform](https://hub.steampipe.io/plugins/turbot/terraform).
+- Ad hoc investigation of [network services](https://hub.steampipe.io/plugins/turbot/net) like DNS & HTTP.  You can even run [arbitrary commands]((https://hub.steampipe.io/plugins/turbot/exec)) on local or remote systems and query the output.
+ 
+Find published plugins in the [Steampipe Hub](https://hub.steampipe.io/)!
 
-### Can I export query results?
+### Does Steampipe store query results locally?
 
-Yes. You can run [steampipe query](https://steampipe.io/docs/reference/cli/query) with the `--output` argument to capture results in CSV or JSON format. 
+No. Plugins make API calls, results flow into Postgres as ephemeral tables that are only cached for (by default) 5 minutes. Steampipe optimizes for live data, and stores nothing by default.
+
+
+### Can I use `psql`, `pgadmin`, or another client with Steampipe?
+
+Yes. Steampipe exposes a [Postgres endpoint](https://steampipe.io/docs/query/third-party) that any Postgres client can connect to.   When you start the Steampipe [service](https://steampipe.io/docs/managing/service), Steampipe will print the connection string to the console.  You can also run `steampipe service status` to see the connection string.
+
+
+### Can I export query results as CSV, JSON, etc?
+
+Yes. You can run [steampipe query](https://steampipe.io/docs/reference/cli/query) with the `--output` argument to capture results in CSV or JSON format:
+```bash
+steampipe query --output json "select * from aws_account"
+```
 
 ### Does Steampipe work with WSL (Windows Subsystem for Linux)?
 
 Yes, with WSL 2.0.
 
+### Does Steampipe work with WSL (Windows Subsystem for Linux)?
+
+
 ### Are there plans for Steampipe to support SQL write operations?
 
 No. Steampipe is optimized for read-only query. However, it works closely with [Flowpipe](https://flowpipe.io) which can run Steampipe queries and act on the results.
-
-### What are quals?
-
-Some tables require quals, or qualifiers, in the WHERE or JOIN..ON clause of queries. For example, you can't just do this: `select * from github_issue`. Steampipe can't query all of GitHub, you have to scope (qualify) the query, for example: `select * from github_issue where repository_full_name = 'turbot/steampipe'`. Steampipe uses the qualifier in its call to the underlying API.
 
 ### How do I know what tables and columns are available to query?
 
@@ -68,12 +76,13 @@ Turbot Pipes provides [integrations](https://turbot.com/pipes/docs/integrations)
 Multiple connections are queried in parallel, subject to plugin-specific [rate-limiting mechanisms](https://steampipe.io/docs/guides/limiter). Recent data is served from cache. Connection-level qualifiers, like AWS `account_id`, can reduce the number of connections queried.
 
 ### How does Steampipe handle rate-limiting?
-
-Plugins can use basic rate-limiting provided by the [plugin SDK](https://github.com/turbot/steampipe-plugin-sdk). More advanced [limiters](https://steampipe.io/docs/guides/limiter) can be compiled into plugins, or defined in [.spc](https://steampipe.io/docs/reference/config-files/overview) files.
+Generally, Plugins are responsible for handling rate limiting because the details are service specific. Plugins should typically recognize when they are being rate limited and backoff and retry either using their native Go SDK,  the basic rate-limiting provided by the [plugin SDK](https://github.com/turbot/steampipe-plugin-sdk), or adding [limiters](https://steampipe.io/docs/guides/limiter) compiled in the plugin . You can also define your own custom [limiters](https://steampipe.io/docs/guides/limiter) in [configuration files](https://steampipe.io/docs/reference/config-files/overview).
 
 ### How can I control the amount of memory used by Steampipe and plugins?
 
-To set a memory limit for the Steampipe process, use the `STEAMPIPE_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_MEMORY_MAX_MB=2048`. Each plugin can have its own memory limit set in its configuration file using the memory_max_mb attribute. For example:
+To set a set memory limit for the Steampipe process, use the `STEAMPIPE_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_MEMORY_MAX_MB=2048`.
+
+Each plugin runs as its own process, and can have its own memory limit set in its configuration file using the memory_max_mb attribute. For example:
 
 ```
 plugin "aws" {
@@ -81,21 +90,9 @@ plugin "aws" {
 }
 ```
 
-Alternatively, you can set a default memory limit for all plugins using the `STEAMPIPE_PLUGIN_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_PLUGIN_MEMORY_MAX_MB=2048`.
+Alternatively, you can set a default memory limit for all plugin processes using the `STEAMPIPE_PLUGIN_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_PLUGIN_MEMORY_MAX_MB=2048`.
 
-### Can I use Steampipe to query and save all my AWS / Azure / GCP resources?
 
-That's possible for many tables (excluding those that don't respond to `select *` because they require qualifiers). But it's not a recommended use of Steampipe. Steampipe is best for accessing live data in near-real-time. However Turbot Pipes' [Datatank](https://turbot.com/pipes/docs/datatank) can query connections at regular intervals and store the results in a persistent schema. You can then query the stored results instantly. 
-
-## Security and Data Handling
-
-### What are the security implications of using Steampipe?
-
-Steampipe queries cloud APIs and services, which means it requires read-only access to those cloud environments. Plugins can use the same credentials used by other API clients (e.g. the AWS CLI), or use credentials that you specify in `~/.steampipe/config/*.spc` files, in either case observe best practices for guarding those secrets. Plugins communicate locally with the Steampipe instance of Postgres. Steampipe stores no query results by default, they are retained in cache for a default 5-minute TTL.
-
-### Does Steampipe store query results locally?
-
-No. Plugins make API calls, results flow into Postgres as ephemeral tables that are only cached for (by default) 5 minutes. Steampipe optimizes for live data, and stores nothing by default.
 
 ## Plugins and Customization
 
@@ -125,9 +122,6 @@ Yes. Most plugins support native [Postgres FDWs](https://steampipe.io/docs/steam
 
 Yes. Steampipe deploys as a single binary, it's easy to install and use in any [CI/CD pipeline or cloud shell](https://steampipe.io/docs/integrations/overview).
 
-### Can I self-host Steampipe for my team?
-
-Yes. There's also [Turbot Pipes](https://turbot.com/pipes), which is built for teams and offers a free tier for developers. 
 
 ### Where is the Dockerfile or container example?
 
@@ -142,13 +136,21 @@ We welcome users to create and share open-source container definitions for Steam
 
 ## Troubleshooting and Debugging
 
-### How can I know what API calls a plugin makes?
+### My query resulted in an error stating that is `missing 1 required qual`.  What does that mean?
 
-Run Steampipe in [diagnostic mode](https://steampipe.io/docs/guides/limiter#exploring--troubleshooting-with-diagnostic-mode). 
+The error indicates that you must add a `where =` (or `join...on`) clause for the specified column to your query. The Steampipe database doesn't store data, it makes API calls to get data dynamically. There are times when listing ALL the elements represented by a table is impossible or prohibitively slow. In such cases, a table may [require you to specify a qualifier](http://localhost:3000/docs/sql/tips#some-tables-require-a-where-or-join-clause) in a where = (or join...on) clause. 
+
+
+### How can I know what API calls a plugin makes?
+Steampipe plugins are open source, and you can inspect the code to see what calls it is making.
+
+Some plugins (like the AWS plugin) provide information about the APIs being called using [function tags](https://steampipe.io/docs/guides/limiter#function-tags) that can be inspected by running Steampipe in [diagnostic mode](https://steampipe.io/docs/guides/limiter#exploring--troubleshooting-with-diagnostic-mode).
+
+
 
 ### Can I disable the Steampipe cache?
 
-Yes, in various ways. To disable caching at the server level, you can set the cache option to false in `~/.steampipe/config/default.spc`:
+Yes. To disable caching at the server level, you can set the cache option to false in `~/.steampipe/config/default.spc`:
 
 ```
 options "database" {
@@ -162,13 +164,12 @@ Or run Steampipe like so: `export STEAMPIPE_CACHE=false steampipe query`.
 
 ### A plugin isn't doing what I expect, how can I debug?
 
-Run Steampipe like so:
+Steampipe writes plugin logs to `~/steampipe/logs/plugin-YYYY-MM-DD.log`.  By default, these logs are written at `warn` level.
+You can change the log level with the [STEAMPIPE_LOG_LEVEL](https://steampipe.io/docs/reference/env-vars/steampipe_log) environment variable:
 
 ```
-STEAMPIPE_DIAGNOSTIC_LEVEL=all steampipe query
+export STEAMPIPE_LOG_LEVEL=TRACE
 ```
 
-Then check for errors in `~/steampipe/logs/plugin-YYYY-MM-DD.log`
-
-It maybe be helpful to ensure no Steampipe processes are running. Try `steampipe service stop --force` first, and only if necessary, `pkill -f steampipe`.
+If Steampipe is running, the plugins must be restarted for it to take effect: `steampipe service stop --force  && steampipe service start`.
 
