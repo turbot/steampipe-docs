@@ -32,7 +32,7 @@ Find published plugins in the [Steampipe Hub](https://hub.steampipe.io/)!
 
 ### Does Steampipe store query results locally?
 
-No. Plugins make API calls, results flow into Postgres as ephemeral tables that are only cached for (by default) 5 minutes. Steampipe optimizes for live data, and stores nothing by default.
+No. Plugins make API calls, results flow into Postgres as ephemeral tables that are only cached for 5 minutes (by default). Steampipe optimizes for live data, and stores nothing by default.
 
 
 ### Can I use `psql`, `pgadmin`, or another client with Steampipe?
@@ -51,10 +51,8 @@ steampipe query --output json "select * from aws_account"
 
 Yes, with WSL 2.0.
 
-### Does Steampipe work with WSL (Windows Subsystem for Linux)?
 
-
-### Are there plans for Steampipe to support SQL write operations?
+### Does Steampipe support SQL write operations?
 
 No. Steampipe is optimized for read-only query. However, it works closely with [Flowpipe](https://flowpipe.io) which can run Steampipe queries and act on the results.
 
