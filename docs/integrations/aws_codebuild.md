@@ -78,5 +78,5 @@ aws secretsmanager create-secret --name steampipe-cloud --secret-string \
 You can find the entire buildspec file [here in our samples repository](https://github.com/turbot/steampipe-samples/blob/main/all/aws-codebuild/steampipe-cloud-buildspec.yaml).
 
 
-That's it! Now you can use any of Steampipe's plugins and mods as part of your CodeBuild projects, either locally of leveraging the power of Turbot Pipes.
+That's it! Now you can use any of Steampipe's plugins as part of your CodeBuild projects, either locally of leveraging the power of Turbot Pipes.
 
