@@ -72,14 +72,19 @@ Turbot Pipes provides [integrations](https://turbot.com/pipes/docs/integrations)
 
 ### How well does Steampipe perform when querying multiple connections?
 
-Multiple connections are queried in parallel, subject to plugin-specific [rate-limiting mechanisms](/docs/guides/limiter). Recent data is served from cache. Connection-level qualifiers, like AWS `account_id`, can reduce the number of connections queried.
+The large variance in customer environments and configurations make it impossible to provide specific estimates, but many users have scaled Steampipe to hundreds of connections.  Multiple connections are queried in parallel, subject to plugin-specific [rate-limiting mechanisms](/docs/guides/limiter). Recent data is served from [cache](https://steampipe-dwhhps9u9-turbot.vercel.app/docs/guides/caching).  Connection-level qualifiers, like AWS account_id, can reduce the number of connections queried.
+
+Writing good queries makes a significant difference in performance:
+  - Select only the columns that you need, to avoid making API calls to hydrate data that you don't require.
+  - Limit results with a `where` clause on [key columns](https://steampipe-dwhhps9u9-turbot.vercel.app/docs/guides/key-columns) when possible to allow Steampipe to do server-side row-level filtering.
+
 
 ### How does Steampipe handle rate-limiting?
 Generally, Plugins are responsible for handling rate limiting because the details are service specific. Plugins should typically recognize when they are being rate limited and backoff and retry either using their native Go SDK,  the basic rate-limiting provided by the [plugin SDK](https://github.com/turbot/steampipe-plugin-sdk), or adding [limiters](/docs/guides/limiter) compiled in the plugin . You can also define your own custom [limiters](/docs/guides/limiter) in [configuration files](/docs/reference/config-files/overview).
 
 ### How can I control the amount of memory used by Steampipe and plugins?
 
-To set a set memory limit for the Steampipe process, use the `STEAMPIPE_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_MEMORY_MAX_MB=2048`.
+To set a set soft memory limit for the Steampipe process, use the `STEAMPIPE_MEMORY_MAX_MB` environment variable. For example, to set a 2GB limit: `export STEAMPIPE_MEMORY_MAX_MB=2048`.
 
 Each plugin runs as its own process, and can have its own memory limit set in its configuration file using the memory_max_mb attribute. For example:
 
