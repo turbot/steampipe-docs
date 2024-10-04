@@ -7,15 +7,16 @@ sidebar_label: FAQ
 
 ## Topics
 
-[Basics and Functionality](#basics-and-functionality)
+|                         Topic                                   |
+|-----------------------------------------------------------------|
+| [Basics and Functionality](#basics-and-functionality)           |
+| [Performance and Scalability](#performance-and-scalability)     |
+| [Plugins and Customization](#plugins-and-customization)         |
+| [Deployment](#deployment)                                       |
+| [Troubleshooting and Debugging](#troubleshooting-and-debugging) |
 
-[Performance and Scalability](#performance-and-scalability)
 
-[Plugins and Customization](#plugins-and-customization)
-
-[Deployment](#deployment)
-
-[Troubleshooting and Debugging](#troubleshooting-and-debugging)
+------
 
 ## Basics and Functionality
 
