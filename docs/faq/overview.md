@@ -26,7 +26,7 @@ Steampipe's extensible [plugin](/docs/managing/plugins) model allows it so suppo
 - Cloud providers like [AWS](https://hub.steampipe.io/plugins/turbot/aws), [Azure](https://hub.steampipe.io/plugins/turbot/azure), [GCP](https://hub.steampipe.io/plugins/turbot/gcp), [Cloudflare](https://hub.steampipe.io/plugins/turbot/cloudflare), [Alibaba Cloud](https://hub.steampipe.io/plugins/turbot/alicloud), [IBM Cloud](https://hub.steampipe.io/plugins/turbot/ibm), and [Oracle Cloud](https://hub.steampipe.io/plugins/turbot/oci).
 - Cloud-based services like[GitHub](https://hub.steampipe.io/plugins/turbot/github), [Zoom](https://hub.steampipe.io/plugins/turbot/zoom), [Okta](https://hub.steampipe.io/plugins/turbot/okta), [Slack](https://hub.steampipe.io/plugins/turbot/slack), [Salesforce](https://hub.steampipe.io/plugins/turbot/salesforce), and [ServiceNow](https://hub.steampipe.io/plugins/turbot/servicenow).
 - Structured files like [CSV](https://hub.steampipe.io/plugins/turbot/csv), [YML](https://hub.steampipe.io/plugins/turbot/config) and [Terraform](https://hub.steampipe.io/plugins/turbot/terraform).
-- Ad hoc investigation of [network services](https://hub.steampipe.io/plugins/turbot/net) like DNS & HTTP.  You can even run [arbitrary commands]((https://hub.steampipe.io/plugins/turbot/exec)) on local or remote systems and query the output.
+- Ad hoc investigation of [network services](https://hub.steampipe.io/plugins/turbot/net) like DNS & HTTP.  You can even run [arbitrary commands](https://hub.steampipe.io/plugins/turbot/exec) on local or remote systems and query the output.
  
 Find published plugins in the [Steampipe Hub](https://hub.steampipe.io/)!
 
