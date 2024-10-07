@@ -35,16 +35,8 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [STEAMPIPE_OTEL_LEVEL](reference/env-vars/steampipe_otel_level)  | `NONE` | Specify which [OpenTelemetry](https://opentelemetry.io/) data to send via OTLP.
 | [STEAMPIPE_PLUGIN_MEMORY_MAX_MB](reference/env-vars/steampipe_plugin_memory_max_mb)| `1024` | Set a default memory soft limit for each plugin process.
 | [STEAMPIPE_QUERY_TIMEOUT](reference/env-vars/steampipe_query_timeout)  |  `240` for controls, unlimited in all other cases. | Set the amount of time to wait for a query to complete before timing out, in seconds.
+| [STEAMPIPE_SNAPSHOT_LOCATION](/docs/reference/env-vars/steampipe_snapshot_location) | The Turbot Pipes user's personal workspace | Set the Turbot Pipes workspace or filesystem path for writing snapshots.
 | [STEAMPIPE_TELEMETRY](reference/env-vars/steampipe_telemetry)  | `info` | Set the level of telemetry data to collect and send.
 | [STEAMPIPE_UPDATE_CHECK](reference/env-vars/steampipe_update_check)| `true` | Enable/disable automatic update checking.
 | [STEAMPIPE_WORKSPACE](reference/env-vars/steampipe_workspace)  | `default` | Set the Steampipe workspace .  This can be named workspace from `workspaces.spc` or a remote Turbot Pipes workspace
 | [STEAMPIPE_WORKSPACE_DATABASE](reference/env-vars/steampipe_workspace_database)  | `local` | Workspace database.  This can be `local` or a remote Turbot Pipes database.
-
-
-<!--
-| [STEAMPIPE_INTROSPECTION](reference/env-vars/steampipe_introspection)  | `none` | Enable introspection tables that allow you to query the mod resources in the workspace.
-| [STEAMPIPE_MAX_PARALLEL](reference/env-vars/steampipe_max_parallel)  | `10` | Set the maximum number of parallel executions.
-| [STEAMPIPE_MOD_LOCATION](reference/env-vars/steampipe_mod_location)  | current working directory | Set the workspace working directory.
-| [STEAMPIPE_SNAPSHOT_LOCATION](/docs/reference/env-vars/steampipe_snapshot_location) | The Turbot Pipes user's personal workspace | Set the Turbot Pipes workspace or filesystem path for writing snapshots.
-
--->

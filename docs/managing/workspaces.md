@@ -18,6 +18,9 @@ workspace "local" {
 
 workspace "acme_prod" {
   workspace_database = "acme/prod"
+  snapshot_location  = "acme/prod"
+  query_timeout      = 600
+
 }
 ```
 
@@ -70,8 +73,6 @@ workspace "acme_prod" {
 }
 ```
 
-
-<!--
 The `snapshot_location` can also be a Turbot Pipes workspace, in the form 
 of `{identity_handle}/{workspace_handle}`: 
 ```hcl
@@ -90,30 +91,16 @@ workspace "local" {
 }
 ```
 
-The `mod_location` can only be a local filesystem path, as mod files are always read from the machine on which the Steampipe client runs.  Often the default (the working directory) is appropriate, but you can set it explicitly for a workspace.
 
-```hcl
-workspace "aws_insights" {
-  workspace_database = "local"
-  snapshot_location  = "home/raj/my-snapshots"
-  mod_location       = "~/src/steampipe/mods/steampipe-mod-aws-insights"
-}
-```
--->
-
-<!--
-You can specify [`options` blocks for query](/docs/reference/config-files/options#query-options) and [check](/docs/reference/config-files/options#check-options) in a workspace:
+You can specify [`options` blocks to set options for steampipe query](/docs/reference/config-files/options#query-options):
 
 ```hcl
 workspace "local_dev" {
   search_path_prefix  = "aws_all"
-  watch  			        = false
   query_timeout       = 300 
-  max_parallel        = 5   
   pipes_token         = "tpt_999faketoken99999999_111faketoken1111111111111"
   pipes_host          = "pipes.turbot.com"
   snapshot_location   = "acme/dev"
-  mod_location        = "~/mods/steampipe-mod-aws-insights"
   workspace_database  = "local" 
 
   options "query" { 
@@ -125,15 +112,8 @@ workspace "local_dev" {
     autocomplete        = true
   }
 
-  options "check" {
-    output              = "table" # json, csv, table, line
-    header              = true    # true, false
-    separator           = ","     # any single char
-  }
 }
 ```
-
--->
 
 You can even set the `install_dir` for a workspace if you want to use the data layer from another [Steampipe installation directory](https://steampipe.io/docs/reference/env-vars/steampipe_install_dir).
 
@@ -149,7 +129,6 @@ and easily switch between them with the `--workspace` flag:
 ```bash
 steampipe dashboard --workspace steampipe_2
 ```
-
 
 
 ## Using Workspaces
@@ -217,34 +196,17 @@ steampipe query  --workspace=acme_prod "select * from aws_account"
 ```
 
 ## Implicit Workspaces
-<!-->
 Named workspaces follow normal standards for HCL identifiers, thus they cannot contain
 the slash (`/`) character.  If you pass a value to `--workspace` or `STEAMPIPE_WORKSPACE`
 in the form of `{identity_handle}/{workspace_handle}`, it will be interpreted as
 an **implicit workspace**.  Implicit workspaces, as the name suggests, do not
 need to be specified in the `workspaces.spc` file.  Instead they will be assumed
-to refer to a Turbot Pipes workspace, which will be used as both the database (`workspace_database`)
-and snapshot location (`snapshot_location`).
+to refer to a Turbot Pipes workspace, which will be used as both the database (`workspace_database`) and snapshot location (`snapshot_location`).
 
 Essentially, `--workspace acme/dev` is equivalent to:
 ```hcl
 workspace "acme/dev" {
   workspace_database = "acme/dev"
   snapshot_location  = "acme/dev"
-}
-```
--->
-
-Named workspaces follow normal standards for HCL identifiers, thus they cannot contain
-the slash (`/`) character.  If you pass a value to `--workspace` or `STEAMPIPE_WORKSPACE`
-in the form of `{identity_handle}/{workspace_handle}`, it will be interpreted as
-an **implicit workspace**.  Implicit workspaces, as the name suggests, do not
-need to be specified in the `workspaces.spc` file.  Instead they will be assumed
-to refer to a Turbot Pipes workspace, which will be used as the database (`workspace_database`).
-
-Essentially, `--workspace acme/dev` is equivalent to:
-```hcl
-workspace "acme/dev" {
-  workspace_database = "acme/dev"
 }
 ```

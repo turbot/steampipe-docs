@@ -54,24 +54,8 @@ Any unset arguments will assume the default values.
 | `query_timeout`     | `240` for controls, unlimited otherwise       | The maximum time (in seconds) a query is allowed to run before it times out. <br /> <br /> Env: [STEAMPIPE_QUERY_TIMEOUT](/docs/reference/env-vars/steampipe_query_timeout)  <br /> CLI: `--query_timeout`
 | `search_path`       | `public`, then alphabetical                   | A comma-separated list of connections to use as a custom search path for the control run. See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).   <br /> <br />CLI: `--search-path`   
 | `search_path_prefix`|                                               | A comma-separated list of connections to use as a prefix to the current search path for the control run.  See also: [Using search_path to target connections and aggregators](https://steampipe.io/docs/guides/search-path).  <br /> <br />CLI: `--search-path-prefix`   
-| `workspace_database`| `local`                                       | Workspace database. This can be local or a remote Turbot Pipes database. <br /> <br /> Env: [STEAMPIPE_WORKSPACE_DATABASE](/docs/reference/env-vars/steampipe_workspace_database)  <br /> CLI: `--workspace-database`
-
-
-
-<!--
-
-| `input`             | `true`                                        | Enable/Disable interactive prompts for missing variables.  To disable prompts and fail on missing variables, set to `false`. This is useful when running from scripts.   <br /> <br /> CLI: `--input`
-| `introspection`     | `none`                                        | Enable introspection tables that allow you to query the mod resources in the workspace.  Supported values are `none` and `info`. <br /> <br /> Env:  [STEAMPIPE_INTROSPECTION](/docs/reference/env-vars/steampipe_introspection)
-
-| `max_parallel`      | `5`                                           | Set the maximum number of parallel executions. When running steampipe check, Steampipe will attempt to run up to this many controls in parallel. <br /> <br /> Env: [STEAMPIPE_MAX_PARALLEL](/docs/reference/env-vars/steampipe_max_parallel)  <br /> CLI: `--max-parallel`
-| `mod_location`      | The current working directory                 | Set the workspace working directory. <br /> <br /> Env: [STEAMPIPE_MOD_LOCATION](/docs/reference/env-vars/steampipe_mod_location)  <br /> CLI: `--mod-location`
-
 | `snapshot_location` | The Turbot Pipes user's personal workspace | Set the Turbot Pipes workspace or filesystem path for writing snapshots. <br /> <br /> Env: [STEAMPIPE_SNAPSHOT_LOCATION](/docs/reference/env-vars/steampipe_snapshot_location)  <br /> CLI: `--snapshot-location`
-| `theme`             | `dark`                                        | Select output theme (color scheme, etc) when running `steampipe check`.  Possible values are `light`,`dark`, and `plain`  <br /> <br />CLI: `--theme` 
-| `watch`             | `true`                                        | Watch .sql and .sp files in the current workspace (works only in interactive mode).  <br /> <br />CLI: `--watch` 
-
-
--->
+| `workspace_database`| `local`                                       | Workspace database. This can be local or a remote Turbot Pipes database. <br /> <br /> Env: [STEAMPIPE_WORKSPACE_DATABASE](/docs/reference/env-vars/steampipe_workspace_database)  <br /> CLI: `--workspace-database`
 
 
 
@@ -124,105 +108,25 @@ These options often correspond to CLI flags.
 </table>
 
 
-<!--
-### Steampipe Check Options 
-A `workspace` may include an `options "check"` block to specify values specific to the `steampipe check` command.  
-
-These options often correspond to CLI flags.
-
-<table>
-  <thead>
-    <tr>
-      <th>Argument</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><inlineCode>header</inlineCode></td>
-      <td><inlineCode>true</inlineCode></td>
-      <td>Enable or disable column headers. <br /> <br /> CLI: <inlineCode>--header</inlineCode></td>
-    </tr>
-    <tr>
-      <td><inlineCode>output</inlineCode></td>
-      <td><inlineCode>text</inlineCode></td>
-      <td>Set output format (<inlineCode>brief</inlineCode>, <inlineCode>csv</inlineCode>, <inlineCode>html</inlineCode>, <inlineCode>json</inlineCode>, <inlineCode>md</inlineCode>, <inlineCode>sps</inlineCode> (<i>snapshot</i>), <inlineCode>text</inlineCode>, <inlineCode>none</inlineCode>). <br /> <br /> CLI: <inlineCode>--output</inlineCode></td>
-    </tr>
-    <tr>
-      <td><inlineCode>separator</inlineCode></td>
-      <td><inlineCode>,</inlineCode></td>
-      <td>Set csv output separator. <br /> <br /> CLI: <inlineCode>--separator</inlineCode></td>
-    </tr>
-    <tr>
-      <td><inlineCode>timing</inlineCode></td>
-      <td><inlineCode>false</inlineCode></td>
-      <td>Enable or disable query execution timing: <inlineCode>false</inlineCode> or <inlineCode>true</inlineCode> <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-### Steampipe Dashboard Options 
-A `workspace` may include a `options "dashboard"` block to specify values specific to the `steampipe dashboard` command.  
-
-These options often correspond to CLI flags.
-
-<table>
-  <thead>
-    <tr>
-      <th>Argument</th>
-      <th>Default</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><inlineCode>browser</inlineCode></td>
-      <td><inlineCode>true</inlineCode></td>
-      <td>Specify whether to launch the browser after starting the dashboard server.  <br /> <br /> CLI: <inlineCode>--browser</inlineCode></td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-
 ## Examples
 
-
 ```hcl
-
 workspace "default" {
   query_timeout       = 300
-}
-
-workspace "dev" {
-  base               = workspace.default
-  snapshot_location   = "~/snapshots/"
 }
 
 workspace "all_options" {
   pipes_host          = "pipes.turbot.com"
   pipes_token         = "tpt_999faketoken99999999_111faketoken1111111111111"
   install_dir         = "~/steampipe2"
-  mod_location        = "~/src/steampipe-mod-aws-insights"  
   query_timeout       = 300
+  workspace_database  = "local" 
   snapshot_location   = "acme/dev"
-  workspace_database  = "local" 
   search_path         = "aws,aws_1,aws_2,gcp,gcp_1,gcp_2,slack,github"
   search_path_prefix  = "aws_all"
-  watch               = true
-  max_parallel        = 5
-  introspection       = false
-  input               = true
   progress            = true
-  theme               = "dark"  # light, dark, plain 
   cache               = true
   cache_ttl           = 300
-
 
   options "query" {
     autocomplete        = true
@@ -232,61 +136,5 @@ workspace "all_options" {
     separator           = ","     # any single char
     timing              = "on"    # on, off, verbose
   }
-
-  options "check" {
-    header              = true    # true, false
-    output              = "text"  # brief, csv, html, json, md, text, snapshot or none (default "text")
-    separator           = ","     # any single char
-    timing              = true    # true, false
-  }
-  
-  options "dashboard" {
-    browser            = true
-  }
-
 }
-
 ```
-
-
--->
-
-## Examples
-
-
-```hcl
-
-workspace "default" {
-  query_timeout       = 300
-}
-
-
-workspace "all_options" {
-  pipes_host          = "pipes.turbot.com"
-  pipes_token         = "tpt_999faketoken99999999_111faketoken1111111111111"
-  install_dir         = "~/steampipe2"
-  query_timeout       = 300
-  workspace_database  = "local" 
-  search_path         = "aws,aws_1,aws_2,gcp,gcp_1,gcp_2,slack,github"
-  search_path_prefix  = "aws_all"
-  progress            = true
-  cache               = true
-  cache_ttl           = 300
-
-
-  options "query" {
-    autocomplete        = true
-    header              = true    # true, false
-    multi               = false   # true, false
-    output              = "table" # json, csv, table, line
-    separator           = ","     # any single char
-    timing              = "on"    # on, off, verbose
-  }
-
-}
-
-```
-
-
-
-
