@@ -23,19 +23,6 @@ Run a [batch query](/docs/query/batch-query):
 steampipe query {query} [flags]
 ```
 
-<!--
-  <tr> 
-    <td nowrap="true"> <inlineCode>--var string=string </inlineCode>  </td> 
-    <td>  Specify the value of a mod variable.  Multiple <inlineCode>--var </inlineCode> arguments may be passed.
-    </td>
-  </tr>
-  <tr> 
-    <td nowrap="true"> <inlineCode>--var-file string</inlineCode>  </td> 
-    <td>  Specify an .spvars file containing mod variable values. 
-    </td>
-  </tr>
--->
-
 
 ## Flags
 
@@ -43,15 +30,6 @@ steampipe query {query} [flags]
   <tr>
     <th> Argument </th>
     <th> Description </th>
-  </tr>
-  <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td>
-    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-host</inlineCode>. </td>
-  </tr>
-
-  <tr>
-    <td nowrap="true"> <inlineCode>--cloud-token</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-token</inlineCode>. </td> 
   </tr>
 
   <tr> 

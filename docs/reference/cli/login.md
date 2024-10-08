@@ -21,10 +21,6 @@ steampipe login
     <th> Argument </th> 
     <th> Description </th> 
   </tr>
-  <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-host</inlineCode>. </td> 
-  </tr>
 
   <tr> 
     <td nowrap="true"> <inlineCode>--pipes-host</inlineCode> </td> 
