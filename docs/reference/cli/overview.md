@@ -16,13 +16,6 @@ sidebar_label: Steampipe CLI
 | [steampipe query](reference/cli/query)    | Execute SQL queries interactively or by argument
 | [steampipe service](reference/cli/service)| Steampipe service management
 
-<!--
-| [steampipe check](reference/cli/check)    | Run Steampipe benchmarks and controls
-| [steampipe dashboard](reference/cli/dashboard)| Steampipe dashboards
-| [steampipe mod](reference/cli/mod)        | Steampipe mod management
-| [steampipe variable](reference/cli/variable)| Steampipe variable management
-
--->
 
 ## Global Flags
 
@@ -82,15 +75,3 @@ sidebar_label: Steampipe CLI
 | **253** | `ExitCodeFileSystemAccessFailure`     | File system access failed
 | **254** | `ExitCodeInsufficientOrWrongInputs`   | Runtime error - insufficient or incorrect input
 | **255** | `ExitCodeUnknownErrorPanic`           | Runtime error - an unknown panic occurred
-
-
-<!--
-|   **1** | `ExitCodeControlsAlarm`               | `steampipe check` completed with no runtime or control errors, but there were one or more alarms
-|   **2** | `ExitCodeControlsError`               | `steampipe check` completed with no runtime errors,  but one or more control errors occurred
-|  **21** | `ExitCodeSnapshotCreationFailed`      | Snapshot creation failed
-|  **22** | `ExitCodeSnapshotUploadFailed`        | Snapshot upload failed
-|  **61** | `ExitCodeModInitFailed`               | Mod init failed
-|  **62** | `ExitCodeModInstallFailed`            | Mod install failed
-| **252** | `ExitCodeNoModFile`                   | The command requires a mod, but no mod file was found
-
--->

@@ -127,7 +127,7 @@ workspace "steampipe_2" {
 
 and easily switch between them with the `--workspace` flag:
 ```bash
-steampipe dashboard --workspace steampipe_2
+steampipe query --workspace steampipe_2 "select * from aws_account"
 ```
 
 
