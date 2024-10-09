@@ -1,6 +1,6 @@
 ---
-title: Manage Steampipe
-sidebar_label: Manage Steampipe
+title: Run Steampipe
+sidebar_label: Run Steampipe
 ---
 
 # Manage Steampipe

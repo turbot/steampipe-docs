@@ -96,7 +96,7 @@ steampipe query --snapshot --snapshot-location . "select * from aws_account"
 You can also set `snapshot_location` in a [workspace](/docs/managing/workspaces) if you wish to make it the default location.
 
 
-Alternatively, you can use the `--export` argument to export a query, dashboard, or benchmark in the Steampipe snapshot format.  This will create a file with a `.sps` extension in the current directory:
+Alternatively, you can use the `--export` argument to export a query in the Steampipe snapshot format.  This will create a file with a `.sps` extension in the current directory:
 
 ```bash
 steampipe query --export sps "select * from aws_account"
