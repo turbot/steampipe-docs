@@ -9,8 +9,8 @@ If you run Steampipe in a [GitHub Action](https://steampipe.io/docs/integrations
 
 The example shown in this post uses the OIDC method in a workflow that:
 
-1. Installs Steampipe (along with a cloud-specific plugin and compliance mod).
-2. Runs the Steampipe Compliance Mod for AWS and saves the output in the repository.
+1. Installs Steampipe (along with a cloud-specific plugin).
+2. Runs a Steampipe query and saves the output in the repository.
 
 ## What is OIDC?
 
@@ -35,7 +35,7 @@ on:
 
 Every time your job runs, GitHub's OIDC Provider auto-generates an OIDC token. This token contains multiple claims to establish a security-hardened and verifiable identity about the workflow that is trying to authenticate. In order to request this OIDC JWT ID token, your job or workflow run requires a permissions setting with `id-token: write`.
 
-In order to checkout to the GitHub repository and to save the benchmark results to the repository, your job or workflow run also requires a permissions setting with `contents: write`.
+In order to checkout to the GitHub repository and to save the query results to the repository, your job or workflow run also requires a permissions setting with `contents: write`.
 
 ```yaml
 permissions:
@@ -45,7 +45,7 @@ permissions:
 
 ### Steps
 
-A workflow comprises one or more jobs that run in parallel, each with one or more steps that run in order. Our [example](https://github.com/turbot/steampipe-samples/blob/d1658920c41da9ff5a2b98ab981ad330f2ee34a8/all/github-actions-oidc/aws/steampipe-sample-aws-workflow.yml#L15) defines a single job with a series of steps that authenticate to AWS, install Steampipe, run a compliance benchmark and save the results to the repository.
+A workflow comprises one or more jobs that run in parallel, each with one or more steps that run in order. Our example defines a single job with a series of steps that authenticate to AWS, install Steampipe, run a query and save the results to the repository.
 
 First, create a step that configures the credentials Steampipe will use to access AWS.
 
@@ -60,8 +60,8 @@ First, create a step that configures the credentials Steampipe will use to acces
     aws-region: "us-east-1"
 ```
 
-Once the cloud provider successfully validates the claims presented in the OIDC JWT ID token, it then provides a short-lived access token that is available only for the duration of the job. The short-lived access token is exported as environment variables AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY and AWS_SESSION_TOKEN.
-Steampipe will load these short-lived [credentials from environment variables](https://hub.steampipe.io/plugins/turbot/aws#credentials-from-environment-variables) to run the benchmark.
+Once the cloud provider successfully validates the claims presented in the OIDC JWT ID token, it then provides a short-lived access token that is available only for the duration of the job. The short-lived access token is exported as environment variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` and `AWS_SESSION_TOKEN`.
+Steampipe will load these short-lived [credentials from environment variables](https://hub.steampipe.io/plugins/turbot/aws#credentials-from-environment-variables) to run the query.
 
 Next, you'll need to create a step that installs the Steampipe CLI and AWS plugin.
 
@@ -77,32 +77,28 @@ Next, you'll need to create a step that installs the Steampipe CLI and AWS plugi
         }
 ```
 
-Before running the compliance benchmark, create a new folder on the branch specified in your GitHub repository to save the benchmark output. In our example, we will save the outputs to the folder `steampipe/benchmarks/aws`. The default environment variable [GITHUB_WORKSPACE](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables) refers to the default working directory on the runner for steps, and the default location of your repository when using the [checkout](https://github.com/actions/checkout) action.
+Before running the query, create a new folder on the branch specified in your GitHub repository to save the query output. In our example, we will save the output to the folder `steampipe/output/aws`. The default environment variable [GITHUB_WORKSPACE](https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables) refers to the default working directory on the runner for steps, and the default location of your repository when using the [checkout](https://github.com/actions/checkout) action.
 
-Next, create a step that installs the [AWS Compliance](https://hub.steampipe.io/mods/turbot/aws_compliance) mod and runs the AWS CIS v2.0.0 Benchmark.
+Next, create a step that runs the query and outputs the results to CSV.
 
 ```yaml
-- name: "Run Steampipe benchmark"
-  id: steampipe-benchmark
+- name: "Run Steampipe query"
+  id: steampipe-query
   continue-on-error: true
   run: |
-    # Install the Steampipe AWS Compliance mod
-    steampipe mod install github.com/turbot/steampipe-mod-aws-compliance
-    cd .steampipe/mods/github.com/turbot/steampipe-mod-aws-compliance*
-    # Run the AWS CIS v2.0.0 benchmark
-    steampipe check benchmark.cis_v200 --export=$GITHUB_WORKSPACE/steampipe/benchmarks/aws/cis_v200_"$(date +"%d_%B_%Y")".html --output=none
+     steampipe query "select instance_id, instance_state, launch_time, state_transition_time from aws_ec2_instance" > output/aws/instances.csv 
 ```
 
-Finally, add a step that pushes the output of the benchmark to your repository. Update the `working-directory` to the folder created in the above step. This should be the same location used in the above `--export` argument.
+Finally, add a step that pushes the output of the query to your repository. Update the `working-directory` to the folder created in the above step. 
 
 ```yaml
 - name: "Commit the file to GitHub"
   id: push-to-gh
-  working-directory: steampipe/benchmarks/aws
+  working-directory: steampipe/output/aws
   run: |
     git config user.name github-actions
     git config user.email github-actions@github.com
-    git add cis_v200_"$(date +"%d_%B_%Y")".html
+    git add instances.csv
     git commit -m "Add Steampipe Benchmark Results"
     git push
 ```
@@ -164,4 +160,4 @@ The job will run on schedule, but it's always helpful to [run manually](https://
 <img alt="manual_run" src="/images/docs/ci-cd-pipelines/oidc/manual_run.png" />
 </div>
 
-Upon successful run of the GitHub action(schedule or manual run), the Steampipe benchmark result is automatically pushed to your GitHub repository.
+Upon successful run of the GitHub action(schedule or manual run), the Steampipe query result is automatically pushed to your GitHub repository.

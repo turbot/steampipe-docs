@@ -9,16 +9,12 @@ sidebar_label: Steampipe CLI
 
 | Command | Description
 |-|-
-| [steampipe check](reference/cli/check)    | Run Steampipe benchmarks and controls
 | [steampipe completion](reference/cli/completion)| Generate the autocompletion script for the specified shell
-| [steampipe dashboard](reference/cli/dashboard)| Steampipe dashboards
 | [steampipe help](reference/cli/help)      | Help about any command
 | [steampipe login](reference/cli/login)        | Log in to Steampipe CLoud
-| [steampipe mod](reference/cli/mod)        | Steampipe mod management
 | [steampipe plugin](reference/cli/plugin)  | Steampipe plugin management
 | [steampipe query](reference/cli/query)    | Execute SQL queries interactively or by argument
 | [steampipe service](reference/cli/service)| Steampipe service management
-| [steampipe variable](reference/cli/variable)| Steampipe variable management
 
 
 ## Global Flags
@@ -64,25 +60,18 @@ sidebar_label: Steampipe CLI
 |  Value  |   Name                                | Description
 |---------|---------------------------------------|----------------------------------------
 |   **0** | `ExitCodeSuccessful`                  | Steampipe ran successfully, with no runtime errors, control errors, or alarms
-|   **1** | `ExitCodeControlsAlarm`               | `steampipe check` completed with no runtime or control errors, but there were one or more alarms
-|   **2** | `ExitCodeControlsError`               | `steampipe check` completed with no runtime errors,  but one or more control errors occurred
 |  **11** | `ExitCodePluginLoadingError`          | Plugin loading error
 |  **12** | `ExitCodePluginListFailure`           | Plugin listing failed
 |  **13** | `ExitCodePluginNotFound`              | Plugin not found
 |  **14** | `ExitCodePluginInstallFailure`        | Plugin install failed
-|  **21** | `ExitCodeSnapshotCreationFailed`      | Snapshot creation failed
-|  **22** | `ExitCodeSnapshotUploadFailed`        | Snapshot upload failed
 |  **31** | `ExitCodeServiceSetupFailure`         | Service setup failed
 |  **32** | `ExitCodeServiceStartupFailure`       | Service start failed
 |  **33** | `ExitCodeServiceStopFailure`          | Service stop failed
 |  **41** | `ExitCodeQueryExecutionFailed`        | One or more queries failed for `steampipe query` 
 |  **51** | `ExitCodeLoginCloudConnectionFailed`  | Connecting to cloud failed
-|  **61** | `ExitCodeModInitFailed`               | Mod init failed
-|  **62** | `ExitCodeModInstallFailed`            | Mod install failed
 | **249** | `ExitCodeInvalidExecutionEnvironment` | Steampipe was run in an unsupported environment
 | **250** | `ExitCodeInitializationFailed`        | Initialization failed
 | **251** | `ExitCodeBindPortUnavailable`         | Network port binding failed
-| **252** | `ExitCodeNoModFile`                   | The command requires a mod, but no mod file was found
 | **253** | `ExitCodeFileSystemAccessFailure`     | File system access failed
 | **254** | `ExitCodeInsufficientOrWrongInputs`   | Runtime error - insufficient or incorrect input
 | **255** | `ExitCodeUnknownErrorPanic`           | Runtime error - an unknown panic occurred

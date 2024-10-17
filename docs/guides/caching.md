@@ -16,7 +16,7 @@ In Steampipe v0.20.0, the caching options and behavior have changed.  This guide
 ## Types of Caches
 
 There are 2 caches in Steampipe:
-The **Query Cache** is used to cache query results. Plugins automatically support query caching just by using the Steampipe Plugin SDK. In general this requires no plugin-specific code, though there are cases where the plugin author may need to dictate the caching behavior for a given table. The query cache resides in the plugin process.
+- The **Query Cache** is used to cache query results. Plugins automatically support query caching just by using the Steampipe Plugin SDK. In general this requires no plugin-specific code, though there are cases where the plugin author may need to dictate the caching behavior for a given table. The query cache resides in the plugin process.
 
 - The **Plugin Cache** (sometimes called the **Connection Cache**) can be used by plugin authors to cache arbitrary data.  The plugin cache also resides in the plugin process.
 
