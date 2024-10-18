@@ -7,7 +7,7 @@ sidebar_label: Pipes Ecosystem
 
 Steampipe is a part of a larger ecosystem of products that provide a flexible platform on which to build rich intelligence, automation & security solutions. 
 
-- [Steampipe](https://steampipe.io/) offers a highly extensible data platform, allowing you to to query and analyze data from multiple sources via SQL.  Its plugin-based architecture ensures extensibility, enabling connections to APIs, cloud services, databases, and more.
+- [Steampipe](https://steampipe.io/) provides a dynamic cloud inventory, allowing you to to query and analyze data from multiple sources via SQL.  Its plugin-based architecture ensures extensibility, enabling connections to APIs, cloud services, databases, and more.  
 
 - [Powerpipe](/docs/pipes-ecosystem/powerpipe) adds analysis and visualization to your Steampipe data, providing dashboards, reports, and benchmarks to analyze and audit your environment.
 
