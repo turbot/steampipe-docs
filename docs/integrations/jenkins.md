@@ -73,4 +73,4 @@ pipeline {
 <img alt="gitlab-query-output" src="/images/docs/ci-cd-pipelines/jenkins-query-output.png" />
 </div>
 
-That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) and [mods](https://hub.steampipe.io/mods) to enrich your Jenkins pipelines.
+That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) to enrich your Jenkins pipelines.

@@ -40,47 +40,9 @@ Managing the Steampipe service:
 
 ```
 
-## Starting the `dashboard` server along with the database in service mode
 
-If you want to run the `dashboard` server as a service along with the database service, use the `--dashboard` flag
+Once the service is started, you can [connect to the Steampipe](/docs/integrations/overview) from tools that integrate with Postgres.
 
-```bash
-$ steampipe service start --dashboard
-
-Steampipe service is running:
-
-Database:
-
-  Host(s):            localhost, 127.0.0.1, 192.168.10.174
-  Port:               9193
-  Database:           steampipe
-  User:               steampipe
-  Password:           4cbe-4bc2-9c18
-  Connection string:  postgres://steampipe:4cbe-4bc2-9c18@localhost:9193/steampipe
-
-Dashboard:
-
-  Host(s):  localhost, 127.0.0.1, 192.168.10.174
-  Port:     9194
-
-Managing the Steampipe service:
-
-  # Get status of the service
-  steampipe service status
-
-  # Restart the service
-  steampipe service restart
-
-  # Stop the service
-  steampipe service stop
-
-```
-
----
-
-Once the service is started, you can connect to the Steampipe from tools that integrate with Postgres.
-
-You can connect to the `dashboard` server from any modern web browser
 
 ## Stopping the service
 
