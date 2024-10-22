@@ -13,4 +13,4 @@ Steampipe is a part of a larger ecosystem of products that provide a flexible pl
 
 - [Flowpipe](/docs/pipes-ecosystem/flowpipe) further enriches the platform with workflow orchestration.  Flowpipe allows you to create "pipelines as code" to define workflows and other tasks that run in a sequence.  With Flowpipe, you can turn your Steampipe insights into into action!
 
-- [Turbot Pipes](/docs/pipes-ecosystem/pipes) provides hosted cloud intelligence, automation & security platform built specifically for DevOps. Pipes provides a managed Steampipe database instances, shared Powerpipe dashboards & snapshots, Flowipipe triggers & pipelines, and more!
+- [Turbot Pipes](/docs/pipes-ecosystem/pipes) provides a hosted cloud intelligence, automation & security platform built specifically for DevOps. Pipes provides a managed Steampipe database instances, shared Powerpipe dashboards & snapshots, Flowpipe triggers & pipelines, and more!
