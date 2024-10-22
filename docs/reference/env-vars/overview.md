@@ -21,19 +21,14 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [STEAMPIPE_CACHE_MAX_SIZE_MB](reference/env-vars/steampipe_cache_max_size_mb)| unlimited | Set the maximum size of the query cache across all plugins. [DEPRECATED - use `STEAMPIPE_PLUGIN_MEMORY_MAX_MB`].
 | [STEAMPIPE_CACHE_MAX_TTL](reference/env-vars/steampipe_cache_max_ttl)| `300` | The maximum amount of time to cache results, in seconds.
 | [STEAMPIPE_CACHE_TTL](reference/env-vars/steampipe_cache_ttl)| `300` | The amount of time to cache results, in seconds.
-| [STEAMPIPE_CLOUD_HOST](reference/env-vars/steampipe_cloud_host)  | `pipes.turbot.com` | Set the Turbot Pipes host, for connecting to Turbot Pipes workspace. DEPRECATED - Use [`PIPES_HOST`](/docs/reference/env-vars/pipes_host)
-| [STEAMPIPE_CLOUD_TOKEN](reference/env-vars/steampipe_cloud_token)  |  | Set the Turbot Pipes authentication token for connecting to Turbot Pipes workspace. DEPRECATED - Use [`PIPES_TOKEN`](/docs/reference/env-vars/pipes_token).
 | [STEAMPIPE_DATABASE_PASSWORD](reference/env-vars/steampipe_database_password)| randomly generated | Set the steampipe database password for this session.  This variable must be set when the steampipe service starts.
 | [STEAMPIPE_DATABASE_SSL_PASSWORD](reference/env-vars/steampipe_database_ssl_password)|  | Set the passphrase used to decrypt the private key for your custom SSL certificate.  By default, Steampipe generates a certificate without a passphrase; you only need to set this variable if you use a custom certificate that is protected by a passphrase.
 | [STEAMPIPE_DATABASE_START_TIMEOUT](reference/env-vars/steampipe_database_start_timeout)| `30` | Set the maximum time (in seconds) to wait for the Postgres process to start accepting queries after it has been started.
 | [STEAMPIPE_DIAGNOSTIC_LEVEL](reference/env-vars/steampipe_diagnostic_level)| `NONE` | Sets the diagnostic level.  Supported levels are `ALL`, `NONE`.
 | [STEAMPIPE_INSTALL_DIR](reference/env-vars/steampipe_install_dir)| `~/.steampipe` | The directory in which the Steampipe database, plugins, and supporting files can be found.
-| [STEAMPIPE_INTROSPECTION](reference/env-vars/steampipe_introspection)  | `none` | Enable introspection tables that allow you to query the mod resources in the workspace.
 | [STEAMPIPE_LOG](reference/env-vars/steampipe_log)  | `warn` | Set the logging output level [DEPRECATED - use `STEAMPIPE_LOG_LEVEL`].
 | [STEAMPIPE_LOG_LEVEL](reference/env-vars/steampipe_log)  | `warn` | Set the logging output level.
-| [STEAMPIPE_MAX_PARALLEL](reference/env-vars/steampipe_max_parallel)  | `10` | Set the maximum number of parallel executions.
 | [STEAMPIPE_MEMORY_MAX_MB](reference/env-vars/steampipe_memory_max_mb)| `1024` | Set a soft memory limit for the `steampipe` process.
-| [STEAMPIPE_MOD_LOCATION](reference/env-vars/steampipe_mod_location)  | current working directory | Set the workspace working directory.
 | [STEAMPIPE_OTEL_INSECURE](reference/env-vars/steampipe_otel_insecure)  | `false` | Bypass the SSL/TLS secure connection requirements when connecting to an OpenTelemetry server.
 | [STEAMPIPE_OTEL_LEVEL](reference/env-vars/steampipe_otel_level)  | `NONE` | Specify which [OpenTelemetry](https://opentelemetry.io/) data to send via OTLP.
 | [STEAMPIPE_PLUGIN_MEMORY_MAX_MB](reference/env-vars/steampipe_plugin_memory_max_mb)| `1024` | Set a default memory soft limit for each plugin process.

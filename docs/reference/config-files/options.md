@@ -19,11 +19,13 @@ The following `options` are currently supported:
 | Option Type                       | Description
 |-|-
 | [database](#database-options)     | Database options.
-| [dashboard](#dashboard-options)   | Dashboard options.
 | [general](#general-options)       | General CLI options, such as auto-update options.
 | [plugin](#plugin-options)         | Plugin options.
 
+<!--
+| [dashboard](#dashboard-options)   | Dashboard options.
 
+-->
 ---
 
 ## Database Options
@@ -60,6 +62,7 @@ options "database" {
 
 
 ---
+<!--
 ## Dashboard Options
 
 **Dashboard** options are used to set dashboard service options, such as the IP address and port on which the dashboard web server listens.
@@ -82,6 +85,8 @@ options "dashboard" {
 
 
 ----
+-->
+
 ## General options
 **General** options apply generally to the Steampipe CLI.
 

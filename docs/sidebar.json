@@ -21,67 +21,106 @@
   {
     "type": "category",
     "id": "running-queries",
-    "label": "Query Steampipe",
+    "label": "Query",
     "link": "query/overview",
     "items": [
       "query/query-shell",
       "query/batch-query",
+      "query/snapshots",
       "query/third-party"
     ]
   },
-  {
-    "type": "category",
-    "id": "dashboard",
-    "label": "View Dashboards",
-    "link": "dashboard/overview",
-    "items": [
-      "dashboard/panel"
-    ]
-  },
-  {
-    "type": "category",
-    "id": "check",
-    "label": "Running Benchmarks",
-    "link": "check/overview",
-    "items": [
-      "check/formatting"
-    ]
-  },
-  {
-    "type": "category",
-    "id": "snapshots",
-    "label": "Take Snapshots",
-    "link": "snapshots/overview",
-    "items": [
-      "snapshots/interactive-snapshots",
-      "snapshots/batch-snapshots"
-    ]
-  },
-  {
-    "type": "category",
-    "id": "working-with-mods",
-    "label": "Build Mods",
-    "link": "mods/overview",
-    "items": [
-      "mods/writing-controls",
-      "mods/writing-dashboards",
-      "mods/mod-variables",
-      "mods/param-query",
-      "mods/mod-dependencies"
-    ]
-  },
+
   {
     "type": "category",
     "id": "managing-steampipe",
-    "label": "Manage Steampipe",
+    "label": "Manage",
     "link": "managing/overview",
     "items": [
       "managing/service",
       "managing/plugins",
       "managing/connections",
-      "managing/workspaces"
+      "managing/workspaces",
+
+      {
+        "type": "category",
+        "id": "integrations",
+        "label": "Integrations",
+        "link": "integrations/overview",
+        "items": [
+          "integrations/aws_cloudshell",
+          "integrations/azure_cloudshell",
+          "integrations/circleci",
+          "integrations/cloud9",
+          "integrations/gcp_cloudshell",
+          "integrations/gitpod",
+          {
+            "type": "category",
+            "id": "integrations-github-actions",
+            "label": "GitHub Actions",
+            "link": "integrations/github_actions/overview",
+            "items": [
+              "integrations/github_actions/installing_steampipe",
+              "integrations/github_actions/aws_oidc"
+            ]
+          },
+          "integrations/gitlab_ci_cd",
+          "integrations/jenkins"
+        ]
+      }
     ]
   },
+
+
+  {
+    "type": "category",
+    "id": "pipes-ecosystem",
+    "label": "Connect",
+    "link": "pipes-ecosystem/overview",
+    "items": [
+      "pipes-ecosystem/powerpipe",
+      "pipes-ecosystem/flowpipe",
+      "pipes-ecosystem/pipes"
+    ]
+  },
+
+  {
+    "type": "category",
+    "id": "distributions",
+    "link": "distributions/overview",
+    "items": [
+      {
+        "type": "category",
+        "id": "steampipe_postgres",
+        "link": "steampipe_postgres/overview",
+        "items": [
+          "steampipe_postgres/install",
+          "steampipe_postgres/configure",
+          "steampipe_postgres/query"
+        ]
+      },
+      {
+        "type": "category",
+        "id": "steampipe_sqlite",
+        "link": "steampipe_sqlite/overview",
+        "items": [
+          "steampipe_sqlite/install",
+          "steampipe_sqlite/configure",
+          "steampipe_sqlite/query"
+        ]
+      },
+      {
+        "type": "category",
+        "id": "steampipe_export",
+        "link": "steampipe_export/overview",
+        "items": [
+          "steampipe_export/install",
+          "steampipe_export/run"
+        ]
+      }
+    ]
+  },
+  
   {
     "type": "category",
     "id": "guides",
@@ -95,62 +134,14 @@
       "guides/key-columns"
     ]
   },
+
   {
     "type": "category",
-    "id": "integrations",
-    "label": "Integrations",
-    "link": "integrations/overview",
-    "items": [
-      "integrations/aws_cloudshell",
-      "integrations/aws_codebuild",
-      "integrations/azure_cloudshell",
-      "integrations/circleci",
-      "integrations/cloud9",
-      "integrations/gcp_cloudshell",
-      "integrations/gitpod",
-      {
-        "type": "category",
-        "id": "integrations-github-actions",
-        "label": "GitHub Actions",
-        "link": "integrations/github_actions/overview",
-        "items": [
-          "integrations/github_actions/installing_steampipe",
-          "integrations/github_actions/aws_oidc"
-        ]
-      },
-      "integrations/gitlab_ci_cd",
-      "integrations/jenkins"
-    ]
+    "id": "faq",
+    "link": "faq/overview",
+    "items": []
   },
-  {
-    "type": "category",
-    "id": "develop",
-    "label": "Developers",
-    "link": "develop/overview",
-    "items": [
-      "develop/writing-your-first-table",
-      {
-        "type": "category",
-        "id": "writing-plugins",
-        "label": "Writing Plugins",
-        "link": "develop/writing_plugins/overview",
-        "items": [
-          "develop/writing_plugins/the-basics",
-          "develop/writing_plugins/implementing-tables",
-          "develop/writing_plugins/hydrate-functions",
-          "develop/writing_plugins/transform-functions",
-          "develop/writing_plugins/dynamic-tables",
-          "develop/writing_plugins/sql-to-api-call"
-        ]
-      },
-      "develop/plugin-release-checklist",
-      "develop/standards",
-      "develop/table-docs-standards",
-      "develop/writing-example-queries",
-      "develop/coding-standards",
-      "develop/writing-control-output-templates"
-    ]
-  },
+
   {
     "type": "category",
     "id": "reference",
@@ -163,16 +154,12 @@
         "label": "Command Line Arguments",
         "link": "reference/cli/overview",
         "items": [
-          "reference/cli/check",
           "reference/cli/completion",
-          "reference/cli/dashboard",
           "reference/cli/help",
           "reference/cli/login",
-          "reference/cli/mod",
           "reference/cli/plugin",
           "reference/cli/query",
-          "reference/cli/service",
-          "reference/cli/variable"
+          "reference/cli/service"
         ]
       },
       {
@@ -212,18 +199,13 @@
           "reference/env-vars/steampipe_cache_max_size_mb",
           "reference/env-vars/steampipe_cache_max_ttl",
           "reference/env-vars/steampipe_cache_ttl",
-          "reference/env-vars/steampipe_cloud_host",
-          "reference/env-vars/steampipe_cloud_token",
           "reference/env-vars/steampipe_database_password",
           "reference/env-vars/steampipe_database_ssl_password",
           "reference/env-vars/steampipe_database_start_timeout",
           "reference/env-vars/steampipe_diagnostic_level",
           "reference/env-vars/steampipe_install_dir",
-          "reference/env-vars/steampipe_introspection",
           "reference/env-vars/steampipe_log",
-          "reference/env-vars/steampipe_max_parallel",
           "reference/env-vars/steampipe_memory_max_mb",
-          "reference/env-vars/steampipe_mod_location",
           "reference/env-vars/steampipe_otel_insecure",
           "reference/env-vars/steampipe_otel_level",
           "reference/env-vars/steampipe_plugin_memory_max_mb",
@@ -247,76 +229,36 @@
           "reference/config-files/workspace"
         ]
       },
+
       {
         "type": "category",
-        "id": "mod-resources",
-        "label": "Mod Resources",
-        "link": "reference/mod-resources/overview",
+        "id": "develop",
+        "label": "Developers",
+        "link": "develop/overview",
         "items": [
-          "reference/mod-resources/benchmark",
-          "reference/mod-resources/card",
-          "reference/mod-resources/category",
-          "reference/mod-resources/chart",
-          "reference/mod-resources/container",
-          "reference/mod-resources/control",
-          "reference/mod-resources/dashboard",
-          "reference/mod-resources/edge",
-          "reference/mod-resources/flow",
-          "reference/mod-resources/graph",
-          "reference/mod-resources/hierarchy",
-          "reference/mod-resources/image",
-          "reference/mod-resources/input",
-          "reference/mod-resources/locals",
-          "reference/mod-resources/mod",
-          "reference/mod-resources/node",
-          "reference/mod-resources/query",
-          "reference/mod-resources/table",
-          "reference/mod-resources/text",
-          "reference/mod-resources/variable",
-          "reference/mod-resources/with"
+          "develop/writing-your-first-table",
+          {
+            "type": "category",
+            "id": "writing-plugins",
+            "label": "Writing Plugins",
+            "link": "develop/writing_plugins/overview",
+            "items": [
+              "develop/writing_plugins/the-basics",
+              "develop/writing_plugins/implementing-tables",
+              "develop/writing_plugins/hydrate-functions",
+              "develop/writing_plugins/transform-functions",
+              "develop/writing_plugins/dynamic-tables",
+              "develop/writing_plugins/sql-to-api-call"
+            ]
+          },
+          "develop/plugin-release-checklist",
+          "develop/standards",
+          "develop/table-docs-standards",
+          "develop/writing-example-queries",
+          "develop/coding-standards"
         ]
       }
+
     ]
-  },
-  {
-    "type": "category",
-    "id": "turbot-pipes",
-    "link": "steampipe-cloud",
-    "items": []
-  },
-  {
-    "type": "category",
-    "id": "steampipe_postgres",
-    "link": "steampipe_postgres/overview",
-    "items": [
-      "steampipe_postgres/install",
-      "steampipe_postgres/configure",
-      "steampipe_postgres/query"
-    ]
-  },
-  {
-    "type": "category",
-    "id": "steampipe_sqlite",
-    "link": "steampipe_sqlite/overview",
-    "items": [
-      "steampipe_sqlite/install",
-      "steampipe_sqlite/configure",
-      "steampipe_sqlite/query"
-    ]
-  },
-  {
-    "type": "category",
-    "id": "steampipe_export",
-    "link": "steampipe_export/overview",
-    "items": [
-      "steampipe_export/install",
-      "steampipe_export/run"
-    ]
-  },
-  {
-    "type": "category",
-    "id": "faq",
-    "link": "faq/overview",
-    "items": []
   }
 ]

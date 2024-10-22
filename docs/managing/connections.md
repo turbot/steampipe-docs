@@ -175,10 +175,9 @@ You can change the default search path in many places, and the active path will 
 
 1. The session setting, as set by the most recent `.search_path` and/or .`search_path_prefix` meta-command.
 1. The `--search-path` or `--search-path-prefix` command line arguments.
-1. The `search_path` or `search_path_prefix` set in the `terminal` options for the workspace, in the `workspace.spc` file.
-1. The `search_path` or `search_path_prefix` set in the `terminal` global option, typically set in `~/.steampipe/config/default.spc`
+1. The `search_path` or `search_path_prefix` set in the `workspace`, in the `workspaces.spc` file.
 1. The `search_path` or `search_path_prefix` set in the `database` global option, typically set in `~/.steampipe/config/default.spc`
 1. The compiled default (`public`, then alphabetical by connection name)
 
-Note that setting the search path in the `terminal` options, from the command line arguments, or via meta-commands sets the path for the session when running `steampipe`; this setting *will not* be in effect when connecting to Steampipe from 3rd party tools.  Setting the `search_path` in the `database` options will set the `search_path` option in the database, however, and *will* be in effect when connecting from tools other than the `steampipe` cli.
+Note that setting the search path in the `workspace`, from the command line arguments, or via meta-commands sets the path for the session when running `steampipe`; this setting *will not* be in effect when connecting to Steampipe from 3rd party tools.  Setting the `search_path` in the `database` options will set the `search_path` option in the database, however, and *will* be in effect when connecting from tools other than the `steampipe` cli.
 

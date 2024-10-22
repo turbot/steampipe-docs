@@ -7,7 +7,7 @@ sidebar_label: steampipe login
 # steampipe login
 Log in to [Turbot Pipes](https://turbot.com/pipes/docs).
 
-The Steampipe CLI can interact with Turbot Pipes to run queries, benchmarks, and dashboards against a remote cloud database, and to save and share snapshots. These capabilities require authenticating to Turbot Pipes.  The `steampipe login` command launches an interactive process for logging in and obtaining a temporary (30 day) token. The token is written to `~/.steampipe/internal/{cloud host}.tptt`.
+The Steampipe CLI can interact with Turbot Pipes to run queries against a remote cloud database. This capability requires authenticating to Turbot Pipes.  The `steampipe login` command launches an interactive process for logging in and obtaining a temporary (30 day) token. The token is written to `~/.pipes/internal/{cloud host}.tptt`.
 
 ## Usage
 ```bash
@@ -20,10 +20,6 @@ steampipe login
   <tr> 
     <th> Argument </th> 
     <th> Description </th> 
-  </tr>
-  <tr> 
-    <td nowrap="true"> <inlineCode>--cloud-host</inlineCode> </td> 
-    <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. DEPRECATED - Use <inlineCode>--pipes-host</inlineCode>. </td> 
   </tr>
 
   <tr> 
