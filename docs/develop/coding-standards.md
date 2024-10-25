@@ -19,14 +19,14 @@ Code should be formatted with <a href="https://golang.org/cmd/gofmt/" target="_b
   - Example: `//// HYDRATE FUNCTIONS`
 
 - All public functions/structs etc should have a comment per the standard recommended in the <a href="https://golang.org/doc/effective_go.html#commentary" target="_blank" rel="noopener noreferrer">go docs</a>:
->> "Doc comments work best as complete sentences, which allow a wide variety of automated presentations. The first sentence should be a one-sentence summary that starts with the name being declared.":
+> "Doc comments work best as complete sentences, which allow a wide variety of automated presentations. The first sentence should be a one-sentence summary that starts with the name being declared.":
   ```go
   // Install installs a plugin in the local file system
   func Install(image string) (string, error) {
   ...
   ```
 - Add the package comment to the `plugin.go` file, per the <a href="https://golang.org/doc/effective_go.html#commentary" target="_blank" rel="noopener noreferrer">go docs</a>:
->> "Every package should have a package comment, a block comment preceding the package clause. For multi-file packages, the package comment only needs to be present in one file, and any one will do. The package comment should introduce the package and provide information relevant to the package as a whole. It will appear first on the godoc page and should set up the detailed documentation that follows."
+> "Every package should have a package comment, a block comment preceding the package clause. For multi-file packages, the package comment only needs to be present in one file, and any one will do. The package comment should introduce the package and provide information relevant to the package as a whole. It will appear first on the godoc page and should set up the detailed documentation that follows."
 
 
 ## Repo Structure

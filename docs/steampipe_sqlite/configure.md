@@ -6,7 +6,8 @@ sidebar_label: Configure
 
 # Configuring Steampipe SQLite Extensions
 
-> ***Note: You must use a version of SQLite that has [extension loading](#enabling-sqlite-extension-loading) enabled!***
+> [!IMPORTANT]
+> You must use a version of SQLite that has [extension loading](#enabling-sqlite-extension-loading) enabled!***
 
 To use the Steampipe SQLite extension, you first have to load the extension module.  Run SQLite, and in the SQLite shell load the extension with the `.load` command:
 ```
