@@ -151,37 +151,27 @@ steampipe plugin update --all
 ```
 
 
-## Removing Plugins
-You can uninstall a plugin with the `steampipe plugin remove` command:
+## Uninstalling Plugins
+You can uninstall a plugin with the `steampipe plugin uninstall` command:
 
 ```
 steampipe plugin uninstall [plugin]
 ```  
 
-Note that you cannot remove a plugin if there are active connections using it.  You must remove any connections that use the plugin first:
+Note that you can remove a plugin that has active connections using it.  You should remove any connections for the uninstalled plugin as part of cleanup:
 
 ```
-$ steampipe plugin list
-+--------------------------------------------------+---------+-------------+
-|                       NAME                       | VERSION | CONNECTIONS |
-+--------------------------------------------------+---------+-------------+
-| hub.steampipe.io/plugins/turbot/aws@latest       | 0.0.5   | aws         |
-| hub.steampipe.io/plugins/turbot/steampipe@latest | 0.0.1   | steampipe   |
-+--------------------------------------------------+---------+-------------+
+$ steampipe plugin uninstall azure
 
-$ steampipe plugin remove steampipe
-Error: Failed to remove plugin 'steampipe' - there are active connections using it: 'steampipe'
+Uninstalled plugin:
+* turbot/azure
 
-$ rm ~/.steampipe/config/steampipe.spc 
+Please remove this connection to continue using steampipe:
 
-$ steampipe plugin remove steampipe
-Removed plugin steampipe
-$ steampipe plugin list
-+--------------------------------------------+---------+-------------+
-|                    NAME                    | VERSION | CONNECTIONS |
-+--------------------------------------------+---------+-------------+
-| hub.steampipe.io/plugins/turbot/aws@latest | 0.0.5   | aws         |
-+--------------------------------------------+---------+-------------+
+  * /Users/cbruno/.steampipe/config/azure.spc
+         'dev' (line  1)
+         'staging' (line  6)
+         'prod' (line 11)
 ```
 
 ## Steampipe Plugin Registry Support Lifecycle
