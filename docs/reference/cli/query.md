@@ -33,94 +33,94 @@ steampipe query {query} [flags]
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--export string</inlineCode>  </td> 
-    <td> Export query output to a file.  You may export multiple output formats by entering multiple <inlineCode>--export</inlineCode> arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are  <inlineCode>sps</inlineCode> (<inlineCode>snapshot</inlineCode>).
+    <td nowrap="true"> `--export string`  </td> 
+    <td> Export query output to a file.  You may export multiple output formats by entering multiple `--export` arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are  `sps` (`snapshot`).
     </td> 
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--header string</inlineCode>  </td> 
-    <td> Specify whether to include column headers in csv and table output (default <inlineCode>true</inlineCode>).</td> 
+    <td nowrap="true"> `--header string`  </td> 
+    <td> Specify whether to include column headers in csv and table output (default `true`).</td> 
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--help</inlineCode> </td> 
-    <td>  Help for <inlineCode>steampipe query.</inlineCode></td> 
+    <td nowrap="true"> `--help` </td> 
+    <td>  Help for `steampipe query.`</td> 
   </tr>
  
   <tr> 
-    <td nowrap="true"> <inlineCode>--output string</inlineCode> </td> 
-    <td>  Select the console output format.   Possible values are <inlineCode>line, csv, json, table, snapshot</inlineCode> (default <inlineCode>table) </inlineCode>. </td> 
+    <td nowrap="true"> `--output string` </td> 
+    <td>  Select the console output format.   Possible values are `line, csv, json, table, snapshot` (default `table) `. </td> 
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--pipes-host</inlineCode> </td> 
+    <td nowrap="true"> `--pipes-host` </td> 
     <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_host">PIPES_HOST</a> for details.</td> 
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--pipes-token</inlineCode> </td> 
+    <td nowrap="true"> `--pipes-token` </td> 
     <td>  Sets the Turbot Pipes authentication token used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_token">PIPES_TOKEN</a> for details.</td> 
   </tr>
   
   <tr> 
-    <td nowrap="true"> <inlineCode>--progress</inlineCode>  </td> 
-    <td> Enable or disable progress information. By default, progress information is shown - set <inlineCode>--progress=false</inlineCode> to hide the progress bar.  </td>
+    <td nowrap="true"> `--progress`  </td> 
+    <td> Enable or disable progress information. By default, progress information is shown - set `--progress=false` to hide the progress bar.  </td>
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--query-timeout int</inlineCode>  </td> 
-    <td>  The query timeout, in seconds.  The default is <inlineCode>0</inlineCode>  (no timeout).  </td>
+    <td nowrap="true"> `--query-timeout int`  </td> 
+    <td>  The query timeout, in seconds.  The default is `0`  (no timeout).  </td>
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--search-path strings</inlineCode>  </td> 
+    <td nowrap="true"> `--search-path strings`  </td> 
     <td>  Set a comma-separated list of connections to use as a custom <a href="managing/connections#setting-the-search-path">search path</a> for the query session. </td>
   </tr>
       
   <tr> 
-    <td nowrap="true"> <inlineCode>--search-path-prefix strings</inlineCode>  </td> 
+    <td nowrap="true"> `--search-path-prefix strings`  </td> 
     <td>  Set a comma-separated list of connections to use as a prefix to the current <a href="managing/connections#setting-the-search-path">search path</a> for the query session. </td>
   </tr>
 
   <tr>
-    <td nowrap="true"> <inlineCode>--separator string</inlineCode>  </td> 
+    <td nowrap="true"> `--separator string`  </td> 
     <td>  A single character to use as a separator string for csv output (defaults to  ",")  </td>
   </tr>
 
   <tr>
-    <td nowrap="true"> <inlineCode>--share</inlineCode>  </td>
-    <td> Create snapshot in Turbot Pipes with <inlineCode>anyone_with_link</inlineCode> visibility.  </td>
+    <td nowrap="true"> `--share`  </td>
+    <td> Create snapshot in Turbot Pipes with `anyone_with_link` visibility.  </td>
   </tr>
 
   <tr>
-    <td nowrap="true"> <inlineCode>--snapshot</inlineCode>  </td>
-    <td> Create snapshot in Turbot Pipes with the default (<inlineCode>workspace</inlineCode>) visibility.  </td>
+    <td nowrap="true"> `--snapshot`  </td>
+    <td> Create snapshot in Turbot Pipes with the default (`workspace`) visibility.  </td>
   </tr>
     
   <tr>
-    <td nowrap="true"> <inlineCode>--snapshot-location string</inlineCode>  </td>
+    <td nowrap="true"> `--snapshot-location string`  </td>
     <td> The location to write snapshots - either a local file path or a Turbot Pipes workspace  </td>
   </tr>
 
   <tr>
-    <td nowrap="true"> <inlineCode>--snapshot-tag string=string  </inlineCode>  </td>
-    <td> Specify tags to set on the snapshot.  Multiple <inlineCode>--snapshot-tag </inlineCode> arguments may be passed.</td>
+    <td nowrap="true"> `--snapshot-tag string=string  `  </td>
+    <td> Specify tags to set on the snapshot.  Multiple `--snapshot-tag ` arguments may be passed.</td>
   </tr>
 
   <tr>
-    <td nowrap="true"> <inlineCode>--snapshot-title string=string  </inlineCode>  </td>
+    <td nowrap="true"> `--snapshot-title string=string  `  </td>
     <td> The title to give a snapshot when uploading to Turbot Pipes.  </td>
   </tr>
 
   <tr>
-    <td nowrap="true"> <inlineCode>--timing=string </inlineCode> </td>
-    <td>Enable or disable query execution timing: <inlineCode>off</inlineCode> (default), <inlineCode>on</inlineCode>, or <inlineCode>verbose</inlineCode>  </td>
+    <td nowrap="true"> `--timing=string ` </td>
+    <td>Enable or disable query execution timing: `off` (default), `on`, or `verbose`  </td>
   </tr>
 
   <tr>
-    <td nowrap="true"> <inlineCode>--workspace-database</inlineCode>  </td>
-    <td>  Sets the database that Steampipe will connect to. This can be <inlineCode>local</inlineCode> (the default) or a remote Turbot Pipes database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
+    <td nowrap="true"> `--workspace-database`  </td>
+    <td>  Sets the database that Steampipe will connect to. This can be `local` (the default) or a remote Turbot Pipes database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
   </tr>
 </table>
 

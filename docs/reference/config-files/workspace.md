@@ -73,34 +73,34 @@ These options often correspond to CLI flags.
   </thead>
   <tbody>
     <tr>
-      <td><inlineCode>autocomplete</inlineCode></td>
-      <td><inlineCode>true</inlineCode></td>
+      <td>`autocomplete`</td>
+      <td>`true`</td>
       <td>Enable or disable autocomplete in the interactive query shell.</td>
     </tr>
     <tr>
-      <td><inlineCode>header</inlineCode></td>
-      <td><inlineCode>true</inlineCode></td>
-      <td>Enable or disable column headers. <br /> <br /> CLI: <inlineCode>--header</inlineCode></td>
+      <td>`header`</td>
+      <td>`true`</td>
+      <td>Enable or disable column headers. <br /> <br /> CLI: `--header`</td>
     </tr>
     <tr>
-      <td><inlineCode>multi</inlineCode></td>
-      <td><inlineCode>false</inlineCode></td>
+      <td>`multi`</td>
+      <td>`false`</td>
       <td>Enable or disable multiline mode.</td>
     </tr>
     <tr>
-      <td><inlineCode>output</inlineCode></td>
-      <td><inlineCode>table</inlineCode></td>
-      <td>Set output format (<inlineCode>json</inlineCode>, <inlineCode>csv</inlineCode>, <inlineCode>table</inlineCode>, or <inlineCode>line</inlineCode>). <br /> <br /> CLI: <inlineCode>--output</inlineCode></td>
+      <td>`output`</td>
+      <td>`table`</td>
+      <td>Set output format (`json`, `csv`, `table`, or `line`). <br /> <br /> CLI: `--output`</td>
     </tr>
     <tr>
-      <td><inlineCode>separator</inlineCode></td>
-      <td><inlineCode>,</inlineCode></td>
-      <td>Set csv output separator. <br /> <br /> CLI: <inlineCode>--separator</inlineCode></td>
+      <td>`separator`</td>
+      <td>`,`</td>
+      <td>Set csv output separator. <br /> <br /> CLI: `--separator`</td>
     </tr>
     <tr>
-      <td><inlineCode>timing</inlineCode></td>
-      <td><inlineCode>off</inlineCode></td>
-      <td>Enable or disable query execution timing: <inlineCode>off</inlineCode>, <inlineCode>on</inlineCode>, or <inlineCode>verbose</inlineCode> <br /> <br /> CLI: <inlineCode>--timing</inlineCode></td>
+      <td>`timing`</td>
+      <td>`off`</td>
+      <td>Enable or disable query execution timing: `off`, `on`, or `verbose` <br /> <br /> CLI: `--timing`</td>
     </tr>
   </tbody>
 </table>
