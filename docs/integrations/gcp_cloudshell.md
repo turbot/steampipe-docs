@@ -17,7 +17,7 @@ When the Google Cloud Shell terminates, only files inside the home directory are
 To get started with the Google Cloud Shell, go to the [Google Cloud Console](https://console.cloud.google.com/). Select a Google Project that has billing enabled, then click on the Cloud Shell icon in the upper right.
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="Google Cloud Screenshot showing project selection and location of the Google Cloud Shell icon" src="/images/docs/cloudshells/GCP_Cloud_Shell.png" />
+<img alt="Google Cloud Screenshot showing project selection and location of the Google Cloud Shell icon" src="/cloudshells/GCP_Cloud_Shell.png" />
 </div>
 
 ## Installing Steampipe in Google Cloud Shell
@@ -63,7 +63,7 @@ from
 You may find that the first time you run a query, a dialog box will prompt you to authorize Cloud Shell to use you credentials. Click "Authorize".
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="Screenshot of Google prompting a user to Authorize Cloud Shell" src="/images/docs/cloudshells/Authorize_GCP_CloudShell.png" />
+<img alt="Screenshot of Google prompting a user to Authorize Cloud Shell" src="/cloudshells/Authorize_GCP_CloudShell.png" />
 </div>
 
  That's it! You didn't have to read [GCP API docs](https://cloud.google.com/apis/docs/overview), install an [API client library](https://cloud.google.com/python/docs/reference), or learn how to use that client to make API calls and unpack JSON responses. Steampipe did all that for you. It works the same way for every GCP table. And because you can use SQL to join across multiple tables representing GCP services, it's easy to reason over your entire GCP organization.

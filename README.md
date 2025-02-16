@@ -19,7 +19,7 @@ We support up to 2 levels of docs, e.g.:
 
 For your docs to appear in the sidebar, you need to edit `docs/sidebar.json`. This is an array of sidebar entries, which are either stings matching the path of the required document, or a category to nest the docs down 1 level.
 
-Any images required by docs must be placed in `/images/docs/...` and must be referenced by the tag `<img src="/images/docs/..." />`.
+Any images required by docs must be placed in `/images/docs/...` and must be referenced by the tag `<img src="/..." />`.
 
 # Guidelines for contribution
 

@@ -132,7 +132,7 @@ terraform apply -var-file=default.tfvars
 Successful execution of the above will give a Terraform output value of `OIDC_AWS_ROLE_TO_ASSUME`. This the ARN of the IAM role that handles the OIDC federation. Add `OIDC_AWS_ROLE_TO_ASSUME` and its value to the GitHub Secret in your repository as shown below.
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="gh_secret" src="/images/docs/ci-cd-pipelines/oidc/gh_secret.png" />
+<img alt="gh_secret" src="/ci-cd-pipelines/oidc/gh_secret.png" />
 </div>
 
 ### Validation
@@ -144,12 +144,12 @@ Login to your AWS account to verify that Terraform has created the following res
 
 The AWS IAM console should show the identity provider `token.actions.githubusercontent.com` as follows.
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="aws_iam_identity_provider" src="/images/docs/ci-cd-pipelines/oidc/aws_iam_identity_provider.png" />
+<img alt="aws_iam_identity_provider" src="/ci-cd-pipelines/oidc/aws_iam_identity_provider.png" />
 </div>
 
 The IAM Role(steampipe_gh_oidc_demo) should show the following trust relationship.
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="aws_iam_role" src="/images/docs/ci-cd-pipelines/oidc/aws_iam_role.png" />
+<img alt="aws_iam_role" src="/ci-cd-pipelines/oidc/aws_iam_role.png" />
 </div>
 
 ## Running the workflow on-demand
@@ -157,7 +157,7 @@ The IAM Role(steampipe_gh_oidc_demo) should show the following trust relationshi
 The job will run on schedule, but it's always helpful to [run manually](https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow) for sanity-check. Make sure you select the correct branch when executing this manually, this should be listed in the Trust Relationships of your IAM Role. (`github_branch` variable in the Terraform script).
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="manual_run" src="/images/docs/ci-cd-pipelines/oidc/manual_run.png" />
+<img alt="manual_run" src="/ci-cd-pipelines/oidc/manual_run.png" />
 </div>
 
 Upon successful run of the GitHub action(schedule or manual run), the Steampipe query result is automatically pushed to your GitHub repository.

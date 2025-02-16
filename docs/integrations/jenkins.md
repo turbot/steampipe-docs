@@ -47,7 +47,7 @@ pipeline {
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="gitlab-plugin-installed" src="/images/docs/ci-cd-pipelines/jenkins-plugin-installed.png" />
+<img alt="gitlab-plugin-installed" src="/ci-cd-pipelines/jenkins-plugin-installed.png" />
 </div>
 
 Next, we'll update the file to include a query to fetch the top 5 stories from `hackernews_top`.
@@ -70,7 +70,7 @@ pipeline {
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="gitlab-query-output" src="/images/docs/ci-cd-pipelines/jenkins-query-output.png" />
+<img alt="gitlab-query-output" src="/ci-cd-pipelines/jenkins-query-output.png" />
 </div>
 
 That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) to enrich your Jenkins pipelines.

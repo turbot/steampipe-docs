@@ -32,16 +32,16 @@ steampipe plugin [command]
   </thead>
   <tbody>
     <tr>
-      <td nowrap="true"><inlineCode>--all</inlineCode></td>
-      <td>Applies only to <inlineCode>plugin update</inlineCode>, updates ALL installed plugins.</td>
+      <td nowrap="true">`--all`</td>
+      <td>Applies only to `plugin update`, updates ALL installed plugins.</td>
     </tr>
     <tr>
-      <td nowrap="true"><inlineCode>--progress</inlineCode></td>
-      <td>Enable or disable progress information. By default, progress information is shown - set <inlineCode>--progress=false</inlineCode> to hide the progress bar. Applies only to <inlineCode>plugin install</inlineCode> and <inlineCode>plugin update</inlineCode>.</td>
+      <td nowrap="true">`--progress`</td>
+      <td>Enable or disable progress information. By default, progress information is shown - set `--progress=false` to hide the progress bar. Applies only to `plugin install` and `plugin update`.</td>
     </tr>
       <tr>
-      <td nowrap="true"><inlineCode>--skip-config </inlineCode></td>
-      <td>Applies only to <inlineCode>plugin install</inlineCode>,  skip creating the default config file for plugin.</td>
+      <td nowrap="true">`--skip-config `</td>
+      <td>Applies only to `plugin install`,  skip creating the default config file for plugin.</td>
     </tr>
   </tbody>
 </table>

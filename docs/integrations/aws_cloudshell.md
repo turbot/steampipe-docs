@@ -12,7 +12,7 @@ sidebar_label: AWS Cloud Shell
 To start the shell, visit an URL like https://us-east-1.console.aws.amazon.com/cloudshell/home and click the highlighted icon. If you don't see the icon, switch to a [supported region](https://docs.aws.amazon.com/cloudshell/latest/userguide/supported-aws-regions.html). 
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img src="/images/docs/cloudshells/aws-cloudshell-homescreen.jpg" />
+<img src="/cloudshells/aws-cloudshell-homescreen.jpg" />
 </div>
 
 Cloud Shell includes 1 GB of free persistent storage per region. When you exit the shell, AWS preserves only the files inside your home directory. So we'll install Steampipe in your home directory (vs `/usr/local/bin`), and we'll run Steampipe as `./steampipe` (vs `steampipe`). 
@@ -79,7 +79,7 @@ That's it! You didn't have to read AWS API docs, or install an API client librar
 To see the full set of columns for any table, along with examples of their use, visit the [Steampipe Hub](https://hub.steampipe.io/plugins/turbot/aws/tables/). For S3 buckets, visit [aws_s3_bucket](https://hub.steampipe.io/plugins/turbot/aws/tables/aws_s3_bucket). For quick reference you can autocomplete table names directly in the shell.
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img src="/images/docs/cloudshells/aws-cloudshell-inspect.jpg" />
+<img src="/cloudshells/aws-cloudshell-inspect.jpg" />
 </div>
 
 If you haven't used SQL lately, see our [handy guide](https://steampipe.io/docs/sql/steampipe-sql) for writing Steampipe queries.

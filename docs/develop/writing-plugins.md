@@ -1068,7 +1068,7 @@ into table names.
 
 For more information on how the CSV plugin can be queried as a result of being
 a dynamic table, please see the
-[{csv_filename}](https://hub.steampipe.io/plugins/turbot/csv/tables/%7Bcsv_filename%7D)
+[&lbrace;csv_filename&rbrace;](https://hub.steampipe.io/plugins/turbot/csv/tables/%7Bcsv_filename%7D)
 table document.
 
 

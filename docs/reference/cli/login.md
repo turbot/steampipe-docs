@@ -17,16 +17,19 @@ steampipe login
 ## Flags:
 
 <table>
+  <thead>
   <tr> 
     <th> Argument </th> 
     <th> Description </th> 
   </tr>
+  </thead>
 
+<tbody>
   <tr> 
-    <td nowrap="true"> <inlineCode>--pipes-host</inlineCode> </td> 
+    <td nowrap="true"> `--pipes-host` </td> 
     <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_host">PIPES_HOST</a> for details.</td> 
   </tr>
-
+</tbody>
 
 </table>
 
@@ -43,12 +46,12 @@ The `steampipe login` command will launch your web browser to continue the login
 
 
 
-<img src="/images/docs/steampipe-login/steampipe-login-1.png" width="100%" />
+<img src="/steampipe-login/steampipe-login-1.png" width="100%" />
 
 
 
 After you have verified the request, the browser will display a verification code.   
-<img src="/images/docs/steampipe-login/steampipe-login-2.png" width="100%" />
+<img src="/steampipe-login/steampipe-login-2.png" width="100%" />
 
 Paste the code into the cli and hit enter to complete the login process:
 

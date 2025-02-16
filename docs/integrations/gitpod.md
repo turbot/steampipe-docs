@@ -39,7 +39,7 @@ ports:
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"100%"}}>
-<img alt="gitpod-plugin-installed" src="/images/docs/ci-cd-pipelines/gitpod-config-install.png" />
+<img alt="gitpod-plugin-installed" src="/ci-cd-pipelines/gitpod-config-install.png" />
 </div>
 
 Next, we'll update the file with a query to list items from an RSS feed.
@@ -63,7 +63,7 @@ ports:
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"100%"}}>
-<img alt="gitpod-query-output" src="/images/docs/ci-cd-pipelines/gitpod-config-data-preview.png" />
+<img alt="gitpod-query-output" src="/ci-cd-pipelines/gitpod-config-data-preview.png" />
 </div>
 
 That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) in your Gitpod workspace.

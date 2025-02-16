@@ -15,7 +15,7 @@ sudo /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/turbot/steampipe
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"100%"}}>
-<img alt="cloud9-install-steampipe" src="/images/docs/ci-cd-pipelines/cloud9-install-steampipe.png" />
+<img alt="cloud9-install-steampipe" src="/ci-cd-pipelines/cloud9-install-steampipe.png" />
 </div>
 
 ## Query AWS resources
@@ -42,5 +42,5 @@ from
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"100%"}}>
-<img alt="s3-public-access-preview" src="/images/docs/ci-cd-pipelines/cloud9-s3-public-access-preview.png" />
+<img alt="s3-public-access-preview" src="/ci-cd-pipelines/cloud9-s3-public-access-preview.png" />
 </div>

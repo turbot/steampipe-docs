@@ -8,7 +8,7 @@ sidebar_label:  Developers
 
 ## Overview
 
-<img alt="Steampipe Architecture" src="/images/docs/steampipe-arch.png" width="100%" />
+<img alt="Steampipe Architecture" src="/steampipe-arch.png" width="100%" />
 
 <br />
 <br />

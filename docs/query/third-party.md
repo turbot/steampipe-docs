@@ -12,7 +12,7 @@ By default, when you run `steampipe query`, Steampipe will start the database an
 Once the service is started, you can connect to the Steampipe from tools that integrate with Postgres, such as [TablePlus](https://tableplus.com/)!
 
 
-<img alt="Query your data with 3rd part tools like TablePlus" src="/images/docs/table_plus.png" width="100%" />
+<img alt="Query your data with 3rd part tools like TablePlus" src="/table_plus.png" width="100%" />
 
 <br />
 <br />

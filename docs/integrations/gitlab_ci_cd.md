@@ -36,7 +36,7 @@ install:
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="gitlab-plugin-installed" src="/images/docs/ci-cd-pipelines/gitlab-plugin-installed.jpg" />
+<img alt="gitlab-plugin-installed" src="/ci-cd-pipelines/gitlab-plugin-installed.jpg" />
 </div>
 
 Next, we'll add a file called `hn.sql` file to the repo.
@@ -72,7 +72,7 @@ install:
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="gitlab-query-output" src="/images/docs/ci-cd-pipelines/gitlab-query-output.jpg" />
+<img alt="gitlab-query-output" src="/ci-cd-pipelines/gitlab-query-output.jpg" />
 </div>
 
 That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) to enrich your GitLab pipelines.

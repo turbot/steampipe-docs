@@ -21,7 +21,7 @@ You can exit the query shell by pressing `Ctrl+d` on a blank line, or using the 
 ### Autocomplete
 The query shell includes an autocomplete feature that will suggest words as you type.  Type `.` (period). Notice that the autocomplete appears with a list of the [Steampipe meta-commands](/docs/reference/dot-commands/overview) commands that start with `.`:
 
-![](/images/docs/auto-complete-1.png)
+![](/auto-complete-1.png)
 
 As you continue to type, the autocomplete will continue to narrow down the list of tables to only those that match.
 

@@ -21,38 +21,41 @@ sidebar_label: Steampipe CLI
 
 
 <table>
+<thead>
   <tr> 
     <th> Flag </th> 
     <th> Description </th> 
   </tr>
+</thead>
 
+<tbody>
   <tr> 
-    <td nowrap="true"> <inlineCode>-h</inlineCode>, <inlineCode>--help</inlineCode> </td> 
+    <td nowrap="true"> `-h`, `--help` </td> 
     <td>  Help for Steampipe. </td> 
   </tr>
                   
   <tr> 
-    <td nowrap="true"> <inlineCode>--install-dir</inlineCode>  </td> 
+    <td nowrap="true"> `--install-dir`  </td> 
     <td>  Sets the directory for the Steampipe installation, in which the Steampipe database, plugins, and supporting files can be found.  See <a href="/docs/reference/env-vars/steampipe_install_dir">STEAMPIPE_INSTALL_DIR</a> for details. </td>
   </tr>
 
   <tr> 
-    <td nowrap="true"> <inlineCode>--workspace</inlineCode>  </td> 
-    <td>  Sets the Steampipe <a href="/docs/managing/workspaces"> workspace profile</a>.  If not specified, the <inlineCode>default</inlineCode> workspace will be used if it exists.  See <a href="/docs/reference/env-vars/steampipe_workspace">STEAMPIPE_WORKSPACE</a> for details.</td>
+    <td nowrap="true"> `--workspace`  </td> 
+    <td>  Sets the Steampipe <a href="/docs/managing/workspaces"> workspace profile</a>.  If not specified, the `default` workspace will be used if it exists.  See <a href="/docs/reference/env-vars/steampipe_workspace">STEAMPIPE_WORKSPACE</a> for details.</td>
   </tr>
 
 <!--
   <tr> 
-    <td nowrap="true"> <inlineCode>--schema-comments</inlineCode></td> 
+    <td nowrap="true"> `--schema-comments`</td> 
     <td>   Include schema comments when importing connection schemas (default true).  Set to false to reduce the load time for very high connection counts.  If you disable schema comments, the inspect command will not have descriptions. </td> 
   </tr>
 
 -->
   <tr> 
-    <td nowrap="true"> <inlineCode>-v</inlineCode>, <inlineCode>--version</inlineCode>  </td> 
+    <td nowrap="true"> `-v`, `--version`  </td> 
     <td>  Display Steampipe version. </td> 
   </tr>
-
+</tbody>
 </table>
 
 ## Exit Codes
