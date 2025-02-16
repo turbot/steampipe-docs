@@ -21,11 +21,14 @@ sidebar_label: Steampipe CLI
 
 
 <table>
+<thead>
   <tr> 
     <th> Flag </th> 
     <th> Description </th> 
   </tr>
+</thead>
 
+<tbody>
   <tr> 
     <td nowrap="true"> `-h`, `--help` </td> 
     <td>  Help for Steampipe. </td> 
@@ -52,7 +55,7 @@ sidebar_label: Steampipe CLI
     <td nowrap="true"> `-v`, `--version`  </td> 
     <td>  Display Steampipe version. </td> 
   </tr>
-
+</tbody>
 </table>
 
 ## Exit Codes

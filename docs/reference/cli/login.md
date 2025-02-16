@@ -17,16 +17,19 @@ steampipe login
 ## Flags:
 
 <table>
+  <thead>
   <tr> 
     <th> Argument </th> 
     <th> Description </th> 
   </tr>
+  </thead>
 
+<tbody>
   <tr> 
     <td nowrap="true"> `--pipes-host` </td> 
     <td>  Sets the Turbot Pipes host used when connecting to Turbot Pipes workspaces. See <a href="reference/env-vars/pipes_host">PIPES_HOST</a> for details.</td> 
   </tr>
-
+</tbody>
 
 </table>
 

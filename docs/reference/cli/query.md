@@ -27,14 +27,18 @@ steampipe query {query} [flags]
 ## Flags
 
 <table>
+  <thead>
   <tr>
     <th> Argument </th>
     <th> Description </th>
   </tr>
+  </thead>
 
+  <tbody>
   <tr> 
     <td nowrap="true"> `--export string`  </td> 
-    <td> Export query output to a file.  You may export multiple output formats by entering multiple `--export` arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are  `sps` (`snapshot`).
+    <td> 
+    Export query output to a file.  You may export multiple output formats by entering multiple `--export` arguments.  If a file path is specified as an argument, its type will be inferred by the suffix.  Supported export formats are  `sps` (`snapshot`).
     </td> 
   </tr>
 
@@ -122,6 +126,7 @@ steampipe query {query} [flags]
     <td nowrap="true"> `--workspace-database`  </td>
     <td>  Sets the database that Steampipe will connect to. This can be `local` (the default) or a remote Turbot Pipes database.  See <a href="/docs/reference/env-vars/steampipe_workspace_database">STEAMPIPE_WORKSPACE_DATABASE</a> for details. </td>
   </tr>
+  </tbody>
 </table>
 
 

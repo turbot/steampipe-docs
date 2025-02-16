@@ -6,16 +6,63 @@ on:
   push:
     branches-ignore: 
       - "main"
-    
+
+  pull_request:
+    types: [opened]
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' }}
     steps:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
-          repository: turbotio/steampipe.io
-          event-type: build-preview
+          repository: turbot/steampipe.io
+          event-type: build-preview-test
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
+
+
+  comment-link:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
+    steps:
+      - name: Get the deployment details
+        id: get_deployment_details
+        if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const branchName = 'docs/${{ github.event.pull_request.head.ref }}';
+
+            const response = await fetch('https://steampipe-io.vercel.app/api/service/deploy-details', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ${{ secrets.STEAMPIPE_API_KEY }}',
+              },
+              body: JSON.stringify({ branch: branchName }),
+            });
+            if (!response.ok) {
+              core.setOutput('foundDeployment', false);
+            } else {
+              const data = await response.json();
+              core.setOutput('foundDeployment', true);
+              core.setOutput('apiResponse', data);
+            }
+
+      - name: Add comment with preview link
+        uses: actions/github-script@v7
+        if: ${{ steps.get_deployment_details.outputs.foundDeployment == 'true' }}
+        with:
+          script: |
+            const apiResponse = ${{ steps.get_deployment_details.outputs.apiResponse }};
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `### Preview Available 🚀\n\n**Commit Author:** ${apiResponse.meta.githubCommitAuthorName}\n**Commit Message:** ${apiResponse.meta.githubCommitMessage}\n\n**Preview Link:** [${apiResponse.meta.branchAlias}](https://${apiResponse.meta.branchAlias})`
+            });

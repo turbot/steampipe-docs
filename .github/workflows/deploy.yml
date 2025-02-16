@@ -1,0 +1,14 @@
+name: Trigger Vercel deploy (prod)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  trigger-vercel-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy
+        run: |
+          curl -X POST ${{ secrets.VERCEL_DEPLOY_LINK_PROD }}
