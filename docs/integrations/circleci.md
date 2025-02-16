@@ -53,7 +53,7 @@ workflows:
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="gitlab-plugin-installed" src="/images/docs/ci-cd-pipelines/circleci-plugin-install.png" />
+<img alt="gitlab-plugin-installed" src="/ci-cd-pipelines/circleci-plugin-install.png" />
 </div>
 
 Next, we'll update the file with a query to fetch the top 10 stories from `hackernews_best`.
@@ -79,7 +79,7 @@ workflows:
 ```
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img alt="gitlab-query-output" src="/images/docs/ci-cd-pipelines/circleci-query-output.png" />
+<img alt="gitlab-query-output" src="/ci-cd-pipelines/circleci-query-output.png" />
 </div>
 
 That's it! Now you can use any of Steampipe's [plugins](https://hub.steampipe.io/plugins) to enrich your CircleCI pipelines.

@@ -25,7 +25,7 @@ For example:
 https://hub.steampipe.io/plugins/turbot/aws/tables/aws_vpc#inspect 
 -->
 
-<img src="/images/docs/steampipe_key_column_inspect.png" width="100%" />
+<img src="/steampipe_key_column_inspect.png" width="100%" />
 
 <br />
 

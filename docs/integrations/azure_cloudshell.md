@@ -16,13 +16,13 @@ The Cloud Shell is free to all Azure users. It comes with a few [limitations](ht
 To start the shell, look for its icon on the top navigation bar of the Azure portal.
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img src="/images/docs/cloudshells/azure_cloudshell_console_screenshot.png" />
+<img src="/cloudshells/azure_cloudshell_console_screenshot.png" />
 </div>
 
 When you launch the shell for the first time, you will see this dialog box.
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img src="/images/docs/cloudshells/azure_prompt_to_create_storage_account.png" />
+<img src="/cloudshells/azure_prompt_to_create_storage_account.png" />
 </div>
 
 Click `Create storage` to continue.
@@ -81,7 +81,7 @@ That's it! You didn't have to read Azure API docs, or install an [API client lib
 To see the full set of columns for any table, along with examples of their use, visit the [Steampipe Hub](https://hub.steampipe.io/plugins/turbot/azure/tables). For quick reference you can autocomplete table names directly in the shell.
 
 <div style={{"marginBottom":"2em","borderWidth":"thin", "borderStyle":"solid", "borderColor":"lightgray", "padding":"20px", "width":"90%"}}>
-<img src="/images/docs/cloudshells/azure_cloudshell_autocomplete.png" />
+<img src="/cloudshells/azure_cloudshell_autocomplete.png" />
 </div>
 
 If you haven't used SQL lately, see our [handy guide](https://steampipe.io/docs/sql/steampipe-sql) for writing Steampipe queries.

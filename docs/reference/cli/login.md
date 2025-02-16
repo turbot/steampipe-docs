@@ -43,12 +43,12 @@ The `steampipe login` command will launch your web browser to continue the login
 
 
 
-<img src="/images/docs/steampipe-login/steampipe-login-1.png" width="100%" />
+<img src="/steampipe-login/steampipe-login-1.png" width="100%" />
 
 
 
 After you have verified the request, the browser will display a verification code.   
-<img src="/images/docs/steampipe-login/steampipe-login-2.png" width="100%" />
+<img src="/steampipe-login/steampipe-login-2.png" width="100%" />
 
 Paste the code into the cli and hit enter to complete the login process:
 
