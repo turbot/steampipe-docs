@@ -34,6 +34,12 @@ steampipe query "select vpc_id, cidr_block, state from aws_vpc"
 ```
 
 
+## AI Tools (MCP)
+
+The [Tailpipe MCP server](query/mcp) transforms how you interact with your cloud infrastructure data.  It brings the power of conversational AI to your cloud resources and configurations, allowing you to extract critical insights using plain English — no complex SQL required!
+
+The MCP is packaged separately and runs as an integration in your AI tool, such as [Claude Desktop](https://claude.ai/download) or [Cursor](https://www.cursor.com/).
+
 
 ## Third Party Tools
 Because Steampipe is built on Postgres, you can [connect to the Steampipe database with 3rd party tools](query/third-party), or write code against your database using your favorite library!

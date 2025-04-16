@@ -27,6 +27,7 @@
       "query/query-shell",
       "query/batch-query",
       "query/snapshots",
+      "query/mcp",
       "query/third-party"
     ]
   },
