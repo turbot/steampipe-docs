@@ -36,7 +36,7 @@ steampipe query "select vpc_id, cidr_block, state from aws_vpc"
 
 ## AI Tools (MCP)
 
-The [Tailpipe MCP server](query/mcp) transforms how you interact with your cloud infrastructure data.  It brings the power of conversational AI to your cloud resources and configurations, allowing you to extract critical insights using plain English — no complex SQL required!
+The [Steampipe MCP server](query/mcp) transforms how you interact with your cloud infrastructure data.  It brings the power of conversational AI to your cloud resources and configurations, allowing you to extract critical insights using plain English — no complex SQL required!
 
 The MCP is packaged separately and runs as an integration in your AI tool, such as [Claude Desktop](https://claude.ai/download) or [Cursor](https://www.cursor.com/).
 

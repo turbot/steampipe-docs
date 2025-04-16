@@ -4,7 +4,7 @@ title: AI Tools (MCP)
 
 # AI Tools (MCP)
 
-The [Tailpipe MCP server](https://github.com/turbot/tailpipe-mcp) (Model Control Protocol) transforms how you interact with your cloud infrastructure data.  It brings the power of conversational AI to your cloud resources and configurations, allowing you to extract critical insights using plain English — no complex SQL required!
+The [Steampipe MCP server](https://github.com/turbot/steampipe-mcp) (Model Control Protocol) transforms how you interact with your cloud infrastructure data.  It brings the power of conversational AI to your cloud resources and configurations, allowing you to extract critical insights using plain English — no complex SQL required!
 
 The Steampipe [MCP](https://modelcontextprotocol.io/introduction) enables Large Language Models (LLMs) to query your Steampipe data directly. This allows you to query your cloud infrastructure using natural language, making data exploration and analysis more intuitive and accessible.  It works with both local [Steampipe](https://steampipe.io/downloads) installations and [Turbot Pipes](https://turbot.com/pipes) workspaces, providing safe, read-only access to all your cloud and SaaS data.
 
