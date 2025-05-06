@@ -18,9 +18,10 @@ plugin "aws" {
 ```
 
 
-## Supported options  
-| Argument | Default | Description 
-|-|-|-|-
+## Supported options
+
+| Argument | Default | Description
+|-|-|-
 | `source`        | none   |  A [plugin version string](#plugin-version-strings) the specifies which plugin this configuration applies to.  If not specified, the plugin block label is assumed to be the plugin source. <!--This must refer to an [installed plugin version](/docs/managing/plugins#installing-plugins). -->
 | `memory_max_mb` | `1024` | The soft memory limit for the plugin, in MB. Steampipe sets `GOMEMLIMIT` for the plugin process to the specified value.  The Go runtime does not guarantee that the memory usage will not exceed the limit, but rather uses it as a target to optimize garbage collection.
 | `limiter`       | none   | Optional [limiter](#limiter) blocks used to set concurrency and/or rate limits
