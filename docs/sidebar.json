@@ -252,6 +252,15 @@
               "develop/writing_plugins/sql-to-api-call"
             ]
           },
+          {
+            "type": "category",
+            "id": "ai-tools",
+            "label": "AI Tools",
+            "link": "develop/ai-tools/overview",
+            "items": [
+              "develop/ai-tools/write-tables"
+            ]
+          },
           "develop/plugin-release-checklist",
           "develop/standards",
           "develop/table-docs-standards",
