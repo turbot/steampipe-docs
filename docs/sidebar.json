@@ -258,7 +258,7 @@
             "label": "AI Tools",
             "link": "develop/ai-tools/overview",
             "items": [
-              "develop/ai-tools/write-tables"
+              "develop/ai-tools/writing-tables"
             ]
           },
           "develop/plugin-release-checklist",

@@ -1,6 +1,11 @@
-# Write Tables
+---
+title: Writing Tables
+sidebar_label: Writing Tables
+---
 
-For creating a new table, we have included some prompts below that you can use with your AI tools.
+# Writing Tables
+
+When creating a new table, we have included some prompts below that you can use with your AI tools.
 
 First, create the table:
 

@@ -1,3 +1,8 @@
+---
+title: AI Tools
+sidebar_label: AI Tools
+---
+
 # AI Tools
 
 To help with developing new plugins and tables, we've created several prompts to help speed up development by providing helpful guidelines and examples.
