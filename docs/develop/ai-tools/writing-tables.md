@@ -27,25 +27,25 @@ You are an expert in Steampipe, Steampipe plugins, and Postgres. Use the followi
 - Each table must have a document called `<provider>/table_<table_name>.go`.
 - ALWAYS use the `go doc` command to get the API details first.
 
-### Error Handling
+## Error Handling
 
 - Use `ShouldIgnoreErrorFunc` in `GetConfig` to gracefully handle expected errors (e.g., resource not found).
 - Return errors as soon as they are encountered to avoid partial or misleading results.
 - Add comments to clarify why certain errors are ignored or handled in a specific way.
 
-### Logging
+## Logging
 
 - Always log errors with sufficient context, including the function name, error type, error message, and any related arguments, using `plugin.Logger(ctx).Error(...)`.
 - When returning errors, include the location and any related args, along with the error itself.
 
-### Pagination and Limits
+## Pagination and Limits
 
 - Implement pagination for all list operations using the SDK's paginator when available.
 - Respect the `QueryContext.Limit` parameter to avoid returning more rows than requested, but also handle API minimums (e.g., AWS EC2 requires a minimum of 5 for `MaxResults`).
 - Use the `RowsRemaining(ctx)` check to stop processing when the requested row limit is reached.
 - If a non-List hydrate function requires paging, consider moving that data to a separate table to avoid throttling/rate limiting.
 
-### Rate Limiting
+## Rate Limiting
 
 - Use `d.WaitForListRateLimit(ctx)` in list functions to respect Steampipe's rate limiting and avoid API throttling.
 - Be aware of provider-specific rate limits and implement retries or backoff strategies as needed.
@@ -53,7 +53,7 @@ You are an expert in Steampipe, Steampipe plugins, and Postgres. Use the followi
 - Set `HydrateConfig.MaxConcurrency` for hydrate functions if the API has strict rate limits.
 - Document any rate limiting considerations or custom logic in code comments for maintainability.
 
-### Hydrate Functions
+## Hydrate Functions
 
 - Use hydrate functions for columns that require additional API calls, and only fetch extra data when those columns are queried.
 - Group related hydrate functions in `HydrateConfig` for clarity and maintainability.
@@ -61,7 +61,7 @@ You are an expert in Steampipe, Steampipe plugins, and Postgres. Use the followi
 - Document the purpose of each hydrate function, especially if it handles special cases or provider-specific logic.
 - List hydrate functions should check for remaining rows and abort loops if there are none.
 
-### Column Definitions
+## Column Definitions
 
 - Use `Transform` functions to extract or format data as needed (e.g., `transform.FromField("State.Name")`).
 - Set a preferred transform as the default for columns (e.g., `transform.FromGo().NullIfZero()`).
@@ -71,14 +71,14 @@ You are an expert in Steampipe, Steampipe plugins, and Postgres. Use the followi
 - Add an `arn` column for AWS resources, using a hydrate function to construct it if not directly available.
 - Include a `tags` column (or equivalent) and provide a transform function to convert provider-specific tag structures into a simple key-value map.
 
-### Matrix Items and Regionality
+## Matrix Items and Regionality
 
 - Use `GetMatrixItemFunc` to support multi-region or multi-account enumeration where applicable.
 - Use helper functions like `awsRegionalColumns()` to add standard columns for region/account.
 - Ensure that matrix items are included in both List and Get operations when required by the provider.
 - Document any assumptions or requirements about matrix items in code comments for clarity.
 
-### Utility and Helper Functions
+## Utility and Helper Functions
 
 - Encapsulate filter-building and value-extraction logic in utility functions for reuse and clarity.
 - Use helper functions to keep table definitions concise and maintainable.
@@ -115,6 +115,7 @@ All tables include these common columns:
 - `compartment_id` - The OCID of the compartment
 - `tenant_id` - The OCID of the tenant
 - **ALWAYS** Use the `commonColumnsForAllResource()` function in he column definition.
+```
 
 ### Additional Plugin Prompts
 
