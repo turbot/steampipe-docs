@@ -107,14 +107,6 @@ You are an expert in Steampipe, Steampipe plugins, and Postgres. Use the followi
 ## Columns
 
 - The table MUST include resource specific columns and standard plugin tables.
-
-## Standard Columns
-
-All tables include these common columns:
-
-- `compartment_id` - The OCID of the compartment
-- `tenant_id` - The OCID of the tenant
-- **ALWAYS** Use the `commonColumnsForAllResource()` function in he column definition.
 ```
 
 ### Additional Plugin Prompts
