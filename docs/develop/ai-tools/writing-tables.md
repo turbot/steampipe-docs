@@ -158,6 +158,7 @@ You are an expert in Steampipe, Steampipe plugins, and Postgres. Use the followi
 
 ### Guidelines
 
+- You MUST look at the example documentation to understand the format.
 - Each table must have a document called `docs/tables/<table_name>.md`.
 - Each table doc should show 4–5 useful, real-world example queries. Most examples should specify columns, not just use `SELECT *`.
 - If some columns are required, call them out and explain why.
@@ -192,8 +193,9 @@ You are an expert in Steampipe, Steampipe plugins, and Postgres. Use the followi
 ## Create Resources
 
 - Use the provider's CLI if available to create resources for the table.
-  - If no CLI is available, create and run a Shell script using the provider's API.
-- The resource should be created with as many properties set as possible to help populate column data. 
+  - If no CLI is available, then create a Terraform configuration file to create the resources.
+  - If neither are available, then create and run a Shell script using the provider's API.
+- The resource should be created with as many properties set as possible to help populate column data.
 - If you need to create additional resources as dependencies, create them too.
 - Use the CLI to verify the resources were created successfully.
 
@@ -224,6 +226,5 @@ alwaysApply: false
 # Clean Up Testing Resources
 
 - All resources used for testing (including dependent resources) MUST be deleted.
-- Use the provider's CLI if available to delete the resources.
-  - If no CLI is available, create and run a Shell script using the provider's API.
+- Use the method used to create the resources to also delete the resources.
 ```
