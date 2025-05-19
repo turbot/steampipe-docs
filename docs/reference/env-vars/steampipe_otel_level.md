@@ -12,7 +12,7 @@ Specify which [OpenTelemetry](https://opentelemetry.io/) data to send via OTLP. 
 | `NONE`    | Do not send OpenTelemetry data (default)
 | `TRACE`   | Send Traces via OTLP
 
-Steampipe is instrumented with the Open Telemetry SDK which supports the [standard SDK environment variables](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/sdk-environment-variables.md). If `OTEL_EXPORTER_OTLP_ENDPOINT` is not specified, Steampipe will default to `localhost:4317`. 
+Steampipe is instrumented with the Open Telemetry SDK which supports the [standard SDK environment variables](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md). If `OTEL_EXPORTER_OTLP_ENDPOINT` is not specified, Steampipe will default to `localhost:4317`. 
 
 Currently, Steampipe only supports OTLP/gRPC. 
 
