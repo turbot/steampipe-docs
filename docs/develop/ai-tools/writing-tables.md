@@ -23,8 +23,8 @@ Before you begin, ensure you have:
 First, create the new table and its documentation, using existing tables and docs as reference.
 
 ```
-# Specify the following for Cursor rules
 ---
+# Specify the following for Cursor rules
 description: Use these rules when creating Steampipe tables and documentation
 alwaysApply: false
 ---
