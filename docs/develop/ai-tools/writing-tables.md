@@ -23,6 +23,7 @@ Before you begin, ensure you have:
 First, create the new table and its documentation, using existing tables and docs as reference.
 
 ```
+# Specify the following for Cursor rules
 ---
 description: Use these rules when creating Steampipe tables and documentation
 alwaysApply: false
@@ -38,6 +39,11 @@ Create a new table and documentation for the [resource type] using the following
 
 - ALWAYS use the `go doc` command to get the API details from the SDK.
 - ALWAYS review other tables for similar services and resources to learn Steampipe table standards and guidelines. 
+
+### Register Table
+
+- The table MUST be registered in plugin.go.
+- The table should be added in alpahebtical order.
 
 ### Hydrate Functions
 
@@ -77,13 +83,19 @@ Build the plugin and verify the [resource type] table was properly registered us
 
 ## Start Steampipe Service
 
-- Start the Steampipe service using `steampipe service start`.
-- If the service is already running, restart it using `steampipe service restart`.
+- Check if the Steampipe service is running with `steampipe service status`
+  - If it's not running, start it using `steampipe service start`.
+  - If it is already running, restart it using `steampipe service restart`.
 
 ## Verify Table Registration
 
-- Use the Steampipe MCP server to verify the table exists and can be queried successfully.
-- If the Steampipe MCP server is not available, use `.inspect [table_name]` to verify the table exists and `steampipe query "select * from [table_name] "` to test querying.
+- Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool.
+- If the Steampipe MCP server is available, you MUST use it to:
+  - Verify the table exists.
+  - The table can be queried successfully.
+- If the Steampipe MCP server is not available:
+  - Use `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"` to verify the table exists.
+  - Use `steampipe query "select * from [table_name] "` to test basic querying.
 ```
 
 ## Create Resources
