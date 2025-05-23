@@ -29,14 +29,14 @@ alwaysApply: false
 
 # Steampipe Plugin Table Writing
 
-Create a new table and documentation for the [resource type] using the following guidelines. 
+Create a new table and documentation for the [resource type] using the following guidelines.
 
 ## Table Guidelines
 
 ### References
 
 - ALWAYS use the `go doc` command to get the API details from the SDK.
-- ALWAYS review other tables for similar services and resources to learn Steampipe table standards and guidelines. 
+- ALWAYS review other tables for similar services and resources to learn Steampipe table standards and guidelines.
 
 ### Register Table
 
@@ -60,7 +60,7 @@ Create a new table and documentation for the [resource type] using the following
 - Each example MUST include the resource id/name (friendly name preferred) for non-aggregate queries.
 ```
 
-## Build Plugin and Verify Table Registration
+## Build Plugin
 
 Next, build the plugin and verify your new table is properly registered.
 
@@ -121,7 +121,7 @@ Create test resources for [resource type] and confirm they were created successf
 - Use the same tool or its output to confirm the resources were created successfully.
 ```
 
-## Test Table Data
+## Validate Column Data
 
 Next, query the table to test that columns and data types are correctly implemented.
 
@@ -134,7 +134,7 @@ alwaysApply: false
 
 # Testing Table Data and Queries
 
-Test the table implementation by querying resources and validating column data.
+Test the implementation for [resource type] by querying resources and validating column data.
 
 ## Validate Column Data
 
