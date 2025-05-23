@@ -9,7 +9,7 @@ The amount of time to cache query results for this client, in seconds. The defau
 
 Caching must be enabled for this setting to take effect.
 
-This is a client setting. When connecting to a Steampipe database, you are also subject to the [STEAMPIPE_CACHE_MAX_TTL](reference/env-vars/steampipe_cache_max_ttl) set on the server.  You can set the `STEAMPIPE_CACHE_TTL` (or `cache_ttl` in a [workspace](/docs/reference/config-files/workspace)) from your client to *reduce* the TTL for your session but not to expand it. The net effect for your session will be the lower of the two values.
+This is a client setting. When connecting to a Steampipe database, you are also subject to the [STEAMPIPE_CACHE_MAX_TTL](/docs/reference/env-vars/steampipe_cache_max_ttl) set on the server.  You can set the `STEAMPIPE_CACHE_TTL` (or `cache_ttl` in a [workspace](/docs/reference/config-files/workspace)) from your client to *reduce* the TTL for your session but not to expand it. The net effect for your session will be the lower of the two values.
 
 
 ## Usage 

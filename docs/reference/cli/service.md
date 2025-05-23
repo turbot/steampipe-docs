@@ -29,7 +29,7 @@ steampipe service [command]
 | Flag | Applies to | Description
 |-|-|-
 | `--database-listen string` |  `start` | Accept database connections from: `local` (localhost only) or `network` (open)
-| `--database-password string`  |  `start` |  Set the steampipe database password for this session.  See [STEAMPIPE_DATABASE_PASSWORD](reference/env-vars/steampipe_database_password) for additional information
+| `--database-password string`  |  `start` |  Set the steampipe database password for this session.  See [STEAMPIPE_DATABASE_PASSWORD](/docs/reference/env-vars/steampipe_database_password) for additional information
 | `--database-port int` | `start` |  Database service port (default 9193)
 | `--force` |  `stop`, `restart` | Forces the service to shutdown, releasing all open connections and ports
 | `--foreground` |  `start` | Run the service in the foreground
