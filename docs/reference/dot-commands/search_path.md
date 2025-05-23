@@ -4,7 +4,7 @@ sidebar_label: .search_path
 ---
 
 # .search_path
-Display the current [search path](managing/connections#setting-the-search-path), or set the search path by passing in a comma-separated list.
+Display the current [search path](/docs/managing/connections#setting-the-search-path), or set the search path by passing in a comma-separated list.
 
 
 ## Usage

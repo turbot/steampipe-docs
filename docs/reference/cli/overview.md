@@ -9,12 +9,12 @@ sidebar_label: Steampipe CLI
 
 | Command | Description
 |-|-
-| [steampipe completion](reference/cli/completion)| Generate the autocompletion script for the specified shell
-| [steampipe help](reference/cli/help)      | Help about any command
-| [steampipe login](reference/cli/login)        | Log in to Steampipe CLoud
-| [steampipe plugin](reference/cli/plugin)  | Steampipe plugin management
-| [steampipe query](reference/cli/query)    | Execute SQL queries interactively or by argument
-| [steampipe service](reference/cli/service)| Steampipe service management
+| [steampipe completion](/docs/reference/cli/completion)| Generate the autocompletion script for the specified shell
+| [steampipe help](/docs/reference/cli/help)      | Help about any command
+| [steampipe login](/docs/reference/cli/login)        | Log in to Steampipe CLoud
+| [steampipe plugin](/docs/reference/cli/plugin)  | Steampipe plugin management
+| [steampipe query](/docs/reference/cli/query)    | Execute SQL queries interactively or by argument
+| [steampipe service](/docs/reference/cli/service)| Steampipe service management
 
 
 ## Global Flags

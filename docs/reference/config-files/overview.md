@@ -9,6 +9,6 @@ Configuration file resource are defined using HCL in one or more Steampipe confi
 
 
 Typically, config files are laid out as follows:
-- Steampipe creates a `~/.steampipe/config/default.spc` file for setting [options](reference/config-files/options).
-- Each plugin creates a `~/.steampipe/config/{plugin name}.spc` (e.g. `aws.spc`, `github.spc`, `net.spc`, etc). Define your [connections](reference/config-files/connection) and [plugins](reference/config-files/plugin) in these files.
-- Define your [workspaces](reference/config-files/workspace) in `~/.steampipe/config/workspaces.spc`.
+- Steampipe creates a `~/.steampipe/config/default.spc` file for setting [options](/docs/reference/config-files/options).
+- Each plugin creates a `~/.steampipe/config/{plugin name}.spc` (e.g. `aws.spc`, `github.spc`, `net.spc`, etc). Define your [connections](/docs/reference/config-files/connection) and [plugins](/docs/reference/config-files/plugin) in these files.
+- Define your [workspaces](/docs/reference/config-files/workspace) in `~/.steampipe/config/workspaces.spc`.

@@ -5,7 +5,7 @@ sidebar_label: .search_path_prefix
 
 
 # .search_path_prefix
-Set a prefix to the current [search path](managing/connections#setting-the-search-path) by passing in a comma-separated list.
+Set a prefix to the current [search path](/docs/managing/connections#setting-the-search-path) by passing in a comma-separated list.
 
 
 ## Usage
