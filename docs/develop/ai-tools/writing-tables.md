@@ -115,6 +115,8 @@ Create test resources for [resource type] and confirm they were created successf
   - If no CLI is available, create a Terraform configuration file to create the resources.
   - If neither are available, create and run a Shell script using the provider's API.
 - Create the resource with as many properties set as possible to ensure comprehensive column data.
+- Use the cheapest configuration for the resource.
+- If the initial cost of creating the resource is very high, e.g, $500, do not create the resource and warn me instead.
 - If you need to create additional resources as dependencies, create them too.
 - Use the same tool or its output to confirm the resources were created successfully.
 ```
