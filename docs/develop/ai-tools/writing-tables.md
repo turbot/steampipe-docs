@@ -58,6 +58,7 @@ Create a new table and documentation for the [resource type] using the following
 - Each table must have a document called `docs/tables/<table_name>.md`.
 - Each table doc should show 4–5 useful, real-world example queries. Examples should specify columns, not just use `SELECT *`.
 - Each example MUST include the resource id/name (friendly name preferred) for non-aggregate queries.
+- Queries should use `->` and `->>` operators instead of `json_extract` functions.
 ```
 
 ## Build Plugin
