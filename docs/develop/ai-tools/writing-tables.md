@@ -152,7 +152,6 @@ To test the table's functionality, you'll need resources to query. You can eithe
 
 Original:
 ```
-```
 ---
 # Specify the following for Cursor rules
 description: Guidelines for creating resources for testing Steampipe table queries
