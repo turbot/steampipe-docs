@@ -21,12 +21,6 @@ Before you begin, ensure you have:
 First, create the new table and its documentation, using existing tables and docs as reference.
 
 ```
----
-# Specify the following for Cursor rules
-description: Use these rules when creating Steampipe tables and documentation
-alwaysApply: false
----
-
 # Steampipe Plugin Table Writing
 
 Create a new table and documentation for the [resource type] using the following guidelines.
@@ -66,12 +60,6 @@ Create a new table and documentation for the [resource type] using the following
 Next, build the plugin and verify your new table is properly registered.
 
 ```
----
-# Specify the following for Cursor rules
-description: Guidelines for building Steampipe plugins and verifying table registration
-alwaysApply: false
----
-
 # Testing Steampipe Plugin Tables
 
 Build the plugin and verify the [resource type] table was properly registered with the plugin using the following guidelines.
@@ -97,20 +85,52 @@ Build the plugin and verify the [resource type] table was properly registered wi
   - Use `steampipe query "select * from [table_name]"` to verify basic querying works.
 ```
 
+```
+Build the plugin and verify the [resource type] table was properly registered with the plugin using the following guidelines.
+
+# Steps
+
+1. Build the plugin using `make dev` to compile a plugin if available, else use `make`.
+2. Check if the Steampipe service is running with `steampipe service status`.
+  - If it's not running, start it using `steampipe service start`.
+  - If it is already running, restart it using `steampipe service restart`.
+3. Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool.
+4. Verify the table exists in the schema and basic querying works using the guidelines below.
+
+# Guidelines
+
+- If the Steampipe MCP server is available, you MUST use it to:
+  - Verify the table exists in the schema.
+  - Verify the table can be queried successfully.
+- If the Steampipe MCP server is not available:
+  - Use `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"` to verify the table exists.
+  - Use `steampipe query "select * from [table_name]"` to verify basic querying works.
+```
+
+```
+Build the plugin and verify the [resource type] table was properly registered with the plugin using the following guidelines.
+
+1. Build the plugin using `make dev` to compile a plugin if available, else use `make`.
+2. Check if the Steampipe service is running with `steampipe service status`
+  - If it's not running, start it using `steampipe service start`.
+  - If it is already running, restart it using `steampipe service restart`.
+3. Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool.
+4. If the Steampipe MCP server is available, you MUST use it to:
+  1. Verify the table exists in the schema.
+  2. Verify the table can be queried successfully.
+5. If the Steampipe MCP server is not available:
+  1. Use `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"` to verify the table exists.
+  2. Use `steampipe query "select * from [table_name]"` to verify basic querying works.
+```
+
 ## Create Test Resources
 
 To test the table's functionality, you'll need resources to query. You can either use existing resources or create new test resources with appropriate properties.
 
 ```
----
-# Specify the following for Cursor rules
-description: Guidelines for creating resources for testing Steampipe table queries
-alwaysApply: false
----
-
-# Create Resources for Testing Steampipe Tables
-
 Create test resources for [resource type] and confirm they were created successfully.
+
+# Guidelines
 
 - Use the provider's CLI if available to create resources for the table.
   - If no CLI is available, create a Terraform configuration file to create the resources.
@@ -127,29 +147,37 @@ Create test resources for [resource type] and confirm they were created successf
 Next, query the table to test that columns and data types are correctly implemented.
 
 ```
----
-# Specify the following for Cursor rules
-description: Guidelines for querying Steampipe tables to verify column data is correct
-alwaysApply: false
----
-
-# Testing Table Data and Queries
-
 Test the implementation for [resource type] by querying resources and validating column data.
 
-## Validate Column Data
+# Steps
 
-- Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available, use `steampipe` CLI commands.
-- Execute `select * from [table_name]` and validate:
+1. Execute `select * from [table_name]` and validate:
   - All columns return expected data based on the resource properties.
   - All columns have the correct data types.
-
-## Test Documentation Examples
-
-- Execute all queries from the table documentation to verify:
+3. Execute all queries from the table documentation to verify:
   - SQL syntax is correct and queries run without errors.
   - Result data matches the example's title and description.
-- Share all test results in raw Markdown format to make them easy to export.
+4. Share all test results in raw Markdown format to make them easy to export.
+
+# Guidelines
+
+1. Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available, use `steampipe` CLI commands.
+```
+
+```
+Test the implementation for [resource type] by querying resources and validating column data.
+
+Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available, use `steampipe` CLI commands.
+
+Share all test results in raw Markdown format to make them easy to export.
+
+First, execute `select * from [table_name]` and validate:
+1. All columns return expected data based on the resource properties.
+2. All columns have the correct data types.
+
+Then, execute all queries from the table documentation to verify:
+1. SQL syntax is correct and queries run without errors.
+2. Result data matches the example's title and description.
 ```
 
 ## Cleanup Test Resources
@@ -157,17 +185,22 @@ Test the implementation for [resource type] by querying resources and validating
 After testing is completed, remove any resources created for testing.
 
 ```
----
-# Specify the following for Cursor rules
-description: Guidelines for deleting resources used for testing Steampipe table queries
-alwaysApply: false
----
-
-# Delete Test Resources
-
 Remove all [resource type] resources used for testing.
 
-- All resources used for testing (including dependent resources) MUST be deleted.
-- Use the same method used to create the resources to delete them.
-- Verify the resources were deleted using the same method as well.
+# Steps
+
+1. Delete all resources used for testing (including dependent resources).
+2. Verify the resources were deleted.
+
+# Guidelines
+
+1. Use the same method used to create the resources to delete and verify deletion.
+```
+
+```
+Remove all [resource type] resources used for testing.
+
+Using the same method used to create the resources, delete all resources used for testing (including dependent resources).
+
+Then verify the resources were deleted.
 ```
