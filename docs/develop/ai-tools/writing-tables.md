@@ -91,9 +91,7 @@ Build the plugin and verify the [resource type] table was properly registered wi
 # Steps
 
 1. Build the plugin using `make dev` to compile a plugin if available, else use `make`.
-2. Check if the Steampipe service is running with `steampipe service status`.
-  - If it's not running, start it using `steampipe service start`.
-  - If it is already running, restart it using `steampipe service restart`.
+2. Check if the Steampipe service is running with `steampipe service status`. If it's not running, start it using `steampipe service start`, else restart it using `steampipe service restart`.
 3. Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool.
 4. Verify the table exists in the schema and basic querying works using the guidelines below.
 
@@ -111,16 +109,10 @@ Build the plugin and verify the [resource type] table was properly registered wi
 Build the plugin and verify the [resource type] table was properly registered with the plugin using the following guidelines.
 
 1. Build the plugin using `make dev` to compile a plugin if available, else use `make`.
-2. Check if the Steampipe service is running with `steampipe service status`
-  - If it's not running, start it using `steampipe service start`.
-  - If it is already running, restart it using `steampipe service restart`.
+2. Check if the Steampipe service is running with `steampipe service status`. If it's not running, start it using `steampipe service start`, else restart it using `steampipe service restart`.
 3. Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool.
-4. If the Steampipe MCP server is available, you MUST use it to:
-  1. Verify the table exists in the schema.
-  2. Verify the table can be queried successfully.
-5. If the Steampipe MCP server is not available:
-  1. Use `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"` to verify the table exists.
-  2. Use `steampipe query "select * from [table_name]"` to verify basic querying works.
+4. If the Steampipe MCP server is available, you MUST use it to verify the table exists in the schema and then verify the table can be queried successfully.
+5. If the Steampipe MCP server is not available, use `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"` to verify the table exists. Then use `steampipe query "select * from [table_name]"` to verify basic querying works.
 ```
 
 ## Create Test Resources
@@ -167,7 +159,8 @@ Test the implementation for [resource type] by querying resources and validating
 ```
 Test the implementation for [resource type] by querying resources and validating column data.
 
-Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available, use `steampipe` CLI commands.
+Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available,
+use `steampipe` CLI commands.
 
 Share all test results in raw Markdown format to make them easy to export.
 
@@ -200,7 +193,6 @@ Remove all [resource type] resources used for testing.
 ```
 Remove all [resource type] resources used for testing.
 
-Using the same method used to create the resources, delete all resources used for testing (including dependent resources).
-
-Then verify the resources were deleted.
+Using the same method used to create the resources, delete all resources used for
+testing (including dependent resources) and verify they were deleted.
 ```
