@@ -24,7 +24,7 @@ Original:
 ```
 # Steampipe Plugin Table Writing
 
-Create a new table and documentation for the [resource type] using the following guidelines.
+Create a new table and documentation for the <resource_type> using the following guidelines.
 
 ## Table Guidelines
 
@@ -58,7 +58,9 @@ Create a new table and documentation for the [resource type] using the following
 
 Numbered steps with guidelines:
 ```
-Create a new table and documentation for the [resource type] using the following guidelines.
+Your goal is to create a new Steampipe table, including necessary code and documentation for the <resource_type>.
+
+Please follow these steps to complete the task:
 
 1. Review the other tables and their documentation for similar services and resources to learn Steampipe table standards and guidelines.
 2. Use the `go doc` command to get the API details from the SDK.
@@ -93,7 +95,7 @@ Original:
 ```
 # Testing Steampipe Plugin Tables
 
-Build the plugin and verify the [resource type] table was properly registered with the plugin using the following guidelines.
+Build the plugin and verify the <resource_type> table was properly registered with the plugin using the following guidelines.
 
 ## Building Plugin
 
@@ -118,7 +120,9 @@ Build the plugin and verify the [resource type] table was properly registered wi
 
 Numbered steps with guidelines:
 ```
-Build the plugin and verify the [resource type] table was properly registered with the plugin using the following guidelines.
+Your goal is to test the <resource_type> table was created and registered successfully in this plugin.
+
+Please follow these steps to complete the task:
 
 1. Build the plugin using `make dev` to compile a plugin if available, else use `make`.
 2. Check if the Steampipe service is running with `steampipe service status`. If it's not running, start it using `steampipe service start`, else restart it using `steampipe service restart`.
@@ -137,7 +141,9 @@ Build the plugin and verify the [resource type] table was properly registered wi
 
 Numbered steps without guidelines:
 ```
-Build the plugin and verify the [resource type] table was properly registered with the plugin using the following guidelines.
+Your goal is to test the <resource_type> table was created and registered successfully in this plugin.
+
+Please follow these steps to complete the task:
 
 1. Build the plugin using `make dev` to compile a plugin if available, else use `make`.
 2. Check if the Steampipe service is running with `steampipe service status`. If it's not running, start it using `steampipe service start`, else restart it using `steampipe service restart`.
@@ -160,7 +166,7 @@ alwaysApply: false
 
 # Create Resources for Testing Steampipe Tables
 
-Create test resources for [resource type] and confirm they were created successfully.
+Create test resources for <resource_type> and confirm they were created successfully.
 
 - Use the provider's CLI if available to create resources for the table.
   - If no CLI is available, create a Terraform configuration file to create the resources.
@@ -174,7 +180,9 @@ Create test resources for [resource type] and confirm they were created successf
 
 Numbered steps with guidelines:
 ```
-Create test resources for [resource type] and confirm they were created successfully.
+Your goal is to create test resources for <resource_type> and confirm they were created successfully in order to test querying their Steampipe table.
+
+Please follow these steps to complete the task:
 
 1. Create resources required for testing (including dependent resources).
 2. Verify the resources were created.
@@ -199,7 +207,7 @@ Original:
 ```
 # Testing Table Data and Queries
 
-Test the implementation for [resource type] by querying resources and validating column data.
+Test the implementation for <resource_type> by querying resources and validating column data.
 
 ## Validate Column Data
 
@@ -218,7 +226,9 @@ Test the implementation for [resource type] by querying resources and validating
 
 Numbered steps with guidelines:
 ```
-Test the implementation for [resource type] by querying resources and validating column data.
+Your goal is to test the implementation for <resource_type> in Steampipe by querying resources and validating column data.
+
+Please follow these steps to complete the task:
 
 1. Execute `select * from [table_name]` and validate:
   - All columns return expected data based on the resource properties.
@@ -235,20 +245,20 @@ Test the implementation for [resource type] by querying resources and validating
 
 Numbered steps without guidelines:
 ```
-Test the implementation for [resource type] by querying resources and validating column data.
+Your goal is to test the implementation for <resource_type> in Steampipe by querying resources and validating column data.
 
-Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available,
-use `steampipe` CLI commands.
+Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available, use `steampipe` CLI commands.
 
 Share all test results in raw Markdown format to make them easy to export.
 
-First, execute `select * from [table_name]` and validate:
-1. All columns return expected data based on the resource properties.
-2. All columns have the correct data types.
+Please follow these steps to complete the task:
 
-Then, execute all queries from the table documentation to verify:
-1. SQL syntax is correct and queries run without errors.
-2. Result data matches the example's title and description.
+1. Execute `select * from [table_name]` and validate:
+  - All columns return expected data based on the resource properties.
+  - All columns have the correct data types.
+2. Execute all queries from the table documentation to verify:
+  - SQL syntax is correct and queries run without errors.
+  - Result data matches the example's title and description.
 ```
 
 ## Cleanup Test Resources
@@ -259,7 +269,7 @@ Original:
 ```
 # Delete Test Resources
 
-Remove all [resource type] resources used for testing.
+Remove all <resource_type> resources used for testing.
 
 - All resources used for testing (including dependent resources) MUST be deleted.
 - Use the same method used to create the resources to delete them.
@@ -268,7 +278,9 @@ Remove all [resource type] resources used for testing.
 
 Numbered steps with guidelines:
 ```
-Remove all [resource type] resources used for testing.
+Your goal is to delete all <resource_type> resources used for testing Steampipe tables.
+
+Please follow these steps to complete the task:
 
 1. Delete all resources used for testing (including dependent resources).
 2. Verify the resources were deleted.
@@ -280,7 +292,9 @@ Remove all [resource type] resources used for testing.
 
 Numbered steps without guidelines:
 ```
-Remove all [resource type] resources used for testing.
+Your goal is to delete all <resource_type> resources used for testing Steampipe tables.
+
+Please follow these steps to complete the task:
 
 1. Using the same method used to create the resources, delete all resources used for testing (including dependent resources).
 2. Verify they were deleted.
