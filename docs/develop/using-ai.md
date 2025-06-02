@@ -4,304 +4,121 @@ sidebar_label: Using AI
 ---
 
 # Using AI
-To help you create new tables for Steampipe plugins, we have included suggested prompts and workflows you can use with your AI tools and IDEs.
 
-We recommend using multiple prompts to create the table, build the plugin, and run test queries to allow specific context to be passed in at each step.
+Creating new tables for Steampipe plugins with AI tools and IDEs works remarkably well, primarily because you're developing within existing plugin repositories that contain numerous examples of tables, documentation, and code patterns. AI can learn from these existing examples to generate high-quality, consistent implementations.
 
-You can use each prompt below in one of several ways:
+At Turbot, we develop plugin tables frequently and use AI for almost every new table we create. We've experimented with various approaches - detailed prompt engineering, explicit guidelines, IDE rules and instructions, and complex workflows - but found that AI typically produces excellent results even without heavy guidance, thanks to the rich context provided by existing plugin code and documentation.
+
+## Why AI Works Well for Steampipe Development
+
+The key to successful AI-assisted Steampipe development is **examples**. When working in an existing plugin repository, AI tools have access to:
+- Multiple existing table implementations showing consistent patterns
+- Comprehensive documentation examples demonstrating query patterns
+- Established code structure and naming conventions
+- Standard column definitions and data type usage
+
+This context allows AI to understand and replicate the patterns without extensive prompting.
+
+## Getting Started
+
+We still recommend installing the [Steampipe MCP server](https://github.com/turbot/steampipe-mcp) to help test and validate your new tables during development.
+
+## Example Prompts We Use
+
+While AI often works well with simple requests like "create a table for [resource_type]", here are some prompts we use at Turbot that you may find helpful. Feel free to adapt them to your preferred style or use them as starting points.
+
+These prompts are organized into stages that can be useful for breaking down the work, though you may find that a single prompt works just as well for your workflow.
+
+You can use each prompt in one of several ways:
 - Use the prompt directly
 - Add them to your prompt context as files, e.g., [Cursor @Files](https://docs.cursor.com/context/@-symbols/@-files)
 - Add them to your rules or instructions, e.g., [Cursor rules](https://docs.cursor.com/context/rules), [VS Code instructions or prompt files](https://code.visualstudio.com/docs/copilot/copilot-customization), [Windsurf rules](https://docs.windsurf.com/plugins/cascade/memories#rules)
-
-We also recommend installing the [Steampipe MCP server](https://github.com/turbot/steampipe-mcp) to help test running queries for your new table.
 
 ## Prerequisites
 
 Before you begin, ensure you have:
 - Steampipe installed with a connection configured for the plugin
-- Access to create resources in the provider (for testing)
-- [Steampipe MCP server configured](https://github.com/turbot/steampipe-mcp) (strongly recommended)
+- Access to create resources in the provider (for testing, if needed)
+- [Steampipe MCP server configured](https://github.com/turbot/steampipe-mcp) (recommended for testing)
 
 ## Create Table
 
 First, create the new table and its documentation, using existing tables and docs as reference.
 
-Original:
 ```
-# Steampipe Plugin Table Writing
+Your goal is to create a new Steampipe table and documentation for <resource_type>. This will involve implementing the table code and creating comprehensive documentation with example queries.
 
-Create a new table and documentation for the <resource_type> using the following guidelines.
+1. Review existing tables in the plugin to understand the established patterns, naming conventions, and column structures. This ensures your new table follows the same standards and integrates seamlessly.
 
-## Table Guidelines
+2. Use `go doc` commands to understand the SDK's API structure for the resource type. This gives you the authoritative source for available fields and data types.
 
-### References
+3. Create the table implementation with appropriate List/Get functions and any additional hydrate functions needed for extra API calls. Avoid hydrate functions that require paging as these belong in separate tables.
 
-- ALWAYS use the `go doc` command to get the API details from the SDK.
-- ALWAYS review other tables for similar services and resources to learn Steampipe table standards and guidelines.
+4. Register the new table in plugin.go in alphabetical order to maintain organization.
 
-### Register Table
-
-- The table MUST be registered in plugin.go.
-- The table should be added to the list in alphabetical order.
-
-### Hydrate Functions
-
-- If there are any additional API calls that can be used to get data for the resource not available in the List/Get functions, add a hydrate function for each additional API call.
-- If a non-List hydrate function requires paging, do not create that hydrate function as it belongs in a separate table to avoid throttling/rate limiting.
-
-### Columns
-
-- The table MUST include resource specific columns and standard plugin columns.
-
-## Table Documentation Guidelines
-
-- You MUST look at the example documentation to understand the format.
-- Each table must have a document called `docs/tables/<table_name>.md`.
-- Each table doc should show 4–5 useful, real-world example queries. Examples should specify columns, not just use `SELECT *`.
-- Each example MUST include the resource id/name (friendly name preferred) for non-aggregate queries.
-- Queries should use `->` and `->>` operators instead of `json_extract` functions.
-```
-
-Numbered steps with guidelines:
-```
-Your goal is to create a new Steampipe table, including necessary code and documentation for the <resource_type>.
-
-Please follow these steps to complete the task:
-
-1. Review the other tables and their documentation for similar services and resources to learn Steampipe table standards and guidelines.
-2. Use the `go doc` command to get the API details from the SDK.
-3. Create the table and register it in plugin.go (in alphabetical order).
-4. Create the table documentation in `docs/tables/<table_name.md>`.
-
-# Guidelines
-
-## Table Guidelines
-
-### Hydrate Functions
-
-- If there are any additional API calls that can be used to get data for the resource not available in the List/Get functions, add a hydrate function for each additional API call.
-- If a non-List hydrate function requires paging, do not create that hydrate function as it belongs in a separate table to avoid throttling/rate limiting.
-
-### Columns
-
-- The table MUST include resource specific columns and standard plugin columns.
-
-## Table Documentation Guidelines
-
-- Each table doc should show 4–5 useful, real-world example queries. Examples should specify columns, not just use `SELECT *`.
-- Each example MUST include the resource id/name (friendly name preferred) for non-aggregate queries.
-- Queries should use `->` and `->>` operators instead of `json_extract` functions.
+5. Create documentation at `docs/tables/<table_name>.md` with 4-5 practical example queries that specify columns and use `->` and `->>` operators. Include resource identifiers in non-aggregate queries to make examples actionable.
 ```
 
 ## Build Plugin
 
 Next, build the plugin and verify your new table is properly registered.
 
-Original:
 ```
-# Testing Steampipe Plugin Tables
+Your goal is to build the plugin and verify that your new <resource_type> table is properly registered and functional. This validation step ensures the table can be queried before proceeding with testing.
 
-Build the plugin and verify the <resource_type> table was properly registered with the plugin using the following guidelines.
+1. Build the plugin using `make dev` if available, otherwise use `make`. This compiles your new table code into the plugin binary.
 
-## Building Plugin
+2. Check the Steampipe service status with `steampipe service status`. Start it with `steampipe service start` if not running, or restart it with `steampipe service restart` if already running. This ensures Steampipe picks up your new table.
 
-- Use `make dev` to compile a plugin if available, else use `make`.
+3. Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool. The MCP server provides the most convenient way to verify table registration and run test queries.
 
-## Start Steampipe Service
+4. If the Steampipe MCP server is available, use it to verify the table exists in the schema and can be queried successfully.
 
-- Check if the Steampipe service is running with `steampipe service status`
-  - If it's not running, start it using `steampipe service start`.
-  - If it is already running, restart it using `steampipe service restart`.
-
-## Verify Table Registration
-
-- Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool.
-- If the Steampipe MCP server is available, you MUST use it to:
-  - Verify the table exists in the schema.
-  - Verify the table can be queried successfully.
-- If the Steampipe MCP server is not available:
-  - Use `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"` to verify the table exists.
-  - Use `steampipe query "select * from [table_name]"` to verify basic querying works.
-```
-
-Numbered steps with guidelines:
-```
-Your goal is to test the <resource_type> table was created and registered successfully in this plugin.
-
-Please follow these steps to complete the task:
-
-1. Build the plugin using `make dev` to compile a plugin if available, else use `make`.
-2. Check if the Steampipe service is running with `steampipe service status`. If it's not running, start it using `steampipe service start`, else restart it using `steampipe service restart`.
-3. Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool.
-4. Verify the table exists in the schema and basic querying works using the guidelines below.
-
-# Guidelines
-
-- If the Steampipe MCP server is available, you MUST use it to:
-  - Verify the table exists in the schema.
-  - Verify the table can be queried successfully.
-- If the Steampipe MCP server is not available:
-  - Use `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"` to verify the table exists.
-  - Use `steampipe query "select * from [table_name]"` to verify basic querying works.
-```
-
-Numbered steps without guidelines:
-```
-Your goal is to test the <resource_type> table was created and registered successfully in this plugin.
-
-Please follow these steps to complete the task:
-
-1. Build the plugin using `make dev` to compile a plugin if available, else use `make`.
-2. Check if the Steampipe service is running with `steampipe service status`. If it's not running, start it using `steampipe service start`, else restart it using `steampipe service restart`.
-3. Test if the Steampipe MCP server is available by running the `steampipe_table_list` tool.
-4. If the Steampipe MCP server is available, you MUST use it to verify the table exists in the schema and then verify the table can be queried successfully.
-5. If the Steampipe MCP server is not available, use `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"` to verify the table exists. Then use `steampipe query "select * from [table_name]"` to verify basic querying works.
+5. If the MCP server is not available, verify table registration manually by querying the information schema with `steampipe query "SELECT column_name, data_type FROM information_schema.columns WHERE table_schema = '[plugin_name]' AND table_name = '[table_name]' ORDER BY ordinal_position"`, then test basic querying with `steampipe query "select * from [table_name]"`.
 ```
 
 ## Create Test Resources
 
 To test the table's functionality, you'll need resources to query. You can either use existing resources or create new test resources with appropriate properties.
 
-Original:
 ```
----
-# Specify the following for Cursor rules
-description: Guidelines for creating resources for testing Steampipe table queries
-alwaysApply: false
----
+Your goal is to create test resources for <resource_type> to validate your Steampipe table implementation. Having actual resources with diverse properties ensures you can test all table columns and verify data accuracy.
 
-# Create Resources for Testing Steampipe Tables
+1. Create the necessary resources using the provider's CLI if available, Terraform configuration if CLI isn't available, or API calls via shell script as a last resort. The provider's native tools typically offer the most reliable resource creation.
 
-Create test resources for <resource_type> and confirm they were created successfully.
+2. Configure the resources with as many properties set as possible to ensure comprehensive testing of all table columns. Rich resource configurations help validate that your table correctly maps all available data fields.
 
-- Use the provider's CLI if available to create resources for the table.
-  - If no CLI is available, create a Terraform configuration file to create the resources.
-  - If neither are available, create and run a Shell script using the provider's API.
-- Create the resource with as many properties set as possible to ensure comprehensive column data.
-- Use the cheapest configuration for the resource.
-- If the initial cost of creating the resource is very high, e.g, $500, do not create the resource and warn me instead.
-- If you need to create additional resources as dependencies, create them too.
-- Use the same tool or its output to confirm the resources were created successfully.
-```
+3. Use the most cost-effective configuration for the resources. If the estimated cost exceeds $500, warn about the expense rather than proceeding with creation.
 
-Numbered steps with guidelines:
-```
-Your goal is to create test resources for <resource_type> and confirm they were created successfully in order to test querying their Steampipe table.
+4. Create any dependent resources required for the main resource to function properly. Many cloud resources have dependencies that must exist first.
 
-Please follow these steps to complete the task:
-
-1. Create resources required for testing (including dependent resources).
-2. Verify the resources were created.
-
-# Guidelines
-
-- Use the provider's CLI if available to create resources for the table.
-  - If no CLI is available, create a Terraform configuration file to create the resources.
-  - If neither are available, create and run a Shell script using the provider's API.
-- Create the resource with as many properties set as possible to ensure comprehensive column data.
-- Use the cheapest configuration for the resource.
-- If the initial cost of creating the resource is very high, e.g, $500, do not create the resource and warn me instead.
-- If you need to create additional resources as dependencies, create them too.
-- Use the same tool or its output to confirm the resources were created successfully.
+5. Verify that all resources were created successfully using the same tool or method used for creation. This confirmation step ensures your test environment is ready before proceeding with table validation.
 ```
 
 ## Validate Column Data
 
 Next, query the table to test that columns and data types are correctly implemented.
 
-Original:
 ```
-# Testing Table Data and Queries
+Your goal is to thoroughly test your <resource_type> table implementation by validating column data and executing documentation examples. This comprehensive testing ensures your table works correctly and provides accurate data.
 
-Test the implementation for <resource_type> by querying resources and validating column data.
+1. Execute `select * from [table_name]` to validate that all columns return expected data based on the actual resource properties and have correct data types. This broad query reveals any fundamental issues with column mapping or data type conversions.
 
-## Validate Column Data
+2. Test each example query from the table documentation to verify the SQL syntax is correct, queries execute without errors, and results match the example descriptions. Documentation examples serve as both user guidance and functional tests.
 
-- Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available, use `steampipe` CLI commands.
-- Execute `select * from [table_name]` and validate:
-  - All columns return expected data based on the resource properties.
-  - All columns have the correct data types.
+3. Share all test results in raw Markdown format to make them easy to export and review. Well-formatted results help identify any discrepancies and provide documentation of successful validation.
 
-## Test Documentation Examples
-
-- Execute all queries from the table documentation to verify:
-  - SQL syntax is correct and queries run without errors.
-  - Result data matches the example's title and description.
-- Share all test results in raw Markdown format to make them easy to export.
-```
-
-Numbered steps with guidelines:
-```
-Your goal is to test the implementation for <resource_type> in Steampipe by querying resources and validating column data.
-
-Please follow these steps to complete the task:
-
-1. Execute `select * from [table_name]` and validate:
-  - All columns return expected data based on the resource properties.
-  - All columns have the correct data types.
-2. Execute all queries from the table documentation to verify:
-  - SQL syntax is correct and queries run without errors.
-  - Result data matches the example's title and description.
-3. Share all test results in raw Markdown format to make them easy to export.
-
-# Guidelines
-
-1. Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available, use `steampipe` CLI commands.
-```
-
-Numbered steps without guidelines:
-```
-Your goal is to test the implementation for <resource_type> in Steampipe by querying resources and validating column data.
-
-Use the Steampipe MCP server to run test queries. If the Steampipe MCP server is not available, use `steampipe` CLI commands.
-
-Share all test results in raw Markdown format to make them easy to export.
-
-Please follow these steps to complete the task:
-
-1. Execute `select * from [table_name]` and validate:
-  - All columns return expected data based on the resource properties.
-  - All columns have the correct data types.
-2. Execute all queries from the table documentation to verify:
-  - SQL syntax is correct and queries run without errors.
-  - Result data matches the example's title and description.
+Use the Steampipe MCP server for running test queries if available, otherwise use the `steampipe` CLI commands directly.
 ```
 
 ## Cleanup Test Resources
 
 After testing is completed, remove any resources created for testing.
 
-Original:
 ```
-# Delete Test Resources
+Your goal is to clean up all test resources created for <resource_type> validation to avoid ongoing costs and maintain a clean environment. Proper cleanup prevents unnecessary charges and ensures your test environment doesn't accumulate abandoned resources.
 
-Remove all <resource_type> resources used for testing.
+1. Delete all resources created for testing, including any dependent resources that were created. Use the same method that was used to create the resources, as this ensures compatibility and completeness.
 
-- All resources used for testing (including dependent resources) MUST be deleted.
-- Use the same method used to create the resources to delete them.
-- Verify the resources were deleted using the same method as well.
-```
-
-Numbered steps with guidelines:
-```
-Your goal is to delete all <resource_type> resources used for testing Steampipe tables.
-
-Please follow these steps to complete the task:
-
-1. Delete all resources used for testing (including dependent resources).
-2. Verify the resources were deleted.
-
-# Guidelines
-
-1. Use the same method used to create the resources to delete and verify deletion.
-```
-
-Numbered steps without guidelines:
-```
-Your goal is to delete all <resource_type> resources used for testing Steampipe tables.
-
-Please follow these steps to complete the task:
-
-1. Using the same method used to create the resources, delete all resources used for testing (including dependent resources).
-2. Verify they were deleted.
+2. Verify that all resources were successfully deleted using the same tool or method used for creation and deletion. Confirmation prevents billing surprises and ensures the cleanup was thorough.
 ```
