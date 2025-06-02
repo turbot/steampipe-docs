@@ -149,6 +149,7 @@
     "label": "Developers",
     "link": "develop/overview",
     "items": [
+      "develop/using-ai",
       "develop/writing-your-first-table",
       {
         "type": "category",
@@ -162,15 +163,6 @@
           "develop/writing_plugins/transform-functions",
           "develop/writing_plugins/dynamic-tables",
           "develop/writing_plugins/sql-to-api-call"
-        ]
-      },
-      {
-        "type": "category",
-        "id": "ai-tools",
-        "label": "AI Tools",
-        "link": "develop/ai-tools/overview",
-        "items": [
-          "develop/ai-tools/writing-tables"
         ]
       },
       "develop/plugin-release-checklist",

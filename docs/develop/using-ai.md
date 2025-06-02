@@ -1,13 +1,19 @@
 ---
-title: Writing Tables
-sidebar_label: Writing Tables
+title: Using AI
+sidebar_label: Using AI
 ---
 
-# Writing Tables
-
+# Using AI
 To help you create new tables for Steampipe plugins, we have included suggested prompts and workflows you can use with your AI tools and IDEs.
 
 We recommend using multiple prompts to create the table, build the plugin, and run test queries to allow specific context to be passed in at each step.
+
+You can use each prompt below in one of several ways:
+- Use the prompt directly
+- Add them to your prompt context as files, e.g., [Cursor @Files](https://docs.cursor.com/context/@-symbols/@-files)
+- Add them to your rules or instructions, e.g., [Cursor rules](https://docs.cursor.com/context/rules), [VS Code instructions or prompt files](https://code.visualstudio.com/docs/copilot/copilot-customization), [Windsurf rules](https://docs.windsurf.com/plugins/cascade/memories#rules)
+
+We also recommend installing the [Steampipe MCP server](https://github.com/turbot/steampipe-mcp) to help test running queries for your new table.
 
 ## Prerequisites
 
