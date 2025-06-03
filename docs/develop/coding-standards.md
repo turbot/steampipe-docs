@@ -5,10 +5,6 @@ sidebar_label: Coding Standards
 
 # Coding Standards
 
-- [Code Formatting](#code-formatting)
-- [Comments](#comments)
-- [Repo Structure](#repo-structure)
-
 ## Code Formatting
 
 Code should be formatted with <a href="https://golang.org/cmd/gofmt/" target="_blank" rel="noopener noreferrer">gofmt</a>.

@@ -5,12 +5,6 @@ sidebar_label: Table Documentation Standards
 
 # Table Documentation Standards
 
-- [Overview](#overview)
-- [Description Guidelines](#description-guidelines)
-- [Example Query Guidelines](#example-query-guidelines)
-
-## Overview
-
 Creating table documentation is an important part of developing tables, as each
 document provides basic table information and example queries that appear on
 the <a href="https://hub.steampipe.io" target="_blank" rel="noopener">Steampipe Hub</a>. These

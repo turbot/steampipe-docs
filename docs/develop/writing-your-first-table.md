@@ -6,15 +6,6 @@ sidebar_label:  Writing Your First Table
 
 # Writing Your First Table
 
-- [Overview](#overview)
-- [Prerequisites](#prerequisites)
-- [Clone the Repository](#clone-the-repository)
-- [Build and Run Locally](#build-and-run-locally)
-- [Make Your First Change](#make-your-first-change)
-- [Create a New Table](#create-a-new-table)
-
-## Overview
-
 The <a href="https://github.com/turbot/steampipe-plugin-sdk"
 target="_blank" rel="noopener noreferrer">Steampipe Plugin SDK</a> makes writing tables fast, easy, and
 fun! This guide will walk you through building the AWS plugin locally, testing
