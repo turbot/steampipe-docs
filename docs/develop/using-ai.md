@@ -13,7 +13,7 @@ If you're looking to use AI to query Steampipe rather than develop new tables, y
 
 ## Getting Started
 
-While AI often works well with simple requests like "Create a table for <resource_type>", here are some prompts we use at Turbot that you may find helpful as starting points.
+While AI often works well with simple requests like "Create a table for [resource_type]", here are some prompts we use at Turbot that you may find helpful as starting points.
 
 ### Prerequisites
 
