@@ -9,6 +9,8 @@ Creating new tables for Steampipe plugins with AI tools and IDEs works remarkabl
 
 The key to this success is working within existing plugin repositories and opening the entire repository as a folder or project in your IDE. This gives AI tools access to existing table implementations, documentation examples, code patterns, and naming conventions to generate consistent, high-quality results without extensive prompting.
 
+If you're primarily looking to use AI to query Steampipe, you can use the [Steampipe MCP server](../query/mcp), which provides powerful tools for AI agents to inspect tables and run queries.
+
 ## Getting Started
 
 While AI often works well with simple requests like "create a table for [resource_type]", here are some prompts we use at Turbot that you may find helpful as starting points.
