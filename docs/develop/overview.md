@@ -5,7 +5,6 @@ sidebar_label:  Developers
 ---
 # Steampipe Architecture
 
-
 ## Overview
 
 <img alt="Steampipe Architecture" src="/steampipe-arch.png" width="100%" />

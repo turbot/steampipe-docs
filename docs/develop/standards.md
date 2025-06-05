@@ -5,13 +5,6 @@ sidebar_label: Table & Column Standards
 
 # Steampipe Table & Column Standards
 
-- [Naming](#naming)
-- [Standard Columns](#standard-columns)
-- [Data Types](#data-types)
-- [Table and Column Descriptions](#table-and-column-descriptions)
-- [Column Defaults and null](#column-defaults-and-null)
-- [Standardized Structure](#standardized-structure)
-
 ## Naming
 - Use snake_case for all table and column names.
 

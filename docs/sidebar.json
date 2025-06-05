@@ -145,6 +145,36 @@
 
   {
     "type": "category",
+    "id": "develop",
+    "label": "Developers",
+    "link": "develop/overview",
+    "items": [
+      "develop/using-ai",
+      "develop/writing-your-first-table",
+      {
+        "type": "category",
+        "id": "writing-plugins",
+        "label": "Writing Plugins",
+        "link": "develop/writing_plugins/overview",
+        "items": [
+          "develop/writing_plugins/the-basics",
+          "develop/writing_plugins/implementing-tables",
+          "develop/writing_plugins/hydrate-functions",
+          "develop/writing_plugins/transform-functions",
+          "develop/writing_plugins/dynamic-tables",
+          "develop/writing_plugins/sql-to-api-call"
+        ]
+      },
+      "develop/plugin-release-checklist",
+      "develop/standards",
+      "develop/table-docs-standards",
+      "develop/writing-example-queries",
+      "develop/coding-standards"
+    ]
+  },
+
+  {
+    "type": "category",
     "id": "reference",
     "label": "Reference",
     "link": "reference/overview",
@@ -229,37 +259,7 @@
           "reference/config-files/plugin",
           "reference/config-files/workspace"
         ]
-      },
-
-      {
-        "type": "category",
-        "id": "develop",
-        "label": "Developers",
-        "link": "develop/overview",
-        "items": [
-          "develop/writing-your-first-table",
-          {
-            "type": "category",
-            "id": "writing-plugins",
-            "label": "Writing Plugins",
-            "link": "develop/writing_plugins/overview",
-            "items": [
-              "develop/writing_plugins/the-basics",
-              "develop/writing_plugins/implementing-tables",
-              "develop/writing_plugins/hydrate-functions",
-              "develop/writing_plugins/transform-functions",
-              "develop/writing_plugins/dynamic-tables",
-              "develop/writing_plugins/sql-to-api-call"
-            ]
-          },
-          "develop/plugin-release-checklist",
-          "develop/standards",
-          "develop/table-docs-standards",
-          "develop/writing-example-queries",
-          "develop/coding-standards"
-        ]
       }
-
     ]
   }
 ]
