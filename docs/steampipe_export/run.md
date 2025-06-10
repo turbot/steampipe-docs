@@ -31,7 +31,7 @@ Flags:
 
 ## Configuration
 
-Many plugins have a *default* configuration that will use environment variables or other "native" configuration files to set your credentials if don't provide a `--config` or a `--connection`.  The behavior varies by plugin but should be documented in the [Steampipe hub](https://hub.steampipe.io/plugins).  The AWS plugin, for example, will resolve the region and credentials using the same mechanism as the AWS CLI (AWS environment variables, default profile, etc).  If you have AWS CLI default credentials set up, Steampipe will use them if you don't specify `--config` or `--connection`:
+Many plugins have a *default* configuration that will use environment variables or other "native" configuration files to set your credentials if you don’t provide a `--config` or a `--connection`. The behavior varies by plugin but should be documented in the [Steampipe hub](https://hub.steampipe.io/plugins). The AWS plugin, for example, will resolve the region and credentials using the same mechanism as the AWS CLI (AWS environment variables, default profile, etc). If you have AWS CLI default credentials set up, Steampipe will use them if you don't specify `--config` or `--connection`:
 
 ```bash
 steampipe_export_aws aws_account
@@ -39,48 +39,54 @@ steampipe_export_aws aws_account
 
 There are a few different ways to configure the Exporters:
 
-  1. You can specify the configuration with the `--config` argument. The `--config` argument takes a string containing the HCL configuration options for the plugin.  The options vary per plugin, and match the [connection](https://steampipe.io/docs/managing/connections) options for the corresponding plugin.  You can view the available options and syntax for the plugin in the [Steampipe hub](https://hub.steampipe.io/plugins). This has been deprecated.
+1. You can specify the configuration with the `--config` argument. The `--config` argument takes a string containing the HCL configuration options for the plugin. The options vary per plugin, and match the [connection](https://steampipe.io/docs/managing/connections) options for the corresponding plugin. You can view the available options and syntax for the plugin in the [Steampipe hub](https://hub.steampipe.io/plugins). This has been deprecated.
 
-  ```bash
-  steampipe_export_aws --config 'profile = "my_profile"' aws_account
-  ```
+    ```bash
+    steampipe_export_aws --config 'profile = "my_profile"' aws_account
+    ```
 
-  Note that HCL is newline-sensitive and you must include the line break.  You can use `\n` with the [bash `$’string’` syntax](https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html#ANSI_002dC-Quoting) to accomplish this:
-  ```bash
-  steampipe_export_aws --config $'access_key="AKIA4YFAKEKEYT99999" \n secret_key="A32As+zuuBFThisIsAFakeSecretNb77HSLmcB"' aws_account
+    Note that HCL is newline-sensitive and you must include the line break. You can use `\n` with the [bash `$’string’` syntax](https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html#ANSI_002dC-Quoting) to accomplish this:
 
-  ```
+    ```bash
+    steampipe_export_aws --config $'access_key="AKIA4YFAKEKEYT99999" \n secret_key="A32As+zuuBFThisIsAFakeSecretNb77HSLmcB"' aws_account
+    ```
 
-  Or you can write your config to a file:
-  ```hcl
-  access_key = "AKIA4YFAKEKEYT99999"
-  secret_key = "A32As+zuuBFThisIsAFakeSecretNb77HSLmcB"
-  ```
-  And then `cat` the file into the `-config` arg:
-  ```bash
-  steampipe_export_aws --config "$(cat my_aws_config.hcl)"  aws_account
-  ```
+    Or you can write your config to a file:
 
-  2. Alternatively, you can use a named connection with the `--connection` argument. The `--connection` argument allows you to specify the name of a Steampipe connection     defined in a `.spc` config file. This is the preferred method for configuring your export tool. By default, the exporter will look for the config files in the Steampipe install directory `($STEAMPIPE_INSTALL_DIR/config)`, but you can override this path with the `--config-dir` argument.
+    ```hcl
+    access_key = "AKIA4YFAKEKEYT99999"
+    secret_key = "A32As+zuuBFThisIsAFakeSecretNb77HSLmcB"
+    ```
 
-  ```bash
-  steampipe_export_aws --connection aws_prod aws_account
-  ```
-  This assumes a file such as aws.spc exists in the steampipe config directory with content like:
-  ```hcl
-  connection "aws_prod" {
-    plugin  = "aws"
-    profile = "dundermifflin"
-    regions = ["us-east-1", "us-west-2"]
-  }
-  ```
+    And then `cat` the file into the `--config` arg:
 
-  If your configuration files are stored in a different directory, specify the path with the --config-dir argument:
-  ```bash
-  steampipe_export_aws --connection aws_prod --config-dir ~/my/custom/config aws_account
-  ```
+    ```bash
+    steampipe_export_aws --config "$(cat my_aws_config.hcl)" aws_account
+    ```
 
-  This provides a cleaner and more reusable approach than `--config`, especially for managing multiple environments or teams. It also supports full Steampipe connection syntax including named connections, plugin configurations, credentials, and options.
+2. Alternatively, you can use a named connection with the `--connection` argument. The `--connection` argument allows you to specify the name of a Steampipe connection defined in a `.spc` config file. This is the preferred method for configuring your export tool. By default, the exporter will look for the config files in the Steampipe install directory `($STEAMPIPE_INSTALL_DIR/config)`, but you can override this path with the `--config-dir` argument.
+
+    ```bash
+    steampipe_export_aws --connection aws_prod aws_account
+    ```
+
+    This assumes a file such as `aws.spc` exists in the Steampipe config directory with content like:
+
+    ```hcl
+    connection "aws_prod" {
+      plugin  = "aws"
+      profile = "dundermifflin"
+      regions = ["us-east-1", "us-west-2"]
+    }
+    ```
+
+    If your configuration files are stored in a different directory, specify the path with the `--config-dir` argument:
+
+    ```bash
+    steampipe_export_aws --connection aws_prod --config-dir ~/my/custom/config aws_account
+    ```
+
+    This provides a cleaner and more reusable approach than `--config`, especially for managing multiple environments or teams. It also supports full Steampipe connection syntax including named connections, plugin configurations, credentials, and options.
 
 ## Filtering Results
 
