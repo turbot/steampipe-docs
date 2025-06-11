@@ -187,7 +187,9 @@ If Steampipe is running, the plugins must be restarted for it to take effect: `s
 
 ## Supported Linux Distributions
 
-Steampipe has a dependency on the GNU C Library (glibc) through its Postgres FDW and requires a minimum glibc version of 2.34. As a result, Steampipe is supported and rigorously tested on the latest Linux Long-Term Support (LTS) distributions to ensure reliability and stability.
+Steampipe requires glibc version 2.34 or higher. It will not function on systems with an older glibc version.
+
+Steampipe is tested on the latest versions of Linux LTS distributions. While it may work on other distributions with the required glibc version, official support and testing are limited to the following:
 
 #### Supported Distributions and Versions
 
@@ -198,10 +200,3 @@ Steampipe has a dependency on the GNU C Library (glibc) through its Postgres FDW
 | CentOS (Stream)    | 9       | 2.34          |                                                         |
 | RHEL               | 9       | 2.34          |                                                         |
 | Amazon Linux       | 2023    | 2.34          |                                                         |
-
-#### Policy Overview
-
-- **Minimum glibc Requirement**: Steampipe FDW requires glibc version 2.34 or higher. It will not function on systems with an older glibc version.
-- **Tested Distributions**: Steampipe is tested on the latest versions of Linux LTS distributions. While it may work on other distributions with the required glibc version, official support and testing are limited to those listed above.
-
-This policy ensures that Steampipe operates smoothly on supported environments, maintaining the highest standards of reliability and performance.
