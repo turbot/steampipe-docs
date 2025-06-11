@@ -14,6 +14,7 @@ sidebar_label: FAQ
 | [Plugins and Customization](#plugins-and-customization)         |
 | [Deployment](#deployment)                                       |
 | [Troubleshooting and Debugging](#troubleshooting-and-debugging) |
+| [Supported Linux Distributions](#supported-linux-distributions) |
 
 
 ------
@@ -183,3 +184,24 @@ export STEAMPIPE_LOG_LEVEL=TRACE
 ```
 
 If Steampipe is running, the plugins must be restarted for it to take effect: `steampipe service stop --force  && steampipe service start`.
+
+## Supported Linux Distributions
+
+Steampipe has a dependency on the GNU C Library (glibc) through its Postgres FDW and requires a minimum glibc version of 2.34. As a result, Steampipe is supported and rigorously tested on the latest Linux Long-Term Support (LTS) distributions to ensure reliability and stability.
+
+#### Supported Distributions and Versions
+
+| Distribution       | Version | glibc Version | Notes                                                   |
+|--------------------|---------|---------------|---------------------------------------------------------|
+| Ubuntu LTS         | 24.04   | 2.39          |                                                         |
+| Ubuntu             | 22      | 2.35          | To cover Windows WSL2, which may be behind              |
+| CentOS (Stream)    | 9       | 2.34          |                                                         |
+| RHEL               | 9       | 2.34          |                                                         |
+| Amazon Linux       | 2023    | 2.34          |                                                         |
+
+#### Policy Overview
+
+- **Minimum glibc Requirement**: Steampipe FDW requires glibc version 2.34 or higher. It will not function on systems with an older glibc version.
+- **Tested Distributions**: Steampipe is tested on the latest versions of Linux LTS distributions. While it may work on other distributions with the required glibc version, official support and testing are limited to those listed above.
+
+This policy ensures that Steampipe operates smoothly on supported environments, maintaining the highest standards of reliability and performance.
