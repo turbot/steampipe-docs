@@ -191,7 +191,6 @@ Steampipe requires glibc version 2.34 or higher. It will not function on systems
 
 Steampipe is tested on the latest versions of Linux LTS distributions. While it may work on other distributions with the required glibc version, official support and testing are limited to the following:
 
-#### Supported Distributions and Versions
 
 | Distribution       | Version | glibc Version | Notes                                                   |
 |--------------------|---------|---------------|---------------------------------------------------------|
