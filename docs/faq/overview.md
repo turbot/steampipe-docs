@@ -194,7 +194,7 @@ Steampipe has a dependency on the GNU C Library (glibc) through its Postgres FDW
 | Distribution       | Version | glibc Version | Notes                                                   |
 |--------------------|---------|---------------|---------------------------------------------------------|
 | Ubuntu LTS         | 24.04   | 2.39          |                                                         |
-| Ubuntu             | 22      | 2.35          | To cover Windows WSL2, which may be behind              |
+| Ubuntu             | 22.04   | 2.35          | To cover Windows WSL2, which may be behind              |
 | CentOS (Stream)    | 9       | 2.34          |                                                         |
 | RHEL               | 9       | 2.34          |                                                         |
 | Amazon Linux       | 2023    | 2.34          |                                                         |
