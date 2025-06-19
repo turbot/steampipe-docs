@@ -1,9 +1,9 @@
 ---
-title: Using AI
-sidebar_label: Using AI
+title: Using AI for Plugin Development
+sidebar_label: Using AI for Plugin Development
 ---
 
-# Using AI
+# Using AI for Plugin Development
 
 Creating new tables for Steampipe plugins with AI tools and IDEs works remarkably well. At Turbot, we develop plugin tables frequently and use AI for almost every new table we create. We've experimented with various approaches, including detailed prompt engineering, explicit guidelines, IDE rules and instructions, and complex workflows, but found that AI typically produces excellent results even without heavy guidance.
 
@@ -26,6 +26,8 @@ While AI often works well with simple requests like "Create a table for [resourc
 
 First, create the new table and its documentation, using existing tables and docs as reference.
 
+#### Prompt
+
 ```md
 Your goal is to create a new Steampipe table and documentation for <resource type>.
 
@@ -46,6 +48,8 @@ Your goal is to create a new Steampipe table and documentation for <resource typ
 
 Next, build the plugin with your changes and verify your new table is properly registered.
 
+#### Prompt
+
 ```md
 Your goal is to build the plugin using the exact commands below and verify that your new <resource_type> table is properly registered and functional.
 
@@ -64,6 +68,8 @@ Your goal is to build the plugin using the exact commands below and verify that 
 
 To test the table's functionality, you'll need resources to query. You can either use existing resources or create new test resources with appropriate properties.
 
+#### Prompt
+
 ```md
 Your goal is to create test resources for <resource_type> to validate your Steampipe table implementation.
 
@@ -78,6 +84,8 @@ Your goal is to create test resources for <resource_type> to validate your Steam
 ### Validate Column Data
 
 Next, query the table to test that columns and data types are correctly implemented.
+
+#### Prompt
 
 ```md
 Your goal is to thoroughly test your <resource_type> table implementation by validating column data and executing documentation examples.
@@ -94,6 +102,8 @@ Use the Steampipe MCP server for running test queries if available, otherwise us
 ### Cleanup Test Resources
 
 After testing is completed, remove any resources created for testing.
+
+#### Prompt
 
 ```md
 Your goal is to clean up all test resources created for <resource_type> validation to avoid ongoing costs.
