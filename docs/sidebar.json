@@ -149,7 +149,7 @@
     "label": "Developers",
     "link": "develop/overview",
     "items": [
-      "develop/using-ai",
+      "develop/using-ai-for-plugin-development",
       "develop/writing-your-first-table",
       {
         "type": "category",
