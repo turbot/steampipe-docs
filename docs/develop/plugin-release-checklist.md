@@ -30,7 +30,7 @@ The repository website/homepage should link to the Hub site. The URL is composed
 
 <input type="checkbox"/> <b>Go version</b>
 
-The Go version in `go.mod` and any workflows is 1.21.
+The Go version in `go.mod` and any workflows is 1.24.
 
 <input type="checkbox"/> <b>.goreleaser.yml</b>
 
