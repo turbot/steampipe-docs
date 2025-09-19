@@ -173,7 +173,3 @@ Please remove this connection to continue using steampipe:
          'staging' (line  6)
          'prod' (line 11)
 ```
-
-## Steampipe Plugin Registry Support Lifecycle
-
-For information about the Steampipe and Plugin Registry support lifecycle, including registry deprecation notices, please refer to the [Support and Lifecycle](/docs/faq/overview#support-and-lifecycle) section in our FAQ.
