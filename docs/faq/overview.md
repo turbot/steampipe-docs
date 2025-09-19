@@ -13,6 +13,7 @@ sidebar_label: FAQ
 | [Performance and Scalability](#performance-and-scalability)     |
 | [Plugins and Customization](#plugins-and-customization)         |
 | [Deployment](#deployment)                                       |
+| [Support and Lifecycle](#support-and-lifecycle)                 |
 | [Troubleshooting and Debugging](#troubleshooting-and-debugging) |
 | [Supported Linux Distributions](#supported-linux-distributions) |
 
@@ -184,6 +185,36 @@ export STEAMPIPE_LOG_LEVEL=TRACE
 ```
 
 If Steampipe is running, the plugins must be restarted for it to take effect: `steampipe service stop --force  && steampipe service start`.
+
+## Support and Lifecycle
+
+### What is the support lifecycle for Steampipe CLI and plugins?
+
+Both the Steampipe CLI and plugins follow a 1-year support lifecycle policy. Each major version is supported for 1 year from its release date. During this support period:
+
+For Steampipe CLI:
+- Security updates and critical bug fixes are provided
+- Compatibility with supported plugin versions is maintained
+- Documentation and community support are available
+
+For Steampipe Plugins:
+- Bug fixes and security patches are provided
+- API compatibility updates are maintained
+- Documentation and community support are available
+
+After the support period ends:
+- The version will continue to function but will no longer receive updates
+- Users are encouraged to upgrade to a supported version
+- Compatibility between unsupported CLI versions and new plugin versions is not guaranteed
+- Unsupported plugin versions may not work with API changes in cloud services
+
+### Plugin Registry Support Lifecycle
+
+The Steampipe Plugin Registry is committed to ensuring accessibility and stability for its users by maintaining versions of plugins for at least one year and preserving at least one version of each plugin. This practice ensures that users can access older versions of plugins if needed, providing a safety net for compatibility issues or preferences.
+
+### Registry Support Status
+
+The legacy Steampipe Plugin Registry (registry.steampipe.io) has been deprecated and replaced with GitHub Container Registry (ghcr.io). All users must use the new registry location for plugin installations and updates. For more information about configuring plugins, see the [Managing Plugins](/docs/managing/plugins) documentation.
 
 ## Supported Linux Distributions
 
