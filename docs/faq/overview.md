@@ -190,12 +190,15 @@ If Steampipe is running, the plugins must be restarted for it to take effect: `s
 
 ### What is the support lifecycle for Steampipe CLI and plugins?
 
-Both the Steampipe CLI and plugins follow a 1-year support lifecycle policy. Each major version is supported for 1 year from its release date. During this support period:
+Steampipe follows a support lifecycle policy where major changes and deprecations are announced with a 1-year transition period. This ensures users have adequate time to update their systems. Here are the important version-specific considerations:
 
 For Steampipe CLI:
-- Security updates and critical bug fixes are provided
-- Compatibility with supported plugin versions is maintained
-- Documentation and community support are available
+- Steampipe v0.22.2 and earlier versions used the legacy registry (registry.steampipe.io)
+- Steampipe v0.23.0 and later versions use GitHub Container Registry (ghcr.io)
+- Only CLI versions using GitHub Container Registry (v0.23.0+) receive:
+  - Security updates and critical bug fixes
+  - Compatibility with new plugin versions
+  - Documentation and community support
 
 For Steampipe Plugins:
 - Bug fixes and security patches are provided
@@ -204,8 +207,8 @@ For Steampipe Plugins:
 
 After the support period ends:
 - The version will continue to function but will no longer receive updates
-- Users are encouraged to upgrade to a supported version
-- Compatibility between unsupported CLI versions and new plugin versions is not guaranteed
+- Users are strongly encouraged to upgrade to a supported version
+- Legacy registry versions (CLI v0.22.2 and earlier) cannot install or update plugins
 - Unsupported plugin versions may not work with API changes in cloud services
 
 ### Plugin Registry Support Lifecycle
