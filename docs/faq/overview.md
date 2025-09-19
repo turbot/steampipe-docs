@@ -13,6 +13,7 @@ sidebar_label: FAQ
 | [Performance and Scalability](#performance-and-scalability)     |
 | [Plugins and Customization](#plugins-and-customization)         |
 | [Deployment](#deployment)                                       |
+| [Support and Lifecycle](#support-and-lifecycle)                 |
 | [Troubleshooting and Debugging](#troubleshooting-and-debugging) |
 | [Supported Linux Distributions](#supported-linux-distributions) |
 
@@ -184,6 +185,16 @@ export STEAMPIPE_LOG_LEVEL=TRACE
 ```
 
 If Steampipe is running, the plugins must be restarted for it to take effect: `steampipe service stop --force  && steampipe service start`.
+
+## Support and Lifecycle
+
+### Steampipe CLI Support Policy
+
+The Steampipe CLI is committed to ensuring accessibility and stability for its users by maintaining versions of the CLI for at least *one year* from their initial release date. This practice ensures that users can access older versions of the CLI if needed, providing a safety net for compatibility issues or preferences. Please note that only the latest CLI version receives ongoing updates and patches.
+
+### Plugin Registry Support Lifecycle
+
+The Steampipe Plugin Registry provides a public repository of installable plugins. To ensure accessibility and stability, the registry will maintain all versions of each plugin for at least *one year* from their release, and will preserve at least *one version* of each plugin.
 
 ## Supported Linux Distributions
 
