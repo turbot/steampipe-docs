@@ -10,13 +10,16 @@ on:
   pull_request:
     types: [opened]
 
+permissions:
+  contents: read
+
 jobs:
   update:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
       - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
         with:
           token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
           repository: turbot/steampipe.io
@@ -25,6 +28,8 @@ jobs:
 
 
   comment-link:
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
@@ -32,7 +37,7 @@ jobs:
       - name: Get the deployment details
         id: get_deployment_details
         if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
-        uses: actions/github-script@v6
+        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
         with:
           script: |
             const branchName = 'docs/${{ github.event.pull_request.head.ref }}';
@@ -54,7 +59,7 @@ jobs:
             }
 
       - name: Add comment with preview link
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         if: ${{ steps.get_deployment_details.outputs.foundDeployment == 'true' }}
         with:
           script: |
