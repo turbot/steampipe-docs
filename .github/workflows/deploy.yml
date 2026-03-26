@@ -5,6 +5,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+
+permissions: {}
+
 jobs:
   trigger-vercel-deploy:
     runs-on: ubuntu-latest
@@ -12,3 +15,13 @@ jobs:
       - name: Trigger Vercel deploy
         run: |
           curl -X POST ${{ secrets.VERCEL_DEPLOY_LINK_PROD }}
+
+  update-search-records:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger search records update in steampipe.io
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
+          repository: turbot/steampipe.io
+          event-type: update-search-records
