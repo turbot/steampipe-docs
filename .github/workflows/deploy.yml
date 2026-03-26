@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger search records update in steampipe.io
-        uses: peter-evans/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
           repository: turbot/steampipe.io
