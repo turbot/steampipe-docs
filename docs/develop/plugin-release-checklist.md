@@ -5,7 +5,7 @@ sidebar_label: Plugin Release Checklist
 
 # Plugin Release Checklist
 
-As of June 2025, we've absorbed 149+ plugins into the Hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
+As of August 2026, we've absorbed 158+ plugins into the Hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
 
 ## Basic Configuration
 
@@ -34,7 +34,26 @@ The Go version in `go.mod` and any workflows is 1.24.
 
 <input type="checkbox"/> <b>.goreleaser.yml</b>
 
-The `.goreleaser.yml` file uses the standard format, e.g., [AWS plugin .goreleaser.yml](https://github.com/turbot/steampipe-plugin-aws/blob/main/.goreleaser.yml).
+The `.goreleaser.yml` file is in the repository root and uses the standard format, e.g., [AWS plugin .goreleaser.yml](https://github.com/turbot/steampipe-plugin-aws/blob/main/.goreleaser.yml).
+
+The Hub's publishing workflow expects release artifacts named `steampipe-plugin-<pluginName>_<os>_<arch>.gz` for all four OS/architecture combinations, so the following values should not be changed:
+
+```yml
+builds:
+  - binary: "{{ .ProjectName }}.plugin"
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - format: gz
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - none*
+```
 
 <input type="checkbox"/> <b>CHANGELOG</b>
 
