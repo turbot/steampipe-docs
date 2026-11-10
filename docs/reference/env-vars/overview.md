@@ -18,7 +18,7 @@ Note that plugins may also support environment variables, but these are plugin-s
 | [PIPES_HOST](/docs/reference/env-vars/pipes_host)  | `pipes.turbot.com` | Set the Turbot Pipes host, for connecting to Turbot Pipes workspace.
 | [PIPES_TOKEN](/docs/reference/env-vars/pipes_token)  |  | Set the Turbot Pipes authentication token for connecting to Turbot Pipes workspace.
 | [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache)| `true` | Enable/disable caching.
-| [STEAMPIPE_CACHE_MAX_SIZE_MB](/docs/reference/env-vars/steampipe_cache_max_size_mb)| unlimited | Set the maximum size of the query cache across all plugins. [DEPRECATED - use `STEAMPIPE_PLUGIN_MEMORY_MAX_MB`].
+| [STEAMPIPE_CACHE_MAX_SIZE_MB](/docs/reference/env-vars/steampipe_cache_max_size_mb)| unlimited | Set the maximum size of the query cache, as one total for all plugins. Each plugin gets a share in proportion to its number of connections.
 | [STEAMPIPE_CACHE_MAX_TTL](/docs/reference/env-vars/steampipe_cache_max_ttl)| `300` | The maximum amount of time to cache results, in seconds.
 | [STEAMPIPE_CACHE_TTL](/docs/reference/env-vars/steampipe_cache_ttl)| `300` | The amount of time to cache results, in seconds.
 | [STEAMPIPE_DATABASE_PASSWORD](/docs/reference/env-vars/steampipe_database_password)| randomly generated | Set the steampipe database password for this session.  This variable must be set when the steampipe service starts.

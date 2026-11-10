@@ -75,7 +75,7 @@ Broadly speaking, there are two groups of settings:
 The server settings dictate the actual operation of the cache on the server:
 - If the server has the `cache` disabled, then caching is off and data is not even written to the cache.  Any client connecting will NOT be able to use the cache, regardless of their settings.
 - The `cache_max_ttl` is the actual maximum cache lifetime - items are invalidated/ejected from the cache after this TTL.  A client can request a specific TTL, however if it exceeds the max TTL on the server, then the effective TTL will be the max TTL.
-- The `cache_max_size_mb` is the maximum physical size of the cache.  There is no equivalent client setting.
+- The `cache_max_size_mb` is the maximum physical size of the cache, as one total for all plugins.  Each plugin process has its own cache, so Steampipe gives each plugin a share of the total in proportion to its number of connections.  For example, with a total of 900 MB and 10 `aws` connections, 5 `gcp` connections and 1 `net` connection, `aws` gets 562 MB, `gcp` gets 281 MB and `net` gets 56 MB.  There is no equivalent client setting.
 
 The server level settings can set in the [database options](/docs/reference/config-files/options#database-options) or by setting environment variables on the host where the database is running.
 
@@ -84,14 +84,14 @@ The server level settings can set in the [database options](/docs/reference/conf
 options "database" {
   cache               = true                  # true, false
   cache_max_ttl       = 900                   # max expiration (TTL) in seconds
-  cache_max_size_mb   = 1024                  # max total size of cache across all plugins
+  cache_max_size_mb   = 1024                  # max size of cache, one total shared by all plugins
 }
 ```
 
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `cache` | `true` | `true`, `false`  | Enable or disable query caching. This can also be set via the  [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache) environment variable.
-| `cache_max_size_mb` | unlimited | an integer    | The maximum total size of the query cache across all plugins.   This can also be set via the  [STEAMPIPE_CACHE_MAX_SIZE_MB](/docs/reference/env-vars/steampipe_cache_max_size_mb) environment variable.
+| `cache_max_size_mb` | unlimited | an integer    | The maximum size of the query cache, as one total for all plugins. Each plugin gets a share of the total in proportion to its number of connections (aggregators do not count). `0` means no limit. See [how Steampipe shares the total](/docs/reference/env-vars/steampipe_cache_max_size_mb#how-steampipe-shares-the-total). This can also be set via the  [STEAMPIPE_CACHE_MAX_SIZE_MB](/docs/reference/env-vars/steampipe_cache_max_size_mb) environment variable, which takes precedence.
 | `cache_max_ttl` | `300` | an integer    | The maximum length of time to cache query results, in seconds. This can also be set via the  [STEAMPIPE_CACHE_MAX_TTL](/docs/reference/env-vars/steampipe_cache_max_ttl) environment variable.
 
 
