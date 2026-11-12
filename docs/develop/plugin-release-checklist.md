@@ -5,7 +5,7 @@ sidebar_label: Plugin Release Checklist
 
 # Plugin Release Checklist
 
-As of August 2026, we've absorbed 158+ plugins into the Hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
+As of November 2026, we've absorbed 158+ plugins into the Hub. If you want to contribute one -- and we hope you do! -- here are the most common things we ask contributors to check to prepare for the plugin's release. Feel free to tick the boxes as you go through the list!
 
 ## Basic Configuration
 
@@ -30,7 +30,11 @@ The repository website/homepage should link to the Hub site. The URL is composed
 
 <input type="checkbox"/> <b>Go version</b>
 
-The Go version in `go.mod` and any workflows is 1.24.
+The Go version in `go.mod` and any workflows is 1.26.
+
+<input type="checkbox"/> <b>Steampipe Plugin SDK version</b>
+
+The plugin uses the latest release of the [Steampipe Plugin SDK](https://github.com/turbot/steampipe-plugin-sdk) v6, i.e., `github.com/turbot/steampipe-plugin-sdk/v6` in `go.mod` and all imports. See the [SDK CHANGELOG](https://github.com/turbot/steampipe-plugin-sdk/blob/main/CHANGELOG.md) for the latest version.
 
 <input type="checkbox"/> <b>.goreleaser.yml</b>
 
@@ -135,7 +139,7 @@ When the plugin returns an error, it includes the location and any related args,
 
 <input type="checkbox"/> <b>Default transform</b>
 
-The plugin sets a preferred transform as the default. For example, the [GitLab plugin](https://hub.steampipe.io/plugins/theapsgroup/gitlab) uses [DefaultTransform: transform.FromGo().NullIfZero()](https://github.com/theapsgroup/steampipe-plugin-gitlab/blob/main/gitlab/plugin.go#L16). Please see [Transform Functions](https://steampipe.io/docs/develop/writing-plugins#transform-functions) for a full list of transform functions.
+The plugin sets a preferred transform as the default. For example, the [GitLab plugin](https://hub.steampipe.io/plugins/theapsgroup/gitlab) uses [DefaultTransform: transform.FromGo().NullIfZero()](https://github.com/theapsgroup/steampipe-plugin-gitlab/blob/e13f267eef628b5b7156f63de7c4838820103d06/gitlab/plugin.go#L18). Please see [Transform Functions](https://steampipe.io/docs/develop/writing-plugins#transform-functions) for a full list of transform functions.
 
 <input type="checkbox"/> <b>Pagination</b>
 
@@ -147,15 +151,15 @@ If a non-List hydrate function requires paging, consider separating that data in
 
 <input type="checkbox"/> <b>Backoff and retry</b>
 
-If the API SDK doesn't automate backoff and retry, the plugin leverages capabilities of the Steampipe plugin SDK's [RetryHydrate function](https://pkg.go.dev/github.com/turbot/steampipe-plugin-sdk/plugin#RetryHydrate). For instance, the `github_issue` table uses this function when [listing issues](https://github.com/turbot/steampipe-plugin-github/blob/d0a70b72e125c75940006ee6c66072c8bfa2e210/github/table_github_issue.go#L142) due to the strict throttling of the GitHub API.
+If the API SDK doesn't automate backoff and retry, the plugin leverages capabilities of the Steampipe plugin SDK's [RetryHydrate function](https://pkg.go.dev/github.com/turbot/steampipe-plugin-sdk/v6/plugin#RetryHydrate). For instance, the `github_issue` table uses this function when [listing issues](https://github.com/turbot/steampipe-plugin-github/blob/d0a70b72e125c75940006ee6c66072c8bfa2e210/github/table_github_issue.go#L142) due to the strict throttling of the GitHub API.
 
 <input type="checkbox"/> <b>Maximum concurrency</b>
 
-If the API has strict rate limiting, the table sets [HydrateConfig.MaxConcurrency](https://pkg.go.dev/github.com/turbot/steampipe-plugin-sdk/plugin#HydrateConfig.MaxConcurrency) for the relevant hydrate functions. For instance, the `googleworkspace_gmail_message` table limits the number of [getGmailMessage calls](https://github.com/turbot/steampipe-plugin-googleworkspace/blob/55686791222b02e7fb117cb398ea3fd76c2d1b1e/googleworkspace/table_googleworkspace_gmail_message.go#L49-L54).
+If the API has strict rate limiting, the plugin defines [rate limiters](/docs/develop/writing-plugins#client-side-rate-limiting) that match the API's limits, or the table sets [HydrateConfig.MaxConcurrency](https://pkg.go.dev/github.com/turbot/steampipe-plugin-sdk/v6/plugin#HydrateConfig.MaxConcurrency) for the relevant hydrate functions. For instance, the `googleworkspace_gmail_message` table limits the number of [getGmailMessage calls](https://github.com/turbot/steampipe-plugin-googleworkspace/blob/55686791222b02e7fb117cb398ea3fd76c2d1b1e/googleworkspace/table_googleworkspace_gmail_message.go#L49-L54).
 
 <input type="checkbox"/> <b>Context cancellation</b>
 
-Each table's list hydrate function checks for remaining rows from the API SDK, and aborts inside loops (e.g., while streaming items) if there are none. (See [example](https://github.com/turbot/steampipe-plugin-aws/blob/a0050b3a27db7f61a353bc9ae38e7dd072ed87b9/aws/table_aws_cloudcontrol_resource.go#L110-L113).)
+Each table's list hydrate function checks `d.RowsRemaining(ctx)` inside loops (e.g., after streaming each item) and stops when it returns 0, which happens when the query's limit is reached or the query is cancelled. (See [example](https://github.com/turbot/steampipe-plugin-aws/blob/a0050b3a27db7f61a353bc9ae38e7dd072ed87b9/aws/table_aws_cloudcontrol_resource.go#L110-L113).)
 
 ### Column Types
 
@@ -266,7 +270,7 @@ The example in `config/PLUGIN.spc` matches the one in `docs/index.md#configurati
 
 <input type="checkbox"/> <b>Social graphic</b>
 
-The social graphic is included at the top of the README file and is uploaded to the Social preview feature in the GitHub repository. Please request a social graphic through the [Steampipe Slack](https://steampipe.io/community/join).
+The social graphic is included at the top of the README file and is uploaded to the Social preview feature in the GitHub repository. Please request a social graphic through the [Turbot Community Slack](https://turbot.com/community/join).
 
 <input type="checkbox"/> <b>Ease of first use</b>
 
