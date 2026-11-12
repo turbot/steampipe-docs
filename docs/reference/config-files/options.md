@@ -36,7 +36,7 @@ The following `options` are currently supported:
 | Argument | Default | Values | Description 
 |-|-|-|-
 | `cache` | `true` | `true`, `false`  | Enable or disable query caching. This can also be set via the  [STEAMPIPE_CACHE](/docs/reference/env-vars/steampipe_cache) environment variable.
-| `cache_max_size_mb` | unlimited | an integer    | The maximum total size of the query cache across all plugins.   This can also be set via the  [STEAMPIPE_CACHE_MAX_SIZE_MB](/docs/reference/env-vars/steampipe_cache_max_size_mb) environment variable.
+| `cache_max_size_mb` | unlimited | an integer    | The maximum size of the query cache, as one total for all plugins. Each plugin gets a share of the total in proportion to its number of connections (aggregators do not count). `0` means no limit. See [how Steampipe shares the total](/docs/reference/env-vars/steampipe_cache_max_size_mb#how-steampipe-shares-the-total). This can also be set via the  [STEAMPIPE_CACHE_MAX_SIZE_MB](/docs/reference/env-vars/steampipe_cache_max_size_mb) environment variable, which takes precedence.
 | `cache_max_ttl` | `300` | an integer    | The maximum length of time to cache query results, in seconds. This can also be set via the  [STEAMPIPE_CACHE_MAX_TTL](/docs/reference/env-vars/steampipe_cache_max_ttl) environment variable.
 | `listen` | `network` | `local`, `network`| The network listen mode when Steampipe is started in [service mode](/docs/managing/service#starting-the-database-in-service-mode). Use `network` to listen on all IP addresses, or `local` to restrict to localhost.
 | `port` | `9193` | any valid, open port number | The TCP port that Postgres will listen on.
@@ -51,7 +51,7 @@ The following `options` are currently supported:
 options "database" {
   cache               = true                  # true, false
   cache_max_ttl       = 900                   # max expiration (TTL) in seconds
-  cache_max_size_mb   = 1024                  # max total size of cache across all plugins
+  cache_max_size_mb   = 1024                  # max size of cache, one total shared by all plugins
   port                = 9193                  # any valid, open port number
   listen              = "local"               # local, network
   search_path_prefix  = "aws,aws2,gcp,gcp2"   # comma-separated string; an exact search_path
