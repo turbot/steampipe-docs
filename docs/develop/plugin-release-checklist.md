@@ -36,28 +36,17 @@ The Go version in `go.mod` and any workflows is 1.26.
 
 The plugin uses the latest release of the [Steampipe Plugin SDK](https://github.com/turbot/steampipe-plugin-sdk) v6, i.e., `github.com/turbot/steampipe-plugin-sdk/v6` in `go.mod` and all imports. See the [SDK CHANGELOG](https://github.com/turbot/steampipe-plugin-sdk/blob/main/CHANGELOG.md) for the latest version.
 
-<input type="checkbox"/> <b>.goreleaser.yml</b>
+<input type="checkbox"/> <b>Hub build</b>
 
-The `.goreleaser.yml` file is in the repository root and uses the standard format, e.g., [AWS plugin .goreleaser.yml](https://github.com/turbot/steampipe-plugin-aws/blob/main/.goreleaser.yml).
+The Hub builds the plugin's release binaries itself from the release tag, so a `.goreleaser.yml` isn't required. If the repository has one, the Hub doesn't use it, but you can keep it to publish your own GitHub releases.
 
-The Hub's publishing workflow expects release artifacts named `steampipe-plugin-<pluginName>_<os>_<arch>.gz` for all four OS/architecture combinations, so the following values should not be changed:
+The Hub builds for darwin and linux (amd64 and arm64) with cgo disabled, so the plugin needs:
+- A `main` package at the repository root.
+- `go.mod` and `go.sum` that build as tagged. The Hub doesn't run `go mod tidy` and ignores any `vendor/` directory.
+- `docs` and `config` directories with no symbolic links.
+- A release tag in `vX.Y.Z` format, e.g., `v0.0.1`. The Hub doesn't publish pre-release tags like `v0.1.0-beta`.
 
-```yml
-builds:
-  - binary: "{{ .ProjectName }}.plugin"
-    goos:
-      - linux
-      - darwin
-    goarch:
-      - amd64
-      - arm64
-
-archives:
-  - format: gz
-    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
-    files:
-      - none*
-```
+To check the build locally, run `CGO_ENABLED=0 go build -mod=readonly -trimpath -o /dev/null .` from the repository root.
 
 <input type="checkbox"/> <b>CHANGELOG</b>
 
