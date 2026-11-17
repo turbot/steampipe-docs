@@ -19,9 +19,18 @@ jobs:
   update-search-records:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger search records update in steampipe.io
-        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
+      - name: Create a token for the Turbot Web Builds app
+        id: app-token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
-          token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
-          repository: turbot/steampipe.io
-          event-type: update-search-records
+          client-id: ${{ vars.WEB_BUILDS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.WEB_BUILDS_APP_PRIVATE_KEY }}
+          owner: turbot
+          repositories: steampipe.io
+
+      - name: Trigger search records update in steampipe.io
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+        run: |
+          default_branch="$(gh api repos/turbot/steampipe.io --jq .default_branch)"
+          gh workflow run update-search-records.yml -R turbot/steampipe.io --ref "$default_branch"
