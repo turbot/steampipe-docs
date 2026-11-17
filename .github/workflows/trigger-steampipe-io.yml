@@ -18,13 +18,23 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' }}
     steps:
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 # v3
+      - name: Create a token for the Turbot Web Builds app
+        id: app-token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
-          token: ${{ secrets.G_PERSONAL_ACCESS_TOKEN }}
-          repository: turbot/steampipe.io
-          event-type: build-preview-test
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "ref_name": "${{ github.ref_name }}"}'
+          client-id: ${{ vars.WEB_BUILDS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.WEB_BUILDS_APP_PRIVATE_KEY }}
+          owner: turbot
+          repositories: steampipe.io
+
+      - name: Start the preview build in steampipe.io
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          DOCS_REF_NAME: ${{ github.ref_name }}
+        run: |
+          default_branch="$(gh api repos/turbot/steampipe.io --jq .default_branch)"
+          gh workflow run build-preview.yml -R turbot/steampipe.io --ref "$default_branch" \
+            -f ref_name="$DOCS_REF_NAME"
 
 
   comment-link:
@@ -32,42 +42,60 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
+    # A fork's pushes start no preview build, so a link for one would be false.
+    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' && github.event.pull_request.head.repo.full_name == github.repository }}
     steps:
-      - name: Get the deployment details
-        id: get_deployment_details
-        if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' }}
-        uses: actions/github-script@d7906e4ad0b1822421a7e6a35d5ca353c962f410 # v6
-        with:
-          script: |
-            const branchName = 'docs/${{ github.event.pull_request.head.ref }}';
-
-            const response = await fetch('https://steampipe-io.vercel.app/api/service/deploy-details', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ${{ secrets.STEAMPIPE_API_KEY }}',
-              },
-              body: JSON.stringify({ branch: branchName }),
-            });
-            if (!response.ok) {
-              core.setOutput('foundDeployment', false);
-            } else {
-              const data = await response.json();
-              core.setOutput('foundDeployment', true);
-              core.setOutput('apiResponse', data);
-            }
-
       - name: Add comment with preview link
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
-        if: ${{ steps.get_deployment_details.outputs.foundDeployment == 'true' }}
+        env:
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
         with:
           script: |
-            const apiResponse = ${{ steps.get_deployment_details.outputs.apiResponse }};
+            // steampipe.io builds the branch docs/<PR branch> through Vercel's Git
+            // integration. Vercel names that preview
+            // steampipe-io-git-docs-<branch, lower-cased, only a-z 0-9 and "-">-turbot,
+            // and shortens a host over 63 characters with a hash nobody can reproduce.
+            // steampipe.io's build-preview refuses a name outside ^[A-Za-z0-9._/-]+$ and builds
+            // nothing for it, so such a branch gets no preview at all.
+            const ref = process.env.PR_HEAD_REF;
+            const accepted = /^[A-Za-z0-9._\/-]+$/.test(ref);
+            const clean = ref.toLowerCase().replace(/[^a-z0-9-]/g, '');
+            const host = `steampipe-io-git-docs-${clean}-turbot`;
+            const hasLink = accepted && clean !== '' && host.length <= 63;
 
-            github.rest.issues.createComment({
+            const backup = 'All steampipe.io previews: https://github.com/turbot/steampipe.io/deployments/Preview (Turbot people only)';
+
+            const body = !accepted
+              ? [
+                  '### No preview',
+                  '',
+                  'This branch name has a character the preview build refuses, so it gets no preview.',
+                  'To get one, use only letters, digits, `.`, `_`, `/` and `-` in the branch name.',
+                ].join('\n')
+              : hasLink
+              ? [
+                  '### Preview Available 🚀',
+                  '',
+                  `**Preview Link:** https://${host}.vercel.app`,
+                  '',
+                  'It can take a few minutes to build.',
+                  '',
+                  `<sub>${backup}</sub>`,
+                ].join('\n')
+              : [
+                  '### Preview',
+                  '',
+                  clean === ''
+                    ? 'Vercel cannot give this branch name a link we can work out.'
+                    : 'This branch name is too long for Vercel to give it a link we can work out.',
+                  'Use the all-previews link below.',
+                  '',
+                  `<sub>${backup}</sub>`,
+                ].join('\n');
+
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `### Preview Available 🚀\n\n**Commit Author:** ${apiResponse.meta.githubCommitAuthorName}\n**Commit Message:** ${apiResponse.meta.githubCommitMessage}\n\n**Preview Link:** [${apiResponse.meta.branchAlias}](https://${apiResponse.meta.branchAlias})`
+              body,
             });
