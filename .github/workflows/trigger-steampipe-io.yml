@@ -55,13 +55,24 @@ jobs:
             // integration. Vercel names that preview
             // steampipe-io-git-docs-<branch, lower-cased, only a-z 0-9 and "-">-turbot,
             // and shortens a host over 63 characters with a hash nobody can reproduce.
-            const clean = process.env.PR_HEAD_REF.toLowerCase().replace(/[^a-z0-9-]/g, '');
+            // steampipe.io's build-preview refuses a name outside ^[A-Za-z0-9._/-]+$ and builds
+            // nothing for it, so such a branch gets no preview at all.
+            const ref = process.env.PR_HEAD_REF;
+            const accepted = /^[A-Za-z0-9._\/-]+$/.test(ref);
+            const clean = ref.toLowerCase().replace(/[^a-z0-9-]/g, '');
             const host = `steampipe-io-git-docs-${clean}-turbot`;
-            const hasLink = clean !== '' && host.length <= 63;
+            const hasLink = accepted && clean !== '' && host.length <= 63;
 
             const backup = 'All steampipe.io previews: https://github.com/turbot/steampipe.io/deployments/Preview (Turbot people only)';
 
-            const body = hasLink
+            const body = !accepted
+              ? [
+                  '### No preview',
+                  '',
+                  'This branch name has a character the preview build refuses, so it gets no preview.',
+                  'To get one, use only letters, digits, `.`, `_`, `/` and `-` in the branch name.',
+                ].join('\n')
+              : hasLink
               ? [
                   '### Preview Available 🚀',
                   '',
