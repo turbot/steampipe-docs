@@ -1,0 +1,22 @@
+# The gate manifest — turbot/steampipe-docs
+#
+# What a change to this repo must run and show before an agent's PR counts as done.
+# The reference is kits/inbox/GATES.md in the kit repo; `agent-fleet gates check`
+# validates this file.
+#
+# This repo is Markdown and images only, with nothing to build or test. turbot/steampipe.io
+# renders it: a push to a branch here starts a preview build there (trigger-steampipe-io.yml),
+# and a push to main deploys production (deploy.yml). A person reviews and merges every PR.
+
+kinds:
+  docs:
+    paths: ["docs/**", "images/**", "README.md"]
+    show: [none]
+    failfirst: none
+  config:                  # workflows, fleet settings and repo files
+    paths: [".claude/**", ".github/**", ".gitignore", "LICENSE"]
+    show: [none]
+    failfirst: none
+  other:                   # any new top-level file: nothing here builds or tests
+    show: [none]
+    failfirst: none
