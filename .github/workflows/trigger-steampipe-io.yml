@@ -8,7 +8,7 @@ on:
       - "main"
 
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: read
@@ -37,20 +37,23 @@ jobs:
             -f ref_name="$DOCS_REF_NAME"
 
 
-  comment-link:
+  preview-link:
     permissions:
-      pull-requests: write
+      statuses: write
     runs-on: ubuntu-latest
     timeout-minutes: 5
     # A fork's pushes start no preview build, so a link for one would be false.
-    if: ${{ github.event_name == 'pull_request' && github.event.action == 'opened' && github.event.pull_request.head.repo.full_name == github.repository }}
+    if: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
     steps:
-      - name: Add comment with preview link
+      - name: Link the preview as a status on the PR's head commit
         uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7
         env:
           PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         with:
           script: |
+            // A status, not a comment: a comment from github-actions[bot] counts as
+            // an outsider's text to the fleet's public-repo guard and holds the PR.
             // steampipe.io builds the branch docs/<PR branch> through Vercel's Git
             // integration. Vercel names that preview
             // steampipe-io-git-docs-<branch, lower-cased, only a-z 0-9 and "-">-turbot,
@@ -62,40 +65,29 @@ jobs:
             const clean = ref.toLowerCase().replace(/[^a-z0-9-]/g, '');
             const host = `steampipe-io-git-docs-${clean}-turbot`;
             const hasLink = accepted && clean !== '' && host.length <= 63;
+            const all = 'https://github.com/turbot/steampipe.io/deployments/Preview';
 
-            const backup = 'All steampipe.io previews: https://github.com/turbot/steampipe.io/deployments/Preview (Turbot people only)';
-
-            const body = !accepted
-              ? [
-                  '### No preview',
-                  '',
-                  'This branch name has a character the preview build refuses, so it gets no preview.',
-                  'To get one, use only letters, digits, `.`, `_`, `/` and `-` in the branch name.',
-                ].join('\n')
+            const status = !accepted
+              ? {
+                  state: 'failure',
+                  description: 'No preview: the branch name has a character the build refuses. Use only letters, digits, . _ / and -.',
+                }
               : hasLink
-              ? [
-                  '### Preview Available 🚀',
-                  '',
-                  `**Preview Link:** https://${host}.vercel.app`,
-                  '',
-                  'It can take a few minutes to build.',
-                  '',
-                  `<sub>${backup}</sub>`,
-                ].join('\n')
-              : [
-                  '### Preview',
-                  '',
-                  clean === ''
-                    ? 'Vercel cannot give this branch name a link we can work out.'
-                    : 'This branch name is too long for Vercel to give it a link we can work out.',
-                  'Use the all-previews link below.',
-                  '',
-                  `<sub>${backup}</sub>`,
-                ].join('\n');
+              ? {
+                  state: 'success',
+                  target_url: `https://${host}.vercel.app`,
+                  description: 'Details opens the preview of this branch. It can take a few minutes to build.',
+                }
+              : {
+                  state: 'success',
+                  target_url: all,
+                  description: 'No link can be worked out for this branch name. Details lists every preview (Turbot people only).',
+                };
 
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body,
+              sha: process.env.PR_HEAD_SHA,
+              context: 'steampipe.io preview',
+              ...status,
             });
