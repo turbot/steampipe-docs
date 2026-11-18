@@ -1,0 +1,27 @@
+name: Docs preview
+
+# A push to any branch but main starts steampipe.io's preview build of that branch.
+# A pull request from this repo links the preview as a deployment on its head commit.
+# The steps live in the shared workflow this calls.
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions: {}
+
+jobs:
+  preview:
+    permissions:
+      contents: read
+      deployments: write   # the PR's deployment
+      id-token: write      # so the shared workflow can check out its own commit
+    uses: turbot/shipyard-workflows/.github/workflows/docs-preview.yml@v0
+    with:
+      site: turbot/steampipe.io
+      vercel-project: steampipe-io
+      app-client-id: ${{ vars.WEB_BUILDS_APP_CLIENT_ID }}
+    secrets:
+      app-private-key: ${{ secrets.WEB_BUILDS_APP_PRIVATE_KEY }}
